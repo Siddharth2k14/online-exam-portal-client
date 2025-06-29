@@ -1,0 +1,57 @@
+.view-exam-container {
+  max-width: 600px;
+  margin: 32px auto;
+  padding: 0 8px;
+}
+
+.view-exam-back-btn {
+  margin-bottom: 16px;
+}
+
+.view-exam-card {
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+  background: #fff;
+}
+
+.view-exam-title {
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #1976d2;
+  text-align: center;
+}
+
+.view-exam-question-block {
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.view-exam-question {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.view-exam-option {
+  margin-left: 24px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.correct-option {
+  background: #e8f5e9;
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+@media (max-width: 700px) {
+  .view-exam-container {
+    max-width: 98vw;
+    padding: 0 2vw;
+  }
+  .view-exam-card {
+    padding: 12px;
+  }
+}

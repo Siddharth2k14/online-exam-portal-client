@@ -1,0 +1,87 @@
+.container {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.container .signup-card {
+    background-color: rgb(219, 240, 204);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    min-height: min-content;
+}
+
+.signup-card-body .signup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.signup-title {
+    color: black !important; /* Ensures visibility */
+    font-size: 2rem; /* Adjust as needed */
+    font-weight: bold; /* Makes the title bold */
+    text-align: center; /* Centers the title */
+    margin-bottom: 20px; /* Adds space below the title */
+    text-decoration: underline; /* Underlines the title */
+}
+
+.signup-form .name-header, .email-header, .password-header, .confirm-password-header {
+    color: black !important; /* Ensures visibility */
+    margin-bottom: 20px; /* Adds space below the label */
+}
+
+.signup-form .signup-button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.signup-form .signup-button:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+.name-input, .email-input, .password-input, .confirm-password-input {
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgb(217, 234, 217);
+}
+
+.signup-card-footer {
+    display: flex;
+    background-color: #f0f0f0;
+    height: fit-content;
+    font-size: small;
+    padding: 10px;
+}
+
+.signup-card-footer .MuiButton-root {
+    text-transform: uppercase; /* Gives a styled look */
+}
+
+.error {
+    color: red; /* Makes errors noticeable */
+    font-size: 14px; /* Adjusts readability */
+    margin-top: 5px; /* Adds spacing */
+    font-weight: bold; /* Highlights errors */
+    margin: 5px 10px;
+}
+
+.signup-card-footer .MuiCardHeader-title {
+    font-size: 1rem; /* or any smaller size you prefer */
+    font-weight: 400;
+}

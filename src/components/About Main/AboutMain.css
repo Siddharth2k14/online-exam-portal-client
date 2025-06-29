@@ -1,0 +1,115 @@
+.about-main-outer {
+    margin-top: 65px;
+    padding: 32px;
+    background: #fafafa;
+    min-height: 100vh;
+  }
+  
+  .about-main-card {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    background: #fff;
+    border: 2px solid #bdbdbd;
+  }
+  
+  .about-main-title {
+    font-family: 'Merriweather', serif;
+    font-weight: bold;
+    font-size: 2.8rem;
+    margin-bottom: 16px;
+  }
+  
+  .about-main-desc {
+    margin: 24px 0 40px 0;
+  }
+  
+  .about-main-desc strong {
+    font-weight: bold;
+  }
+  
+  .about-main-features {
+    margin-top: 32px;
+    column-gap: 64px;
+  }
+  
+  .about-main-features .MuiGrid-item {
+    /* To align the two columns vertically */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .about-main-features .MuiTypography-h6 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  .about-main-features .MuiListItemText-root {
+    font-size: 1.1rem;
+  }
+  
+  .about-main-coming-soon {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .about-main-coming-soon .MuiTypography-h6 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  .about-main-coming-soon .MuiListItemText-root {
+    font-size: 1.05rem;
+  }
+  
+  .about-main-built-by {
+    background: #f5f5f5;
+    border-radius: 8px;
+    margin-top: 24px;
+    text-align: left;
+  }
+  
+  .about-main-built-by a {
+    color: #1976d2;
+    text-decoration: none;
+    margin: 0 4px;
+    font-weight: 500;
+  }
+  
+  @media (max-width: 900px) {
+    .about-main-card {
+      padding: 16px 8px;
+    }
+    .about-main-features {
+      flex-direction: column;
+    }
+    .about-main-title {
+      font-size: 2rem;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .about-main-card {
+      padding: 8px 2px;
+    }
+    .about-main-title {
+      font-size: 1.3rem;
+    }
+    .about-main-desc {
+      font-size: 0.95rem;
+    }
+  }
+  
+  .about-header-text{
+      display: flex;
+      justify-content: center;
+  }
+  
+  

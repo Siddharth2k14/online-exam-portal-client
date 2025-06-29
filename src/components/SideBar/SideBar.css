@@ -1,0 +1,62 @@
+.sidebar-container {
+  width: 260px;
+  background: #f5f6fa;
+  padding: 16px 16px;
+  box-sizing: border-box;
+  background: linear-gradient(245deg, #0f2027, #2c5364);
+  position: absolute;
+  top: 65px;
+  display: flex;
+}
+
+.exam-creation{
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(60, 60, 60, 0.06);
+}
+
+.settings{
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(60, 60, 60, 0.06);
+}
+
+.exam-creation .MuiTypography-root,
+.settings .MuiTypography-root {
+  font-weight: 600;
+  color: #2d3a4b;
+}
+
+.MuiListItem-root {
+  border-radius: 6px;
+  margin-bottom: 4px;
+  transition: background 0.2s;
+}
+
+.MuiListItem-root:hover {
+  background: #e3e9f7;
+}
+
+.MuiListItemText-primary {
+  font-size: 1rem;
+  color: #34495e;
+}
+
+.exam-list, .setting-list {
+  border: 15px solid transparent;
+  border-image: linear-gradient(245deg, #0f2027, #2c5364);
+  border-image-slice: 1;
+}
+
+/* .exam-creation {
+  background: linear-gradient(to top, red, pink, orange, yellow);
+} */
+
+.exam-management {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.setting {
+  text-align: center;
+  text-decoration: underline;
+}
