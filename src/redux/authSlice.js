@@ -5,7 +5,7 @@ export const login = createAsyncThunk(
     'auth/login',
     async ({ email, password, role }, thunkAPI) => {
         try {
-            const endpoint = role === 'admin' ? 'online-exam-portal-server-production.up.railway.appapi/auth/admin/login' : 'online-exam-portal-server-production.up.railway.appapi/auth/student/login';
+            const endpoint = role === 'admin' ? 'online-exam-portal-server-production-dc65.up.railway.appapi/auth/admin/login' : 'online-exam-portal-server-production-dc65.up.railway.appapi/auth/student/login';
 
             const response = await fetch(endpoint, {
                 method: 'POST',
@@ -28,7 +28,7 @@ export const signup = createAsyncThunk(
     'auth/signup',
     async ({ name, email, password, confirmPassword }, thunkAPI) => {
         try {
-            const response = await fetch('online-exam-portal-server-production.up.railway.appapi/auth/signup', {
+            const response = await fetch('online-exam-portal-server-production-dc65.up.railway.appapi/auth/signup', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name, email, password, confirmPassword }),

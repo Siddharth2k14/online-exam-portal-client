@@ -14,7 +14,7 @@ const ViewExam = () => {
     const fetchExam = async () => {
       try {
         // Fetch all exams and find the one matching examTitle
-        const res = await axios.get('online-exam-portal-server-production.up.railway.appapi/questions/all');
+        const res = await axios.get('online-exam-portal-server-production-dc65.up.railway.appapi/questions/all');
         const exams = res.data.exams || [];
         const foundExam = exams.find(e => e.exam_title === examTitle);
         setExam(foundExam || null);

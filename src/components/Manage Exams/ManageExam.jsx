@@ -10,7 +10,7 @@ const ManageExam = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('online-exam-portal-server-production.up.railway.appapi/questions/all');
+      const response = await fetch('online-exam-portal-server-production-dc65.up.railway.appapi/questions/all');
       const data = await response.json();
       if (data.exams) {
         setExams(data.exams);
@@ -33,8 +33,8 @@ const ManageExam = () => {
 
   const handleDelete = async (exam_title) => {
     try {
-      await fetch(`online-exam-portal-server-production.up.railway.appapi/questions/objective/${exam_title}`, { method: 'DELETE' });
-      await fetch(`online-exam-portal-server-production.up.railway.appapi/questions/subjective/${exam_title}`, { method: 'DELETE' });
+      await fetch(`online-exam-portal-server-production-dc65.up.railway.appapi/questions/objective/${exam_title}`, { method: 'DELETE' });
+      await fetch(`online-exam-portal-server-production-dc65.up.railway.appapi/questions/subjective/${exam_title}`, { method: 'DELETE' });
       setExams((prev) => prev.filter((exam) => exam.exam_title !== exam_title));
     } catch (error) {
       alert('Error deleting exam');
