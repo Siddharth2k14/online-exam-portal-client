@@ -22,7 +22,7 @@ import View_Exam from './components/ViewExam/ViewExam';
 import Home from './pages/Home/Home';
 import About from './pages/About/About';
 import Contact from './pages/Contact/Contact';
-import HomeMain from './components/Home Main/homeMain';
+import HomeMain from './components/Home Main/HomeMain';
 
 const App = () => {
   return (
