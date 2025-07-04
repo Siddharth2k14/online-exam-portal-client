@@ -10,7 +10,7 @@ const ManageExam = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('https://online-exam-portal-server.vercel.app/api/questions/all');
+      const response = await fetch('https://online-exam-portal-server-tis8-pbeuzpfmn.vercel.app/api/questions/all');
       const data = await response.json();
       if (data.exams) {
         setExams(data.exams);
@@ -33,8 +33,8 @@ const ManageExam = () => {
 
   const handleDelete = async (exam_title) => {
     try {
-      await fetch(`https://online-exam-portal-server.vercel.app/api/questions/objective/${exam_title}`, { method: 'DELETE' });
-      await fetch(`https://online-exam-portal-server.vercel.app/api/questions/subjective/${exam_title}`, { method: 'DELETE' });
+      await fetch(`https://online-exam-portal-server-tis8-pbeuzpfmn.vercel.app/api/questions/objective/${exam_title}`, { method: 'DELETE' });
+      await fetch(`https://online-exam-portal-server-tis8-pbeuzpfmn.vercel.app/api/questions/subjective/${exam_title}`, { method: 'DELETE' });
       setExams((prev) => prev.filter((exam) => exam.exam_title !== exam_title));
     } catch (error) {
       alert('Error deleting exam');

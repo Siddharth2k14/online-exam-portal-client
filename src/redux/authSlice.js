@@ -5,7 +5,7 @@ export const login = createAsyncThunk(
     'auth/login',
     async ({ email, password, role }, thunkAPI) => {
         try {
-            const endpoint = role === 'admin' ? 'https://online-exam-portal-server.vercel.app/api/auth/admin/login' : 'https://online-exam-portal-server.vercel.app/api/auth/student/login';
+            const endpoint = role === 'admin' ? 'https://online-exam-portal-server-tis8-pbeuzpfmn.vercel.app/api/auth/admin/login' : 'https://online-exam-portal-server-tis8-pbeuzpfmn.vercel.app/api/auth/student/login';
 
             const response = await fetch(endpoint, {
                 method: 'POST',
@@ -28,7 +28,7 @@ export const signup = createAsyncThunk(
     'auth/signup',
     async ({ name, email, password, confirmPassword }, thunkAPI) => {
         try {
-            const response = await fetch('https://online-exam-portal-server.vercel.app/api/auth/signup', {
+            const response = await fetch('https://online-exam-portal-server-tis8-pbeuzpfmn.vercel.app/api/auth/signup', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name, email, password, confirmPassword }),

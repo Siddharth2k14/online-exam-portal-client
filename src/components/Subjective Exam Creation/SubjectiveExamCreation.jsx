@@ -22,7 +22,7 @@ const SubjectiveExamCreation = () => {
     }
 
     // Save to backend
-    await fetch('https://online-exam-portal-server.vercel.app/api/questions/subjective', {
+    await fetch('https://online-exam-portal-server-tis8-pbeuzpfmn.vercel.app/api/questions/subjective', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
