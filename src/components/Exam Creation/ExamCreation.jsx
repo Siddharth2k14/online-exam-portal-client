@@ -34,7 +34,7 @@ const ExamCreation = () => {
     dispatch(addExam({ title: titleExam, type: examType }));
 
     // Save exam to backend (optional, if you have an endpoint)
-    // await axios.post('http://localhost:3000/api/exams', { title: titleExam, type: examType });
+    // await axios.post('https://online-exam-portal-server.vercel.app/api/exams', { title: titleExam, type: examType });
 
     if (examType === 'objective') {
       navigate('/exam-creation/objective', { state: { titleExam } });
@@ -53,8 +53,8 @@ const ExamCreation = () => {
   // handleDelete is already correct:
   const handleDelete = async (title) => {
     try {
-      await axios.delete(`http://localhost:3000/api/questions/objective/${title}`);
-      await axios.delete(`http://localhost:3000/api/questions/subjective/${title}`);
+      await axios.delete(`https://online-exam-portal-server.vercel.app/api/questions/objective/${title}`);
+      await axios.delete(`https://online-exam-portal-server.vercel.app/api/questions/subjective/${title}`);
       setExams((prev) => prev.filter((exam) => exam.title !== title));
     } catch (error) {
       console.error('Error deleting exam:', error.message);

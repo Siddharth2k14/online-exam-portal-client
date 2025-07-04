@@ -60,7 +60,7 @@ const StartExam = () => {
       try {
         // ① Try objective first
         let res = await fetch(
-          `http://localhost:3000/api/questions/objective/${encodeURIComponent(
+          `https://online-exam-portal-server.vercel.app/api/questions/objective/${encodeURIComponent(
             examTitle
           )}`
         );
@@ -80,7 +80,7 @@ const StartExam = () => {
         } else {
           // ② Fallback to subjective
           res = await fetch(
-            `http://localhost:3000/api/questions/subjective/${encodeURIComponent(
+            `https://online-exam-portal-server.vercel.app/api/questions/subjective/${encodeURIComponent(
               examTitle
             )}`
           );
