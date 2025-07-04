@@ -33,7 +33,7 @@ const ExamsPage = () => {
   useEffect(() => {
     const fetchExams = async () => {
       try {
-        const response = await axios.get('https://online-exam-portal-server-tis8-pbeuzpfmn.vercel.app/api/questions/all');
+        const response = await axios.get('online-exam-portal-server-production.up.railway.appapi/questions/all');
         const examData = response.data.exams || [];
         setExams(examData);
 

@@ -60,7 +60,7 @@ const StartExam = () => {
       try {
         // ① Try objective first
         let res = await fetch(
-          `https://online-exam-portal-server-tis8-pbeuzpfmn.vercel.app/api/questions/objective/${encodeURIComponent(
+          `online-exam-portal-server-production.up.railway.appapi/questions/objective/${encodeURIComponent(
             examTitle
           )}`
         );
@@ -80,7 +80,7 @@ const StartExam = () => {
         } else {
           // ② Fallback to subjective
           res = await fetch(
-            `https://online-exam-portal-server-tis8-pbeuzpfmn.vercel.app/api/questions/subjective/${encodeURIComponent(
+            `online-exam-portal-server-production.up.railway.appapi/questions/subjective/${encodeURIComponent(
               examTitle
             )}`
           );

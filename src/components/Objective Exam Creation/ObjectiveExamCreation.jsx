@@ -41,7 +41,7 @@ const ObjectiveExamCreation = () => {
     }));
 
     // Save to backend
-    await fetch('https://online-exam-portal-server-tis8-pbeuzpfmn.vercel.app/api/questions/objective', {
+    await fetch('online-exam-portal-server-production.up.railway.appapi/questions/objective', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
