@@ -60,7 +60,7 @@ const StartExam = () => {
       try {
         // ① Try objective first
         let res = await fetch(
-          `online-exam-portal-server-production-dc65.up.railway.appapi/questions/objective/${encodeURIComponent(
+          `https://online-exam-portal-server.onrender.com/api/questions/objective/${encodeURIComponent(
             examTitle
           )}`
         );
@@ -80,7 +80,7 @@ const StartExam = () => {
         } else {
           // ② Fallback to subjective
           res = await fetch(
-            `online-exam-portal-server-production-dc65.up.railway.appapi/questions/subjective/${encodeURIComponent(
+            `https://online-exam-portal-server.onrender.com/api/questions/subjective/${encodeURIComponent(
               examTitle
             )}`
           );

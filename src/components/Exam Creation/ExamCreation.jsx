@@ -34,7 +34,7 @@ const ExamCreation = () => {
     dispatch(addExam({ title: titleExam, type: examType }));
 
     // Save exam to backend (optional, if you have an endpoint)
-    // await axios.post('online-exam-portal-server-production-dc65.up.railway.appapi/exams', { title: titleExam, type: examType });
+    // await axios.post('https://online-exam-portal-server.onrender.com/api/exams', { title: titleExam, type: examType });
 
     if (examType === 'objective') {
       navigate('/exam-creation/objective', { state: { titleExam } });
@@ -53,8 +53,8 @@ const ExamCreation = () => {
   // handleDelete is already correct:
   const handleDelete = async (title) => {
     try {
-      await axios.delete(`online-exam-portal-server-production-dc65.up.railway.appapi/questions/objective/${title}`);
-      await axios.delete(`online-exam-portal-server-production-dc65.up.railway.appapi/questions/subjective/${title}`);
+      await axios.delete(`https://online-exam-portal-server.onrender.com/api/questions/objective/${title}`);
+      await axios.delete(`https://online-exam-portal-server.onrender.com/api/questions/subjective/${title}`);
       setExams((prev) => prev.filter((exam) => exam.title !== title));
     } catch (error) {
       console.error('Error deleting exam:', error.message);

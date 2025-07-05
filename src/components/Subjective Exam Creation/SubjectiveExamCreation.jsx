@@ -22,7 +22,7 @@ const SubjectiveExamCreation = () => {
     }
 
     // Save to backend
-    await fetch('online-exam-portal-server-production-dc65.up.railway.appapi/questions/subjective', {
+    await fetch('https://online-exam-portal-server.onrender.com/api/questions/subjective', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

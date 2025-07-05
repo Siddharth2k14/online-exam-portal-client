@@ -33,7 +33,7 @@ const ExamsPage = () => {
   useEffect(() => {
     const fetchExams = async () => {
       try {
-        const response = await axios.get('online-exam-portal-server-production-dc65.up.railway.appapi/questions/all');
+        const response = await axios.get('https://online-exam-portal-server.onrender.com/api/questions/all');
         const examData = response.data.exams || [];
         setExams(examData);
 
