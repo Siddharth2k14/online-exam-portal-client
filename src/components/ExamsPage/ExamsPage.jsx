@@ -72,13 +72,19 @@ const ExamsPage = () => {
 
   return (
     <div className="exams-page">
-      <Typography variant="h4" className="page-title" gutterBottom>
+      <Typography variant="h4" className="page-title" gutterBottom sx={{
+        margin: '32px 0 16px 0',
+        textAlign: 'center',
+        color: 'white'
+      }}>
         Available Exams
       </Typography>
 
       <div className="filters">
         <FormControl sx={{ minWidth: 200, mr: 2 }}>
-          <InputLabel>Select Subject</InputLabel>
+          <InputLabel sx={{
+            color: 'white'
+          }}>Select Subject</InputLabel>
           <Select
             value={selectedSubject}
             onChange={(e) => setSelectedSubject(e.target.value)}
@@ -92,7 +98,9 @@ const ExamsPage = () => {
         </FormControl>
 
         <FormControl sx={{ minWidth: 200 }}>
-          <InputLabel>Exam Type</InputLabel>
+          <InputLabel sx={{
+            color: 'white'
+          }}>Exam Type</InputLabel>
           <Select
             value={selectedType}
             onChange={(e) => setSelectedType(e.target.value)}
