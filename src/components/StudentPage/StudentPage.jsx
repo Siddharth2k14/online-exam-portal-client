@@ -50,7 +50,7 @@ const StudentPage = () => {
                     Student Dashboard
                 </Typography>
                 <hr className='horizontal-line' />
-                <Card data-testid="student-card">
+                <Card className="student-card">
                     <CardContent>
                         {renderContent()}
                     </CardContent>
