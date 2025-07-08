@@ -2,8 +2,7 @@
     max-width: 800px;
     margin: 2rem auto;
     padding: 2rem;
-    /* background: #f9f9f9; */
-    background: linear-gradient(245deg, #0f2027, #2c5364);
+    background: #f9f9f9;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
@@ -22,7 +21,7 @@
 
 .start-exam-questions-card {
     margin-top: 2rem;
-    background: #fff;
+    background: linear-gradient(245deg, #0f2027, #2c5364);
     border-radius: 8px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.05);
 }
