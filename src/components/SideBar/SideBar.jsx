@@ -32,107 +32,109 @@ const SideBar = ({ onSectionSelect }) => {
     const isStudentDashboard = location.pathname.includes("student/dashboard");
 
     return (
-        <div className="sidebar-container">
-            <div style={{ width: 250 }}>
-                <Card className="exam-creation" variant="outlined" sx={{
-                    mb: 2,
-                    p: 2
-                }}>
-                    <Typography
-                        variant="h6"
-                        gutterBottom
-                        onClick={handleExamToggle}
-                        style={{ cursor: 'pointer' }}
-                        className="exam-management"
-                    >
-                        Exam Management
-                    </Typography>
-
-                    {isAdminDashboard ? (
-                        <Collapse
-                            in={examOpen}
-                            timeout="auto"
-                            unmountOnExit
-                            className="exam-list"
+        <div className="sidebar">
+            <div className="sidebar-container">
+                <div style={{ width: 250 }}>
+                    <Card className="exam-creation" variant="outlined" sx={{
+                        mb: 2,
+                        p: 2
+                    }}>
+                        <Typography
+                            variant="h6"
+                            gutterBottom
+                            onClick={handleExamToggle}
+                            style={{ cursor: 'pointer' }}
+                            className="exam-management"
                         >
-                            <List>
-                                <ListItem onClick={() => onSectionSelect('Exam Creation')}>
-                                    <ListItemText primary="Exam Creation" />
-                                </ListItem>
-                                <ListItem onClick={() => onSectionSelect('Manage Exams')}>
-                                    <ListItemText primary="Manage Exams" />
-                                </ListItem>
-                            </List>
-                        </Collapse>
-                    ) : isStudentDashboard ? (
-                        <Collapse
-                            in={examOpen}
-                            timeout="auto"
-                            unmountOnExit
-                            className="exam-list"
-                        >
-                            <List>
-                                <ListItem onClick={() => onSectionSelect('Exams')}>
-                                    <ListItemText primary="Exams" />
-                                </ListItem>
-                                <ListItem onClick={() => onSectionSelect('View Exam')}>
-                                    <ListItemText primary="View Exam" />
-                                </ListItem>
-                                <ListItem onClick={() => onSectionSelect('Result')}>
-                                    <ListItemText primary="Result" />
-                                </ListItem>
-                            </List>
-                        </Collapse>
-                    ) : (
-                        <Typography>
-                            Error
+                            Exam Management
                         </Typography>
-                    )}
-                </Card>
 
-                <Card className="settings" variant="outlined" sx={{
-                    p: 2
-                }}>
-                    <Typography
-                        variant="h6"
-                        gutterBottom
-                        onClick={handleSettingsToggle}
-                        style={{ cursor: 'pointer' }}
-                        className="setting"
-                    >
-                        Settings
-                    </Typography>
-                    <Collapse
-                        in={settingsOpen}
-                        timeout="auto"
-                        unmountOnExit
-                        className="setting-list"
-                    >
-                        <List>
-                            <ListItem button onClick={() => onSectionSelect('Account Settings')}>
-                                <ListItemText primary="Account Settings" />
-                            </ListItem>
-                            {isStudentDashboard && (
-                                <ListItem button onClick={() => onSectionSelect('Change Password')}>
-                                    <ListItemText primary="Change Password" />
+                        {isAdminDashboard ? (
+                            <Collapse
+                                in={examOpen}
+                                timeout="auto"
+                                unmountOnExit
+                                className="exam-list"
+                            >
+                                <List>
+                                    <ListItem onClick={() => onSectionSelect('Exam Creation')}>
+                                        <ListItemText primary="Exam Creation" />
+                                    </ListItem>
+                                    <ListItem onClick={() => onSectionSelect('Manage Exams')}>
+                                        <ListItemText primary="Manage Exams" />
+                                    </ListItem>
+                                </List>
+                            </Collapse>
+                        ) : isStudentDashboard ? (
+                            <Collapse
+                                in={examOpen}
+                                timeout="auto"
+                                unmountOnExit
+                                className="exam-list"
+                            >
+                                <List className="exam-list-items">
+                                    <ListItem onClick={() => onSectionSelect('Exams')}>
+                                        <ListItemText primary="Exams" />
+                                    </ListItem>
+                                    <ListItem onClick={() => onSectionSelect('View Exam')}>
+                                        <ListItemText primary="View Exam" />
+                                    </ListItem>
+                                    <ListItem onClick={() => onSectionSelect('Result')}>
+                                        <ListItemText primary="Result" />
+                                    </ListItem>
+                                </List>
+                            </Collapse>
+                        ) : (
+                            <Typography>
+                                Error
+                            </Typography>
+                        )}
+                    </Card>
+
+                    <Card className="settings" variant="outlined" sx={{
+                        p: 2
+                    }}>
+                        <Typography
+                            variant="h6"
+                            gutterBottom
+                            onClick={handleSettingsToggle}
+                            style={{ cursor: 'pointer' }}
+                            className="setting"
+                        >
+                            Settings
+                        </Typography>
+                        <Collapse
+                            in={settingsOpen}
+                            timeout="auto"
+                            unmountOnExit
+                            className="setting-list"
+                        >
+                            <List className="setting-list-items">
+                                <ListItem button onClick={() => onSectionSelect('Account Settings')}>
+                                    <ListItemText primary="Account Settings" />
                                 </ListItem>
-                            )}
-                            <ListItem button onClick={handleThemeModeClick}>
-                                <ListItemText primary="Theme Mode" />
-                            </ListItem>
-                            {showThemeToggle && (
-                                <ListItem>
-                                    <ListItemText primary={themeMode === 'light' ? 'Light Mode' : 'Dark Mode'} />
-                                    <Switch
-                                        checked={themeMode === 'dark'}
-                                        onChange={handleThemeToggle}
-                                        color="primary"
-                                    />
+                                {isStudentDashboard && (
+                                    <ListItem button onClick={() => onSectionSelect('Change Password')}>
+                                        <ListItemText primary="Change Password" />
+                                    </ListItem>
+                                )}
+                                <ListItem button onClick={handleThemeModeClick}>
+                                    <ListItemText primary="Theme Mode" />
                                 </ListItem>
-                            )}
-                        </List>
-                    </Collapse>
-                </Card>
+                                {showThemeToggle && (
+                                    <ListItem>
+                                        <ListItemText primary={themeMode === 'light' ? 'Light Mode' : 'Dark Mode'} />
+                                        <Switch
+                                            checked={themeMode === 'dark'}
+                                            onChange={handleThemeToggle}
+                                            color="primary"
+                                        />
+                                    </ListItem>
+                                )}
+                            </List>
+                        </Collapse>
+                    </Card>
+                </div>
             </div>
         </div>
     );

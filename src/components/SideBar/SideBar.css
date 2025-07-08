@@ -1,11 +1,24 @@
+.sidebar{
+  position: fixed;
+  top: 65px;
+  left: 0;
+  z-index: 1000;
+  width: 260px;
+  height: 100vh;
+  background: linear-gradient(245deg, #0f2027, #2c5364);
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
 .sidebar-container {
   width: 260px;
   background: #f5f6fa;
   padding: 16px 16px;
   box-sizing: border-box;
+  /* background: #0a2835; */
   background: linear-gradient(245deg, #0f2027, #2c5364);
   position: absolute;
-  top: 65px;
   display: flex;
 }
 
@@ -26,31 +39,6 @@
   color: #2d3a4b;
 }
 
-.MuiListItem-root {
-  border-radius: 6px;
-  margin-bottom: 4px;
-  transition: background 0.2s;
-}
-
-.MuiListItem-root:hover {
-  background: #e3e9f7;
-}
-
-.MuiListItemText-primary {
-  font-size: 1rem;
-  color: #34495e;
-}
-
-.exam-list, .setting-list {
-  border: 15px solid transparent;
-  border-image: linear-gradient(245deg, #0f2027, #2c5364);
-  border-image-slice: 1;
-}
-
-/* .exam-creation {
-  background: linear-gradient(to top, red, pink, orange, yellow);
-} */
-
 .exam-management {
   text-align: center;
   text-decoration: underline;
@@ -59,4 +47,26 @@
 .setting {
   text-align: center;
   text-decoration: underline;
+}
+
+.exam-creation .MuiListItem-root {
+  border-radius: 6px;
+  margin-bottom: 4px;
+  transition: background 0.2s;
+}
+
+.exam-creation .MuiListItem-root:hover {
+  /* background: #e3e9f7; */
+  background: rgb(172, 212, 245);
+}
+
+.settings .MuiListItem-root {
+  border-radius: 6px;
+  margin-bottom: 4px;
+  transition: background 0.2s;
+}
+
+.settings .MuiListItem-root:hover {
+  /* background: #e3e9f7; */
+  background: rgb(172, 212, 245);
 }

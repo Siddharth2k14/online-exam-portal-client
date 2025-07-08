@@ -23,7 +23,7 @@ const NavBar = ({ toggle, setToggle, name }) => {
     <div>
       <nav className="navbar">
         <div className="navbar-brand">
-          <Link to="/">Exam Portal</Link>
+          <Link to="/">ExamMaster</Link>
         </div>
         <ul className="navbar-menu">
           <li><Link to="/home">Home</Link></li>

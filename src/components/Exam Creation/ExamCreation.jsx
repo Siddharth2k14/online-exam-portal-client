@@ -24,23 +24,25 @@ const ExamCreation = () => {
   const [open, setOpen] = useState(false);
   const [examType, setExamType] = useState('objective');
   const [examCreated, setExamCreated] = useState(false);
+  const [error, setError] = useState(''); // Add error state
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleCreateExam = async () => {
+    // Validation: check if titleExam and examType are filled
+    if (!titleExam.trim() || !examType) {
+      setError('Please fill all fields.');
+      setOpen(true);
+      return;
+    }
+    setError('');
     setOpen(true);
     setExamCreated(true);
-    // Dispatch to Redux
     dispatch(addExam({ title: titleExam, type: examType }));
-
-    // Save exam to backend (optional, if you have an endpoint)
-    // await axios.post('https://online-exam-portal-server.onrender.com/api/exams', { title: titleExam, type: examType });
 
     if (examType === 'objective') {
       navigate('/exam-creation/objective', { state: { titleExam } });
-    }
-    // You can add similar logic for subjective if needed
-    else if (examType === 'subjective') {
+    } else if (examType === 'subjective') {
       navigate('/exam-creation/subjective', { state: { titleExam } });
     }
   };
@@ -67,7 +69,9 @@ const ExamCreation = () => {
         variant='h6'
         gutterBottom
         sx={{
-          textAlign: 'center'
+          margin: '32px 0 16px 0',
+          textAlign: 'center',
+          color: 'white'
         }}
       >
         Exam Creation

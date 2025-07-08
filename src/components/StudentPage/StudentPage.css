@@ -28,7 +28,7 @@
 
 .horizontal-line {
     border: none;
-    border-top: 2px solid white;
+    border-top: 2px solid black;
     margin: 0 30px 30px 30px;
     height: 0;
 }

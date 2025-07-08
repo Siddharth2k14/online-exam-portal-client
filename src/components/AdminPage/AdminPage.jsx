@@ -44,7 +44,7 @@ const AdminPage = () => {
           Admin Dashboard
         </Typography>
         <hr className='horizontal-line' />
-        <Card data-testid="admin-card">
+        <Card className='admin-card'>
           <CardContent>
             {renderContent()}
           </CardContent>

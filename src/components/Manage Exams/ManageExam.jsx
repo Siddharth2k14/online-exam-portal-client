@@ -43,7 +43,7 @@ const ManageExam = () => {
 
   return (
     <div>
-      <Typography variant="h4" style={{ margin: '32px 0 16px 0', textAlign: 'center' }}>
+      <Typography variant="h4" style={{ margin: '32px 0 16px 0', textAlign: 'center', color: 'white'  }}>
         Manage Exams
       </Typography>
       {viewExamTitle ? (
