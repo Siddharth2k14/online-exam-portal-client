@@ -107,16 +107,7 @@ const NavBar = ({ toggle, setToggle, name }) => {
           </div>
         ))}
 
-        <div 
-          className="navbar-toggle" 
-          onClick={handleToggle}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            cursor: 'pointer',
-            marginLeft: '16px',
-          }}  
-        >
+        <div className="navbar-toggle" onClick={handleToggle}>
           <span className="bar"></span>
           <span className="bar"></span>
           <span className="bar"></span>

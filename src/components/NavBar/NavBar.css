@@ -54,6 +54,13 @@
   color: #fff;
 }
 
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  margin-left: 16px;
+}
+
 .bar {
   width: 25px;
   height: 3px;
