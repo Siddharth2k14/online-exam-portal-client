@@ -28,16 +28,6 @@
   letter-spacing: 2px;
 }
 
-.navbar-menu {
-  list-style: none;
-  display: flex;
-  gap: 24px;
-  margin: 0;
-  padding: 0 25px;
-  flex: 1;
-  align-items: center;
-}
-
 .navbar-menu li a {
   color: white;
   text-decoration: none;
@@ -52,19 +42,7 @@
   text-decoration: underline;
 }
 
-.navbar-auth {
-  display: flex;
-  gap: 12px;
-}
-
 .btn {
-  background: #fff;
-  color: #1976d2;
-  padding: 6px 18px;
-  border-radius: 20px;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1rem;
   transition: background 0.2s, color 0.2s;
   border: none;
   outline: none;
@@ -74,13 +52,6 @@
 .btn:hover {
   background: #1565c0;
   color: #fff;
-}
-
-.navbar-toggle {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  margin-left: 16px;
 }
 
 .bar {

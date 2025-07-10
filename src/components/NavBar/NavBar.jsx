@@ -25,28 +25,98 @@ const NavBar = ({ toggle, setToggle, name }) => {
         <div className="navbar-brand">
           <Link to="/">ExamMaster</Link>
         </div>
-        <ul className="navbar-menu">
+        <ul
+          className="navbar-menu"
+          style={{
+            listStyle: 'none',
+            display: 'flex',
+            gap: '24px',
+            margin: '0',
+            padding: '0 25px',
+            flex: '1',
+            alignItems: 'center',
+          }}
+        >
           <li><Link to="/home">Home</Link></li>
           <li><Link to="/about">About</Link></li>
           <li><Link to="/contact">Contact</Link></li>
         </ul>
 
         {(isAdminDash || isStudentDash) ? (
-          <div className="navbar-auth">
+          <div
+            className="navbar-auth"
+            style={{
+              display: 'flex',
+              gap: '12px',
+            }}
+          >
             <Link to={isStudentDash ? "/student/login" : "/admin/login"} className="logout-btn">Log Out</Link>
           </div>
         ) : (name === "admin" ? (
-          <div className="navbar-auth">
-            <Link to="/admin/login" className="btn">Login</Link>
+          <div
+            className="navbar-auth"
+            style={{
+              display: 'flex',
+              gap: '12px',
+            }}
+          >
+            <Link
+              to="/admin/login"
+              className="btn"
+              style={{
+                backgroundColor: 'white',
+                color: '#1976d2',
+                padding: '6px 18px',
+                borderRadius: '20px',
+                fontWeight: '500',
+                fontSize: '1rem',
+                textDecoration: 'none',
+              }}
+            >Login</Link>
           </div>
         ) : (
-          <div className="navbar-auth">
-            <Link to="/student/login" className="btn">Login</Link>
-            <Link to="/signup" className="btn">Sign Up</Link>
+          <div
+            className="navbar-auth"
+            style={{
+              display: 'flex',
+              gap: '12px',
+            }}
+          >
+            <Link to="/student/login" className="btn"
+              style={{
+                backgroundColor: 'white',
+                color: '#1976d2',
+                padding: '6px 18px',
+                borderRadius: '20px',
+                fontWeight: '500',
+                fontSize: '1rem',
+                textDecoration: 'none',
+              }}
+            >Login</Link>
+            <Link to="/signup" className="btn"
+              style={{
+                backgroundColor: 'white',
+                color: '#1976d2',
+                padding: '6px 18px',
+                borderRadius: '20px',
+                fontWeight: '500',
+                fontSize: '1rem',
+                textDecoration: 'none',
+              }}
+            >Sign Up</Link>
           </div>
         ))}
 
-        <div className="navbar-toggle" onClick={handleToggle}>
+        <div 
+          className="navbar-toggle" 
+          onClick={handleToggle}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            cursor: 'pointer',
+            marginLeft: '16px',
+          }}  
+        >
           <span className="bar"></span>
           <span className="bar"></span>
           <span className="bar"></span>
@@ -60,8 +130,28 @@ const NavBar = ({ toggle, setToggle, name }) => {
           <li><Link to="/contact" onClick={handleClose}>Contact</Link></li>
         </ul>
         <div className="navbar-auth">
-          <Link to="/student/login" className="btn" onClick={handleClose}>Login</Link>
-          <Link to="/signup" className="btn" onClick={handleClose}>Sign Up</Link>
+          <Link to="/student/login" className="btn"
+            style={{
+              backgroundColor: 'white',
+              color: '#1976d2',
+              padding: '6px 18px',
+              borderRadius: '20px',
+              fontWeight: '500',
+              fontSize: '1rem',
+              textDecoration: 'none',
+            }}
+            onClick={handleClose}>Login</Link>
+          <Link to="/signup" className="btn"
+            style={{
+              backgroundColor: 'white',
+              color: '#1976d2',
+              padding: '6px 18px',
+              borderRadius: '20px',
+              fontWeight: '500',
+              fontSize: '1rem',
+              textDecoration: 'none',
+            }}
+            onClick={handleClose}>Sign Up</Link>
         </div>
         <div className="navbar-close" onClick={handleClose}>
           <span className="bar"></span>
