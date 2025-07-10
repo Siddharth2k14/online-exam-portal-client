@@ -45,10 +45,6 @@ const NavBar = ({ toggle, setToggle, name }) => {
         {(isAdminDash || isStudentDash) ? (
           <div
             className="navbar-auth"
-            style={{
-              display: 'flex',
-              gap: '12px',
-            }}
           >
             <Link to={isStudentDash ? "/student/login" : "/admin/login"} className="logout-btn">Log Out</Link>
           </div>
@@ -77,10 +73,6 @@ const NavBar = ({ toggle, setToggle, name }) => {
         ) : (
           <div
             className="navbar-auth"
-            style={{
-              display: 'flex',
-              gap: '12px',
-            }}
           >
             <Link to="/student/login" className="btn"
               style={{

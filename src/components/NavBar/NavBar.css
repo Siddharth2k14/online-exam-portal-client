@@ -42,6 +42,11 @@
   text-decoration: underline;
 }
 
+.navbar-auth {
+  display: flex;
+  gap: 12px;
+}
+
 .btn {
   transition: background 0.2s, color 0.2s;
   border: none;
