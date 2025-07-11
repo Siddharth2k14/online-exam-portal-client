@@ -3,10 +3,7 @@
   top: 65px;
   left: 0;
   z-index: 1000;
-  width: 260px;
-  height: 100vh;
   background: linear-gradient(245deg, #0f2027, #2c5364);
-  color: white;
   display: flex;
   flex-direction: column;
 }
@@ -37,11 +34,6 @@
 .settings .MuiTypography-root {
   font-weight: 600;
   color: #2d3a4b;
-}
-
-.exam-management {
-  text-align: center;
-  text-decoration: underline;
 }
 
 .setting {

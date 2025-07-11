@@ -32,7 +32,14 @@ const SideBar = ({ onSectionSelect }) => {
     const isStudentDashboard = location.pathname.includes("student/dashboard");
 
     return (
-        <div className="sidebar">
+        <div 
+            className="sidebar"
+            style={{
+                width: '260px',
+                height: '100vh',
+                color: 'white',
+            }}
+        >
             <div className="sidebar-container">
                 <div style={{ width: 250 }}>
                     <Card className="exam-creation" variant="outlined" sx={{
@@ -45,6 +52,10 @@ const SideBar = ({ onSectionSelect }) => {
                             onClick={handleExamToggle}
                             style={{ cursor: 'pointer' }}
                             className="exam-management"
+                            sx={{
+                                textAlign: 'center',
+                                textDecoration: 'underline',
+                            }}
                         >
                             Exam Management
                         </Typography>
