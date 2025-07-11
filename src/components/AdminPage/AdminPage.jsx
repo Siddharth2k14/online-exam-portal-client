@@ -4,12 +4,14 @@ import { Card, CardContent, Typography } from '@mui/material';
 import SideBar from '../SideBar/SideBar';
 import ExamCreation from '../Exam Creation/ExamCreation';
 import ManageExam from '../Manage Exams/ManageExam';
+import { useSelector } from 'react-redux';
 import AccountSettings from '../Account Settings/AccountSettings';
 
 const AdminPage = () => {
   const [selectedSection, setSelectedSection] = useState('');
   const [titleExam, setTitleExam] = useState('');
   // const [submittedTitle, setSubmittedTitle] = useState('');
+  const user = useSelector(state => state.auth.user);
 
   const renderContent = () => {
     if (selectedSection === 'Exam Creation') {
@@ -19,12 +21,21 @@ const AdminPage = () => {
       return <ManageExam />;
     }
     else if (selectedSection === 'Account Settings') {
-      return <AccountSettings />;
+      return <AccountSettings user={user} />;
     }
 
     return (
       <>
-        <div className='admin-welcome'>
+        <div
+          className='admin-welcome'
+          style={{
+            textAlign: 'center',
+            marginBottom: '20px',
+            fontSize: '1.5rem',
+            fontWeight: '500',
+            color: 'white',
+          }}
+        >
           <Typography variant="h6" gutterBottom>
             Welcome, Admin!
           </Typography>
@@ -39,12 +50,34 @@ const AdminPage = () => {
   return (
     <>
       <SideBar onSectionSelect={setSelectedSection} />
-      <div className='admin-page'>
+      <div
+        className='admin-page'
+        style={{
+          width: '79.6vw',
+          minHeight: '98.5vh',
+          position: 'absolute',
+          top: '65px',
+          left: '261px'
+        }}
+      >
         <Typography variant='h4' className='admin-heading'>
           Admin Dashboard
         </Typography>
-        <hr className='horizontal-line' />
-        <Card className='admin-card'>
+        <hr style={{
+          border: 'none',
+          borderTop: '2px solid black',
+          margin: '0 30px 30px 30px',
+          height: '0'
+        }} />
+        <Card
+          className='admin-card'
+          sx={{
+            margin: '20px',
+            padding: '20px',
+            borderRadius: '10px',
+            boxShadow: '0 2px 8px rgba(60, 60, 60, 0.06)',
+          }}
+        >
           <CardContent>
             {renderContent()}
           </CardContent>
