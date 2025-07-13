@@ -1,7 +1,19 @@
-import { Box, Card, Typography } from '@mui/material';
-import './Result.css';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
 import 'react-circular-progressbar/dist/styles.css';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
+import {LineChart} from 'recharts';
+import {Line} from 'recharts';
+import {XAxis} from 'recharts';
+import {YAxis} from 'recharts';
+import {CartesianGrid} from 'recharts';
+import {Tooltip} from 'recharts';
+import {ResponsiveContainer} from 'recharts';
+import {PieChart} from 'recharts';
+import {Pie} from 'recharts';
+import {Cell} from 'recharts';
+import {Legend} from 'recharts';
+import './Result.css';
 
 const Result = () => {
     // Get all exam results from localStorage

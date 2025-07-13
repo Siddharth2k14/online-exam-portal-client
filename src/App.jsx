@@ -23,30 +23,33 @@ import Home from './pages/Home/Home';
 import About from './pages/About/About';
 import Contact from './pages/Contact/Contact';
 import HomeMain from './components/Home Main/HomeMain';
+import ChangePassword from './components/Change Password/ChangePassword';
 
 const App = () => {
   return (
     <div>
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/admin/login" element={<Admin />} />
-        <Route path='/student/login' element={<Student />} />
-        <Route path='/admin' element={<Admin />} />
-        <Route path='/student' element={<Student />} />
-        <Route path='/forgetPassword' element={<ForgetPassword />} />
-        <Route path='/admin/dashboard' element={<AdminDashboard />} />
-        <Route path='/exam-creation/objective' element={<ObjectiveExamPage />} />
-        <Route path="/manage-exams/:examTitle" element={<ViewExam />} />
-        <Route path='/student/dashboard' element={<StudentDashboard />} />
-        <Route path='/exam-creation/subjective' element={<SubjectiveExamCreation />} />
-        <Route path="/start-exam/:examTitle" element={<StartExam />} />
-        <Route path="/exam/:examTitle/review" element={<View_Exam />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
+      {/* <Suspense fallback={<div>Loading...</div>}> */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/admin/login" element={<Admin />} />
+          <Route path='/student/login' element={<Student />} />
+          <Route path='/admin' element={<Admin />} />
+          <Route path='/student' element={<Student />} />
+          <Route path='/forgetPassword' element={<ForgetPassword />} />
+          <Route path='/admin/dashboard' element={<AdminDashboard />} />
+          <Route path='/exam-creation/objective' element={<ObjectiveExamPage />} />
+          <Route path="/manage-exams/:examTitle" element={<ViewExam />} />
+          <Route path='/student/dashboard' element={<StudentDashboard />} />
+          <Route path='/exam-creation/subjective' element={<SubjectiveExamCreation />} />
+          <Route path="/start-exam/:examTitle" element={<StartExam />} />
+          <Route path="/exam/:examTitle/review" element={<View_Exam />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/change-password" element={<ChangePassword />} />
+        </Routes>
+      {/* </Suspense> */}
 
       {/* <NavBar /> */}
       {/* <SideBar /> */}
@@ -58,6 +61,7 @@ const App = () => {
       {/* <StudentPage /> */}
       {/* <Home /> */}
       {/* <HomeMain /> */}
+      {/* <ChangePassword /> */}
     </div>
   )
 }

@@ -1,7 +1,16 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { signup } from '../../../redux/authSlice'; // Adjust path as needed
-import { FormControl, Card, CardHeader, CardContent, Input, InputLabel, Button, Snackbar, Alert } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import Button from '@mui/material/Button';
+import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
+import Card from '@mui/material/Card';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 import './Signup.css'
 
 const Signup = () => {
@@ -52,7 +61,12 @@ const Signup = () => {
     };
 
     return (
-        <div className='container'>
+        <div
+            className='container'
+            style={{
+                background: 'linear-gradient(195deg, #0f2027, #2c5364)',
+            }}
+        >
             <div className='signup-card'>
                 <Card>
                     <h2 className="signup-title">Signup</h2>
@@ -66,6 +80,9 @@ const Signup = () => {
                                     className='name-input'
                                     value={name}
                                     onChange={handleNameChange}
+                                    sx={{
+                                        background: 'rgba(255, 255, 255, 0.1)'
+                                    }}
                                 />
                             </FormControl>
                             <FormControl>
@@ -76,6 +93,9 @@ const Signup = () => {
                                     className='email-input'
                                     value={email}
                                     onChange={handleEmailChange}
+                                    sx={{
+                                        background: 'rgba(255, 255, 255, 0.1)'
+                                    }}
                                 />
                             </FormControl>
                             <FormControl>
@@ -86,6 +106,9 @@ const Signup = () => {
                                     className='password-input'
                                     value={password}
                                     onChange={handlePasswordChange}
+                                    sx={{
+                                        background: 'rgba(255, 255, 255, 0.1)'
+                                    }}
                                 />
                             </FormControl>
                             <FormControl>
@@ -96,6 +119,9 @@ const Signup = () => {
                                     className='confirm-password-input'
                                     value={confirmPassword}
                                     onChange={handleConfirmPasswordChange}
+                                    sx={{
+                                        background: 'rgba(255, 255, 255, 0.1)'
+                                    }}
                                 />
                             </FormControl>
                             <FormControl>

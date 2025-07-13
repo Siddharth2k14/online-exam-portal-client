@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Card, Typography, Button } from '@mui/material';
+import useEffect from 'react';
+import useState from 'react';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import ViewExam from './ViewExam';
 

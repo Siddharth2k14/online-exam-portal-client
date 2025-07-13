@@ -1,5 +1,5 @@
 .container {
-    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(255, 255, 255); */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,13 +8,21 @@
 }
 
 .container .signup-card {
-    background-color: rgb(219, 240, 204);
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 400px;
     min-height: min-content;
 }
+
+.signup-card:hover{
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+    /* background: linear-gradient(45deg, #0f2027, #2c5364); */
+    background-color: #f0f0f0; /* Slightly darker on hover */
+}
+
 
 .signup-card-body .signup-form {
     display: flex;
@@ -38,7 +46,6 @@
 }
 
 .signup-form .signup-button {
-    background-color: #4CAF50; /* Green */
     border: none;
     color: white;
     padding: 15px 32px;
@@ -51,22 +58,20 @@
     border-radius: 5px;
 }
 
-.signup-form .signup-button:hover {
-    background-color: #45a049; /* Darker green */
-}
-
 .name-input, .email-input, .password-input, .confirm-password-input {
     border: 1px solid black;
     border-radius: 5px;
-    background-color: rgb(217, 234, 217);
 }
 
 .signup-card-footer {
     display: flex;
-    background-color: #f0f0f0;
     height: fit-content;
     font-size: small;
     padding: 10px;
+}
+
+.signup-card-footer:hover {
+    background-color: #f0f0f0; /* Slightly darker on hover */
 }
 
 .signup-card-footer .MuiButton-root {

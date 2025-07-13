@@ -1,17 +1,19 @@
-import React, { useState } from 'react'
-import './AdminPage.css';
-import { Card, CardContent, Typography } from '@mui/material';
+import useState from 'react';
 import SideBar from '../SideBar/SideBar';
 import ExamCreation from '../Exam Creation/ExamCreation';
 import ManageExam from '../Manage Exams/ManageExam';
-import { useSelector } from 'react-redux';
+import { useSelector} from 'react-redux';
 import AccountSettings from '../Account Settings/AccountSettings';
+import Card from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
+import CardContent from '@mui/material/CardContent';
+import './AdminPage.css';
 
 const AdminPage = () => {
   const [selectedSection, setSelectedSection] = useState('');
   const [titleExam, setTitleExam] = useState('');
   // const [submittedTitle, setSubmittedTitle] = useState('');
-  const user = useSelector(state => state.auth.user);
+  const user = { useSelector}(state => state.auth.user);
 
   const renderContent = () => {
     if (selectedSection === 'Exam Creation') {

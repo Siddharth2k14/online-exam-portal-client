@@ -1,6 +1,11 @@
-import { Card, Input, Typography, Button, Radio } from '@mui/material';
+import Card from '@mui/material/Card';
+import Input from '@mui/material/Input';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Radio from '@mui/material/Radio';
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import './ObjectiveExamCreation.css';
 import { addQuestionToExam } from '../../redux/examSlice';

@@ -1,6 +1,12 @@
-import { Card, Collapse, List, ListItem, ListItemText, Typography, Switch } from "@mui/material";
+import Card from '@mui/material/Card';
+import Collapse from '@mui/material/Collapse';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import Typography from '@mui/material/Typography';
+import Switch from '@mui/material/Switch';
+import { useState } from 'react';
 import './SideBar.css';
-import { useState } from "react";
 
 const SideBar = ({ onSectionSelect }) => {
     const [examOpen, setExamOpen] = useState(false);

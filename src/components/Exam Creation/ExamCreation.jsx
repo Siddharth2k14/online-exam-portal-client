@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
+import useState from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  Card,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Input,
-  Radio,
-  RadioGroup,
-  Typography,
-  Button,
-  Snackbar,
-  Alert
-} from '@mui/material';
+import Card from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel';
+import Input from '@mui/material/Input';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+import Button from '@mui/material/Button';
 import './ExamCreation.css';
 import ObjectiveExamCreation from '../Objective Exam Creation/ObjectiveExamCreation';
 import { useDispatch } from 'react-redux';

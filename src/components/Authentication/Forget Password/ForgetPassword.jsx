@@ -1,7 +1,14 @@
 import React, { useState } from 'react'
-import { FormControl, Card, CardHeader, CardContent, Input, InputLabel, Button } from '@mui/material';
 import './ForgetPassword.css'
-import { Snackbar, Alert } from '@mui/material';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+import FormControl from '@mui/material/FormControl'
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import Button from '@mui/material/Button';
+import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
+import Card from '@mui/material/Card';
 
 const ForgetPassword = () => {
     const [email, setEmail] = useState('');
