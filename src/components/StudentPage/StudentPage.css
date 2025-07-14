@@ -7,13 +7,15 @@
 
 .student-page {
     width: 79.6vw;
-    min-height: 90.5vh;
+    /* min-height: 90.5vh; */
+    /* height: 100%; */
     border: 2px solid black;
     position: absolute;
     top: 65px;
     left: 261px;
     /* background: linear-gradient(245deg, #0f2027, #2c5364); */
     color: black;
+    margin-bottom: 20px;
 }
 
 .student-heading {
@@ -55,4 +57,10 @@
 
 .student-page .student-card {
     background: linear-gradient(245deg, #0f2027, #2c5364);
+}
+
+@media(max-width: 799px){
+    .student-page{
+        height: 100%;
+    }
 }
