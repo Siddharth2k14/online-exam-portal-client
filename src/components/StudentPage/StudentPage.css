@@ -6,7 +6,7 @@
 }
 
 .student-page {
-    width: calc(100% - 261px); /* if left sidebar is fixed */
+    width: calc(100% - 262px); /* if left sidebar is fixed */
     height: calc(100vh - 64px); /* responsive height */
     position: absolute;
     top: 65px;
