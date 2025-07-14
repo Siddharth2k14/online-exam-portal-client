@@ -9,7 +9,7 @@
   top: 0;
   left: 0;
   z-index: 1000;
-  width: 100vw;
+  width: 100%;
   background: linear-gradient(195deg, #0f2027, #2c5364);
   /* background-color: white; */
   color: white;
