@@ -1,23 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-import {
-  Card,
-  Typography,
-  CardContent,
-  Divider,
-  CircularProgress,
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-  Button,
-  TextField,
-} from "@mui/material";
-import { useParams, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import "./StartExam.css";
-=======
->>>>>>> master
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
@@ -33,10 +13,6 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import './StartExam.css';
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> master
 
 // Utility: check if two answers are similar by keywords
 function areAnswersSimilar(studentAns, correctAns) {

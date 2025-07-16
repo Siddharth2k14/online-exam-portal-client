@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../../redux/authSlice'; // Adjust path as needed
-import { FormControl, Card, CardHeader, CardContent, Input, InputLabel, Button, Snackbar, Alert } from '@mui/material';
-import './Login.css';
-import { useNavigate } from 'react-router-dom';
-=======
->>>>>>> master
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { login } from '../../../redux/authSlice'; // Adjust path as needed
@@ -24,11 +13,6 @@ import Alert from '@mui/material/Alert';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> master
-
 
 const Login = ({ name }) => {
     const [email, setEmail] = useState('');
@@ -88,37 +72,18 @@ const Login = ({ name }) => {
     };
 
     return (
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-        <div className='container'>
-=======
->>>>>>> master
         <div
             className='container'
             style={{
                 background: 'linear-gradient(195deg, #0f2027, #2c5364)',
             }}
         >
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> master
             <div className='login-card'>
                 <Card>
                     <h2 className="login-title">Login for {name}</h2>
                     <CardContent className='login-card-body'>
-<<<<<<< HEAD
                         <form
                             onSubmit={handleLogin} className='login-form'>
-=======
-<<<<<<< HEAD
-                        <form onSubmit={handleLogin} className='login-form'>
-=======
-                        <form
-                            onSubmit={handleLogin} className='login-form'>
->>>>>>> master
->>>>>>> master
                             <FormControl>
                                 <InputLabel className='email-header'>Enter the Email</InputLabel>
                                 <Input
@@ -127,18 +92,9 @@ const Login = ({ name }) => {
                                     className='email-input'
                                     value={email}
                                     onChange={handleEmailChange}
-<<<<<<< HEAD
                                     sx={{
                                         background: 'rgba(255, 255, 255, 0.1)'
                                     }}
-=======
-<<<<<<< HEAD
-=======
-                                    sx={{
-                                        background: 'rgba(255, 255, 255, 0.1)'
-                                    }}
->>>>>>> master
->>>>>>> master
                                 />
                             </FormControl>
                             <FormControl>
@@ -149,18 +105,9 @@ const Login = ({ name }) => {
                                     className='password-input'
                                     value={password}
                                     onChange={handlePasswordChange}
-<<<<<<< HEAD
                                     sx={{
                                         background: 'rgba(255, 255, 255, 0.1)'
                                     }}
-=======
-<<<<<<< HEAD
-=======
-                                    sx={{
-                                        background: 'rgba(255, 255, 255, 0.1)'
-                                    }}
->>>>>>> master
->>>>>>> master
                                 />
                             </FormControl>
                             <FormControl>

@@ -6,7 +6,7 @@
 }
 
 .student-page {
-<<<<<<< HEAD
+
     width: calc(100% - 262px); /* if left sidebar is fixed */
     height: calc(100vh - 64px); /* responsive height */
     position: absolute;
@@ -15,7 +15,7 @@
     border: 2px solid black;
     color: black;
     overflow-y: auto;
-=======
+
     width: 79.6vw;
     min-height: 90.5vh;
     border: 2px solid black;
@@ -24,7 +24,7 @@
     left: 261px;
     /* background: linear-gradient(245deg, #0f2027, #2c5364); */
     color: black;
->>>>>>> master
+
 }
 
 .student-heading {

@@ -1,12 +1,3 @@
-import React, { useState } from 'react'
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-import { useDispatch, useSelector } from 'react-redux';
-import { signup } from '../../../redux/authSlice'; // Adjust path as needed
-import { FormControl, Card, CardHeader, CardContent, Input, InputLabel, Button, Snackbar, Alert } from '@mui/material';
-=======
->>>>>>> master
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { signup } from '../../../redux/authSlice'; // Adjust path as needed
@@ -19,11 +10,8 @@ import CardContent from '@mui/material/CardContent';
 import Card from '@mui/material/Card';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> master
 import './Signup.css'
+import { useState } from 'react';
 
 const Signup = () => {
     const [name, setName] = useState('');
@@ -73,22 +61,12 @@ const Signup = () => {
     };
 
     return (
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-        <div className='container'>
-=======
->>>>>>> master
         <div
             className='container'
             style={{
                 background: 'linear-gradient(195deg, #0f2027, #2c5364)',
             }}
         >
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> master
             <div className='signup-card'>
                 <Card>
                     <h2 className="signup-title">Signup</h2>
@@ -102,18 +80,9 @@ const Signup = () => {
                                     className='name-input'
                                     value={name}
                                     onChange={handleNameChange}
-<<<<<<< HEAD
                                     sx={{
                                         background: 'rgba(255, 255, 255, 0.1)'
                                     }}
-=======
-<<<<<<< HEAD
-=======
-                                    sx={{
-                                        background: 'rgba(255, 255, 255, 0.1)'
-                                    }}
->>>>>>> master
->>>>>>> master
                                 />
                             </FormControl>
                             <FormControl>
@@ -124,18 +93,9 @@ const Signup = () => {
                                     className='email-input'
                                     value={email}
                                     onChange={handleEmailChange}
-<<<<<<< HEAD
                                     sx={{
                                         background: 'rgba(255, 255, 255, 0.1)'
                                     }}
-=======
-<<<<<<< HEAD
-=======
-                                    sx={{
-                                        background: 'rgba(255, 255, 255, 0.1)'
-                                    }}
->>>>>>> master
->>>>>>> master
                                 />
                             </FormControl>
                             <FormControl>
@@ -146,18 +106,9 @@ const Signup = () => {
                                     className='password-input'
                                     value={password}
                                     onChange={handlePasswordChange}
-<<<<<<< HEAD
                                     sx={{
                                         background: 'rgba(255, 255, 255, 0.1)'
                                     }}
-=======
-<<<<<<< HEAD
-=======
-                                    sx={{
-                                        background: 'rgba(255, 255, 255, 0.1)'
-                                    }}
->>>>>>> master
->>>>>>> master
                                 />
                             </FormControl>
                             <FormControl>
@@ -168,18 +119,9 @@ const Signup = () => {
                                     className='confirm-password-input'
                                     value={confirmPassword}
                                     onChange={handleConfirmPasswordChange}
-<<<<<<< HEAD
                                     sx={{
                                         background: 'rgba(255, 255, 255, 0.1)'
                                     }}
-=======
-<<<<<<< HEAD
-=======
-                                    sx={{
-                                        background: 'rgba(255, 255, 255, 0.1)'
-                                    }}
->>>>>>> master
->>>>>>> master
                                 />
                             </FormControl>
                             <FormControl>

@@ -9,11 +9,7 @@
   top: 0;
   left: 0;
   z-index: 1000;
-<<<<<<< HEAD
   width: 100%;
-=======
-  width: 100vw;
->>>>>>> master
   background: linear-gradient(195deg, #0f2027, #2c5364);
   /* background-color: white; */
   color: white;
@@ -32,8 +28,6 @@
   letter-spacing: 2px;
 }
 
-<<<<<<< HEAD
-=======
 .navbar-menu {
   list-style: none;
   display: flex;
@@ -44,7 +38,6 @@
   align-items: center;
 }
 
->>>>>>> master
 .navbar-menu li a {
   color: white;
   text-decoration: none;
@@ -65,8 +58,6 @@
 }
 
 .btn {
-<<<<<<< HEAD
-=======
   background: #fff;
   color: #1976d2;
   padding: 6px 18px;
@@ -74,7 +65,6 @@
   text-decoration: none;
   font-weight: 500;
   font-size: 1rem;
->>>>>>> master
   transition: background 0.2s, color 0.2s;
   border: none;
   outline: none;
