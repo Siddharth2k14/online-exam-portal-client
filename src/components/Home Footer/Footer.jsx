@@ -1,6 +1,17 @@
+<<<<<<< HEAD
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import {Link} from 'react-router-dom';
+=======
+<<<<<<< HEAD
+import { Box, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
+=======
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import {Link} from 'react-router-dom';
+>>>>>>> master
+>>>>>>> master
 import './Footer.css';
 
 const Footer = () => (
@@ -50,4 +61,8 @@ const Footer = () => (
     </Box>
 );
 
+<<<<<<< HEAD
 export default Footer;
+=======
+export default Footer;
+>>>>>>> master

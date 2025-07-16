@@ -1,4 +1,11 @@
 .container{
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    background-color: rgb(255, 255, 255);
+=======
+>>>>>>> master
+>>>>>>> master
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,8 +14,17 @@
 }
 
 .container .login-card{
+<<<<<<< HEAD
     /* background: linear-gradient(195deg, #0f2027, #2c5364); */
     background-color: #ffffff; /* Light background for better contrast */
+=======
+<<<<<<< HEAD
+    background-color: rgb(219, 240, 204);
+=======
+    /* background: linear-gradient(195deg, #0f2027, #2c5364); */
+    background-color: #ffffff; /* Light background for better contrast */
+>>>>>>> master
+>>>>>>> master
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -18,6 +34,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    gap: 40px
+=======
+>>>>>>> master
     gap: 40px;
 }
 
@@ -26,6 +48,10 @@
     transition: transform 0.3s ease-in-out;
     /* background: linear-gradient(45deg, #0f2027, #2c5364); */
     background-color: #f0f0f0; /* Slightly darker on hover */
+<<<<<<< HEAD
+=======
+>>>>>>> master
+>>>>>>> master
 }
 
 .login-title {
@@ -43,6 +69,13 @@
 }
 
 .login-form .login-button{
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    background-color: #4CAF50; /* Green */
+=======
+>>>>>>> master
+>>>>>>> master
     border: none;
     color: white;
     padding: 15px 32px;
@@ -55,23 +88,57 @@
     border-radius: 5px;
 }
 
+<<<<<<< HEAD
 .email-input, .password-input{
     border: 1px solid black;
     border-radius: 5px;
+=======
+<<<<<<< HEAD
+.login-form .login-button:hover{
+    background-color: #45a049; /* Darker green */
+}
+
+.email-input, .password-input{
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgb(217, 234, 217);
+=======
+.email-input, .password-input{
+    border: 1px solid black;
+    border-radius: 5px;
+>>>>>>> master
+>>>>>>> master
 }
 
 .login-card-footer {
     display: flex;
+<<<<<<< HEAD
     /* background-color: #f0f0f0; */
+=======
+<<<<<<< HEAD
+    background-color: #f0f0f0;
+=======
+    /* background-color: #f0f0f0; */
+>>>>>>> master
+>>>>>>> master
     height: fit-content;
     font-size: small;
     padding: 10px;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> master
 .login-card-footer:hover {
     background-color: #f0f0f0; /* Slightly darker on hover */
 }
 
+<<<<<<< HEAD
+=======
+>>>>>>> master
+>>>>>>> master
 .login-card-footer .MuiButton-root {
     text-transform: uppercase; /* Gives a styled look */
 }

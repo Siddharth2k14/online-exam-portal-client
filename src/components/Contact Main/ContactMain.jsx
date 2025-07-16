@@ -1,7 +1,17 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+import { Box, Card, Typography, TextField, Button, Grid, Link } from '@mui/material';
+=======
+>>>>>>> master
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
+<<<<<<< HEAD
+=======
+>>>>>>> master
+>>>>>>> master
 import './ContactMain.css'
 
 const ContactMain = () => {
@@ -33,4 +43,8 @@ const ContactMain = () => {
   );
 };
 
+<<<<<<< HEAD
 export default ContactMain;
+=======
+export default ContactMain;
+>>>>>>> master

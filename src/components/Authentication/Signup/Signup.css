@@ -1,5 +1,13 @@
 .container {
+<<<<<<< HEAD
     /* background-color: rgb(255, 255, 255); */
+=======
+<<<<<<< HEAD
+    background-color: rgb(255, 255, 255);
+=======
+    /* background-color: rgb(255, 255, 255); */
+>>>>>>> master
+>>>>>>> master
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,7 +16,15 @@
 }
 
 .container .signup-card {
+<<<<<<< HEAD
     background-color: #ffffff;
+=======
+<<<<<<< HEAD
+    background-color: rgb(219, 240, 204);
+=======
+    background-color: #ffffff;
+>>>>>>> master
+>>>>>>> master
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -16,6 +32,11 @@
     min-height: min-content;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> master
 .signup-card:hover{
     transform: scale(1.05);
     transition: transform 0.3s ease-in-out;
@@ -24,6 +45,10 @@
 }
 
 
+<<<<<<< HEAD
+=======
+>>>>>>> master
+>>>>>>> master
 .signup-card-body .signup-form {
     display: flex;
     flex-direction: column;
@@ -46,6 +71,13 @@
 }
 
 .signup-form .signup-button {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    background-color: #4CAF50; /* Green */
+=======
+>>>>>>> master
+>>>>>>> master
     border: none;
     color: white;
     padding: 15px 32px;
@@ -58,22 +90,55 @@
     border-radius: 5px;
 }
 
+<<<<<<< HEAD
 .name-input, .email-input, .password-input, .confirm-password-input {
     border: 1px solid black;
     border-radius: 5px;
+=======
+<<<<<<< HEAD
+.signup-form .signup-button:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+.name-input, .email-input, .password-input, .confirm-password-input {
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgb(217, 234, 217);
+=======
+.name-input, .email-input, .password-input, .confirm-password-input {
+    border: 1px solid black;
+    border-radius: 5px;
+>>>>>>> master
+>>>>>>> master
 }
 
 .signup-card-footer {
     display: flex;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    background-color: #f0f0f0;
+=======
+>>>>>>> master
+>>>>>>> master
     height: fit-content;
     font-size: small;
     padding: 10px;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> master
 .signup-card-footer:hover {
     background-color: #f0f0f0; /* Slightly darker on hover */
 }
 
+<<<<<<< HEAD
+=======
+>>>>>>> master
+>>>>>>> master
 .signup-card-footer .MuiButton-root {
     text-transform: uppercase; /* Gives a styled look */
 }

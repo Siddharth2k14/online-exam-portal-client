@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+import { Box, Card, Grid, List, ListItem, ListItemText, Typography } from '@mui/material'
+=======
+>>>>>>> master
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
@@ -5,6 +11,10 @@ import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
+<<<<<<< HEAD
+=======
+>>>>>>> master
+>>>>>>> master
 import './AboutMain.css'
 
 const AboutMain = () => {
@@ -50,4 +60,8 @@ const AboutMain = () => {
     );
 };
 
+<<<<<<< HEAD
 export default AboutMain
+=======
+export default AboutMain
+>>>>>>> master

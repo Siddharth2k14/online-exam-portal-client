@@ -1,3 +1,16 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+import { Card, CardContent, Typography } from '@mui/material'
+import './StudentPage.css'
+import { useState } from 'react'
+import SideBar from '../SideBar/SideBar';
+import ExamsPage from '../ExamsPage/ExamsPage';
+import ViewExam from '../ViewExam/ViewExam';
+import { useSelector } from 'react-redux';
+import Result from '../Result/Result';
+=======
+>>>>>>> master
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -10,11 +23,22 @@ import AccountSettings from '../Account Settings/AccountSettings';
 import ChangePassword from '../Change Password/ChangePassword';
 import { useSelector } from 'react-redux';
 import './StudentPage.css';
+<<<<<<< HEAD
+=======
+>>>>>>> master
+>>>>>>> master
 
 const StudentPage = () => {
     const [selectedSection, setSelectedSection] = useState('');
     const user = useSelector(state => state.auth.user);
+<<<<<<< HEAD
     const role = useSelector(state => state.auth.role);
+=======
+<<<<<<< HEAD
+=======
+    const role = useSelector(state => state.auth.role);
+>>>>>>> master
+>>>>>>> master
 
     const renderContent = () => {
         if (selectedSection === 'Exams') {
@@ -33,6 +57,11 @@ const StudentPage = () => {
             )
         }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> master
         else if(selectedSection === 'Account Settings') {
             return (
                 <AccountSettings user={user} role={role} />
@@ -45,6 +74,10 @@ const StudentPage = () => {
             )
         }
 
+<<<<<<< HEAD
+=======
+>>>>>>> master
+>>>>>>> master
         return (
             <>
                 <div className='student-welcome'>

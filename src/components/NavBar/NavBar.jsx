@@ -1,7 +1,19 @@
 import React, { useState } from 'react'
+<<<<<<< HEAD
 import {Link} from 'react-router-dom';
 import {useLocation} from 'react-router-dom';
 import './NavBar.css'
+=======
+<<<<<<< HEAD
+import './NavBar.css'
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { red } from '@mui/material/colors';
+=======
+import {Link} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
+import './NavBar.css'
+>>>>>>> master
+>>>>>>> master
 
 const NavBar = ({ toggle, setToggle, name }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -25,6 +37,7 @@ const NavBar = ({ toggle, setToggle, name }) => {
         <div className="navbar-brand">
           <Link to="/">ExamMaster</Link>
         </div>
+<<<<<<< HEAD
         <ul
           className="navbar-menu"
           style={{
@@ -37,12 +50,16 @@ const NavBar = ({ toggle, setToggle, name }) => {
             alignItems: 'center',
           }}
         >
+=======
+        <ul className="navbar-menu">
+>>>>>>> master
           <li><Link to="/home">Home</Link></li>
           <li><Link to="/about">About</Link></li>
           <li><Link to="/contact">Contact</Link></li>
         </ul>
 
         {(isAdminDash || isStudentDash) ? (
+<<<<<<< HEAD
           <div
             className="navbar-auth"
           >
@@ -96,6 +113,19 @@ const NavBar = ({ toggle, setToggle, name }) => {
                 textDecoration: 'none',
               }}
             >Sign Up</Link>
+=======
+          <div className="navbar-auth">
+            <Link to={isStudentDash ? "/student/login" : "/admin/login"} className="logout-btn">Log Out</Link>
+          </div>
+        ) : (name === "admin" ? (
+          <div className="navbar-auth">
+            <Link to="/admin/login" className="btn">Login</Link>
+          </div>
+        ) : (
+          <div className="navbar-auth">
+            <Link to="/student/login" className="btn">Login</Link>
+            <Link to="/signup" className="btn">Sign Up</Link>
+>>>>>>> master
           </div>
         ))}
 
@@ -113,6 +143,7 @@ const NavBar = ({ toggle, setToggle, name }) => {
           <li><Link to="/contact" onClick={handleClose}>Contact</Link></li>
         </ul>
         <div className="navbar-auth">
+<<<<<<< HEAD
           <Link to="/student/login" className="btn"
             style={{
               backgroundColor: 'white',
@@ -135,6 +166,10 @@ const NavBar = ({ toggle, setToggle, name }) => {
               textDecoration: 'none',
             }}
             onClick={handleClose}>Sign Up</Link>
+=======
+          <Link to="/student/login" className="btn" onClick={handleClose}>Login</Link>
+          <Link to="/signup" className="btn" onClick={handleClose}>Sign Up</Link>
+>>>>>>> master
         </div>
         <div className="navbar-close" onClick={handleClose}>
           <span className="bar"></span>

@@ -1,8 +1,19 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+import React, { useEffect, useState } from 'react';
+import { Card, Typography, Button } from '@mui/material';
+=======
+>>>>>>> master
 import useEffect from 'react';
 import useState from 'react';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
+<<<<<<< HEAD
+=======
+>>>>>>> master
+>>>>>>> master
 import { useNavigate } from 'react-router-dom';
 import ViewExam from './ViewExam';
 
@@ -46,7 +57,19 @@ const ManageExam = () => {
 
   return (
     <div>
+<<<<<<< HEAD
       <Typography variant="h4" style={{ margin: '32px 0 16px 0', textAlign: 'center', color: 'white'  }}>
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <Typography variant="h4" style={{ margin: '32px 0 16px 0', textAlign: 'center', color: 'white' }}>
+=======
+      <Typography variant="h4" style={{ margin: '32px 0 16px 0', textAlign: 'center', color: 'white'  }}>
+>>>>>>> 38e97fa87c851ede510140be7c20c26d3a2d5891
+=======
+      <Typography variant="h4" sx={{ margin: '32px 0 16px 0', textAlign: 'center' }}>
+>>>>>>> master
+>>>>>>> master
         Manage Exams
       </Typography>
       {viewExamTitle ? (

@@ -1,3 +1,23 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import {
+  Card,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Input,
+  Radio,
+  RadioGroup,
+  Typography,
+  Button,
+  Snackbar,
+  Alert
+} from '@mui/material';
+=======
+>>>>>>> master
 import useState from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from '@mui/material/Card';
@@ -11,6 +31,10 @@ import RadioGroup from '@mui/material/RadioGroup';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
+<<<<<<< HEAD
+=======
+>>>>>>> master
+>>>>>>> master
 import './ExamCreation.css';
 import ObjectiveExamCreation from '../Objective Exam Creation/ObjectiveExamCreation';
 import { useDispatch } from 'react-redux';
@@ -64,7 +88,11 @@ const ExamCreation = () => {
   return (
     <>
       <Typography
+<<<<<<< HEAD
         variant='h6'
+=======
+        variant='h4'
+>>>>>>> master
         gutterBottom
         sx={{
           margin: '32px 0 16px 0',
@@ -113,6 +141,7 @@ const ExamCreation = () => {
         >
           Create Exam
         </Button>
+<<<<<<< HEAD
       </Card>
 
       <Snackbar
@@ -125,6 +154,22 @@ const ExamCreation = () => {
           Exam for {titleExam} subject of {examType} type questions is Created
         </Alert>
       </Snackbar>
+=======
+        {/* Show error or success Snackbar */}
+        <Snackbar
+          open={open}
+          autoHideDuration={3000}
+          onClose={handleClose}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        >
+          <Alert onClose={handleClose} severity={error ? "error" : "success"} sx={{ width: '100%' }}>
+            {error
+              ? error
+              : `Exam for ${titleExam} subject of ${examType} type questions is Created`}
+          </Alert>
+        </Snackbar>
+      </Card>
+>>>>>>> master
     </>
   );
 };

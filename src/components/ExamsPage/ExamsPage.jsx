@@ -1,6 +1,18 @@
 import axios from 'axios';
+<<<<<<< HEAD
 import {useState} from 'react';
 import {useEffect} from 'react';
+=======
+<<<<<<< HEAD
+import React, { useState, useEffect } from 'react';
+import { Typography, Card, CardContent, CardActions, Button, CircularProgress, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import './ExamsPage.css';
+import StartExam from '../StartExam/StartExam.jsx';
+import { useNavigate } from "react-router-dom";
+=======
+import useState from 'react';
+import useEffect from 'react';
+>>>>>>> master
 import { useNavigate } from "react-router-dom";
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
@@ -13,6 +25,10 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import CircularProgress from '@mui/material/CircularProgress';
 import './ExamsPage.css';
+<<<<<<< HEAD
+=======
+>>>>>>> master
+>>>>>>> master
 
 const LOCAL_STORAGE_KEY = "studentExamHistory";
 

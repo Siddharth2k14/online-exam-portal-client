@@ -1,4 +1,12 @@
 import React, { useState } from 'react'
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+import { FormControl, Card, CardHeader, CardContent, Input, InputLabel, Button } from '@mui/material';
+import './ForgetPassword.css'
+import { Snackbar, Alert } from '@mui/material';
+=======
+>>>>>>> master
 import './ForgetPassword.css'
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
@@ -9,6 +17,10 @@ import Button from '@mui/material/Button';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import Card from '@mui/material/Card';
+<<<<<<< HEAD
+=======
+>>>>>>> master
+>>>>>>> master
 
 const ForgetPassword = () => {
     const [email, setEmail] = useState('');
@@ -102,4 +114,8 @@ const ForgetPassword = () => {
     )
 }
 
+<<<<<<< HEAD
 export default ForgetPassword
+=======
+export default ForgetPassword
+>>>>>>> master
