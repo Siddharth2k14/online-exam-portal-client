@@ -1,0 +1,98 @@
+.subjective-exam-creation {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 32px 24px;
+  background: #fafbfc;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.exam-title {
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #1976d2;
+  text-align: center;
+}
+
+.exam-details {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 24px 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.exam-title-card {
+  background: #e3f2fd;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 8px;
+}
+
+.exam-title-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1565c0;
+}
+
+.exam-question-card {
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.exam-answer-text {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.exam-answer-input {
+  width: 100%;
+  font-size: 1rem;
+  background: #fff;
+  border-radius: 6px;
+  border: 1px solid #bdbdbd;
+  padding: 12px;
+  margin-top: 8px;
+  transition: border 0.2s;
+}
+
+.exam-answer-input:focus {
+  border: 1.5px solid #1976d2;
+  outline: none;
+}
+
+.button-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 18px;
+  margin-top: 16px;
+}
+
+.nav-btn {
+  min-width: 80px;
+  border: 2px solid #666 !important;
+  border-radius: 6px !important;
+  background: #fafafa !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+}
+
+.exam-title-input {
+  width: 100%;
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+  border: 2px solid #bdbdbd;
+  border-radius: 6px;
+  padding: 8px 12px;
+  background: #fafafa;
+}
+
+.exam-title-input:focus {
+  border: 2px solid #1976d2;
+  outline: none;
+}

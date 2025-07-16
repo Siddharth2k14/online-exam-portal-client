@@ -1,0 +1,32 @@
+.account-settings-container {
+  margin: 0 auto;
+  max-width: 500px;
+  padding: 32px 24px;
+  background: #fafbfc;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.profile-info-card,
+.change-password-card {
+  padding: 24px 16px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  margin-bottom: 16px;
+}
+
+.profile-info-title {
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #1976d2;
+}
+
+.profile-info-text {
+  margin-bottom: 8px;
+  color: #333;
+  font-size: 1rem;
+}
