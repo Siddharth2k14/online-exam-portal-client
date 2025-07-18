@@ -80,11 +80,7 @@ const App = () => {
       {/* <StudentPage /> */}
       {/* <Home /> */}
       {/* <HomeMain /> */}
-<<<<<<< HEAD
     </ThemeProvider>
-=======
-    </div>
->>>>>>> 56c6b0968071cca0eef314435a4c488a243b26ef
   )
 }
 
