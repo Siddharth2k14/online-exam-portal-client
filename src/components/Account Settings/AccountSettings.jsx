@@ -11,13 +11,6 @@ const AccountSettings = ({ user, role }) => {
             <Typography variant="h4" style={{ margin: '32px 0 16px 0', textAlign: 'center', color: 'white' }}>
                 Account Settings
             </Typography>
-
-            {/* <Card className='account-settings-container'
-                sx={{
-                    background: 'transparent',
-                    boxShadow: 'none',
-                }}
-            > */}
             <Card className='profile-info-card'
                 sx={{
                     background: themeMode === 'dark'? 'transparent' : '#fff',
@@ -48,7 +41,6 @@ const AccountSettings = ({ user, role }) => {
                     Role: {role || 'Admin'}
                 </Typography>
             </Card>
-            {/* </Card> */}
         </>
     )
 }

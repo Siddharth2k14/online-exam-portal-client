@@ -42,11 +42,18 @@ import About from './pages/About/About';
 import Contact from './pages/Contact/Contact';
 import HomeMain from './components/Home Main/HomeMain';
 import ChangePassword from './components/Change Password/ChangePassword';
+<<<<<<< HEAD
 import { ThemeProvider } from './components/Theme Context/ThemeContext';
 
 const App = () => {
   return (
     <ThemeProvider>
+=======
+
+const App = () => {
+  return (
+    <div>
+>>>>>>> 56c6b0968071cca0eef314435a4c488a243b26ef
       {/* <Suspense fallback={<div>Loading...</div>}> */}
         <Routes>
           <Route path="/" element={<Home />} />
@@ -80,7 +87,11 @@ const App = () => {
       {/* <StudentPage /> */}
       {/* <Home /> */}
       {/* <HomeMain /> */}
+<<<<<<< HEAD
     </ThemeProvider>
+=======
+    </div>
+>>>>>>> 56c6b0968071cca0eef314435a4c488a243b26ef
   )
 }
 

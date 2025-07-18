@@ -40,9 +40,7 @@ const SideBar = ({ onSectionSelect }) => {
                 color: 'white',
             }}
         >
-            <div 
-                className="sidebar-container"
-            >
+            <div className="sidebar-container">
                 <div style={{ width: 250 }}>
                     <Card className="exam-creation" variant="outlined" sx={{
                         mb: 2,
@@ -123,27 +121,27 @@ const SideBar = ({ onSectionSelect }) => {
                             className="setting-list"
                         >
                             <List className="setting-list-items">
-                                <ListItem button onClick={() => onSectionSelect('Account Info')}>
-                                    <ListItemText primary="Account Info" />
-                                </ListItem>
-                                {isStudentDashboard && (
-                                    <ListItem button onClick={() => onSectionSelect('Change Password')}>
-                                        <ListItemText primary="Change Password" />
+                                    <ListItem button onClick={() => onSectionSelect('Account Info')}>
+                                        <ListItemText primary="Account Info" />
                                     </ListItem>
-                                )}
-                                <ListItem button onClick={handleThemeModeClick}>
-                                    <ListItemText primary="Theme Mode" />
-                                </ListItem>
-                                {showThemeToggle && (
-                                    <ListItem>
-                                        <ListItemText primary={themeMode === 'light' ? 'Light Mode' : 'Dark Mode'} />
-                                        <Switch
-                                            checked={themeMode === 'dark'}
-                                            onChange={toggleTheme}
-                                            color="primary"
-                                        />
+                                    {isStudentDashboard && (
+                                        <ListItem button onClick={() => onSectionSelect('Change Password')}>
+                                            <ListItemText primary="Change Password" />
+                                        </ListItem>
+                                    )}
+                                    <ListItem button onClick={handleThemeModeClick}>
+                                        <ListItemText primary="Theme Mode" />
                                     </ListItem>
-                                )}
+                                    {showThemeToggle && (
+                                        <ListItem>
+                                            <ListItemText primary={themeMode === 'light' ? 'Light Mode' : 'Dark Mode'} />
+                                            <Switch
+                                                checked={themeMode === 'dark'}
+                                                onChange={toggleTheme}
+                                                color="primary"
+                                            />
+                                        </ListItem>
+                                    )}
                             </List>
                         </Collapse>
                     </Card>
