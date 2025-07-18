@@ -36,23 +36,11 @@
   color: #2d3a4b;
 }
 
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 56c6b0968071cca0eef314435a4c488a243b26ef
 .exam-management {
   text-align: center;
   text-decoration: underline;
 }
 
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 56c6b0968071cca0eef314435a4c488a243b26ef
 .setting {
   text-align: center;
   text-decoration: underline;
@@ -78,28 +66,4 @@
 .settings .MuiListItem-root:hover {
   /* background: #e3e9f7; */
   background: rgb(172, 212, 245);
-<<<<<<< HEAD
 }
-=======
-}
-
-
-
-
-
-
-
-/* .exam-list-items {
-  border: 2px solid transparent;
-  border-radius: 10px;
-  padding: 10px;
-  background: #f5f6fa;
-}
-
-.setting-list-items {
-  border: 2px solid transparent;
-  border-radius: 10px;
-  padding: 10px;
-  background: #f5f6fa;
-} */
->>>>>>> 56c6b0968071cca0eef314435a4c488a243b26ef
