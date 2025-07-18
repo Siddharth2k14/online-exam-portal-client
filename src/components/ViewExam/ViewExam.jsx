@@ -12,6 +12,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Box from '@mui/material/Box';
+import { useTheme } from '../Theme Context/ThemeContext';
 
 const LOCAL_STORAGE_KEY = "studentExamHistory";
 
@@ -19,6 +20,7 @@ const ViewExam = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { exam, answers, score, totalQuestions } = location.state || {};
+  const { themeMode } = useTheme();
 
   const [history, setHistory] = useState([]);
   const [selectedExam, setSelectedExam] = useState(null);
@@ -101,18 +103,33 @@ const ViewExam = () => {
   const { exam: selExam, answers: selAnswers, score: selScore, totalQuestions: selTotal } = selectedExam;
 
   return (
-    <Card sx={{ maxWidth: 900, m: "2rem auto", p: 3 }}>
+    <Card sx={{
+      maxWidth: 900, m: "2rem auto", p: 3, background: 'transparent', boxShadow: 'none',
+      '&:hover': {
+        transform: 'scale(1.05)',
+        transition: 'transform 0.5s ease-in-out',
+        boxShadow: themeMode === 'dark'
+          ? '0 0 30px 10px rgba(86, 157, 228, 0.854)'
+          : 'none',
+      }
+    }}>
       <CardContent>
-        <Box sx={{ display: "flex", gap: 4, flexDirection: { xs: "column", md: "row" } }}>
+        <Box sx={{
+          display: "flex", gap: 4, flexDirection: { xs: "column", md: "row" }
+        }}>
           {/* Exam History List */}
-          <Box sx={{ minWidth: 250, maxWidth: 300 }}>
-            <Typography variant="h6" gutterBottom>Exam History</Typography>
+          <Box sx={{
+            minWidth: 250, maxWidth: 300
+          }}>
+            <Typography variant="h6" gutterBottom sx={{ color: 'white' }}>Exam History</Typography>
             <List dense>
               {history.length === 0 && (
                 <ListItem><ListItemText primary="No exams taken yet." /></ListItem>
               )}
               {history.map((item, idx) => (
-                <ListItem key={idx} disablePadding>
+                <ListItem key={idx} disablePadding sx={{
+                  color: 'white',
+                }}>
                   <ListItemButton
                     selected={
                       selExam.exam_title === item.exam.exam_title &&
@@ -132,20 +149,28 @@ const ViewExam = () => {
 
           {/* Exam Review Section */}
           <Box sx={{ flex: 1 }}>
-            <Typography variant="h5" gutterBottom>
+            <Typography variant="h5" gutterBottom sx={{
+              color: 'white',
+            }}>
               {selExam.exam_title}
             </Typography>
-            <Typography variant="subtitle1" gutterBottom>
+            <Typography variant="subtitle1" gutterBottom sx={{
+              color: 'white',
+            }}>
               Type: {selExam.type}
             </Typography>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="h6" gutterBottom sx={{
+              color: 'white',
+            }}>
               Score: {selScore} / {selTotal}
             </Typography>
             <Divider sx={{ my: 2 }} />
 
             {selExam.questions.map((q, idx) => (
               <div key={idx} style={{ marginBottom: 24 }}>
-                <Typography variant="subtitle1">
+                <Typography variant="subtitle1" sx={{
+                  color: 'white',
+                }}>
                   Q{idx + 1}. {q.question_text}
                 </Typography>
                 {selExam.type === "Objective" ? (
@@ -162,8 +187,8 @@ const ViewExam = () => {
                             color: isCorrect
                               ? "green"
                               : isSelected && !isCorrect
-                              ? "red"
-                              : "inherit",
+                                ? "red"
+                                : "inherit",
                           }}
                         >
                           {String.fromCharCode(65 + i)}. {opt}
