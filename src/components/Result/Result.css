@@ -4,14 +4,11 @@
   max-width: 900px;
   margin: 32px auto;
   padding: 24px;
-  background: #f9f9f9;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
 }
 
 .result-title {
   text-align: center;
-  color: #1976d2;
   margin-bottom: 32px;
   font-weight: 700;
   font-size: 2rem;
@@ -29,7 +26,7 @@
   max-width: 300px;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(25, 118, 210, 0.1);
-  background: #fff;
+  /* background: #fff; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -66,7 +63,7 @@
 
 .result-left {
   margin-top: 16px;
-  color: #fff;
+  color: #ffffff;
   text-align: center;
 }
 
@@ -113,16 +110,6 @@
     min-width: 120px;
     min-height: 120px;
   }
-}
-
-.result-card-title {
-  /* font-weight: bold;
-  font-size: 1.2rem;
-  color: #fff;
-  text-align: center;
-  margin-top: 16px;
-  color: #fff;
-  text-align: center; */
 }
 
 .result-box {

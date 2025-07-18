@@ -1,22 +1,11 @@
-.account-settings-container {
-  margin: 0 auto;
-  max-width: 500px;
+.profile-info-card {
   padding: 32px 24px;
-  background: #fafbfc;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  border-radius: 12px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-}
-
-.profile-info-card,
-.change-password-card {
-  padding: 24px 16px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-  margin-bottom: 16px;
+  gap: 10px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .profile-info-title {

@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-import { Card, CardContent, Typography } from '@mui/material'
-import './StudentPage.css'
-import { useState } from 'react'
-import SideBar from '../SideBar/SideBar';
-import ExamsPage from '../ExamsPage/ExamsPage';
-import ViewExam from '../ViewExam/ViewExam';
-import { useSelector } from 'react-redux';
-import Result from '../Result/Result';
-=======
->>>>>>> master
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -23,22 +10,14 @@ import AccountSettings from '../Account Settings/AccountSettings';
 import ChangePassword from '../Change Password/ChangePassword';
 import { useSelector } from 'react-redux';
 import './StudentPage.css';
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> master
+import { useTheme } from '../Theme Context/ThemeContext'
+import Box from '@mui/material/Box';
 
 const StudentPage = () => {
     const [selectedSection, setSelectedSection] = useState('');
     const user = useSelector(state => state.auth.user);
-<<<<<<< HEAD
     const role = useSelector(state => state.auth.role);
-=======
-<<<<<<< HEAD
-=======
-    const role = useSelector(state => state.auth.role);
->>>>>>> master
->>>>>>> master
+    const { themeMode } = useTheme();
 
     const renderContent = () => {
         if (selectedSection === 'Exams') {
@@ -56,13 +35,7 @@ const StudentPage = () => {
                 <Result />
             )
         }
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> master
-        else if(selectedSection === 'Account Settings') {
+        else if (selectedSection === 'Account Info') {
             return (
                 <AccountSettings user={user} role={role} />
             )
@@ -73,18 +46,18 @@ const StudentPage = () => {
                 <ChangePassword />
             )
         }
-
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> master
         return (
             <>
                 <div className='student-welcome'>
-                    <Typography variant="h6" gutterBottom>
+                    <Typography
+                        variant="h6"
+                        gutterBottom
+                    >
                         Welcome, {user?.name || 'Student'}!
                     </Typography>
-                    <Typography variant="body1">
+                    <Typography
+                        variant="body1"
+                    >
                         Use the sidebar to manage exams and settings.
                     </Typography>
                 </div>
@@ -95,17 +68,43 @@ const StudentPage = () => {
     return (
         <>
             <SideBar onSectionSelect={setSelectedSection} />
-            <div className='student-page'>
-                <Typography variant='h4' className='student-heading'>
+            <Box
+                className='student-page'
+                style={{
+                    border: themeMode === 'dark' ? '2px solid #fff' : '2px solid #333',
+                }}
+            >
+                {console.log(themeMode)}
+                <Typography
+                    variant='h4'
+                    className='student-heading'
+                    sx={{ color: themeMode === 'dark' ? '#fff' : '#333' }}
+                >
                     Student Dashboard
                 </Typography>
-                <hr className='horizontal-line' />
-                <Card className="student-card">
+                <hr
+                    style={{
+                        borderTop: themeMode === 'dark' ? '2px solid #fff' : '2px solid #333',
+                        margin: '0 30px 30px 30px',
+                        // border: 'none',
+                        height: '0',
+                    }}
+                />
+                <Card
+                    className="student-card"
+                    sx={{
+                        bgcolor: themeMode === 'dark' ? '#333' : '#fff',
+                        color: themeMode === 'dark' ? '#fff' : '#333',
+                        boxShadow: themeMode === 'dark'
+                            ? '0 0 90px 10px rgba(86, 157, 228, 0.854)'
+                            : 'none',
+                    }}
+                >
                     <CardContent>
                         {renderContent()}
                     </CardContent>
                 </Card>
-            </div>
+            </Box>
         </>
     )
 }

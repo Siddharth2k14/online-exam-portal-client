@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-import { Card, Collapse, List, ListItem, ListItemText, Typography, Switch } from "@mui/material";
-import './SideBar.css';
-import { useState } from "react";
-=======
->>>>>>> master
 import Card from '@mui/material/Card';
 import Collapse from '@mui/material/Collapse';
 import List from '@mui/material/List';
@@ -14,17 +6,14 @@ import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import Switch from '@mui/material/Switch';
 import { useState } from 'react';
+import { useTheme } from '../Theme Context/ThemeContext'
 import './SideBar.css';
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> master
 
 const SideBar = ({ onSectionSelect }) => {
     const [examOpen, setExamOpen] = useState(false);
     const [settingsOpen, setSettingsOpen] = useState(false);
-    const [themeMode, setThemeMode] = useState('light');
     const [showThemeToggle, setShowThemeToggle] = useState(false);
+    const { themeMode, toggleTheme } = useTheme();
 
     const handleExamToggle = () => {
         setExamOpen((prev) => !prev);
@@ -38,26 +27,12 @@ const SideBar = ({ onSectionSelect }) => {
         setShowThemeToggle(true);
     };
 
-    const handleThemeToggle = () => {
-        setThemeMode((prev) => (prev === 'light' ? 'dark' : 'light'));
-        // Optionally, apply theme to body or context here
-        document.body.style.background = themeMode === 'light' ? '#222' : '#fff';
-        document.body.style.color = themeMode === 'light' ? '#fff' : '#222';
-    };
-
     // Check if the URL contains "admin/dashboard"
     const isAdminDashboard = window.location.pathname.includes("admin/dashboard");
     const isStudentDashboard = location.pathname.includes("student/dashboard");
 
     return (
-<<<<<<< HEAD
-        <div 
-=======
-<<<<<<< HEAD
-        <div className="sidebar">
-=======
         <div
->>>>>>> master
             className="sidebar"
             style={{
                 width: '260px',
@@ -65,11 +40,9 @@ const SideBar = ({ onSectionSelect }) => {
                 color: 'white',
             }}
         >
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> master
-            <div className="sidebar-container">
+            <div 
+                className="sidebar-container"
+            >
                 <div style={{ width: 250 }}>
                     <Card className="exam-creation" variant="outlined" sx={{
                         mb: 2,
@@ -81,19 +54,10 @@ const SideBar = ({ onSectionSelect }) => {
                             onClick={handleExamToggle}
                             style={{ cursor: 'pointer' }}
                             className="exam-management"
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> master
                             sx={{
                                 textAlign: 'center',
                                 textDecoration: 'underline',
                             }}
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> master
                         >
                             Exam Management
                         </Typography>
@@ -159,18 +123,8 @@ const SideBar = ({ onSectionSelect }) => {
                             className="setting-list"
                         >
                             <List className="setting-list-items">
-<<<<<<< HEAD
-                                <ListItem button onClick={() => onSectionSelect('Account Settings')}>
-                                    <ListItemText primary="Account Settings" />
-=======
-<<<<<<< HEAD
-                                <ListItem button onClick={() => onSectionSelect('Account Settings')}>
-                                    <ListItemText primary="Account Settings" />
-=======
                                 <ListItem button onClick={() => onSectionSelect('Account Info')}>
                                     <ListItemText primary="Account Info" />
->>>>>>> master
->>>>>>> master
                                 </ListItem>
                                 {isStudentDashboard && (
                                     <ListItem button onClick={() => onSectionSelect('Change Password')}>
@@ -185,7 +139,7 @@ const SideBar = ({ onSectionSelect }) => {
                                         <ListItemText primary={themeMode === 'light' ? 'Light Mode' : 'Dark Mode'} />
                                         <Switch
                                             checked={themeMode === 'dark'}
-                                            onChange={handleThemeToggle}
+                                            onChange={toggleTheme}
                                             color="primary"
                                         />
                                     </ListItem>
@@ -197,6 +151,6 @@ const SideBar = ({ onSectionSelect }) => {
             </div>
         </div>
     );
-}
+};
 
 export default SideBar;

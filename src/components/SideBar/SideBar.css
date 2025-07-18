@@ -3,29 +3,18 @@
   top: 65px;
   left: 0;
   z-index: 1000;
-<<<<<<< HEAD
   background: linear-gradient(245deg, #0f2027, #2c5364);
-=======
-<<<<<<< HEAD
   width: 260px;
   height: 100vh;
-  background: linear-gradient(245deg, #0f2027, #2c5364);
   color: white;
-=======
-  background: linear-gradient(245deg, #0f2027, #2c5364);
->>>>>>> master
->>>>>>> master
   display: flex;
   flex-direction: column;
 }
 
 .sidebar-container {
   width: 260px;
-  background: #f5f6fa;
   padding: 16px 16px;
   box-sizing: border-box;
-  /* background: #0a2835; */
-  background: linear-gradient(245deg, #0f2027, #2c5364);
   position: absolute;
   display: flex;
 }
@@ -47,17 +36,11 @@
   color: #2d3a4b;
 }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 .exam-management {
   text-align: center;
   text-decoration: underline;
 }
 
-=======
->>>>>>> master
->>>>>>> master
 .setting {
   text-align: center;
   text-decoration: underline;
@@ -84,30 +67,3 @@
   /* background: #e3e9f7; */
   background: rgb(172, 212, 245);
 }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> master
-
-/* .exam-list-items {
-  border: 2px solid transparent;
-  border-radius: 10px;
-  padding: 10px;
-  background: #f5f6fa;
-}
-
-.setting-list-items {
-  border: 2px solid transparent;
-  border-radius: 10px;
-  padding: 10px;
-  background: #f5f6fa;
-} */
-<<<<<<< HEAD
-=======
->>>>>>> 38e97fa87c851ede510140be7c20c26d3a2d5891
-=======
-
->>>>>>> master
->>>>>>> master

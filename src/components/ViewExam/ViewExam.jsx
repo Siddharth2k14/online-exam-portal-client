@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { Card, Typography, CardContent, Divider, Button, List, ListItem, ListItemButton, ListItemText, Box } from "@mui/material";
-=======
->>>>>>> master
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -20,10 +12,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Box from '@mui/material/Box';
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> master
 
 const LOCAL_STORAGE_KEY = "studentExamHistory";
 

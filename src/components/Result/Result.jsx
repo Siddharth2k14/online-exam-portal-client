@@ -1,32 +1,20 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-import { Box, Card, Typography } from '@mui/material';
-import './Result.css';
-import 'react-circular-progressbar/dist/styles.css';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
-=======
->>>>>>> master
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import 'react-circular-progressbar/dist/styles.css';
-import {LineChart} from 'recharts';
-import {Line} from 'recharts';
-import {XAxis} from 'recharts';
-import {YAxis} from 'recharts';
-import {CartesianGrid} from 'recharts';
-import {Tooltip} from 'recharts';
-import {ResponsiveContainer} from 'recharts';
-import {PieChart} from 'recharts';
-import {Pie} from 'recharts';
-import {Cell} from 'recharts';
-import {Legend} from 'recharts';
+import { LineChart } from 'recharts';
+import { Line } from 'recharts';
+import { XAxis } from 'recharts';
+import { YAxis } from 'recharts';
+import { CartesianGrid } from 'recharts';
+import { Tooltip } from 'recharts';
+import { ResponsiveContainer } from 'recharts';
+import { PieChart } from 'recharts';
+import { Pie } from 'recharts';
+import { Cell } from 'recharts';
+import { Legend } from 'recharts';
 import './Result.css';
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> master
+import { useTheme } from '../Theme Context/ThemeContext';
 
 const Result = () => {
     // Get all exam results from localStorage
@@ -64,23 +52,64 @@ const Result = () => {
     ];
     const pieColors = ['#4caf50', '#f44336'];
 
+    const { themeMode } = useTheme();
+
+    const resultCardStyle = {
+        backgroundColor: 'transparent',
+        color: 'white',
+        // border: '5px solid rgb(25, 118, 210)',
+        '&:hover': {
+            transform: 'scale(1.05)',
+            transition: 'transform 0.5s ease-in-out',
+            boxShadow: "0 2px 15px rgba(25, 118, 210, 0.749)",
+        },
+    };
+
     return (
-        <div className="result-root">
-            <Typography variant="h4" gutterBottom className="result-title">
+        <div
+            className="result-root"
+        >
+            <Typography variant="h4" gutterBottom className="result-title" sx={{
+                color: themeMode === 'light' ? 'white' : '#fff'
+            }}>
                 Result
             </Typography>
             <div className="result-grid">
                 <div className="result-left">
-                    <Card className="result-large-card">
-                        <div style={{ flex: 1 }}>
-                            <Typography variant="h6" align="center" gutterBottom>
+                    <Card className="result-large-card"
+                        sx={{
+                            backgroundColor: 'transparent',
+                            '&:hover': {
+                                transform: 'scale(1.05)',
+                                transition: 'transform 0.5s ease-in-out',
+                                boxShadow: "0 0 90px 10px rgba(25, 118, 210, 0.749)",
+                            },
+                        }}
+                    >
+                        <div style={{
+                            flex: 1,
+                            backgroundColor: 'transparent',
+                        }}>
+                            <Typography variant="h6" align="center" gutterBottom style={{
+                                color: 'white',
+                            }}>
                                 Progress Chart
                             </Typography>
-                            <ResponsiveContainer width="100%" height={220}>
+                            <ResponsiveContainer width="100%" height={210} >
                                 <LineChart data={chartData}>
                                     <CartesianGrid strokeDasharray="3 3" />
-                                    <XAxis dataKey="name" />
-                                    <YAxis label={{ value: 'Score', angle: -90, position: 'insideLeft' }} />
+                                    <XAxis dataKey="name" tick={{
+                                        fill: 'white',
+                                        fontStyle: 'italic',
+                                        textDecoration: 'underline',
+                                    }} />
+                                    <YAxis label={{
+                                        value: 'Score', angle: -90, position: 'insideLeft', style: {
+                                            fill: 'white',
+                                            fontStyle: 'italic',
+                                            textDecoration: 'underline',
+                                        }
+                                    }} />
                                     <Tooltip />
                                     <Line type="monotone" dataKey="score" stroke="#1976d2" strokeWidth={3} dot={{ r: 5 }} activeDot={{ r: 8 }} />
                                 </LineChart>
@@ -88,38 +117,61 @@ const Result = () => {
                         </div>
                     </Card>
                     <div className="result-score">
-                        <Typography variant="h6" gutterBottom className="result-card-title" style={{ marginTop: 16, color: 'black' }}>
+                        <Typography variant="h6" gutterBottom className="result-card-title" style={{ marginTop: 16, color: 'white' }}>
                             Your Score: {score}
                         </Typography>
                     </div>
                 </div>
 
-                <Box className="result-box">
+                <Box className="result-box" style={{
+                    backgroundColor: 'transparent',
+                    boxShadow: 'none',
+                }}>
                     <div className="result-right">
-                        <Card className="result-card">
+                        <Card className="result-card"
+                            sx={resultCardStyle}
+                        >
                             <Typography variant="h6" gutterBottom className="result-card-title">
                                 Total Questions: {totalQuestions}
                             </Typography>
                         </Card>
-                        <Card className="result-card">
+                        <Card className="result-card"
+                            sx={resultCardStyle}
+                        >
                             <Typography variant="h6" gutterBottom className="result-card-title">
                                 Correct Answers: {correctAnswers}
                             </Typography>
                         </Card>
-                        <Card className="result-card">
+                        <Card className="result-card"
+                            sx={resultCardStyle}
+                        >
                             <Typography variant="h6" gutterBottom className="result-card-title">
                                 Wrong Answers: {wrongAnswers}
                             </Typography>
                         </Card>
-                        <Card className="result-card">
+                        <Card className="result-card"
+                            sx={resultCardStyle}
+                        >
                             <Typography variant="h6" gutterBottom className="result-card-title">
                                 Percentage: {percentage}%
                             </Typography>
                         </Card>
                     </div>
 
-                    <div style={{ flex: 1 }}>
-                        <Typography variant="h6" align="center" gutterBottom>
+                    <Box
+                        sx={{
+                            backgroundColor: 'transparent',
+                            flex: 1,
+                            '&:hover': {
+                                transform: 'scale(1.05)',
+                                transition: 'transform 0.5s ease-in-out',
+                                boxShadow: "0 0 90px 10px rgba(25, 118, 210, 0.749)",
+                            },
+                        }}
+                    >
+                        <Typography variant="h6" align="center" gutterBottom sx={{
+                            color: 'white',
+                        }}>
                             Answer Distribution
                         </Typography>
                         <PieChart width={250} height={250}>
@@ -139,7 +191,7 @@ const Result = () => {
                             </Pie>
                             <Legend />
                         </PieChart>
-                    </div>
+                    </Box>
                 </Box>
             </div>
         </div>

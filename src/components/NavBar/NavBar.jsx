@@ -1,184 +1,128 @@
-import React, { useState } from 'react'
-<<<<<<< HEAD
-import {Link} from 'react-router-dom';
-import {useLocation} from 'react-router-dom';
+import React, { useState } from 'react'; // Correct useState import
+import { Link, useLocation, useNavigate } from 'react-router-dom'; // Import useNavigate
 import './NavBar.css'
-=======
-<<<<<<< HEAD
-import './NavBar.css'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { red } from '@mui/material/colors';
-=======
-import {Link} from 'react-router-dom';
-import {useLocation} from 'react-router-dom';
-import './NavBar.css'
->>>>>>> master
->>>>>>> master
 
-const NavBar = ({ toggle, setToggle, name }) => {
+const NavBar = ({ name }) => { // Removed toggle and setToggle props, as internal state handles menu
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate(); // Initialize useNavigate for programmatic navigation
 
   const isAdminDash = location.pathname === '/admin/dashboard';
-  const isStudent = location.pathname === '/student/login' || location.pathname === '/student/signup';
   const isStudentDash = location.pathname === '/student/dashboard';
+  // Check if currently on any dashboard (authenticated state for NavBar's purpose)
+  const isOnDashboard = isAdminDash || isStudentDash;
 
-  const handleToggle = () => {
+  const handleToggleMenu = () => { // Renamed for clarity
     setMenuOpen((prev) => !prev);
   };
 
-  const handleClose = () => {
+  const handleCloseMenu = () => { // Renamed for clarity
     setMenuOpen(false);
+  };
+
+  // Centralized logout logic
+  const handleLogout = () => {
+    // *** IMPORTANT: Implement your actual logout logic here ***
+    // This typically involves:
+    // 1. Clearing authentication tokens (e.g., from localStorage, sessionStorage, cookies)
+    // 2. Dispatching a Redux logout action if you're using Redux for user state
+    // 3. Resetting any other user-specific state
+    console.log("Logging out...");
+    localStorage.removeItem('authToken'); // Example: clear a token
+    // If using Redux: dispatch(logoutUser());
+
+    // Redirect to the appropriate login page based on current dashboard, then close menu
+    if (isStudentDash) {
+      navigate('/student/login');
+    } else if (isAdminDash) {
+      navigate('/admin/login');
+    } else {
+      // Fallback for general logout if not on a specific dashboard
+      navigate('/'); // Or a generic /login page
+    }
+    handleCloseMenu();
   };
 
   return (
     <div>
       <nav className="navbar">
         <div className="navbar-brand">
-          <Link to="/">ExamMaster</Link>
+          <Link to="/" onClick={handleCloseMenu}>ExamMaster</Link> {/* Closes menu on brand click */}
         </div>
-<<<<<<< HEAD
-        <ul
-          className="navbar-menu"
-          style={{
-            listStyle: 'none',
-            display: 'flex',
-            gap: '24px',
-            margin: '0',
-            padding: '0 25px',
-            flex: '1',
-            alignItems: 'center',
-          }}
-        >
-=======
+
+        {/* Hamburger menu icon for smaller screens */}
+        <div className="navbar-toggle" onClick={handleToggleMenu}>
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
+        </div>
+
+        {/* Main navigation menu for larger screens */}
+        {/* These links remain visible on desktop based on your CSS */}
         <ul className="navbar-menu">
->>>>>>> master
           <li><Link to="/home">Home</Link></li>
           <li><Link to="/about">About</Link></li>
           <li><Link to="/contact">Contact</Link></li>
         </ul>
 
-        {(isAdminDash || isStudentDash) ? (
-<<<<<<< HEAD
-          <div
-            className="navbar-auth"
-          >
-            <Link to={isStudentDash ? "/student/login" : "/admin/login"} className="logout-btn">Log Out</Link>
-          </div>
-        ) : (name === "admin" ? (
-          <div
-            className="navbar-auth"
-            style={{
-              display: 'flex',
-              gap: '12px',
-            }}
-          >
-            <Link
-              to="/admin/login"
-              className="btn"
-              style={{
-                backgroundColor: 'white',
-                color: '#1976d2',
-                padding: '6px 18px',
-                borderRadius: '20px',
-                fontWeight: '500',
-                fontSize: '1rem',
-                textDecoration: 'none',
-              }}
-            >Login</Link>
-          </div>
-        ) : (
-          <div
-            className="navbar-auth"
-          >
-            <Link to="/student/login" className="btn"
-              style={{
-                backgroundColor: 'white',
-                color: '#1976d2',
-                padding: '6px 18px',
-                borderRadius: '20px',
-                fontWeight: '500',
-                fontSize: '1rem',
-                textDecoration: 'none',
-              }}
-            >Login</Link>
-            <Link to="/signup" className="btn"
-              style={{
-                backgroundColor: 'white',
-                color: '#1976d2',
-                padding: '6px 18px',
-                borderRadius: '20px',
-                fontWeight: '500',
-                fontSize: '1rem',
-                textDecoration: 'none',
-              }}
-            >Sign Up</Link>
-=======
-          <div className="navbar-auth">
-            <Link to={isStudentDash ? "/student/login" : "/admin/login"} className="logout-btn">Log Out</Link>
-          </div>
-        ) : (name === "admin" ? (
-          <div className="navbar-auth">
-            <Link to="/admin/login" className="btn">Login</Link>
-          </div>
-        ) : (
-          <div className="navbar-auth">
-            <Link to="/student/login" className="btn">Login</Link>
-            <Link to="/signup" className="btn">Sign Up</Link>
->>>>>>> master
-          </div>
-        ))}
-
-        <div className="navbar-toggle" onClick={handleToggle}>
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
+        {/* Authentication/Logout section for desktop */}
+        <div className="navbar-auth">
+          {isOnDashboard ? (
+            // If on any dashboard, show logout button
+            <button className="logout-btn" onClick={handleLogout}>
+              Log Out
+            </button>
+          ) : (
+            // If not on a dashboard, show login/signup.
+            // Simplified logic: If 'name' prop indicates 'admin', show admin login, otherwise student/signup.
+            name === "admin" ? ( // Check 'name' prop from parent (e.g., AdminDashboard)
+              <Link to="/admin/login" className="btn">Login</Link>
+            ) : ( // Default to student login/signup
+              <>
+                <Link to="/student/login" className="btn">Login</Link>
+                <Link to="/signup" className="btn">Sign Up</Link>
+              </>
+            )
+          )}
         </div>
       </nav>
-      <div className={`navbar-overlay${menuOpen ? ' open' : ''}`} onClick={handleClose}></div>
+
+      {/* Mobile menu overlay (for dimming background) */}
+      <div className={`navbar-overlay${menuOpen ? ' open' : ''}`} onClick={handleCloseMenu}></div>
+
+      {/* Mobile menu content */}
       <div className={`navbar-collapse${menuOpen ? ' open' : ''}`}>
-        <ul className="navbar-menu">
-          <li><Link to="/home" onClick={handleClose}>Home</Link></li>
-          <li><Link to="/about" onClick={handleClose}>About</Link></li>
-          <li><Link to="/contact" onClick={handleClose}>Contact</Link></li>
+        <ul className="navbar-menu-mobile"> {/* Use a distinct class for mobile menu */}
+          <li><Link to="/home" onClick={handleCloseMenu}>Home</Link></li>
+          <li><Link to="/about" onClick={handleCloseMenu}>About</Link></li>
+          <li><Link to="/contact" onClick={handleCloseMenu}>Contact</Link></li>
+          {/* Mobile-specific authentication/logout links */}
+          {isOnDashboard ? (
+            <li>
+              <button className="logout-btn" onClick={handleLogout}>
+                Log Out
+              </button>
+            </li>
+          ) : (
+            name === "admin" ? (
+              <li><Link to="/admin/login" className="btn" onClick={handleCloseMenu}>Login</Link></li>
+            ) : (
+              <>
+                <li><Link to="/student/login" className="btn" onClick={handleCloseMenu}>Login</Link></li>
+                <li><Link to="/signup" className="btn" onClick={handleCloseMenu}>Sign Up</Link></li>
+              </>
+            )
+          )}
         </ul>
-        <div className="navbar-auth">
-<<<<<<< HEAD
-          <Link to="/student/login" className="btn"
-            style={{
-              backgroundColor: 'white',
-              color: '#1976d2',
-              padding: '6px 18px',
-              borderRadius: '20px',
-              fontWeight: '500',
-              fontSize: '1rem',
-              textDecoration: 'none',
-            }}
-            onClick={handleClose}>Login</Link>
-          <Link to="/signup" className="btn"
-            style={{
-              backgroundColor: 'white',
-              color: '#1976d2',
-              padding: '6px 18px',
-              borderRadius: '20px',
-              fontWeight: '500',
-              fontSize: '1rem',
-              textDecoration: 'none',
-            }}
-            onClick={handleClose}>Sign Up</Link>
-=======
-          <Link to="/student/login" className="btn" onClick={handleClose}>Login</Link>
-          <Link to="/signup" className="btn" onClick={handleClose}>Sign Up</Link>
->>>>>>> master
-        </div>
-        <div className="navbar-close" onClick={handleClose}>
+        {/* Close button for mobile menu */}
+        <div className="navbar-close" onClick={handleCloseMenu}>
           <span className="bar"></span>
           <span className="bar"></span>
           <span className="bar"></span>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;

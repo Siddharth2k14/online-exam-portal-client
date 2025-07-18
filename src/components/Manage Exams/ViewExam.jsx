@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { Card, Typography, Button } from '@mui/material';
-=======
->>>>>>> master
 import { useNavigate } from 'react-router-dom';
 import {useParams} from 'react-router-dom';
 import useEffect from 'react';
@@ -13,10 +5,6 @@ import useState from 'react';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> master
 import axios from 'axios';
 import './ViewExam.css';
 

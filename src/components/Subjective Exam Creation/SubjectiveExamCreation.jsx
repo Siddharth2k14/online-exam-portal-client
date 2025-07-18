@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-import { Button, Card, Input, Typography } from '@mui/material'
-import React, { useState } from 'react'
-import './SubjectiveExamCreation.css'
-import { useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { addSubjectiveQuestion } from '../../redux/subjectiveExamSlice';
-=======
->>>>>>> master
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import Input from '@mui/material/Input';
@@ -19,10 +8,6 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { addSubjectiveQuestion } from '../../redux/subjectiveExamSlice';
 import './SubjectiveExamCreation.css';
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> master
 
 const SubjectiveExamCreation = () => {
   const [examTitle, setExamTitle] = useState('');

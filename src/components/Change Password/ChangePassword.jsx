@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import './ChangePassword.css';
+import { useTheme } from '../Theme Context/ThemeContext';
 
 const ChangePassword = () => {
   const [form, setForm] = useState({
@@ -17,6 +18,7 @@ const ChangePassword = () => {
   });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const { themeMode } = useTheme();
 
   const handleChange = (field) => (e) => {
     setForm({ ...form, [field]: e.target.value });
@@ -60,9 +62,25 @@ const ChangePassword = () => {
 
   return (
     <Box className="change-password-container">
-      <Card className="change-password-card">
+      <Card className="change-password-card"
+        sx={{
+          backgroundColor: 'transparent',
+          boxShadow: 'none',
+          '&:hover': {
+              transform: 'scale(1.05)',
+              transition: 'transform 0.5s ease-in-out',
+              boxShadow: themeMode === 'dark'
+                ? '0 0 90px 10px rgba(86, 157, 228, 0.854)'
+                : 'none',
+            },
+        }}
+      >
         <CardContent>
-          <Typography variant="h5" className="change-password-title">
+          <Typography variant="h4" className="change-password-title"
+            sx={{
+              marginBottom: 3
+            }}
+          >
             Change Password
           </Typography>
 
@@ -89,6 +107,11 @@ const ChangePassword = () => {
                   value={form.current}
                   onChange={handleChange('current')}
                   className="password-field"
+                  sx={{
+                    '& label' : {
+                      color: themeMode === 'dark' ? 'white' : 'black',
+                    }
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -100,6 +123,11 @@ const ChangePassword = () => {
                   value={form.new}
                   onChange={handleChange('new')}
                   className="password-field"
+                  sx={{
+                    '& label' : {
+                      color: themeMode === 'dark' ? 'white' : 'black',
+                    }
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -111,6 +139,11 @@ const ChangePassword = () => {
                   value={form.confirm}
                   onChange={handleChange('confirm')}
                   className="password-field"
+                  sx={{
+                    '& label' : {
+                      color: themeMode === 'dark' ? 'white' : 'black',
+                    }
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
