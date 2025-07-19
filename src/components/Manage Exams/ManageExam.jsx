@@ -64,7 +64,7 @@ const ManageExam = () => {
                   // boxShadow: "0 2px 15px rgba(25, 118, 210, 0.749)",
                   boxShadow: themeMode === 'dark'
                     ? '0 0 90px 10px rgba(86, 157, 228, 0.854)'
-                    : 'none'
+                    : '0 0 90px 10px rgba(11, 11, 11, 0.854)',
                 },
               }}>
                 <Typography variant="h6"

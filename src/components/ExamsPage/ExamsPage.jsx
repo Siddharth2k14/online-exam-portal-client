@@ -1,6 +1,6 @@
 import axios from 'axios';
-import {useState} from 'react';
-import {useEffect} from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
@@ -13,6 +13,7 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import CircularProgress from '@mui/material/CircularProgress';
 import './ExamsPage.css';
+import { useTheme } from '../Theme Context/ThemeContext';
 
 const LOCAL_STORAGE_KEY = "studentExamHistory";
 
@@ -24,6 +25,7 @@ const ExamsPage = () => {
   const [subjects, setSubjects] = useState([]);
   const [completedExamTitles, setCompletedExamTitles] = useState([]);
   const navigate = useNavigate();
+  const { themeMode } = useTheme();
 
   // Load completed exams from localStorage
   useEffect(() => {
@@ -98,6 +100,7 @@ const ExamsPage = () => {
             value={selectedSubject}
             onChange={(e) => setSelectedSubject(e.target.value)}
             label="Select Subject"
+            sx={{ color: 'white' }}
           >
             <MenuItem value="">All Subjects</MenuItem>
             {subjects.map((subject) => (
@@ -114,6 +117,7 @@ const ExamsPage = () => {
             value={selectedType}
             onChange={(e) => setSelectedType(e.target.value)}
             label="Exam Type"
+            sx={{ color: 'white' }}
           >
             <MenuItem value="">All Types</MenuItem>
             <MenuItem value="Objective">Objective</MenuItem>
@@ -127,10 +131,24 @@ const ExamsPage = () => {
       ) : (
         <div className="exams-grid">
           {filteredExams.map((exam) => (
-            <Card key={exam.exam_title} className="exam-card">
+            <Card key={exam.exam_title} className="exam-card"
+              sx={{
+                // border: '12px solid black',
+                background: 'transparent',
+                boxShadow: 'none',
+                color: 'white',
+                '&:hover': {
+                  transform: 'scale(1.05)',
+                  transition: 'transform 0.5s ease-in-out',
+                  boxShadow: themeMode === 'dark'
+                    ? '0 0 90px 10px rgba(86, 157, 228, 0.854)'
+                    : '0 0 90px 10px rgba(11, 11, 11, 0.854)',
+                },
+              }}
+            >
               <CardContent>
                 <Typography variant="h6">{exam.exam_title}</Typography>
-                <Typography variant="body2" color="textSecondary">
+                <Typography variant="body2" color="textSecondary" sx={{ color: 'white' }}>
                   Type: {exam.type}
                 </Typography>
                 <Typography variant="body2">

@@ -19,7 +19,7 @@ const AccountSettings = ({ user, role }) => {
                         transition: 'transform 0.5s ease-in-out',
                         boxShadow: themeMode === 'dark'
                             ? '0 0 90px 10px rgba(86, 157, 228, 0.854)'
-                            : 'none',
+                            : '0 0 90px 10px rgba(11, 11, 11, 0.854)',
                     },
                 }}
             >

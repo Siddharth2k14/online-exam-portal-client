@@ -205,19 +205,44 @@ const StartExam = () => {
   return (
     <Card
       className="start-exam-root"
-      sx={{ maxWidth: 700, m: "2rem auto", p: 3 }}
+      style={{ maxWidth: 700, m: "2rem auto", p: 3, backgroundColor: 'white' }}
     >
       <CardContent>
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="h5" gutterBottom sx={{
+          // border: '2px solid black',
+          background: 'white',
+          '&:hover': {
+            transform: 'scale(1.05)',
+            transition: 'transform 0.5s ease-in-out',
+            boxShadow: "0 0 5px 5px rgba(0, 0, 0, 0.1)",
+            fontSize: '2.3em',
+          },
+        }}>
           {exam.exam_title}
         </Typography>
-        <Typography variant="subtitle1" gutterBottom>
+        <Typography variant="subtitle1" gutterBottom sx={{
+          background: 'white',
+          '&:hover': {
+            transform: 'scale(1.05)',
+            transition: 'transform 0.5s ease-in-out',
+            boxShadow: "0 0 5px 5px rgba(0, 0, 0, 0.1)",
+            fontSize: '1.3em',
+          },
+        }}>
           Type:&nbsp;{exam.type}
         </Typography>
 
         <Divider sx={{ my: 2 }} />
 
-        <Typography variant="h6" gutterBottom>
+        <Typography variant="h6" gutterBottom sx={{
+          background: 'white',
+          '&:hover': {
+            transform: 'scale(1.05)',
+            transition: 'transform 0.5s ease-in-out',
+            boxShadow: "0 0 5px 5px rgba(0, 0, 0, 0.1)",
+            fontSize: '1.3em',
+          },
+        }}>
           Q{current + 1}.&nbsp;{question.question_text}
         </Typography>
 
@@ -230,12 +255,28 @@ const StartExam = () => {
             value={answers[current]}
             onChange={handleTextChange}
             disabled={submitted}
+            sx={{
+              '& :hover': {
+                transform: 'scale(1.05)',
+                transition: 'transform 0.5s ease-in-out',
+                boxShadow: "0 0 5px 5px rgba(0, 0, 0, 0.1)",
+                fontSize: '1.3em',
+              },
+            }}
           />
         ) : (
           <RadioGroup
             value={answers[current]}
             onChange={handleOptionChange}
-            sx={{ ml: 1 }}
+            sx={{
+              ml: 1,
+              '& :hover': {
+                transform: 'scale(1.05)',
+                transition: 'transform 0.5s ease-in-out',
+                boxShadow: "0 0 5px 5px rgba(0, 0, 0, 0.1)",
+                fontSize: '1.3em',
+              },
+            }}
           >
             {question.options.map((opt, i) => (
               <FormControlLabel

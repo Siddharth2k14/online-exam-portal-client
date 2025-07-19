@@ -80,7 +80,7 @@ const AdminPage = () => {
             color: themeMode === 'dark' ? '#fff' : '#333',
             boxShadow: themeMode === 'dark'
               ? '0 0 90px 10px rgba(86, 157, 228, 0.854)'
-              : 'none',
+              : '0 0 90px 10px rgb(141, 141, 141)',
           }}
         >
           <CardContent>
