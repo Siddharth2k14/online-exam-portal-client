@@ -1,12 +1,13 @@
 import { useNavigate } from 'react-router-dom';
-import {useParams} from 'react-router-dom';
-import useEffect from 'react';
-import useState from 'react';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import './ViewExam.css';
+import Box from '@mui/material/Box';
 
 const ViewExam = () => {
   const { examTitle } = useParams();
@@ -22,7 +23,7 @@ const ViewExam = () => {
         const exams = res.data.exams || [];
         const foundExam = exams.find(e => e.exam_title === examTitle);
         setExam(foundExam || null);
-      } catch (error) {
+      } catch (err) {
         setExam(null);
       } finally {
         setLoading(false);
@@ -35,7 +36,7 @@ const ViewExam = () => {
   if (!exam) return <Typography>No exam found.</Typography>;
 
   return (
-    <div className="view-exam-container">
+    <Box className="view-exam-container">
       <Button
         variant="outlined"
         onClick={() => navigate(-1)}
@@ -44,15 +45,41 @@ const ViewExam = () => {
         Back
       </Button>
       <Card className="view-exam-card">
-        <Typography variant="h4" className="view-exam-title" gutterBottom>
+        <Typography variant="h4" className="view-exam-title" gutterBottom
+          sx={{
+            '&:hover': {
+              transform: 'scale(1.05)',
+              transition: 'transform 0.5s ease-in-out',
+              boxShadow: "0 0 5px 5px rgba(0, 0, 0, 0.1)",
+              fontSize: '2.3em',
+            },
+          }}
+        >
           {exam.exam_title}
         </Typography>
         {exam.questions.length === 0 ? (
           <Typography>No questions in this exam.</Typography>
         ) : (
           exam.questions.map((q, idx) => (
-            <div key={idx} className="view-exam-question-block">
-              <Typography className="view-exam-question" variant="subtitle1">
+            <div key={idx} className="view-exam-question-block"
+              style={{
+                // border: '2px solid black',
+                padding: '16px',
+                margin: '16px 0',
+                // background: 'black',
+
+              }}
+            >
+              <Typography className="view-exam-question" variant="subtitle1"
+                sx={{
+                  '&:hover': {
+                    transform: 'scale(1.05)',
+                    transition: 'transform 0.5s ease-in-out',
+                    boxShadow: "0 0 5px 5px rgba(0, 0, 0, 0.1)",
+                    fontSize: '1.3rem',
+                  },
+                }}
+              >
                 {idx + 1}. {q.question_title || q.question}
               </Typography>
               {exam.type === 'Objective' && q.options ? (
@@ -60,7 +87,16 @@ const ViewExam = () => {
                   <Typography
                     key={oidx}
                     className={`view-exam-option${q.correct_option === oidx ? ' correct-option' : ''}`}
-                    style={q.correct_option === oidx ? { fontWeight: 'bold', color: '#388e3c' } : {}}
+                    sx={q.correct_option === oidx ? {
+                      fontWeight: 'bold', color: '#388e3c',
+                      '&:hover': {
+                        transform: 'scale(1.05)',
+                        transition: 'transform 0.5s ease-in-out',
+                        boxShadow: "0 0 5px 5px rgba(0, 0, 0, 0.1)",
+                        fontSize: '1.3rem',
+                      },
+                    } : {}
+                    }
                   >
                     {String.fromCharCode(65 + oidx)}. {opt}
                     {q.correct_option === oidx && (
@@ -77,7 +113,7 @@ const ViewExam = () => {
           ))
         )}
       </Card>
-    </div>
+    </Box>
   );
 };
 

@@ -6,21 +6,19 @@
 }
 
 .admin-page {
-
-    border: 2px solid black;
-
-
-    width: 79.6vw;
-    min-height: 90.5vh;
-    border: 2px solid black;
+    width: calc(100% - 262px); /* if left sidebar is fixed */
+    height: calc(100vh - 64px); /* responsive height */
     position: absolute;
     top: 65px;
     left: 261px;
-
     border: 2px solid black;
-
-
-    /* background: linear-gradient(245deg, #0f2027, #2c5364); */
+    color: black;
+    overflow-y: auto;
+    width: 79.6vw;
+    min-height: 90.5vh;
+    position: absolute;
+    top: 65px;
+    left: 261px;
     color: black;
 }
 

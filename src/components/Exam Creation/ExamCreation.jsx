@@ -1,4 +1,4 @@
-import useState from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
@@ -16,6 +16,7 @@ import ObjectiveExamCreation from '../Objective Exam Creation/ObjectiveExamCreat
 import { useDispatch } from 'react-redux';
 import { addExam } from '../../redux/examSlice';
 import axios from 'axios';
+import { useTheme } from '../Theme Context/ThemeContext';
 
 const ExamCreation = () => {
   const [titleExam, setTitleExam] = useState('');
@@ -25,6 +26,7 @@ const ExamCreation = () => {
   const [error, setError] = useState(''); // Add error state
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { themeMode } = useTheme();
 
   const handleCreateExam = async () => {
     // Validation: check if titleExam and examType are filled
@@ -75,17 +77,37 @@ const ExamCreation = () => {
         Exam Creation
       </Typography>
 
-      <Card className='exam-creation-card'>
+      <Card className='exam-creation-card'
+        sx={{
+          background: 'transparent',
+          '&:hover': {
+            transform: 'scale(1.05)',
+            transition: 'transform 0.5s ease-in-out',
+            boxShadow: themeMode === 'dark'
+              ? '0 0 90px 10px rgba(86, 157, 228, 0.854)'
+              : 'none',
+          }
+        }}
+      >
         <Input
           type='text'
           placeholder='Enter the title of the exam'
           value={titleExam}
           onChange={(e) => setTitleExam(e.target.value)}
           className='title-input'
+          sx={{
+            border: themeMode === 'dark' ? '1px solid #fff' : '1px solid black',
+            color: 'white',
+            '&:hover': {
+              border: themeMode === 'dark' ? '3px solid #FAF9F6' : '3px solid black',
+            },
+          }}
         />
 
         <FormControl className='form-type'>
-          <FormLabel className='form-type-label'>Type of Exam</FormLabel>
+          <FormLabel className='form-type-label' sx={{
+            color: 'white'
+          }}>Type of Exam</FormLabel>
           <RadioGroup
             defaultValue="objective"
             onChange={(e) => setExamType(e.target.value)}
@@ -95,12 +117,18 @@ const ExamCreation = () => {
               control={<Radio />}
               label="Objective"
               className='form-type-radio'
+              sx={{
+                color: 'white'
+              }}
             />
             <FormControlLabel
               value="subjective"
               control={<Radio />}
               label="Subjective"
               className='form-type-radio'
+              sx={{
+                color: 'white'
+              }}
             />
           </RadioGroup>
         </FormControl>
@@ -108,12 +136,17 @@ const ExamCreation = () => {
         <Button
           variant="contained"
           color="primary"
-          sx={{ mt: 3 }}
+          sx={{
+            mt: 3,
+            '&:hover': {
+              bgcolor: '#0062cc',
+            }
+          }}
           onClick={handleCreateExam}
         >
           Create Exam
         </Button>
-      </Card>
+      </Card >
 
       <Snackbar
         open={open}

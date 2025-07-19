@@ -1,15 +1,17 @@
-import useEffect from 'react';
-import useState from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import ViewExam from './ViewExam';
+import { useTheme } from '../Theme Context/ThemeContext';
 
 const ManageExam = () => {
   const [exams, setExams] = useState([]);
   const [viewExamTitle, setViewExamTitle] = useState(null);
   const navigate = useNavigate();
+  const { themeMode } = useTheme();
 
   const fetchData = async () => {
     try {
@@ -46,7 +48,7 @@ const ManageExam = () => {
 
   return (
     <div>
-      <Typography variant="h4" style={{ margin: '32px 0 16px 0', textAlign: 'center', color: 'white'  }}>
+      <Typography variant="h4" style={{ margin: '32px 0 16px 0', textAlign: 'center', color: 'white' }}>
         Manage Exams
       </Typography>
       {viewExamTitle ? (
@@ -55,12 +57,25 @@ const ManageExam = () => {
         <div className="exam-cards-container">
           {exams.length > 0 ? (
             exams.map((exam) => (
-              <Card key={exam.exam_title} style={{ margin: 16, padding: 16 }}>
-                <Typography variant="h6">{exam.exam_title}</Typography>
-                <Typography variant="body2" style={{ margin: '8px 0' }}>
+              <Card key={exam.exam_title} sx={{
+                margin: '16px', padding: '16px', background: 'transparent', '&:hover': {
+                  transform: 'scale(1.05)',
+                  transition: 'transform 0.5s ease-in-out',
+                  // boxShadow: "0 2px 15px rgba(25, 118, 210, 0.749)",
+                  boxShadow: themeMode === 'dark'
+                    ? '0 0 90px 10px rgba(86, 157, 228, 0.854)'
+                    : 'none'
+                },
+              }}>
+                <Typography variant="h6"
+                  sx={{
+                    color: 'white',
+                  }}
+                >{exam.exam_title}</Typography>
+                <Typography variant="body2" style={{ margin: '8px 0', color: 'white' }}>
                   {exam.questions.length} Questions
                 </Typography>
-                <Typography variant="body2" color="textSecondary" style={{ marginBottom: 8 }}>
+                <Typography variant="body2" color="textSecondary" style={{ marginBottom: 8, color: 'white' }}>
                   Type: {exam.type}
                 </Typography>
                 <div>

@@ -1,4 +1,4 @@
-import useState from 'react';
+import { useState } from 'react';
 import SideBar from '../SideBar/SideBar';
 import ExamCreation from '../Exam Creation/ExamCreation';
 import ManageExam from '../Manage Exams/ManageExam';
@@ -8,12 +8,14 @@ import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
 import './AdminPage.css';
+import Box from '@mui/material/Box';
+import { useTheme } from '../Theme Context/ThemeContext';
 
 const AdminPage = () => {
   const [selectedSection, setSelectedSection] = useState('');
-  const [titleExam, setTitleExam] = useState('');
   // const [submittedTitle, setSubmittedTitle] = useState('');
-  const user = { useSelector }(state => state.auth.user);
+  const user = useSelector(state => state.auth.user);
+  const { themeMode } = useTheme();
 
   const renderContent = () => {
     if (selectedSection === 'Exam Creation') {
@@ -52,47 +54,40 @@ const AdminPage = () => {
   return (
     <>
       <SideBar onSectionSelect={setSelectedSection} />
-      <div className='admin-page'>
-        <Typography variant='h4' className='admin-heading'>
+      <Box
+        className='admin-page'
+        style={{
+          border: themeMode === 'dark' ? '2px solid #fff' : '2px solid #333',
+        }}
+      >
+        <Typography variant='h4' className='admin-heading'
+          sx={{
+            color: themeMode === 'dark' ? '#fff' : '#333'
+          }}
+        >
           Admin Dashboard
         </Typography>
-        <hr className='horizontal-line' />
-        <Card className='admin-card'>
-          <div
-            className='admin-page'
-            style={{
-              width: '79.6vw',
-              minHeight: '98.5vh',
-              position: 'absolute',
-              top: '65px',
-              left: '261px'
-            }}
-          >
-            <Typography variant='h4' className='admin-heading'>
-              Admin Dashboard
-            </Typography>
-            <hr style={{
-              border: 'none',
-              borderTop: '2px solid black',
-              margin: '0 30px 30px 30px',
-              height: '0'
-            }} />
-            <Card
-              className='admin-card'
-              sx={{
-                margin: '20px',
-                padding: '20px',
-                borderRadius: '10px',
-                boxShadow: '0 2px 8px rgba(60, 60, 60, 0.06)',
-              }}
-            >
-              <CardContent>
-                {renderContent()}
-              </CardContent>
-            </Card>
-          </div>
+        <hr style={{
+          borderTop: themeMode === 'dark' ? '2px solid #fff' : '2px solid #333',
+          margin: '0 30px 30px 30px',
+          // border: 'none',
+          height: '0',
+        }} />
+        <Card
+          className='admin-card'
+          sx={{
+            bgcolor: themeMode === 'dark' ? '#333' : '#fff',
+            color: themeMode === 'dark' ? '#fff' : '#333',
+            boxShadow: themeMode === 'dark'
+              ? '0 0 90px 10px rgba(86, 157, 228, 0.854)'
+              : 'none',
+          }}
+        >
+          <CardContent>
+            {renderContent()}
+          </CardContent>
         </Card>
-      </div>
+      </Box>
     </>
   );
 };
