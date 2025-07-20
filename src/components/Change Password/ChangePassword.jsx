@@ -109,7 +109,7 @@ const ChangePassword = () => {
                   className="password-field"
                   sx={{
                     '& label' : {
-                      color: themeMode === 'dark' ? 'white' : 'black',
+                      color: themeMode === 'dark' ? 'white' : 'white',
                     }
                   }}
                 />
@@ -125,7 +125,7 @@ const ChangePassword = () => {
                   className="password-field"
                   sx={{
                     '& label' : {
-                      color: themeMode === 'dark' ? 'white' : 'black',
+                      color: themeMode === 'dark' ? 'white' : 'white',
                     }
                   }}
                 />
@@ -141,7 +141,7 @@ const ChangePassword = () => {
                   className="password-field"
                   sx={{
                     '& label' : {
-                      color: themeMode === 'dark' ? 'white' : 'black',
+                      color: themeMode === 'dark' ? 'white' : 'white',
                     }
                   }}
                 />

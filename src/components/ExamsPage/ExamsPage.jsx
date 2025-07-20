@@ -131,40 +131,51 @@ const ExamsPage = () => {
       ) : (
         <div className="exams-grid">
           {filteredExams.map((exam) => (
-            <Card key={exam.exam_title} className="exam-card"
-              sx={{
-                // border: '12px solid black',
-                background: 'transparent',
-                boxShadow: 'none',
-                color: 'white',
-                '&:hover': {
-                  transform: 'scale(1.05)',
-                  transition: 'transform 0.5s ease-in-out',
-                  boxShadow: themeMode === 'dark'
-                    ? '0 0 90px 10px rgba(86, 157, 228, 0.854)'
-                    : '0 0 90px 10px rgba(11, 11, 11, 0.854)',
-                },
-              }}
-            >
-              <CardContent>
-                <Typography variant="h6">{exam.exam_title}</Typography>
-                <Typography variant="body2" color="textSecondary" sx={{ color: 'white' }}>
-                  Type: {exam.type}
-                </Typography>
-                <Typography variant="body2">
-                  Questions: {exam.questions.length}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={() => handleStartExam(exam)}
-                >
-                  Start Exam
-                </Button>
-              </CardActions>
-            </Card>
+            <div key={exam.exam_title} style={{ position: 'relative' }}>
+              <Card
+                className="exam-card"
+                sx={{
+                  background: 'transparent',
+                  boxShadow: 'none',
+                  color: 'white',
+                  '&:hover': {
+                    transition: 'box-shadow 0.5s ease-in-out',
+                    boxShadow: themeMode === 'dark'
+                      ? '0 0 90px 10px rgba(86, 157, 228, 0.854)'
+                      : '0 0 90px 10px rgba(11, 11, 11, 0.854)'
+                  }
+                }}
+              >
+                <CardContent>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      cursor: 'pointer',
+                      '&:hover': {
+                        color: themeMode === 'dark' ? '#90caf9' : '#1976d2'
+                      }
+                    }}
+                  >
+                    {exam.exam_title}
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: 'white' }}>
+                    Type: {exam.type}
+                  </Typography>
+                  <Typography variant="body2">
+                    Questions: {exam.questions.length}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => handleStartExam(exam)}
+                  >
+                    Start Exam
+                  </Button>
+                </CardActions>
+              </Card>
+            </div>
           ))}
         </div>
       )}
