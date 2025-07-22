@@ -11,10 +11,10 @@ import Card from '@mui/material/Card';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import './Login.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 
-const Login = ({ name }) => {
+const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState({});
@@ -22,6 +22,11 @@ const Login = ({ name }) => {
     const dispatch = useDispatch();
     const { loading, error } = useSelector(state => state.auth);
     const navigate = useNavigate();
+    const { role } = useParams();
+
+    const handleBack = () => {
+        navigate('/');
+    };
 
     const handleCloseSnackbar = () => {
         setOpenSnackbar(false);
@@ -55,11 +60,11 @@ const Login = ({ name }) => {
         e.preventDefault();
         if (validateForm()) {
             try {
-                await dispatch(login({ email, password, role: name })).unwrap();
+                await dispatch(login({ email, password, role })).unwrap();
                 // Redirect or show success as needed
-                if (name === 'admin') {
+                if (role === 'admin') {
                     navigate('/admin/dashboard');
-                } else if (name === 'student') {
+                } else if (role === 'student') {
                     navigate('/student/dashboard');
                 }
             } catch (err) {
@@ -80,7 +85,9 @@ const Login = ({ name }) => {
         >
             <div className='login-card'>
                 <Card>
-                    <h2 className="login-title">Login for {name}</h2>
+                    <div>
+                        <h2 className="login-title">Login for {role}</h2>
+                    </div>
                     <CardContent className='login-card-body'>
                         <form
                             onSubmit={handleLogin} className='login-form'>
@@ -110,46 +117,57 @@ const Login = ({ name }) => {
                                     }}
                                 />
                             </FormControl>
-                            <FormControl>
+                            <FormControl sx={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                gap: '10px',
+                            }}>
                                 <Button className='login-btn' variant='contained' color='primary'
                                     type='submit' disabled={loading}
                                 >
                                     Login
                                 </Button>
+                                <Button
+                                    onClick={handleBack}
+                                    variant='contained'
+                                    color='primary'
+                                    style={{ marginRight: '16px' }}
+                                >
+                                    Back
+                                </Button>
                             </FormControl>
                         </form>
                     </CardContent>
-
-                    {name === 'student' && (
-                        <div>
-                            <CardHeader
-                                className='login-card-footer'
-                                title="Don't have an account?"
-                                action={
-                                    <Button
-                                        variant='text'
-                                        color='primary'
-                                        href='/signup'
-                                    >
-                                        Sign Up
-                                    </Button>
-                                }
-                            />
-                            <CardHeader
-                                className='login-card-footer'
-                                title="Forgot Password?"
-                                action={
-                                    <Button
-                                        variant='text'
-                                        color='primary'
-                                        href='/forgetPassword'
-                                    >
-                                        Reset Password
-                                    </Button>
-                                }
-                            />
-                        </div>
-                    )}
+                    <div>
+                        <CardHeader
+                            className='login-card-footer'
+                            title="Don't have an account?"
+                            action={
+                                <Button
+                                    variant='text'
+                                    color='primary'
+                                    href={`/signup/${role}`}
+                                >
+                                    Sign Up
+                                </Button>
+                            }
+                        />
+                        <CardHeader
+                            className='login-card-footer'
+                            title="Forgot Password?"
+                            action={
+                                <Button
+                                    variant='text'
+                                    color='primary'
+                                    href='/forgetPassword'
+                                >
+                                    Reset Password
+                                </Button>
+                            }
+                        />
+                    </div>
                 </Card>
             </div>
             <Snackbar open={openSnackbar || !!error} autoHideDuration={3000} onClose={handleCloseSnackbar}>

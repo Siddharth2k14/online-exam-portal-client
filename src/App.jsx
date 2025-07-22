@@ -50,9 +50,9 @@ const App = () => {
       {/* <Suspense fallback={<div>Loading...</div>}> */}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/admin/login" element={<Admin />} />
-          <Route path='/student/login' element={<Student />} />
+          <Route path="/signup/:role" element={<Signup />} />
+          {/* <Route path="/admin/login" element={<Admin />} /> */}
+          <Route path='/login/:role' element={<Login />} />
           <Route path='/admin' element={<Admin />} />
           <Route path='/student' element={<Student />} />
           <Route path='/forgetPassword' element={<ForgetPassword />} />

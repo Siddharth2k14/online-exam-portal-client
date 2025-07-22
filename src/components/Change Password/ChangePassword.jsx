@@ -12,9 +12,9 @@ import { useTheme } from '../Theme Context/ThemeContext';
 
 const ChangePassword = () => {
   const [form, setForm] = useState({
-    current: '',
-    new: '',
-    confirm: ''
+    currentPassword: '',
+    newPassword: '',
+    confirmPassword: ''
   });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
@@ -29,7 +29,7 @@ const ChangePassword = () => {
     setError('');
     setSuccess(false);
 
-    if (form.new !== form.confirm) {
+    if (form.newPassword !== form.confirmPassword) {
       setError("New passwords do not match!");
       return;
     }
@@ -39,13 +39,20 @@ const ChangePassword = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}` // Add token from localStorage
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}` 
         },
         body: JSON.stringify({
-          currentPassword: form.current,
-          newPassword: form.new
+          currentPassword: form.currentPassword,
+          newPassword: form.newPassword
         })
       });
+
+      // Check if response is JSON
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error("Server returned non-JSON response");
+      }
 
       const data = await response.json();
 
@@ -54,11 +61,12 @@ const ChangePassword = () => {
       }
 
       setSuccess(true);
-      setForm({ current: '', new: '', confirm: '' }); // Reset form
+      setForm({ currentPassword: '', newPassword: '', confirmPassword: '' }); // Reset form
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'Failed to change password');
+      console.error('Password change error:', err);
     }
-  };
+};
 
   return (
     <Box className="change-password-container">
@@ -104,8 +112,8 @@ const ChangePassword = () => {
                   label="Current Password"
                   type="password"
                   variant="outlined"
-                  value={form.current}
-                  onChange={handleChange('current')}
+                  value={form.currentPassword}
+                  onChange={handleChange('currentPassword')}
                   className="password-field"
                   sx={{
                     '& label' : {
@@ -120,8 +128,8 @@ const ChangePassword = () => {
                   label="New Password"
                   type="password"
                   variant="outlined"
-                  value={form.new}
-                  onChange={handleChange('new')}
+                  value={form.newPassword}
+                  onChange={handleChange('newPassword')}
                   className="password-field"
                   sx={{
                     '& label' : {
@@ -136,8 +144,8 @@ const ChangePassword = () => {
                   label="Confirm New Password"
                   type="password"
                   variant="outlined"
-                  value={form.confirm}
-                  onChange={handleChange('confirm')}
+                  value={form.confirmPassword}
+                  onChange={handleChange('confirmPassword')}
                   className="password-field"
                   sx={{
                     '& label' : {

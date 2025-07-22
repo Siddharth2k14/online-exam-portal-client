@@ -1,161 +1,179 @@
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { signup } from '../../../redux/authSlice'; // Adjust path as needed
-import FormControl from '@mui/material/FormControl';
-import Input from '@mui/material/Input';
-import InputLabel from '@mui/material/InputLabel';
-import Button from '@mui/material/Button';
-import CardHeader from '@mui/material/CardHeader';
-import CardContent from '@mui/material/CardContent';
-import Card from '@mui/material/Card';
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
-import './Signup.css'
+import { useSelector, useDispatch } from 'react-redux';
+import { signup } from '../../../redux/authSlice';
 import { useState } from 'react';
+import { useNavigate, useParams, Link } from 'react-router-dom';
+import {
+  FormControl,
+  Input,
+  InputLabel,
+  Button,
+  CardHeader,
+  CardContent,
+  Card,
+  Snackbar,
+  Alert,
+} from '@mui/material';
+import './Signup.css';
 
 const Signup = () => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [errors, setErrors] = useState({});
-    const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [errors, setErrors] = useState({});
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const { role } = useParams();
 
-    const dispatch = useDispatch();
-    const { loading, error } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
+  const { loading, error } = useSelector(state => state.auth);
+  const navigate = useNavigate();
 
-    const handleCloseSnackbar = () => {
-        setOpenSnackbar(false);
-    };
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false);
+  };
 
-    const handleNameChange = (event) => setName(event.target.value);
-    const handleEmailChange = (event) => setEmail(event.target.value);
-    const handlePasswordChange = (event) => setPassword(event.target.value);
-    const handleConfirmPasswordChange = (event) => setConfirmPassword(event.target.value);
+  const validateForm = () => {
+    const newErrors = {};
+    if (!name.trim()) newErrors.name = 'Name is required';
+    if (!email) newErrors.email = 'Email is required';
+    else if (!/\S+@\S+\.\S+/.test(email)) newErrors.email = 'Enter a valid email';
+    if (!password) newErrors.password = 'Password is required';
+    else if (password.length < 6) newErrors.password = 'Password must be at least 6 characters';
+    if (confirmPassword !== password) newErrors.confirmPassword = 'Passwords do not match';
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
-    const validateForm = () => {
-        const newErrors = {};
-        if (!name.trim()) newErrors.name = 'Name is required';
-        if (!email) newErrors.email = 'Email is required';
-        else if (!/\S+@\S+\.\S+/.test(email)) newErrors.email = 'Enter a valid email';
-        if (!password) newErrors.password = 'Password is required';
-        else if (password.length < 6) newErrors.password = 'Password must be at least 6 characters';
-        if (confirmPassword !== password) newErrors.confirmPassword = 'Passwords do not match';
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
-    };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (validateForm()) {
+      try {
+        await dispatch(signup({ name, email, password, confirmPassword, role })).unwrap();
+        navigate(`/login/${role}`);
+      } catch (err) {
+        setErrors({ api: err || 'Signup failed' });
+        setOpenSnackbar(true);
+      }
+    } else {
+      setOpenSnackbar(true);
+    }
+  };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        if (validateForm()) {
-            try {
-                await dispatch(signup({ name, email, password, confirmPassword })).unwrap();
-                window.location.href = '/student/login'; // Or use navigate if using react-router
-            } catch (err) {
-                setErrors({ api: err || 'Signup failed' });
-                setOpenSnackbar(true);
+  const handleBack = () => {
+    navigate('/');
+  };
+
+  return (
+    <div
+      className='container'
+      style={{ background: 'linear-gradient(195deg, #0f2027, #2c5364)' }}
+    >
+      <div className='signup-card'>
+        <Card>
+          <div>
+            <h2 className="signup-title">Signup</h2>
+          </div>
+          <CardContent className='signup-card-body'>
+            <form onSubmit={handleSubmit} className='signup-form'>
+              <FormControl>
+                <InputLabel className='name-header'>Enter the Name</InputLabel>
+                <Input
+                  type='text'
+                  placeholder='Name'
+                  className='name-input'
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                  sx={{ background: 'rgba(255, 255, 255, 0.1)' }}
+                />
+              </FormControl>
+              <FormControl>
+                <InputLabel className='email-header'>Enter the Email</InputLabel>
+                <Input
+                  type='email'
+                  placeholder='Email'
+                  className='email-input'
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  sx={{ background: 'rgba(255, 255, 255, 0.1)' }}
+                />
+              </FormControl>
+              <FormControl>
+                <InputLabel className='password-header'>Enter the Password</InputLabel>
+                <Input
+                  type='password'
+                  placeholder='Password'
+                  className='password-input'
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  sx={{ background: 'rgba(255, 255, 255, 0.1)' }}
+                />
+              </FormControl>
+              <FormControl>
+                <InputLabel className='confirm-password-header'>Confirm the Password</InputLabel>
+                <Input
+                  type='password'
+                  placeholder='Confirm Password'
+                  className='confirm-password-input'
+                  value={confirmPassword}
+                  onChange={e => setConfirmPassword(e.target.value)}
+                  sx={{ background: 'rgba(255, 255, 255, 0.1)' }}
+                />
+              </FormControl>
+              <FormControl
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  gap: '10px',
+                }}
+              >
+                <Button
+                  className='signup-btn'
+                  variant='contained'
+                  color='primary'
+                  type='submit'
+                  disabled={loading || !name || !email || !password || !confirmPassword}
+                >
+                  Signup
+                </Button>
+
+                <Button
+                  onClick={handleBack}
+                  variant='contained'
+                  color='primary'
+                  style={{ marginRight: '16px' }}
+                >
+                  Back
+                </Button>
+              </FormControl>
+            </form>
+          </CardContent>
+
+          <CardHeader
+            className='signup-card-footer'
+            title="Already have an account?"
+            action={
+              <Button
+                component={Link}
+                to={`/login/${role}`}
+                variant='text'
+                color='primary'
+              >
+                Log In
+              </Button>
             }
-        } else {
-            setOpenSnackbar(true);
-        }
-    };
+          />
+        </Card>
+      </div>
 
-    return (
-        <div
-            className='container'
-            style={{
-                background: 'linear-gradient(195deg, #0f2027, #2c5364)',
-            }}
-        >
-            <div className='signup-card'>
-                <Card>
-                    <h2 className="signup-title">Signup</h2>
-                    <CardContent className='signup-card-body'>
-                        <form onSubmit={handleSubmit} className='signup-form'>
-                            <FormControl>
-                                <InputLabel className='name-header'>Enter the Name</InputLabel>
-                                <Input
-                                    type='text'
-                                    placeholder='Name'
-                                    className='name-input'
-                                    value={name}
-                                    onChange={handleNameChange}
-                                    sx={{
-                                        background: 'rgba(255, 255, 255, 0.1)'
-                                    }}
-                                />
-                            </FormControl>
-                            <FormControl>
-                                <InputLabel className='email-header'>Enter the Email</InputLabel>
-                                <Input
-                                    type='email'
-                                    placeholder='Email'
-                                    className='email-input'
-                                    value={email}
-                                    onChange={handleEmailChange}
-                                    sx={{
-                                        background: 'rgba(255, 255, 255, 0.1)'
-                                    }}
-                                />
-                            </FormControl>
-                            <FormControl>
-                                <InputLabel className='password-header'>Enter the Password</InputLabel>
-                                <Input
-                                    type='password'
-                                    placeholder='Password'
-                                    className='password-input'
-                                    value={password}
-                                    onChange={handlePasswordChange}
-                                    sx={{
-                                        background: 'rgba(255, 255, 255, 0.1)'
-                                    }}
-                                />
-                            </FormControl>
-                            <FormControl>
-                                <InputLabel className='confirm-password-header'>Confirm the Password</InputLabel>
-                                <Input
-                                    type='password'
-                                    placeholder='Confirm Password'
-                                    className='confirm-password-input'
-                                    value={confirmPassword}
-                                    onChange={handleConfirmPasswordChange}
-                                    sx={{
-                                        background: 'rgba(255, 255, 255, 0.1)'
-                                    }}
-                                />
-                            </FormControl>
-                            <FormControl>
-                                <Button className='signup-btn' variant='contained' color='primary'
-                                    type='submit'
-                                    disabled={loading || !name || !email || !password || !confirmPassword}
-                                >
-                                    Signup
-                                </Button>
-                            </FormControl>
-                        </form>
-                    </CardContent>
-                    <CardHeader
-                        className='signup-card-footer'
-                        title="Already have an account?"
-                        action={
-                            <Button
-                                variant='text'
-                                color='primary'
-                                href='/student/login'
-                            >
-                                Log In
-                            </Button>
-                        }
-                    />
-                </Card>
-            </div>
-            <Snackbar open={openSnackbar || !!error} autoHideDuration={3000} onClose={handleCloseSnackbar}>
-                <Alert onClose={handleCloseSnackbar} severity="error">
-                    {errors.api || error || "Please fill all required fields correctly!"}
-                </Alert>
-            </Snackbar>
-        </div>
-    )
-}
+      <Snackbar open={openSnackbar || !!error} autoHideDuration={3000} onClose={handleCloseSnackbar}>
+        <Alert onClose={handleCloseSnackbar} severity="error">
+          {errors.api || error || "Please fill all required fields correctly!"}
+        </Alert>
+      </Snackbar>
+    </div>
+  );
+};
 
 export default Signup;
