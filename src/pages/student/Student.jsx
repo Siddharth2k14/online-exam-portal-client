@@ -4,7 +4,7 @@ import Login from '../../components/Authentication/Login/Login'
 const Student = () => {
     return (
         <div>
-            <Login name="student" />
+            <Login role="student" />
         </div>
     )
 }
