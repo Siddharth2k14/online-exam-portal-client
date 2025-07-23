@@ -4,7 +4,7 @@ import Login from '../../components/Authentication/Login/Login'
 const Admin = () => {
     return (
         <div>
-            <Login name="admin" />
+            <Login />
         </div>
     )
 }
