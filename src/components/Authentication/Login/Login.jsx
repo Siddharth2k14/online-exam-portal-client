@@ -11,10 +11,10 @@ import Card from '@mui/material/Card';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import './Login.css';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-const Login = () => {
+const Login = (role) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState({});
@@ -22,7 +22,7 @@ const Login = () => {
     const dispatch = useDispatch();
     const { loading, error } = useSelector(state => state.auth);
     const navigate = useNavigate();
-    const { role } = useParams();
+    // const { role } = useParams();
 
     const handleBack = () => {
         navigate('/');
@@ -148,7 +148,7 @@ const Login = () => {
                                 <Button
                                     variant='text'
                                     color='primary'
-                                    href={`/signup/${role}`}
+                                    href='/signup'
                                 >
                                     Sign Up
                                 </Button>
