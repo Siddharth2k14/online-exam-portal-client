@@ -48,7 +48,7 @@ const Signup = () => {
     event.preventDefault();
     if (validateForm()) {
       try {
-        await dispatch(signup({ name, email, password, confirmPassword, role })).unwrap();
+        await dispatch(signup({ name, email, password, confirmPassword })).unwrap();
         navigate(`/login/${role}`);
       } catch (err) {
         setErrors({ api: err || 'Signup failed' });
