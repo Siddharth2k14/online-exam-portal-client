@@ -168,7 +168,7 @@ const Signup = () => {
         </Card>
       </div>
 
-      <Snackbar open={openSnackbar || !!error} autoHideDuration={3000} onClose={handleCloseSnackbar}>
+      <Snackbar open={openSnackbar} autoHideDuration={3000} onClose={handleCloseSnackbar}>
         <Alert onClose={handleCloseSnackbar} severity="error">
           {errors.api || error || "Please fill all required fields correctly!"}
         </Alert>
