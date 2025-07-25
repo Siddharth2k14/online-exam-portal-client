@@ -20,9 +20,11 @@ const Login = () => {
     const [errors, setErrors] = useState({});
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const dispatch = useDispatch();
-    const { loading, error } = useSelector(state => state.auth);
+    const { loading, error, role: storedRole } = useSelector(state => state.auth);
     const navigate = useNavigate();
-    const { role } = useParams();
+    const { role: urlRole } = useParams();
+
+    const currentRole = storedRole || urlRole;
 
     const handleBack = () => {
         navigate('/');
@@ -61,19 +63,22 @@ const Login = () => {
         if (validateForm()) {
             try {
                 const result = await dispatch(login({ email, password, role })).unwrap();
-                console.log(result);
 
-                if(result.error){
+                if (result.error) {
                     throw new Error(result.error);
                 }
                 // Redirect or show success as needed
-                if (role === 'admin') {
-                    if(window.location.pathname !== '/admin/dashboard'){
-                        navigate('/admin/dashboard');
-                    }
-                } else if (role === 'student') {
-                    if(window.location.pathname !== '/student/dashboard'){
-                        navigate('/student/dashboard');
+
+                if (result.user) {
+                    const role = result.role;
+                    if (role === 'admin') {
+                        if (window.location.pathname !== '/admin/dashboard') {
+                            navigate('/admin/dashboard');
+                        }
+                    } else if (role === 'student') {
+                        if (window.location.pathname !== '/student/dashboard') {
+                            navigate('/student/dashboard');
+                        }
                     }
                 }
 
