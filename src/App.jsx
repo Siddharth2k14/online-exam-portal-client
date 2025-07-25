@@ -43,31 +43,37 @@ import Contact from './pages/Contact/Contact';
 import HomeMain from './components/Home Main/HomeMain';
 import ChangePassword from './components/Change Password/ChangePassword';
 import { ThemeProvider } from './components/Theme Context/ThemeContext';
-
+import PrivateRoute from './components/Private Route/PrivateRoute';
 const App = () => {
   return (
     <ThemeProvider>
       {/* <Suspense fallback={<div>Loading...</div>}> */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
-          {/* <Route path="/admin/login" element={<Admin />} /> */}
-          <Route path='/login/:role' element={<Login />} />
-          {/* <Route path='/admin' element={<Admin />} /> */}
-          {/* <Route path='/student' element={<Student />} /> */}
-          <Route path='/forgetPassword' element={<ForgetPassword />} />
-          <Route path='/admin/dashboard' element={<AdminDashboard />} />
-          <Route path='/exam-creation/objective' element={<ObjectiveExamPage />} />
-          <Route path="/manage-exams/:examTitle" element={<ViewExam />} />
-          <Route path='/student/dashboard' element={<StudentDashboard />} />
-          <Route path='/exam-creation/subjective' element={<SubjectiveExamCreation />} />
-          <Route path="/start-exam/:examTitle" element={<StartExam />} />
-          <Route path="/exam/:examTitle/review" element={<View_Exam />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/change-password" element={<ChangePassword />} />
-        </Routes>
+      <Routes>
+        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/signup/:role" element={<Signup />} />
+        <Route path="/signup" element={<Signup />} />
+        {/* <Route path="/admin/login" element={<Admin />} /> */}
+        <Route path='/login/:role' element={<Login />} />
+        <Route path='/admin' element={<Admin />} />
+        <Route path='/student' element={<Student />} />
+        <Route path='/forgetPassword' element={<ForgetPassword />} />
+        <Route element={<PrivateRoute allowedRoles={['admin']} />}>
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        </Route>
+        <Route element={<PrivateRoute allowedRoles={['student']} />}>
+          <Route path="/student/dashboard" element={<StudentDashboard />} />
+        </Route>
+        <Route path='/exam-creation/objective' element={<ObjectiveExamPage />} />
+        <Route path="/manage-exams/:examTitle" element={<ViewExam />} />
+        <Route path='/exam-creation/subjective' element={<SubjectiveExamCreation />} />
+        <Route path="/start-exam/:examTitle" element={<StartExam />} />
+        <Route path="/exam/:examTitle/review" element={<View_Exam />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/change-password" element={<ChangePassword />} />
+      </Routes>
       {/* </Suspense> */}
 
       {/* <NavBar /> */}

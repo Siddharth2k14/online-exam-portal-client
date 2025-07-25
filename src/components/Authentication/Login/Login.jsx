@@ -20,11 +20,13 @@ const Login = () => {
     const [errors, setErrors] = useState({});
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const dispatch = useDispatch();
-    const { loading, error, role: storedRole } = useSelector(state => state.auth);
+    const { loading, error } = useSelector(state => state.auth);
     const navigate = useNavigate();
-    const { role: urlRole } = useParams();
+    const { role } = useParams();
+    // const { Role, setRole } = useState();
 
-    const currentRole = storedRole || urlRole;
+    // const currentRole = storedRole || urlRole;
+    // console.log(`The current role is ${currentRole}`);
 
     const handleBack = () => {
         navigate('/');
@@ -62,24 +64,12 @@ const Login = () => {
         e.preventDefault();
         if (validateForm()) {
             try {
-                const result = await dispatch(login({ email, password, role })).unwrap();
+                await dispatch(login({ email, password, role })).unwrap();
 
-                if (result.error) {
-                    throw new Error(result.error);
-                }
-                // Redirect or show success as needed
-
-                if (result.user) {
-                    const role = result.role;
-                    if (role === 'admin') {
-                        if (window.location.pathname !== '/admin/dashboard') {
-                            navigate('/admin/dashboard');
-                        }
-                    } else if (role === 'student') {
-                        if (window.location.pathname !== '/student/dashboard') {
-                            navigate('/student/dashboard');
-                        }
-                    }
+                if (role === 'admin') {
+                    navigate('/admin/dashboard');
+                } else if (role === 'student') {
+                    navigate('/student/dashboard');
                 }
 
                 // Reset form fields
@@ -104,7 +94,7 @@ const Login = () => {
             <div className='login-card'>
                 <Card>
                     <div>
-                        <h2 className="login-title">Login for {role}</h2>
+                        <h2 className="login-title">Login</h2>
                     </div>
                     <CardContent className='login-card-body'>
                         <form
@@ -166,7 +156,7 @@ const Login = () => {
                                 <Button
                                     variant='text'
                                     color='primary'
-                                    href='/signup'
+                                    href={`/signup/${role}`}
                                 >
                                     Sign Up
                                 </Button>

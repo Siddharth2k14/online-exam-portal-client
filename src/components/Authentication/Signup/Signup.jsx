@@ -49,7 +49,6 @@ const Signup = () => {
     if (validateForm()) {
       try {
         await dispatch(signup({ name, email, password, confirmPassword })).unwrap();
-        console.log(dispatch(signup({ name, email, password, confirmPassword })))
         navigate(`/login/${role}`);
       } catch (err) {
         setErrors({ api: err || 'Signup failed' });
@@ -157,7 +156,7 @@ const Signup = () => {
             action={
               <Button
                 component={Link}
-                to={`/login/${role}`}
+                to={`/`}
                 variant='text'
                 color='primary'
               >
