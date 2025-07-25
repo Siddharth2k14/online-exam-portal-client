@@ -60,13 +60,26 @@ const Login = () => {
         e.preventDefault();
         if (validateForm()) {
             try {
-                await dispatch(login({ email, password, role })).unwrap();
+                const result = await dispatch(login({ email, password, role })).unwrap();
+                console.log(result);
+
+                if(result.error){
+                    throw new Error(result.error);
+                }
                 // Redirect or show success as needed
                 if (role === 'admin') {
-                    navigate('/admin/dashboard');
+                    if(window.location.pathname !== '/admin/dashboard'){
+                        navigate('/admin/dashboard');
+                    }
                 } else if (role === 'student') {
-                    navigate('/student/dashboard');
+                    if(window.location.pathname !== '/student/dashboard'){
+                        navigate('/student/dashboard');
+                    }
                 }
+
+                // Reset form fields
+                setEmail('');
+                setPassword('');
             } catch (err) {
                 setErrors({ api: err?.message || err?.toString() || 'Invalid credentials' });
                 setOpenSnackbar(true);
@@ -170,7 +183,7 @@ const Login = () => {
                     </div>
                 </Card>
             </div>
-            <Snackbar open={openSnackbar || !!error} autoHideDuration={3000} onClose={handleCloseSnackbar}>
+            <Snackbar open={openSnackbar} autoHideDuration={3000} onClose={handleCloseSnackbar}>
                 <Alert onClose={handleCloseSnackbar} severity="error">
                     {(errors.api && errors.api.toString()) ||
                         (error && error.toString()) ||
