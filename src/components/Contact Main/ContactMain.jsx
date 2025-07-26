@@ -16,7 +16,7 @@ const ContactMain = () => {
         </Typography>
         <Box mt={4} textAlign="center">
           <Typography variant="subtitle1" gutterBottom>
-            Or email us at: <Link href="mailto:user@examportal.com">user@examportal.com</Link>
+            Or email us at: <Link href="mailto:exam.portal.user.2025@gmail.com">exam.portal.user.2025@gmail.com</Link>
           </Typography>
           <Typography variant="subtitle2">
             <Link href="https://github.com/Siddharth2k14" target="_blank" rel="noopener" underline="hover">
