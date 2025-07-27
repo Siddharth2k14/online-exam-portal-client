@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { signup } from '../../../redux/authSlice';
 import { useState } from 'react';
-import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import {
   FormControl,
   Input,
@@ -22,7 +22,7 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState({});
   const [openSnackbar, setOpenSnackbar] = useState(false);
-  const { role } = useParams();
+  const { role } = useSelector(state => state.auth.role);
 
   const dispatch = useDispatch();
   const { loading, error } = useSelector(state => state.auth);

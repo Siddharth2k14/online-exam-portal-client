@@ -11,7 +11,7 @@ import Card from '@mui/material/Card';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import './Login.css';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 const Login = () => {
@@ -21,8 +21,9 @@ const Login = () => {
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const dispatch = useDispatch();
     const { loading, error } = useSelector(state => state.auth);
+    const { role } = useSelector(state => state.auth.role);
     const navigate = useNavigate();
-    const { role } = useParams();
+    // const { role } = useParams();
     // const { Role, setRole } = useState();
 
     // const currentRole = storedRole || urlRole;
