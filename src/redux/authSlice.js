@@ -5,12 +5,16 @@ const BASE_URL = 'https://online-exam-portal-server.onrender.com/api/auth';
 
 export const login = createAsyncThunk(
   'auth/login',
-  async ({ email, password, role }, thunkAPI) => {
+  async ({ email, password }, thunkAPI) => {
     try {
-      const endpoint = `${BASE_URL}/${role}/login`;
+      // Use a single login endpoint - let backend determine role from email
+      const endpoint = `${BASE_URL}/login`;
       const response = await axios.post(endpoint, { email, password });
-      // console.log(response);
-      return { user: response.data.user, token: response.data.token, role: response.data.role };
+      return { 
+        user: response.data.user, 
+        token: response.data.token, 
+        role: response.data.role 
+      };
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data?.message || 'Login failed'
