@@ -1,22 +1,4 @@
 import React from 'react'
-// import Suspense, { lazy } from 'react';
-// import {Routes} from 'react-router-dom';
-// import {Route} from 'react-router-dom';
-// const Signup = lazy(() => import('./components/Authentication/Signup/Signup'));
-// const Admin = lazy(() => import('./pages/admin/Admin'));
-// const Student = lazy(() => import('./pages/student/Student'));
-// const ForgetPassword = lazy(() => import('./components/Authentication/Forget Password/ForgetPassword'));
-// const AdminDashboard = lazy(() => import('./pages/admin/Admin Dashboard/AdminDashboard'));
-// const ObjectiveExamPage = lazy(() => import('./pages/admin/Objective Exam Page/ObjectiveExamPage'));
-// const ViewExam = lazy(() => import('./components/Manage Exams/ViewExam'));
-// const StudentDashboard = lazy(() => import('./pages/student/Student Dashboard/StudentDashboard'));
-// const SubjectiveExamCreation = lazy(() => import('./components/Subjective Exam Creation/SubjectiveExamCreation'));
-// const StartExam = lazy(() => import('./components/StartExam/StartExam'));
-// const View_Exam = lazy(() => import('./components/ViewExam/ViewExam'));
-// const Home = lazy(() => import('./pages/Home/Home'));
-// const About = lazy(() => import('./pages/About/About'));
-// const Contact = lazy(() => import('./pages/Contact/Contact'));
-// const ChangePassword = lazy(() => import('./components/Change Password/ChangePassword'));
 import Login from './components/Authentication/Login/Login'
 import Signup from './components/Authentication/Signup/Signup'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
@@ -44,50 +26,49 @@ import HomeMain from './components/Home Main/HomeMain';
 import ChangePassword from './components/Change Password/ChangePassword';
 import { ThemeProvider } from './components/Theme Context/ThemeContext';
 import PrivateRoute from './components/Private Route/PrivateRoute';
+
 const App = () => {
   return (
     <ThemeProvider>
-      {/* <Suspense fallback={<div>Loading...</div>}> */}
       <Routes>
         <Route path="*" element={<Navigate to="/" />} />
         <Route path="/" element={<Home />} />
-        <Route path="/signup/:role" element={<Signup />} />
+        
+        {/* FIXED: Clean authentication routes without role parameters */}
         <Route path="/signup" element={<Signup />} />
-        {/* <Route path="/admin/login" element={<Admin />} /> */}
-        <Route path='/login/:role' element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        
+        {/* OPTIONAL: Keep old routes for backward compatibility (they redirect to new routes) */}
+        <Route path="/signup/:role" element={<Navigate to="/signup" replace />} />
+        <Route path="/login/:role" element={<Navigate to="/login" replace />} />
+        
+        {/* Other public routes */}
         <Route path='/admin' element={<Admin />} />
         <Route path='/student' element={<Student />} />
         <Route path='/forgetPassword' element={<ForgetPassword />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        
+        {/* Protected routes with role-based access */}
         <Route element={<PrivateRoute allowedRoles={['admin']} />}>
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
         </Route>
+        
         <Route element={<PrivateRoute allowedRoles={['student']} />}>
           <Route path="/student/dashboard" element={<StudentDashboard />} />
         </Route>
+        
+        {/* Exam-related routes - you might want to add role protection here too */}
         <Route path='/exam-creation/objective' element={<ObjectiveExamPage />} />
         <Route path="/manage-exams/:examTitle" element={<ViewExam />} />
         <Route path='/exam-creation/subjective' element={<SubjectiveExamCreation />} />
         <Route path="/start-exam/:examTitle" element={<StartExam />} />
         <Route path="/exam/:examTitle/review" element={<View_Exam />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
         <Route path="/change-password" element={<ChangePassword />} />
       </Routes>
-      {/* </Suspense> */}
-
-      {/* <NavBar /> */}
-      {/* <SideBar /> */}
-      {/* <AdminDashboard /> */}
-      {/* <AdminPage /> */}
-      {/* <ManageExam /> */}
-      {/* <AccountSettings /> */}
-      {/* <StudentDashboard /> */}
-      {/* <StudentPage /> */}
-      {/* <Home /> */}
-      {/* <HomeMain /> */}
     </ThemeProvider>
   )
 }
 
-export default App
+export default App;

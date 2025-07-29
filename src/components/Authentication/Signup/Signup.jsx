@@ -22,7 +22,6 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState({});
   const [openSnackbar, setOpenSnackbar] = useState(false);
-  const { role } = useSelector(state => state.auth.role);
 
   const dispatch = useDispatch();
   const { loading, error } = useSelector(state => state.auth);
@@ -48,8 +47,11 @@ const Signup = () => {
     event.preventDefault();
     if (validateForm()) {
       try {
-        await dispatch(signup({ name, email, password, confirmPassword })).unwrap();
-        navigate(`/login/${role}`);
+        // Backend will determine role from email domain
+        const result = await dispatch(signup({ name, email, password, confirmPassword })).unwrap();
+        console.log('Signup successful, role assigned:', result.role);
+        // Navigate to login without role parameter
+        navigate('/login');
       } catch (err) {
         setErrors({ api: err || 'Signup failed' });
         setOpenSnackbar(true);
@@ -156,7 +158,7 @@ const Signup = () => {
             action={
               <Button
                 component={Link}
-                to={`/`}
+                to='/'
                 variant='text'
                 color='primary'
               >

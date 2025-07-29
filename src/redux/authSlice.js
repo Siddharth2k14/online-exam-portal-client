@@ -9,6 +9,7 @@ export const login = createAsyncThunk(
     try {
       const endpoint = `${BASE_URL}/${role}/login`;
       const response = await axios.post(endpoint, { email, password });
+      // console.log(response);
       return { user: response.data.user, token: response.data.token, role: response.data.role };
     } catch (error) {
       return thunkAPI.rejectWithValue(
