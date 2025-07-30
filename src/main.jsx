@@ -6,7 +6,7 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom';
 import store from './redux/store.js';
 import { Provider } from 'react-redux';
-import { SpeedInsights } from '@vercel/speed-insights';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <SpeedInsights>
