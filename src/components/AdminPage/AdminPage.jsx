@@ -15,6 +15,7 @@ const AdminPage = () => {
   const [selectedSection, setSelectedSection] = useState('');
   // const [submittedTitle, setSubmittedTitle] = useState('');
   const user = useSelector(state => state.auth.user);
+  const role = useSelector(state => state.auth.role);
   const { themeMode } = useTheme();
 
   const renderContent = () => {
@@ -25,7 +26,7 @@ const AdminPage = () => {
       return <ManageExam />;
     }
     else if (selectedSection === 'Account Info') {
-      return <AccountSettings user={user} />;
+      return <AccountSettings user={user} role={role}  />;
     }
 
     return (
@@ -41,7 +42,7 @@ const AdminPage = () => {
           }}
         >
           <Typography variant="h6" gutterBottom>
-            Welcome, Admin!
+            Welcome, {user?.name || 'Admin'}
           </Typography>
           <Typography variant="body1">
             Use the sidebar to manage exams and settings.
