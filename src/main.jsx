@@ -9,11 +9,11 @@ import { Provider } from 'react-redux';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <SpeedInsights>
-    <BrowserRouter>
-      <Provider store={store}>
+  <BrowserRouter>
+    <Provider store={store}>
+      <SpeedInsights>
         <App />
-      </Provider>
-    </BrowserRouter>
-  </SpeedInsights>
+      </SpeedInsights>
+    </Provider>
+  </BrowserRouter>
 );
