@@ -11,9 +11,8 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Provider store={store}>
-      <SpeedInsights>
-        <App />
-      </SpeedInsights>
+      <App />
+      <SpeedInsights />
     </Provider>
   </BrowserRouter>
 );
