@@ -6,12 +6,14 @@ import { BrowserRouter } from 'react-router-dom';
 import store from './redux/store.js';
 import { Provider } from 'react-redux';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Analytics } from "@vercel/analytics/react"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Provider store={store}>
       <App />
       <SpeedInsights />
+      <Analytics />
     </Provider>
   </BrowserRouter>
 );
