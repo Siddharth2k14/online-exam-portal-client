@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { signup } from '../../../redux/authSlice';
 import { useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import {
   FormControl,
@@ -12,6 +13,7 @@ import {
   Card,
   Snackbar,
   Alert,
+  CircularProgress,
 } from '@mui/material';
 import './Signup.css';
 
@@ -22,10 +24,28 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState({});
   const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [timer, setTimer] = useState(0);
 
   const dispatch = useDispatch();
-  const { loading, error } = useSelector(state => state.auth);
+  const { error } = useSelector(state => state.auth);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    let interval;
+    if (loading) {
+      setTimer(0);
+      interval = setInterval(() => {
+        setTimer((prev) => (prev + 1))
+      }, 1000)
+    }
+
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
+  }, [loading]);
 
   const handleCloseSnackbar = () => {
     setOpenSnackbar(false);
@@ -47,6 +67,8 @@ const Signup = () => {
     event.preventDefault();
     if (validateForm()) {
       try {
+        setLoading(true);
+
         // Backend will determine role from email domain
         const result = await dispatch(signup({ name, email, password, confirmPassword })).unwrap();
         console.log('Signup successful, role assigned:', result.role);
@@ -55,15 +77,37 @@ const Signup = () => {
       } catch (err) {
         setErrors({ api: err || 'Signup failed' });
         setOpenSnackbar(true);
+      } finally {
+        setLoading(false);
       }
     } else {
       setOpenSnackbar(true);
+      setLoading(false);
     }
   };
 
   const handleBack = () => {
     navigate('/');
   };
+
+  if (loading === true) {
+    return (
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+        background: 'linear-gradient(195deg, #0f2027, #2c5364)'
+      }}>
+        <CircularProgress size={60} style={{ color: 'white', marginBottom: '20px' }} />
+        <h2 style={{ color: 'white', margin: 0 }}>Logging in...</h2>
+        <p style={{ color: 'rgba(255,255,255,0.7)', margin: '10px 0 0 0' }}>
+          Please wait ({timer}s)
+        </p>
+      </div>
+    )
+  }
 
   return (
     <div
@@ -137,7 +181,7 @@ const Signup = () => {
                   type='submit'
                   disabled={loading || !name || !email || !password || !confirmPassword}
                 >
-                  Signup
+                  {loading ? 'Signing up...' : 'Signup'}
                 </Button>
 
                 <Button

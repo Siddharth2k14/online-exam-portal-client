@@ -12,17 +12,37 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useEffect } from 'react';
 import './Login.css';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
   const [openSnackbar, setOpenSnackbar] = useState(false);
-  
+  const [loading, setLoading] = useState(false);
+  const [timer, setTimer] = useState(0);
+
   const dispatch = useDispatch();
-  const { loading, error } = useSelector(state => state.auth);
+  const { error } = useSelector(state => state.auth);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    let interval;
+    if (loading) {
+      setTimer(0);
+      interval = setInterval(() => {
+        setTimer((prev) => (prev + 1))
+      }, 1000)
+    }
+
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
+  }, [loading]);
 
   const handleBack = () => {
     navigate('/');
@@ -60,12 +80,15 @@ const Login = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
+        //Set loading true so that the user can get the idea about that the page is loading
+        setLoading(true);
+
         // Don't pass role - let backend determine it from email
         const result = await dispatch(login({ email, password })).unwrap();
-        
+
         // Use the role returned from backend
         const userRole = result.role;
-        
+
         if (userRole === 'admin') {
           navigate('/admin/dashboard');
         } else if (userRole === 'student') {
@@ -75,18 +98,40 @@ const Login = () => {
           setErrors({ api: 'Invalid user role received from server' });
           setOpenSnackbar(true);
         }
-        
+
         // Reset form fields
         setEmail('');
         setPassword('');
       } catch (err) {
         setErrors({ api: err?.message || err?.toString() || 'Invalid credentials' });
         setOpenSnackbar(true);
+      } finally {
+        setLoading(false);
       }
     } else {
       setOpenSnackbar(true);
+      setLoading(false);
     }
   };
+
+  if (loading === true) {
+    return (
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+        background: 'linear-gradient(195deg, #0f2027, #2c5364)'
+      }}>
+        <CircularProgress size={60} style={{ color: 'white', marginBottom: '20px' }} />
+        <h2 style={{ color: 'white', margin: 0 }}>Logging in...</h2>
+        <p style={{ color: 'rgba(255,255,255,0.7)', margin: '10px 0 0 0' }}>
+          Please wait ({timer}s)
+        </p>
+      </div>
+    )
+  }
 
   return (
     <div className='container' style={{ background: 'linear-gradient(195deg, #0f2027, #2c5364)' }}>
@@ -135,7 +180,7 @@ const Login = () => {
                   type='submit'
                   disabled={loading}
                 >
-                  Login
+                  {loading ? 'Logging in...' : 'Login'}
                 </Button>
                 <Button
                   onClick={handleBack}
