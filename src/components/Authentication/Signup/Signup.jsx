@@ -101,7 +101,7 @@ const Signup = () => {
         background: 'linear-gradient(195deg, #0f2027, #2c5364)'
       }}>
         <CircularProgress size={60} style={{ color: 'white', marginBottom: '20px' }} />
-        <h2 style={{ color: 'white', margin: 0 }}>Logging in...</h2>
+        <h2 style={{ color: 'white', margin: 0 }}>Signing Up ...</h2>
         <p style={{ color: 'rgba(255,255,255,0.7)', margin: '10px 0 0 0' }}>
           Please wait ({timer}s)
         </p>
