@@ -13,13 +13,10 @@ const Footer = () => (
                     <Link to="/home" className='footer-link'>HOME</Link>
                 </Typography>
                 <Typography className="footer-link" variant="subtitle1">
-                    <Link to="/student" className='footer-link'>STUDENT LOGIN</Link>
+                    <Link to="/login" className='footer-link'>LOG IN</Link>
                 </Typography>
                 <Typography className="footer-link" variant="subtitle1">
-                    <Link to="/admin" className='footer-link'>ADMIN LOGIN</Link>
-                </Typography>
-                <Typography className="footer-link" variant="subtitle1">
-                    <Link to="/signup" className='footer-link'>SIGNUP</Link>
+                    <Link to="/signup" className='footer-link'>SIGN UP</Link>
                 </Typography>
             </Box>
 

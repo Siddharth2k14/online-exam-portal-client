@@ -5,6 +5,7 @@ import './NavBar.css';
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [role, setRole] = useState(null); // 'admin' or 'student'
+  const [logout, setLogout] = useState(true);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -23,11 +24,13 @@ const NavBar = () => {
   const handleCloseMenu = () => setMenuOpen(false);
 
   const handleLogout = () => {
+    setLogout(true);
     localStorage.removeItem('authToken');
     localStorage.removeItem('userRole');
     if (isStudentDash) navigate('/login/student');
     else if (isAdminDash) navigate('/login/admin');
     else navigate('/login/student'); // default to student login
+    setLogout(false);
     handleCloseMenu();
   };
 
@@ -54,7 +57,7 @@ const NavBar = () => {
           <button className="logout-btn" onClick={handleLogout}>Log Out</button>
         ) : (
           <>
-            <Link to="/login" className="btn">Login</Link>
+            <Link to="/login" className="btn">Log In</Link>
             <Link to="/signup" className="btn">Sign Up</Link>
           </>
         )}
@@ -73,8 +76,7 @@ const NavBar = () => {
             </li>
           ) : (
             <>
-              <li><Link to="/login/admin" className="btn" onClick={handleCloseMenu}>Admin Login</Link></li>
-              <li><Link to="/login/student" className="btn" onClick={handleCloseMenu}>Student Login</Link></li>
+              <li><Link to="/login" className="btn" onClick={handleCloseMenu}>Log In</Link></li>
               <li><Link to="/signup" className="btn" onClick={handleCloseMenu}>Sign Up</Link></li>
             </>
           )}
