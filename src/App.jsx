@@ -31,41 +31,41 @@ const App = () => {
   return (
     <ThemeProvider>
       <Routes>
-        <Route path="*" element={<Navigate to="/" />} />
+        {/* Public Routes */}
         <Route path="/" element={<Home />} />
-        
-        {/* FIXED: Clean authentication routes without role parameters */}
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        
-        {/* OPTIONAL: Keep old routes for backward compatibility (they redirect to new routes) */}
-        <Route path="/signup/:role" element={<Navigate to="/signup" replace />} />
-        <Route path="/login/:role" element={<Navigate to="/login" replace />} />
-        
-        {/* Other public routes */}
-        <Route path='/admin' element={<Admin />} />
-        <Route path='/student' element={<Student />} />
-        <Route path='/forgetPassword' element={<ForgetPassword />} />
-        <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        
-        {/* Protected routes with role-based access */}
+        <Route path="/forgetPassword" element={<ForgetPassword />} />
+
+        {/* Redirect old routes */}
+        <Route path="/signup/:role" element={<Navigate to="/signup" replace />} />
+        <Route path="/login/:role" element={<Navigate to="/login" replace />} />
+        <Route path="/home" element={<Navigate to="/" replace />} />
+
+        {/* Protected Admin Routes */}
         <Route element={<PrivateRoute allowedRoles={['admin']} />}>
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/exam-creation/objective" element={<ObjectiveExamPage />} />
+          <Route path="/exam-creation/subjective" element={<SubjectiveExamCreation />} />
+          <Route path="/manage-exams/:examTitle" element={<ViewExam />} />
         </Route>
-        
+
+        {/* Protected Student Routes */}
         <Route element={<PrivateRoute allowedRoles={['student']} />}>
           <Route path="/student/dashboard" element={<StudentDashboard />} />
+          <Route path="/start-exam/:examTitle" element={<StartExam />} />
+          <Route path="/exam/:examTitle/review" element={<View_Exam />} />
         </Route>
-        
-        {/* Exam-related routes - you might want to add role protection here too */}
-        <Route path='/exam-creation/objective' element={<ObjectiveExamPage />} />
-        <Route path="/manage-exams/:examTitle" element={<ViewExam />} />
-        <Route path='/exam-creation/subjective' element={<SubjectiveExamCreation />} />
-        <Route path="/start-exam/:examTitle" element={<StartExam />} />
-        <Route path="/exam/:examTitle/review" element={<View_Exam />} />
-        <Route path="/change-password" element={<ChangePassword />} />
+
+        {/* Shared Protected Routes */}
+        <Route element={<PrivateRoute allowedRoles={['admin', 'student']} />}>
+          <Route path="/change-password" element={<ChangePassword />} />
+        </Route>
+
+        {/* Catch all - redirect to home */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </ThemeProvider>
   )
