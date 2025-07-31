@@ -36,7 +36,8 @@ const SideBar = ({ onSectionSelect }) => {
             className="sidebar"
             style={{
                 width: '260px',
-                height: '100vh',
+                height: '25vh',
+                maxHeight: '100vh',
                 color: 'white',
             }}
         >

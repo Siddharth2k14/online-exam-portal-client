@@ -1,12 +1,9 @@
-.sidebar{
+.sidebar {
   position: fixed;
   top: 65px;
   left: 0;
   z-index: 1000;
   background: linear-gradient(245deg, #0f2027, #2c5364);
-  width: 260px;
-  height: 100vh;
-  color: white;
   display: flex;
   flex-direction: column;
 }
@@ -17,15 +14,23 @@
   box-sizing: border-box;
   position: absolute;
   display: flex;
+  height: 56vh;
+  background: linear-gradient(245deg, #0f2027, #2c5364);
 }
 
-.exam-creation{
+@media (min-width: 901px) {
+  .sidebar-container {
+    height: 100vh;
+  }
+}
+
+.exam-creation {
   margin-bottom: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(60, 60, 60, 0.06);
 }
 
-.settings{
+.settings {
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(60, 60, 60, 0.06);
 }

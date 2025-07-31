@@ -9,7 +9,7 @@ const AdminDashboard = () => {
     return (
         <div>
             <NavBar toggle={toggle} setToggle={setToggle} name="admin" />
-            <SideBar />
+            {/* <SideBar /> */}
             <AdminPage />
         </div>
     )

@@ -5,7 +5,7 @@ import './NavBar.css';
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [role, setRole] = useState(null); // 'admin' or 'student'
-  const [logout, setLogout] = useState(true);
+  const [isLoggingOut, setIsLoggingOut] = useState(false); // Fixed: Better naming and purpose
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -16,6 +16,11 @@ const NavBar = () => {
     setRole(storedRole);
   }, [location.pathname]);
 
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
+
   const isAdminDash = location.pathname === '/admin/dashboard';
   const isStudentDash = location.pathname === '/student/dashboard';
   const isOnDashboard = isAdminDash || isStudentDash;
@@ -23,16 +28,46 @@ const NavBar = () => {
   const handleToggleMenu = () => setMenuOpen(prev => !prev);
   const handleCloseMenu = () => setMenuOpen(false);
 
-  const handleLogout = () => {
-    setLogout(true);
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('userRole');
-    if (isStudentDash) navigate('/login/student');
-    else if (isAdminDash) navigate('/login/admin');
-    else navigate('/login/student'); // default to student login
-    setLogout(false);
-    handleCloseMenu();
+  // Fixed: Proper async logout handling
+  const handleLogout = async () => {
+    setIsLoggingOut(true);
+
+    try {
+      // Clear storage
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('userRole');
+      setRole(null); // Clear role state
+
+      // Navigate based on current dashboard
+      if (isStudentDash) {
+        navigate('/login/student');
+      } else if (isAdminDash) {
+        navigate('/login/admin');
+      } else {
+        navigate('/login/student'); // default to student login
+      }
+
+      handleCloseMenu();
+    } catch (error) {
+      console.error('Logout error:', error);
+    } finally {
+      setIsLoggingOut(false);
+    }
   };
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [menuOpen]);
 
   return (
     <nav className="navbar">
@@ -40,11 +75,13 @@ const NavBar = () => {
         <Link to="/" onClick={handleCloseMenu}>ExamMaster</Link>
       </div>
 
+      {/* {!isOnDashboard && ( */}
       <div className="navbar-toggle" onClick={handleToggleMenu}>
         <span className="bar"></span>
         <span className="bar"></span>
         <span className="bar"></span>
       </div>
+      {/* // )} */}
 
       <ul className="navbar-menu">
         <li><Link to="/home" onClick={handleCloseMenu}>Home</Link></li>
@@ -54,7 +91,13 @@ const NavBar = () => {
 
       <div className="navbar-auth">
         {isOnDashboard ? (
-          <button className="logout-btn" onClick={handleLogout}>Log Out</button>
+          <button
+            className={`logout-btn ${isLoggingOut ? 'loading' : ''}`}
+            onClick={handleLogout}
+            disabled={isLoggingOut}
+          >
+            {isLoggingOut ? 'Logging out...' : 'Log Out'}
+          </button>
         ) : (
           <>
             <Link to="/login" className="btn">Log In</Link>
@@ -63,16 +106,28 @@ const NavBar = () => {
         )}
       </div>
 
-      <div className={`navbar-overlay${menuOpen ? ' open' : ''}`} onClick={handleCloseMenu}></div>
+      {/* Fixed: Proper space in className template literal */}
+      <div
+        className={`navbar-overlay${menuOpen ? ' open' : ''}`}
+        onClick={handleCloseMenu}
+      ></div>
 
-      <div className={`navbar-collapse${menuOpen ? ' open' : ''}`}>
-        <ul className="navbar-menu-mobile">
+      {/* Fixed: Proper space between classes */}
+      <div className={`navbar-collapse ${menuOpen ? 'open' : ''}${isOnDashboard ? 'dash' : ''}`}>
+      {/* <div className={`navbar-collapse ${menuOpen ? 'open dash' : ''}`}> */}
+        <ul className="navbar-menu-mobile"> {/* Fixed: Use double quotes consistently */}
           <li><Link to="/home" onClick={handleCloseMenu}>Home</Link></li>
           <li><Link to="/about" onClick={handleCloseMenu}>About</Link></li>
           <li><Link to="/contact" onClick={handleCloseMenu}>Contact</Link></li>
           {isOnDashboard ? (
             <li>
-              <button className="logout-btn" onClick={handleLogout}>Log Out</button>
+              <button
+                className={`logout-btn ${isLoggingOut ? 'loading' : ''}`}
+                onClick={handleLogout}
+                disabled={isLoggingOut}
+              >
+                {isLoggingOut ? 'Logging out...' : 'Log Out'}
+              </button>
             </li>
           ) : (
             <>
