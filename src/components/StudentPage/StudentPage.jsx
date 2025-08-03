@@ -1,17 +1,37 @@
+// Keep these as normal imports - they're lightweight and frequently used
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { useState } from 'react';
-import SideBar from '../SideBar/SideBar';
-import ExamsPage from '../ExamsPage/ExamsPage';
-import ViewExam from '../ViewExam/ViewExam';
-import Result from '../Result/Result';
-import AccountSettings from '../Account Settings/AccountSettings';
-import ChangePassword from '../Change Password/ChangePassword';
-import { useSelector } from 'react-redux';
-import './StudentPage.css';
-import { useTheme } from '../Theme Context/ThemeContext'
 import Box from '@mui/material/Box';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import SideBar from '../SideBar/SideBar';
+import { useTheme } from '../Theme Context/ThemeContext';
+import './StudentPage.css';
+
+// Lazy load these heavy/less frequent components
+import { lazy, Suspense } from 'react';
+const ExamsPage = lazy(() => import('../ExamsPage/ExamsPage'));
+const ViewExam = lazy(() => import('../ViewExam/ViewExam'));
+const Result = lazy(() => import('../Result/Result'));
+const AccountSettings = lazy(() => import('../Account Settings/AccountSettings'));
+const ChangePassword = lazy(() => import('../Change Password/ChangePassword'));
+
+// Loading components with consistent styling
+const ComponentLoading = ({ message = "Loading..." }) => (
+    <div style={{ 
+        padding: '40px', 
+        textAlign: 'center',
+        minHeight: '200px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    }}>
+        <Typography variant="h6" color="inherit">
+            {message}
+        </Typography>
+    </div>
+);
 
 const StudentPage = () => {
     const [selectedSection, setSelectedSection] = useState('');
@@ -21,31 +41,46 @@ const StudentPage = () => {
 
     const renderContent = () => {
         if (selectedSection === 'Exams') {
-            return <ExamsPage />;
+            return (
+                <Suspense fallback={<ComponentLoading message="Loading Exams..." />}>
+                    <ExamsPage />
+                </Suspense>
+            );
         }
 
         else if (selectedSection === 'View Exam') {
             return (
-                <ViewExam />
-            )
+                <Suspense fallback={<ComponentLoading message="Loading Exam Details..." />}>
+                    <ViewExam />
+                </Suspense>
+            );
         }
 
         else if (selectedSection === 'Result') {
             return (
-                <Result />
-            )
+                <Suspense fallback={<ComponentLoading message="Loading Results Dashboard..." />}>
+                    <Result />
+                </Suspense>
+            );
         }
+        
         else if (selectedSection === 'Account Info') {
             return (
-                <AccountSettings user={user} role={role} />
-            )
+                <Suspense fallback={<ComponentLoading message="Loading Account Settings..." />}>
+                    <AccountSettings user={user} role={role} />
+                </Suspense>
+            );
         }
 
         else if (selectedSection === 'Change Password') {
             return (
-                <ChangePassword />
-            )
+                <Suspense fallback={<ComponentLoading message="Loading Password Settings..." />}>
+                    <ChangePassword />
+                </Suspense>
+            );
         }
+
+        // Default dashboard content - no lazy loading needed
         return (
             <>
                 <div className='student-welcome'>
@@ -62,7 +97,7 @@ const StudentPage = () => {
                     </Typography>
                 </div>
             </>
-        )
+        );
     }
 
     return (
@@ -86,7 +121,6 @@ const StudentPage = () => {
                     style={{
                         borderTop: themeMode === 'dark' ? '2px solid #fff' : '2px solid #333',
                         margin: '0 30px 30px 30px',
-                        // border: 'none',
                         height: '0',
                     }}
                 />

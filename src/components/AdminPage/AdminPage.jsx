@@ -1,34 +1,68 @@
+// Keep these as normal imports - lightweight and frequently used
 import { useState } from 'react';
-import SideBar from '../SideBar/SideBar';
-import ExamCreation from '../Exam Creation/ExamCreation';
-import ManageExam from '../Manage Exams/ManageExam';
 import { useSelector } from 'react-redux';
-import AccountSettings from '../Account Settings/AccountSettings';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
-import './AdminPage.css';
 import Box from '@mui/material/Box';
+import SideBar from '../SideBar/SideBar';
 import { useTheme } from '../Theme Context/ThemeContext';
+import './AdminPage.css';
+
+// Lazy load these heavy/admin-specific components
+import { lazy, Suspense } from 'react';
+const ExamCreation = lazy(() => import('../Exam Creation/ExamCreation'));
+const ManageExam = lazy(() => import('../Manage Exams/ManageExam'));
+const AccountSettings = lazy(() => import('../Account Settings/AccountSettings'));
+
+// Loading component with consistent styling
+const ComponentLoading = ({ message = "Loading..." }) => (
+  <div style={{ 
+    padding: '40px', 
+    textAlign: 'center',
+    minHeight: '200px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }}>
+    <Typography variant="h6" color="inherit">
+      {message}
+    </Typography>
+  </div>
+);
 
 const AdminPage = () => {
   const [selectedSection, setSelectedSection] = useState('');
-  // const [submittedTitle, setSubmittedTitle] = useState('');
   const user = useSelector(state => state.auth.user);
   const role = useSelector(state => state.auth.role);
   const { themeMode } = useTheme();
 
   const renderContent = () => {
     if (selectedSection === 'Exam Creation') {
-      return <ExamCreation />;
+      return (
+        <Suspense fallback={<ComponentLoading message="Loading Exam Creation Tools..." />}>
+          <ExamCreation />
+        </Suspense>
+      );
     }
+    
     else if (selectedSection === 'Manage Exams') {
-      return <ManageExam />;
+      return (
+        <Suspense fallback={<ComponentLoading message="Loading Exam Management..." />}>
+          <ManageExam />
+        </Suspense>
+      );
     }
+    
     else if (selectedSection === 'Account Info') {
-      return <AccountSettings user={user} role={role}  />;
+      return (
+        <Suspense fallback={<ComponentLoading message="Loading Account Settings..." />}>
+          <AccountSettings user={user} role={role} />
+        </Suspense>
+      );
     }
 
+    // Default dashboard content - no lazy loading needed
     return (
       <>
         <div
@@ -49,7 +83,7 @@ const AdminPage = () => {
           </Typography>
         </div>
       </>
-    )
+    );
   }
 
   return (
@@ -71,7 +105,6 @@ const AdminPage = () => {
         <hr style={{
           borderTop: themeMode === 'dark' ? '2px solid #fff' : '2px solid #333',
           margin: '0 30px 30px 30px',
-          // border: 'none',
           height: '0',
         }} />
         <Card

@@ -16,6 +16,7 @@ import { Legend } from 'recharts';
 import './Result.css';
 import { useTheme } from '../Theme Context/ThemeContext';
 
+
 const Result = () => {
     // Get all exam results from localStorage
     const LOCAL_STORAGE_KEY = "studentExamHistory";
