@@ -1,32 +1,26 @@
-import React from 'react'
+//Regular imports
 import Login from './components/Authentication/Login/Login'
 import Signup from './components/Authentication/Signup/Signup'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Admin from './pages/admin/Admin';
-import Student from './pages/student/Student';
 import ForgetPassword from './components/Authentication/Forget Password/ForgetPassword';
-import NavBar from './components/NavBar/NavBar';
-import SideBar from './components/SideBar/SideBar'
-import AdminDashboard from './pages/admin/Admin Dashboard/AdminDashboard';
-import AdminPage from './components/AdminPage/AdminPage'
-import ObjectiveExamCreation from './components/Objective Exam Creation/ObjectiveExamCreation';
-import ObjectiveExamPage from './pages/admin/Objective Exam Page/ObjectiveExamPage';
-import ManageExam from './components/Manage Exams/ManageExam';
-import ViewExam from './components/Manage Exams/ViewExam';
-import AccountSettings from './components/Account Settings/AccountSettings';
-import StudentDashboard from './pages/student/Student Dashboard/StudentDashboard';
-import SubjectiveExamCreation from './components/Subjective Exam Creation/SubjectiveExamCreation';
-import StudentPage from './components/StudentPage/StudentPage';
-import StartExam from './components/StartExam/StartExam';
-import View_Exam from './components/ViewExam/ViewExam';
 import Home from './pages/Home/Home';
 import About from './pages/About/About';
 import Contact from './pages/Contact/Contact';
-import HomeMain from './components/Home Main/HomeMain';
 import ChangePassword from './components/Change Password/ChangePassword';
 import { ThemeProvider } from './components/Theme Context/ThemeContext';
 import PrivateRoute from './components/Private Route/PrivateRoute';
 
+//Lazy imports
+import { lazy, Suspense } from 'react';
+const AdminDashboard = lazy(() => import('./pages/admin/Admin Dashboard/AdminDashboard'));
+const StudentDashboard = lazy(() => import('./pages/student/Student Dashboard/StudentDashboard'));
+const ObjectiveExamCreation = lazy(() => import('./components/Objective Exam Creation/ObjectiveExamCreation'));
+const ViewExam = lazy(() => import('./components/Manage Exams/ViewExam'));
+const SubjectiveExamCreation = lazy(() => import('./components/Subjective Exam Creation/SubjectiveExamCreation'));
+const StartExam = lazy(() => import('./components/StartExam/StartExam'));
+const View_Exam = lazy(() => import('./components/ViewExam/ViewExam'));
+
+//Main App Routing Component
 const App = () => {
   return (
     <ThemeProvider>
@@ -46,17 +40,45 @@ const App = () => {
 
         {/* Protected Admin Routes */}
         <Route element={<PrivateRoute allowedRoles={['admin']} />}>
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="/exam-creation/objective" element={<ObjectiveExamPage />} />
-          <Route path="/exam-creation/subjective" element={<SubjectiveExamCreation />} />
-          <Route path="/manage-exams/:examTitle" element={<ViewExam />} />
+          <Route path="/admin/dashboard" element={
+            <Suspense fallback={<div>Loading..</div>} >
+              <AdminDashboard />
+            </Suspense>
+          } />
+          <Route path="/exam-creation/objective" element={ 
+            <Suspense fallback={<div>Loading..</div>} >
+              <ObjectiveExamCreation />
+            </Suspense>
+          } />
+          <Route path="/exam-creation/subjective" element={
+            <Suspense fallback={<div>Loading..</div>} >
+              <SubjectiveExamCreation />
+            </Suspense>
+          } />
+          <Route path="/manage-exams/:examTitle" element={
+            <Suspense fallback={<div>Loading..</div>} >
+              <ViewExam />
+            </Suspense>
+          } />
         </Route>
 
         {/* Protected Student Routes */}
         <Route element={<PrivateRoute allowedRoles={['student']} />}>
-          <Route path="/student/dashboard" element={<StudentDashboard />} />
-          <Route path="/start-exam/:examTitle" element={<StartExam />} />
-          <Route path="/exam/:examTitle/review" element={<View_Exam />} />
+          <Route path="/student/dashboard" element={
+            <Suspense fallback={<div>Loading..</div>} >
+              <StudentDashboard />
+            </Suspense>
+          } />
+          <Route path="/start-exam/:examTitle" element={
+            <Suspense fallback={<div>Loading..</div>} >
+              <StartExam />
+            </Suspense>
+          } />
+          <Route path="/exam/:examTitle/review" element={
+            <Suspense fallback={<div>Loading..</div>} >
+              <View_Exam />
+            </Suspense>
+          } />
         </Route>
 
         {/* Shared Protected Routes */}
