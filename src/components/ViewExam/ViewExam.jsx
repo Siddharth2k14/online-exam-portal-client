@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+//Regular Imports
+import { useEffect, useState } from 'react';
+
+//Material UI Imports
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
@@ -12,11 +12,19 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Box from '@mui/material/Box';
+
+//Theme Context
 import { useTheme } from '../Theme Context/ThemeContext';
 
-const LOCAL_STORAGE_KEY = "studentExamHistory";
+//CSS
+import './ViewExam.css';
 
+//Router
+import { useLocation, useNavigate } from 'react-router-dom';
+
+//Component
 const ViewExam = () => {
+  const LOCAL_STORAGE_KEY = "studentExamHistory";
   const location = useLocation();
   const navigate = useNavigate();
   const { exam, answers, score, totalQuestions } = location.state || {};

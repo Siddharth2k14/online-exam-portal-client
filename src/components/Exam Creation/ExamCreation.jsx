@@ -1,5 +1,8 @@
+//Regular Imports
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+//Material UI Imports
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import FormControl from '@mui/material/FormControl';
@@ -11,25 +14,28 @@ import RadioGroup from '@mui/material/RadioGroup';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
-import './ExamCreation.css';
-import ObjectiveExamCreation from '../Objective Exam Creation/ObjectiveExamCreation';
-import { useDispatch } from 'react-redux';
-import { addExam } from '../../redux/examSlice';
-import axios from 'axios';
+
+//Theme Context
 import { useTheme } from '../Theme Context/ThemeContext';
 
+//CSS
+import './ExamCreation.css';
+
+//Redux
+import { useDispatch } from 'react-redux';
+import { addExam } from '../../redux/examSlice';
+
+//Component
 const ExamCreation = () => {
   const [titleExam, setTitleExam] = useState('');
   const [open, setOpen] = useState(false);
   const [examType, setExamType] = useState('objective');
-  const [examCreated, setExamCreated] = useState(false);
-  const [error, setError] = useState(''); // Add error state
+  const [error, setError] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { themeMode } = useTheme();
 
   const handleCreateExam = async () => {
-    // Validation: check if titleExam and examType are filled
     if (!titleExam.trim() || !examType) {
       setError('Please fill all fields.');
       setOpen(true);
@@ -37,7 +43,6 @@ const ExamCreation = () => {
     }
     setError('');
     setOpen(true);
-    setExamCreated(true);
     dispatch(addExam({ title: titleExam, type: examType }));
 
     if (examType === 'objective') {
@@ -50,17 +55,6 @@ const ExamCreation = () => {
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') return;
     setOpen(false);
-  };
-
-  // handleDelete is already correct:
-  const handleDelete = async (title) => {
-    try {
-      await axios.delete(`https://online-exam-portal-server.onrender.com/api/questions/objective/${title}`);
-      await axios.delete(`https://online-exam-portal-server.onrender.com/api/questions/subjective/${title}`);
-      setExams((prev) => prev.filter((exam) => exam.title !== title));
-    } catch (error) {
-      console.error('Error deleting exam:', error.message);
-    }
   };
 
   return (
@@ -158,7 +152,6 @@ const ExamCreation = () => {
           Exam for {titleExam} subject of {examType} type questions is Created
         </Alert>
       </Snackbar>
-      {/* Show error or success Snackbar */}
       <Snackbar
         open={open}
         autoHideDuration={3000}

@@ -1,16 +1,22 @@
-// Keep these as normal imports - they're lightweight and frequently used
+//Regular Imports
+import { useState } from "react";
+import { useSelector } from "react-redux";
+
+//Material UI Imports
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import SideBar from '../SideBar/SideBar';
+
+//Theme Context
 import { useTheme } from '../Theme Context/ThemeContext';
+
+//CSS
 import './StudentPage.css';
 
-// Lazy load these heavy/less frequent components
-import { lazy, Suspense } from 'react';
+//Lazy Imports
+import { lazy, Suspense } from "react";
+const SideBar = lazy(() => import("../SideBar/SideBar"));
 const ExamsPage = lazy(() => import('../ExamsPage/ExamsPage'));
 const ViewExam = lazy(() => import('../ViewExam/ViewExam'));
 const Result = lazy(() => import('../Result/Result'));

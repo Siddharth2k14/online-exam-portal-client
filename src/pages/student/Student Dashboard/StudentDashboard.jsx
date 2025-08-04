@@ -1,15 +1,20 @@
-import React, { useState } from 'react'
-import NavBar from '../../../components/NavBar/NavBar'
-import SideBar from '../../../components/SideBar/SideBar';
-import StudentPage from '../../../components/StudentPage/StudentPage';
+//Regular Imports
+import { useState } from "react";
+import NavBar from "../../../components/NavBar/NavBar";
+
+//Lazy Imports
+import {lazy, Suspense} from "react";
+const StudentPage = lazy(() => import("../../../components/StudentPage/StudentPage"));
+
 const StudentDashboard = () => {
     const [toggle, setToggle] = useState(false);
 
   return (
     <div>
       <NavBar toggle={toggle} setToggle={setToggle} name="student" />
-      {/* <SideBar /> */}
-      <StudentPage />
+      <Suspense fallback={<div>Loading...</div>}>
+        <StudentPage />
+      </Suspense>
     </div>
   )
 }

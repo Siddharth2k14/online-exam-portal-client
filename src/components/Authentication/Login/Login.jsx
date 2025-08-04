@@ -1,6 +1,10 @@
+//Regular Imports
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { login } from '../../../redux/authSlice';
+import { useNavigate } from 'react-router-dom';
+
+//Material UI Imports
 import FormControl from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
@@ -10,12 +14,14 @@ import CardContent from '@mui/material/CardContent';
 import Card from '@mui/material/Card';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import './Login.css';
-import CircularProgress from '@mui/material/CircularProgress';
 
+//Redux
+import { login } from '../../../redux/authSlice';
+
+//CSS
+import './Login.css';
+
+//Component
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

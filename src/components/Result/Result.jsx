@@ -1,6 +1,12 @@
+//Theme Context
+import { useTheme } from '../Theme Context/ThemeContext';
+
+//Material UI Imports
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
+
+//Recharts
 import 'react-circular-progressbar/dist/styles.css';
 import { LineChart } from 'recharts';
 import { Line } from 'recharts';
@@ -13,10 +19,11 @@ import { PieChart } from 'recharts';
 import { Pie } from 'recharts';
 import { Cell } from 'recharts';
 import { Legend } from 'recharts';
+
+//CSS
 import './Result.css';
-import { useTheme } from '../Theme Context/ThemeContext';
 
-
+//Component
 const Result = () => {
     // Get all exam results from localStorage
     const LOCAL_STORAGE_KEY = "studentExamHistory";

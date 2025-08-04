@@ -1,7 +1,13 @@
-import React, { useState, useEffect } from 'react';
+//Regular Imports
+import { useState, useEffect } from 'react';
+
+//Material UI Imports
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+
+//CSS
 import './NavBar.css';
 
+//Component
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [role, setRole] = useState(null); // 'admin' or 'student'

@@ -1,15 +1,24 @@
+//Regular Imports
+import { useState } from 'react';
+
+//Material UI Imports
 import Card from '@mui/material/Card';
 import Input from '@mui/material/Input';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Radio from '@mui/material/Radio';
-import React, { useState } from 'react';
+
+//Redux
 import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+
+//CSS
 import './ObjectiveExamCreation.css';
+
+//Redux
 import { addQuestionToExam } from '../../redux/examSlice';
 
+//Component
 const ObjectiveExamCreation = () => {
   const location = useLocation();
   const titleExam = location.state?.titleExam || '';
@@ -17,7 +26,6 @@ const ObjectiveExamCreation = () => {
   const [options, setOptions] = useState(['', '', '', '']);
   const [correct, setCorrect] = useState(null); // index of correct answer
   const dispatch = useDispatch();
-  const questions = useSelector(state => state.questions.questions);
 
   const handleOptionChange = (idx, value) => {
     const newOptions = [...options];

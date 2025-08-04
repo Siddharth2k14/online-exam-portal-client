@@ -1,14 +1,16 @@
-//Regular imports
+//Regular Imports
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+
+//Components
 import Login from './components/Authentication/Login/Login'
 import Signup from './components/Authentication/Signup/Signup'
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import ForgetPassword from './components/Authentication/Forget Password/ForgetPassword';
 import Home from './pages/Home/Home';
 import About from './pages/About/About';
 import Contact from './pages/Contact/Contact';
 import ChangePassword from './components/Change Password/ChangePassword';
-import { ThemeProvider } from './components/Theme Context/ThemeContext';
 import PrivateRoute from './components/Private Route/PrivateRoute';
+import { ThemeProvider } from './components/Theme Context/ThemeContext';
 
 //Lazy imports
 import { lazy, Suspense } from 'react';

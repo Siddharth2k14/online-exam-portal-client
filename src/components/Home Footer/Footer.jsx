@@ -1,8 +1,14 @@
+//Regular Imports
+import {Link} from 'react-router-dom';
+
+//Material UI Imports
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import {Link} from 'react-router-dom';
+
+//CSS
 import './Footer.css';
 
+//Component
 const Footer = () => (
     <Box className="footer-container">
         <Box className="footer-row">

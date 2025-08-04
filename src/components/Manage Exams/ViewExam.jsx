@@ -1,14 +1,20 @@
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useState } from 'react';
+//Regular Imports
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
+//Material UI Imports
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import axios from 'axios';
-import './ViewExam.css';
 import Box from '@mui/material/Box';
 
+//Axios
+import axios from 'axios';
+
+//CSS
+import './ViewExam.css';
+
+//Component
 const ViewExam = () => {
   const { examTitle } = useParams();
   const navigate = useNavigate();
@@ -24,6 +30,7 @@ const ViewExam = () => {
         const foundExam = exams.find(e => e.exam_title === examTitle);
         setExam(foundExam || null);
       } catch (err) {
+        console.error('Error fetching exam:', err);
         setExam(null);
       } finally {
         setLoading(false);

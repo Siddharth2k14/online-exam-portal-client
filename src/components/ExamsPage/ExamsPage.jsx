@@ -1,7 +1,7 @@
-import axios from 'axios';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+//Regular Imports
+import { useState, useEffect } from 'react';
+
+//Material UI Imports
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -12,12 +12,22 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import CircularProgress from '@mui/material/CircularProgress';
-import './ExamsPage.css';
+
+//Theme Context
 import { useTheme } from '../Theme Context/ThemeContext';
 
-const LOCAL_STORAGE_KEY = "studentExamHistory";
+//CSS
+import './ExamsPage.css';
 
+//Router
+import { useNavigate } from "react-router-dom";
+
+//Axios
+import axios from 'axios';
+
+//Component
 const ExamsPage = () => {
+  const LOCAL_STORAGE_KEY = "studentExamHistory";
   const [exams, setExams] = useState([]);
   const [selectedSubject, setSelectedSubject] = useState('');
   const [selectedType, setSelectedType] = useState('');

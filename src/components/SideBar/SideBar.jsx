@@ -1,3 +1,7 @@
+//Regular Imports
+import { useState } from 'react';
+
+//Material UI Imports
 import Card from '@mui/material/Card';
 import Collapse from '@mui/material/Collapse';
 import List from '@mui/material/List';
@@ -5,10 +9,14 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import Switch from '@mui/material/Switch';
-import { useState } from 'react';
+
+//Theme Context
 import { useTheme } from '../Theme Context/ThemeContext'
+
+//CSS
 import './SideBar.css';
 
+//Component
 const SideBar = ({ onSectionSelect }) => {
     const [examOpen, setExamOpen] = useState(false);
     const [settingsOpen, setSettingsOpen] = useState(false);

@@ -1,8 +1,14 @@
+//Material UI Imports
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
-import './AccountSettings.css';
+
+//Theme Context
 import { useTheme } from '../Theme Context/ThemeContext';
 
+//CSS
+import './AccountSettings.css';
+
+//Component
 const AccountSettings = ({ user, role }) => {
     const { themeMode } = useTheme();
 

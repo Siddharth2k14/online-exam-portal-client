@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+//Regular Imports
+import { useState } from 'react';
+
+//Material UI Imports
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -7,9 +10,14 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
-import './ChangePassword.css';
+
+//Theme Context
 import { useTheme } from '../Theme Context/ThemeContext';
 
+//CSS
+import './ChangePassword.css';
+
+//Component
 const ChangePassword = () => {
   const [form, setForm] = useState({
     currentPassword: '',

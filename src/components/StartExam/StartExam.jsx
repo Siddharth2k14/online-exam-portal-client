@@ -1,3 +1,7 @@
+//Regular Imports
+import { useEffect, useState } from 'react';
+
+//Material UI Imports
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
@@ -8,16 +12,16 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useState } from 'react';
+
+//CSS
 import './StartExam.css';
 
-// Utility: check if two answers are similar by keywords
+//Router
+import { useParams, useNavigate } from 'react-router-dom';
+
+//Component
 function areAnswersSimilar(studentAns, correctAns) {
   if (!studentAns || !correctAns) return false;
-  // Lowercase, remove punctuation, split into words
   const clean = (str) =>
     str
       .toLowerCase()

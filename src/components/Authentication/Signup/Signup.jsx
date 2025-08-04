@@ -1,8 +1,9 @@
+//Regular Imports
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { signup } from '../../../redux/authSlice';
-import { useState } from 'react';
-import { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+
+//Material UI Imports
 import {
   FormControl,
   Input,
@@ -15,8 +16,14 @@ import {
   Alert,
   CircularProgress,
 } from '@mui/material';
+
+//CSS
 import './Signup.css';
 
+//Redux
+import { signup } from '../../../redux/authSlice';
+
+//Component
 const Signup = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');

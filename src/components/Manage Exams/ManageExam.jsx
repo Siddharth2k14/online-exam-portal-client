@@ -1,11 +1,22 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+//Regular Imports
+import { useEffect, useState } from 'react';
+
+//Material UI Imports
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
-import { useNavigate } from 'react-router-dom';
-import ViewExam from './ViewExam';
+
+//Theme Context
 import { useTheme } from '../Theme Context/ThemeContext';
+
+//CSS
+import './ManageExam.css';
+
+//Router
+import { useNavigate } from 'react-router-dom';
+
+//Component
+import ViewExam from './ViewExam';
 
 const ManageExam = () => {
   const [exams, setExams] = useState([]);
@@ -43,6 +54,7 @@ const ManageExam = () => {
       setExams((prev) => prev.filter((exam) => exam.exam_title !== exam_title));
     } catch (error) {
       alert('Error deleting exam');
+      console.error('Error deleting exam:', error);
     }
   };
 

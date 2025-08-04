@@ -1,3 +1,4 @@
+//Material UI Imports 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
@@ -5,8 +6,11 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
+
+//CSS
 import './HomeMain.css';
 
+//Component
 const HomeMain = () => {
   return (
     <Box className="home-main-outer">

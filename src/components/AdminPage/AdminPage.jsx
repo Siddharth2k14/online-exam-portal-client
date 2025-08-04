@@ -1,16 +1,22 @@
-// Keep these as normal imports - lightweight and frequently used
+//Regular Imports
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+
+//Material UI Imports
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
 import Box from '@mui/material/Box';
-import SideBar from '../SideBar/SideBar';
+
+//Theme Context
 import { useTheme } from '../Theme Context/ThemeContext';
+
+//CSS
 import './AdminPage.css';
 
-// Lazy load these heavy/admin-specific components
+//Lazy Imports
 import { lazy, Suspense } from 'react';
+const SideBar = lazy(() => import("../SideBar/SideBar"));
 const ExamCreation = lazy(() => import('../Exam Creation/ExamCreation'));
 const ManageExam = lazy(() => import('../Manage Exams/ManageExam'));
 const AccountSettings = lazy(() => import('../Account Settings/AccountSettings'));

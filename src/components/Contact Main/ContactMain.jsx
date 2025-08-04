@@ -1,9 +1,13 @@
+//Material UI Imports
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
+
+//CSS
 import './ContactMain.css'
 
+//Component
 const ContactMain = () => {
   return (
     <Box className="contact-main-outer" sx={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
