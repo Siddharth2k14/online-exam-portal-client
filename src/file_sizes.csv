@@ -1,64 +1,64 @@
-"FullName","Size_MB"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\App.jsx","0.00295"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\file_sizes.csv","0"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\file_sizes.txt","0.01479"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\index.css","6E-05"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\main.jsx","0.00041"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\supabaseClient.js","0.0004"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\About Main\AboutMain.css","0.0021"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\About Main\AboutMain.jsx","0.00351"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Account Settings\AccountSettings.css","0.00055"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Account Settings\AccountSettings.jsx","0.00114"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\AdminPage\AdminPage.css","0.00058"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\AdminPage\AdminPage.jsx","0.00239"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Authentication\Forget Password\ForgetPassword.css","0.00127"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Authentication\Forget Password\ForgetPassword.jsx","0.00366"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Authentication\Login\Login.css","0.00173"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Authentication\Login\Login.jsx","0.00601"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Authentication\Signup\Signup.css","0.00207"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Authentication\Signup\Signup.jsx","0.00631"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Change Password\ChangePassword.css","0.0005"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Change Password\ChangePassword.jsx","0.00388"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Contact Main\ContactMain.css","0.00027"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Contact Main\ContactMain.jsx","0.00139"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Exam Creation\ExamCreation.css","0.00072"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Exam Creation\ExamCreation.jsx","0.00423"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\ExamsPage\ExamsPage.css","0.00063"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\ExamsPage\ExamsPage.jsx","0.00535"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Home Footer\Footer.css","0.00179"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Home Footer\Footer.jsx","0.00247"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Home Main\HomeMain.css","0.00166"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Home Main\HomeMain.jsx","0.00279"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Manage Exams\ManageExam.css","0.00241"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Manage Exams\ManageExam.jsx","0.00311"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Manage Exams\ViewExam.css","0.00084"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Manage Exams\ViewExam.jsx","0.00286"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\NavBar\NavBar.css","0.00315"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\NavBar\NavBar.jsx","0.00257"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Objective Exam Creation\ObjectiveExamCreation.css","0.00127"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Objective Exam Creation\ObjectiveExamCreation.jsx","0.0034"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Result\Result.css","0.00274"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Result\Result.jsx","0.00584"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\SideBar\SideBar.css","0.00146"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\SideBar\SideBar.jsx","0.00671"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\StartExam\StartExam.css","0.00097"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\StartExam\StartExam.jsx","0.00877"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\StudentPage\StudentPage.css","0.00105"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\StudentPage\StudentPage.jsx","0.00234"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Subjective Exam Creation\SubjectiveExamCreation.css","0.00158"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Subjective Exam Creation\SubjectiveExamCreation.jsx","0.00286"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\ViewExam\ViewExam.css","0"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\ViewExam\ViewExam.jsx","0.00686"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\pages\About\About.jsx","0.00031"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\pages\admin\Admin.jsx","0.00021"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\pages\admin\Admin Dashboard\AdminDashboard.jsx","0.00048"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\pages\admin\Objective Exam Page\ObjectiveExamPage.jsx","0.00023"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\pages\Contact\Contact.jsx","0.0003"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\pages\Home\Home.jsx","0.00034"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\pages\student\Student.jsx","0.00022"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\pages\student\Student Dashboard\StudentDashboard.jsx","0.00048"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\redux\authSlice.js","0.00329"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\redux\examSlice.js","0.00103"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\redux\questionSlice.js","0.00075"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\redux\store.js","0.00043"
-"C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\redux\subjectiveExamSlice.js","0.00062"
+FullName,Size_MB,Size_Bytes,Size_KB
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\App.jsx,0.00295,3093.2992,3.0208
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\file_sizes.csv,0,0,0
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\file_sizes.txt,0.01479,15508.43904,15.14496
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\index.css,6.00E-05,62.91456,0.06144
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\main.jsx,0.00041,429.91616,0.41984
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\supabaseClient.js,0.0004,419.4304,0.4096
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\About Main\AboutMain.css,0.0021,2202.0096,2.1504
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\About Main\AboutMain.jsx,0.00351,3680.50176,3.59424
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Account Settings\AccountSettings.css,0.00055,576.7168,0.5632
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Account Settings\AccountSettings.jsx,0.00114,1195.37664,1.16736
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\AdminPage\AdminPage.css,0.00058,608.17408,0.59392
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\AdminPage\AdminPage.jsx,0.00239,2506.09664,2.44736
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Authentication\Forget Password\ForgetPassword.css,0.00127,1331.69152,1.30048
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Authentication\Forget Password\ForgetPassword.jsx,0.00366,3837.78816,3.74784
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Authentication\Login\Login.css,0.00173,1814.03648,1.77152
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Authentication\Login\Login.jsx,0.00601,6301.94176,6.15424
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Authentication\Signup\Signup.css,0.00207,2170.55232,2.11968
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Authentication\Signup\Signup.jsx,0.00631,6616.51456,6.46144
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Change Password\ChangePassword.css,0.0005,524.288,0.512
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Change Password\ChangePassword.jsx,0.00388,4068.47488,3.97312
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Contact Main\ContactMain.css,0.00027,283.11552,0.27648
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Contact Main\ContactMain.jsx,0.00139,1457.52064,1.42336
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Exam Creation\ExamCreation.css,0.00072,754.97472,0.73728
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Exam Creation\ExamCreation.jsx,0.00423,4435.47648,4.33152
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\ExamsPage\ExamsPage.css,0.00063,660.60288,0.64512
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\ExamsPage\ExamsPage.jsx,0.00535,5609.8816,5.4784
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Home Footer\Footer.css,0.00179,1876.95104,1.83296
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Home Footer\Footer.jsx,0.00247,2589.98272,2.52928
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Home Main\HomeMain.css,0.00166,1740.63616,1.69984
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Home Main\HomeMain.jsx,0.00279,2925.52704,2.85696
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Manage Exams\ManageExam.css,0.00241,2527.06816,2.46784
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Manage Exams\ManageExam.jsx,0.00311,3261.07136,3.18464
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Manage Exams\ViewExam.css,0.00084,880.80384,0.86016
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Manage Exams\ViewExam.jsx,0.00286,2998.92736,2.92864
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\NavBar\NavBar.css,0.00315,3303.0144,3.2256
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\NavBar\NavBar.jsx,0.00257,2694.84032,2.63168
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Objective Exam Creation\ObjectiveExamCreation.css,0.00127,1331.69152,1.30048
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Objective Exam Creation\ObjectiveExamCreation.jsx,0.0034,3565.1584,3.4816
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Result\Result.css,0.00274,2873.09824,2.80576
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Result\Result.jsx,0.00584,6123.68384,5.98016
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\SideBar\SideBar.css,0.00146,1530.92096,1.49504
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\SideBar\SideBar.jsx,0.00671,7035.94496,6.87104
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\StartExam\StartExam.css,0.00097,1017.11872,0.99328
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\StartExam\StartExam.jsx,0.00877,9196.01152,8.98048
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\StudentPage\StudentPage.css,0.00105,1101.0048,1.0752
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\StudentPage\StudentPage.jsx,0.00234,2453.66784,2.39616
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Subjective Exam Creation\SubjectiveExamCreation.css,0.00158,1656.75008,1.61792
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\Subjective Exam Creation\SubjectiveExamCreation.jsx,0.00286,2998.92736,2.92864
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\ViewExam\ViewExam.css,0,0,0
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\components\ViewExam\ViewExam.jsx,0.00686,7193.23136,7.02464
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\pages\About\About.jsx,0.00031,325.05856,0.31744
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\pages\admin\Admin.jsx,0.00021,220.20096,0.21504
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\pages\admin\Admin Dashboard\AdminDashboard.jsx,0.00048,503.31648,0.49152
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\pages\admin\Objective Exam Page\ObjectiveExamPage.jsx,0.00023,241.17248,0.23552
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\pages\Contact\Contact.jsx,0.0003,314.5728,0.3072
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\pages\Home\Home.jsx,0.00034,356.51584,0.34816
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\pages\student\Student.jsx,0.00022,230.68672,0.22528
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\pages\student\Student Dashboard\StudentDashboard.jsx,0.00048,503.31648,0.49152
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\redux\authSlice.js,0.00329,3449.81504,3.36896
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\redux\examSlice.js,0.00103,1080.03328,1.05472
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\redux\questionSlice.js,0.00075,786.432,0.768
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\redux\store.js,0.00043,450.88768,0.44032
+C:\Users\msnhp\OneDrive\Desktop\online-exam-portal\client\vite-project\src\redux\subjectiveExamSlice.js,0.00062,650.11712,0.63488
