@@ -11,11 +11,11 @@ import Contact from './pages/Contact/Contact';
 import ChangePassword from './components/Change Password/ChangePassword';
 import PrivateRoute from './components/Private Route/PrivateRoute';
 import { ThemeProvider } from './components/Theme Context/ThemeContext';
+import StudentDashboard from './pages/student/Student Dashboard/StudentDashboard';
+import AdminDashboard from './pages/admin/Admin Dashboard/AdminDashboard';
 
 //Lazy imports
 import { lazy, Suspense } from 'react';
-const AdminDashboard = lazy(() => import('./pages/admin/Admin Dashboard/AdminDashboard'));
-const StudentDashboard = lazy(() => import('./pages/student/Student Dashboard/StudentDashboard'));
 const ObjectiveExamCreation = lazy(() => import('./components/Objective Exam Creation/ObjectiveExamCreation'));
 const ViewExam = lazy(() => import('./components/Manage Exams/ViewExam'));
 const SubjectiveExamCreation = lazy(() => import('./components/Subjective Exam Creation/SubjectiveExamCreation'));
@@ -43,11 +43,9 @@ const App = () => {
         {/* Protected Admin Routes */}
         <Route element={<PrivateRoute allowedRoles={['admin']} />}>
           <Route path="/admin/dashboard" element={
-            <Suspense fallback={<div>Loading..</div>} >
-              <AdminDashboard />
-            </Suspense>
+            <AdminDashboard />
           } />
-          <Route path="/exam-creation/objective" element={ 
+          <Route path="/exam-creation/objective" element={
             <Suspense fallback={<div>Loading..</div>} >
               <ObjectiveExamCreation />
             </Suspense>
@@ -67,9 +65,7 @@ const App = () => {
         {/* Protected Student Routes */}
         <Route element={<PrivateRoute allowedRoles={['student']} />}>
           <Route path="/student/dashboard" element={
-            <Suspense fallback={<div>Loading..</div>} >
-              <StudentDashboard />
-            </Suspense>
+            <StudentDashboard />
           } />
           <Route path="/start-exam/:examTitle" element={
             <Suspense fallback={<div>Loading..</div>} >
