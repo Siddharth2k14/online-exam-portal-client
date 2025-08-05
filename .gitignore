@@ -30,3 +30,7 @@ adminPage.test.jsx
 ManageExam.md
 # Sentry Config File
 .env.sentry-build-plugin
+
+project-src.ini
+src.ini
+file_sizes.csv
