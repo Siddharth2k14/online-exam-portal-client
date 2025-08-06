@@ -12,6 +12,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import CircularProgress from '@mui/material/CircularProgress';
+import Alert from '@mui/material/Alert';
 
 //Theme Context
 import { useTheme } from '../Theme Context/ThemeContext';
@@ -26,69 +27,149 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 const LOCAL_STORAGE_KEY = "studentExamHistory";
+
 //Component
 const ExamsPage = () => {
   const [exams, setExams] = useState([]);
   const [selectedSubject, setSelectedSubject] = useState('');
   const [selectedType, setSelectedType] = useState('');
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [subjects, setSubjects] = useState([]);
   const [completedExamTitles, setCompletedExamTitles] = useState([]);
   const navigate = useNavigate();
   const { themeMode } = useTheme();
 
+  // Helper function to get completed exams from localStorage
+  const getCompletedExams = () => {
+    try {
+      const data = localStorage.getItem(LOCAL_STORAGE_KEY);
+      if (data) {
+        const history = JSON.parse(data);
+        return history.map((item) => item.exam?.exam_title).filter(Boolean);
+      }
+    } catch (error) {
+      console.error('Error parsing localStorage data:', error);
+    }
+    return [];
+  };
+
   // Load completed exams from localStorage
   useEffect(() => {
-    const data = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (data) {
-      try {
-        const history = JSON.parse(data);
-        const titles = history.map((item) => item.exam.exam_title);
-        setCompletedExamTitles(titles);
-      } catch { /* ignore JSON parse errors, treat as no completed exams */ }
-    } else {
-      setCompletedExamTitles([]);
-    }
+    const completedTitles = getCompletedExams();
+    setCompletedExamTitles(completedTitles);
   }, []);
 
   useEffect(() => {
     const fetchExams = async () => {
       try {
+        setLoading(true);
+        setError(null);
+        
         const response = await axios.get('https://online-exam-portal-server.onrender.com/api/questions/all');
-        const examData = response.data.exams || [];
-        setExams(examData);
-
-        // Extract unique subjects only from exams not completed
-        const data = localStorage.getItem(LOCAL_STORAGE_KEY);
-        let completedTitles = [];
-        if (data) {
-          try {
-            const history = JSON.parse(data);
-            completedTitles = history.map((item) => item.exam.exam_title);
-          } catch { /* ignore JSON parse errors, treat as no completed exams */ }
+        
+        // Debug: Log the actual response structure
+        console.log('API Response:', response.data);
+        
+        // Handle different possible response structures
+        let examData = [];
+        if (response.data.exams) {
+          examData = response.data.exams;
+        } else if (Array.isArray(response.data)) {
+          examData = response.data;
+        } else {
+          throw new Error('Unexpected API response structure');
         }
-        const availableExams = examData.filter(exam => !completedTitles.includes(exam.exam_title));
-        const uniqueSubjects = [...new Set(availableExams.map(exam => exam.exam_title))];
+
+        // Validate exam data structure
+        const validExams = examData.filter(exam => 
+          exam && 
+          exam.exam_title && 
+          exam.type && 
+          Array.isArray(exam.questions)
+        );
+
+        setExams(validExams);
+
+        // Get completed exams
+        const completedTitles = getCompletedExams();
+        
+        // Filter out completed exams for subject extraction
+        const availableExams = validExams.filter(exam => 
+          !completedTitles.includes(exam.exam_title)
+        );
+        
+        // Extract unique subjects - assuming you have a subject field
+        // If you don't have a subject field, you might want to use exam_title
+        const uniqueSubjects = [...new Set(availableExams.map(exam => 
+          exam.subject || exam.exam_title // Use subject if available, otherwise exam_title
+        ))];
+        
         setSubjects(uniqueSubjects);
-        setLoading(false);
+        setCompletedExamTitles(completedTitles);
+        
       } catch (error) {
         console.error('Error fetching exams:', error);
+        setError(error.message || 'Failed to fetch exams');
+      } finally {
         setLoading(false);
       }
     };
+    
     fetchExams();
   }, []);
 
-  // Filter out completed exams
+  // Filter exams
   const filteredExams = exams.filter(exam => {
-    const matchesSubject = !selectedSubject || exam.exam_title === selectedSubject;
+    const subjectToMatch = exam.subject || exam.exam_title;
+    const matchesSubject = !selectedSubject || subjectToMatch === selectedSubject;
     const matchesType = !selectedType || exam.type === selectedType;
     const notCompleted = !completedExamTitles.includes(exam.exam_title);
     return matchesSubject && matchesType && notCompleted;
   });
 
   const handleStartExam = (exam) => {
-    navigate(`/start-exam/${encodeURIComponent(exam.exam_title)}`, { state: { exam } });
+    try {
+      // Validate exam object before navigation
+      if (!exam || !exam.exam_title) {
+        throw new Error('Invalid exam data');
+      }
+      
+      navigate(`/start-exam/${encodeURIComponent(exam.exam_title)}`, { 
+        state: { exam } 
+      });
+    } catch (error) {
+      console.error('Navigation error:', error);
+      setError('Failed to start exam. Please try again.');
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="exams-page" style={{ textAlign: 'center', padding: '40px' }}>
+        <CircularProgress sx={{ color: 'white' }} />
+        <Typography variant="h6" sx={{ color: 'white', mt: 2 }}>
+          Loading exams...
+        </Typography>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="exams-page">
+        <Alert severity="error" sx={{ mb: 2 }}>
+          {error}
+        </Alert>
+        <Button 
+          variant="contained" 
+          onClick={() => window.location.reload()}
+          sx={{ mt: 2 }}
+        >
+          Retry
+        </Button>
+      </div>
+    );
   }
 
   return (
@@ -103,9 +184,9 @@ const ExamsPage = () => {
 
       <div className="filters">
         <FormControl sx={{ minWidth: 200, mr: 2 }}>
-          <InputLabel sx={{
-            color: 'white'
-          }}>Select Subject</InputLabel>
+          <InputLabel sx={{ color: 'white' }}>
+            Select Subject
+          </InputLabel>
           <Select
             value={selectedSubject}
             onChange={(e) => setSelectedSubject(e.target.value)}
@@ -114,15 +195,17 @@ const ExamsPage = () => {
           >
             <MenuItem value="">All Subjects</MenuItem>
             {subjects.map((subject) => (
-              <MenuItem key={subject} value={subject}>{subject}</MenuItem>
+              <MenuItem key={subject} value={subject}>
+                {subject}
+              </MenuItem>
             ))}
           </Select>
         </FormControl>
 
         <FormControl sx={{ minWidth: 200 }}>
-          <InputLabel sx={{
-            color: 'white'
-          }}>Exam Type</InputLabel>
+          <InputLabel sx={{ color: 'white' }}>
+            Exam Type
+          </InputLabel>
           <Select
             value={selectedType}
             onChange={(e) => setSelectedType(e.target.value)}
@@ -136,8 +219,10 @@ const ExamsPage = () => {
         </FormControl>
       </div>
 
-      {loading ? (
-        <CircularProgress />
+      {filteredExams.length === 0 ? (
+        <Typography variant="h6" sx={{ color: 'white', textAlign: 'center', mt: 4 }}>
+          No exams available
+        </Typography>
       ) : (
         <div className="exams-grid">
           {filteredExams.map((exam) => (
@@ -172,14 +257,20 @@ const ExamsPage = () => {
                     Type: {exam.type}
                   </Typography>
                   <Typography variant="body2">
-                    Questions: {exam.questions.length}
+                    Questions: {exam.questions?.length || 0}
                   </Typography>
+                  {exam.subject && (
+                    <Typography variant="body2" sx={{ color: 'white' }}>
+                      Subject: {exam.subject}
+                    </Typography>
+                  )}
                 </CardContent>
                 <CardActions>
                   <Button
                     variant="contained"
                     color="primary"
                     onClick={() => handleStartExam(exam)}
+                    disabled={!exam.questions || exam.questions.length === 0}
                   >
                     Start Exam
                   </Button>
