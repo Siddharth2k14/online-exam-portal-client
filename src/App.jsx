@@ -2,17 +2,17 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 //Components
-import Login from './components/Authentication/Login/Login'
-import Signup from './components/Authentication/Signup/Signup'
-import ForgetPassword from './components/Authentication/Forget Password/ForgetPassword';
-import Home from './pages/Home/Home';
-import About from './pages/About/About';
-import Contact from './pages/Contact/Contact';
-import ChangePassword from './components/Change Password/ChangePassword';
-import PrivateRoute from './components/Private Route/PrivateRoute';
+import Login from './components/Authentication/Login/Login.jsx'
+import Signup from './components/Authentication/Signup/Signup.jsx'
+import ForgetPassword from './components/Authentication/Forget Password/ForgetPassword.jsx';
+import Home from './pages/Home/Home.jsx';
+import About from './pages/About/About.jsx';
+import Contact from './pages/Contact/Contact.jsx';
+import ChangePassword from './components/Change Password/ChangePassword.jsx';
+import PrivateRoute from './components/Private Route/PrivateRoute.jsx';
 import { ThemeProvider } from './components/Theme Context/ThemeContext';
-import StudentDashboard from './pages/student/Student Dashboard/StudentDashboard';
-import AdminDashboard from './pages/admin/Admin Dashboard/AdminDashboard';
+import StudentDashboard from './pages/student/Student Dashboard/StudentDashboard.jsx';
+import AdminDashboard from './pages/admin/Admin Dashboard/AdminDashboard.jsx';
 
 //Lazy imports
 import { lazy, Suspense } from 'react';

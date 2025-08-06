@@ -1,6 +1,6 @@
 //Regular Imports
 import { useState } from "react";
-import NavBar from "../../../components/NavBar/NavBar";
+import NavBar from "../../../components/NavBar/NavBar.jsx";
 
 //Lazy Imports
 import {lazy, Suspense} from "react";

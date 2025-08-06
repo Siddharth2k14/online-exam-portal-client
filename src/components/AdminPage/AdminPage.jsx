@@ -1,6 +1,7 @@
 //Regular Imports
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import SideBar from "../SideBar/SideBar.jsx";
 
 //Material UI Imports
 import Card from '@mui/material/Card';
@@ -16,7 +17,7 @@ import './AdminPage.css';
 
 //Lazy Imports
 import { lazy, Suspense } from 'react';
-const SideBar = lazy(() => import("../SideBar/SideBar"));
+// const SideBar = lazy(() => import("../SideBar/SideBar"));
 const ExamCreation = lazy(() => import('../Exam Creation/ExamCreation'));
 const ManageExam = lazy(() => import('../Manage Exams/ManageExam'));
 const AccountSettings = lazy(() => import('../Account Settings/AccountSettings'));
