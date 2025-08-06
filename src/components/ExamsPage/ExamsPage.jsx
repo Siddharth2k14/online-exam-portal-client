@@ -25,9 +25,9 @@ import { useNavigate } from "react-router-dom";
 //Axios
 import axios from 'axios';
 
+const LOCAL_STORAGE_KEY = "studentExamHistory";
 //Component
 const ExamsPage = () => {
-  const LOCAL_STORAGE_KEY = "studentExamHistory";
   const [exams, setExams] = useState([]);
   const [selectedSubject, setSelectedSubject] = useState('');
   const [selectedType, setSelectedType] = useState('');
