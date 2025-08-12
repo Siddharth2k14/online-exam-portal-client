@@ -13,6 +13,8 @@ import Switch from '@mui/material/Switch';
 //Theme Context
 import { useTheme } from '../Theme Context/ThemeContext'
 
+import { useLocation } from 'react-router-dom'
+
 //CSS
 import './SideBar.css';
 
@@ -35,13 +37,14 @@ const SideBar = ({ onSectionSelect }) => {
         setShowThemeToggle(true);
     };
 
-    // Check if the URL contains "admin/dashboard"
-    const isAdminDashboard = window.location.pathname.includes("admin/dashboard");
-    const isStudentDashboard = location.pathname.includes("student/dashboard");
+    // Determine which dashboard based on current route
+    const location = useLocation();
+    const isAdminDashboard = location.pathname.includes('/admin/dashboard');
+    const isStudentDashboard = location.pathname.includes('/student/dashboard');
 
     return (
         <div
-            className="sidebar"
+            className="dashboard-sidebar"
             style={{
                 width: '260px',
                 height: '25vh',

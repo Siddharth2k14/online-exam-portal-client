@@ -1,4 +1,4 @@
-.sidebar {
+.dashboard-sidebar {
   position: fixed;
   top: 65px;
   left: 0;
@@ -14,14 +14,8 @@
   box-sizing: border-box;
   position: absolute;
   display: flex;
-  height: 56vh;
+  height: 100vh;
   background: linear-gradient(245deg, #0f2027, #2c5364);
-}
-
-@media (min-width: 901px) {
-  .sidebar-container {
-    height: 100vh;
-  }
 }
 
 .exam-creation {

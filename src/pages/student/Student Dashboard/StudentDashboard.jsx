@@ -4,6 +4,7 @@ import NavBar from "../../../components/NavBar/NavBar.jsx";
 
 //Lazy Imports
 import {lazy, Suspense} from "react";
+import SideBar from "../../../components/SideBar/SideBar.jsx";
 const StudentPage = lazy(() => import("../../../components/StudentPage/StudentPage"));
 
 const StudentDashboard = () => {
@@ -12,6 +13,7 @@ const StudentDashboard = () => {
   return (
     <div>
       <NavBar toggle={toggle} setToggle={setToggle} name="student" />
+      <SideBar />
       <Suspense fallback={<div>Loading...</div>}>
         <StudentPage />
       </Suspense>

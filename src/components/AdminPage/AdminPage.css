@@ -14,12 +14,6 @@
     border: 2px solid black;
     color: black;
     overflow-y: auto;
-    width: 79.6vw;
-    min-height: 90.5vh;
-    position: absolute;
-    top: 65px;
-    left: 261px;
-    color: black;
 }
 
 .admin-heading {
