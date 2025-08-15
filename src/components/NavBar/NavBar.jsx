@@ -97,7 +97,15 @@ const NavBar = () => {
           {/* // )} */}
 
           <ul className="navbar-menu">
-            <li><Link to="/home" onClick={handleCloseMenu}>Home</Link></li>
+            <li>
+              {isStudentDash ? (
+                <Link to="/student/dashboard" onClick={handleCloseMenu}>Home</Link>
+              ) : isAdminDash ? (
+                <Link to="/admin/dashboard" onClick={handleCloseMenu}>Home</Link>
+              ) : (
+                <Link to="/home" onClick={handleCloseMenu}>Home</Link>
+              )}
+            </li>
             <li><Link to="/about" onClick={handleCloseMenu}>About</Link></li>
             <li><Link to="/contact" onClick={handleCloseMenu}>Contact</Link></li>
           </ul>

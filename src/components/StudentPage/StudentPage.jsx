@@ -28,8 +28,8 @@ const ChangePassword = lazy(() => import('../Change Password/ChangePassword'));
 
 // Loading components with consistent styling
 const ComponentLoading = ({ message = "Loading..." }) => (
-    <div style={{ 
-        padding: '40px', 
+    <div style={{
+        padding: '40px',
         textAlign: 'center',
         minHeight: '200px',
         display: 'flex',
@@ -72,7 +72,7 @@ const StudentPage = () => {
                 </Suspense>
             );
         }
-        
+
         else if (selectedSection === 'Account Info') {
             return (
                 <Suspense fallback={<ComponentLoading message="Loading Account Settings..." />}>

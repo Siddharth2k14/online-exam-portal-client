@@ -39,9 +39,7 @@ export const signup = createAsyncThunk(
         role: response.data.role,
       };
     } catch (error) {
-      return thunkAPI.rejectWithValue(
-        error.response?.data?.message || 'Signup failed'
-      );
+      P
     }
   }
 );

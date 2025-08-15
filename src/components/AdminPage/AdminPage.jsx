@@ -21,11 +21,12 @@ import { lazy, Suspense } from 'react';
 const ExamCreation = lazy(() => import('../Exam Creation/ExamCreation'));
 const ManageExam = lazy(() => import('../Manage Exams/ManageExam'));
 const AccountSettings = lazy(() => import('../Account Settings/AccountSettings'));
+const ChangePassword = lazy(() => import('../Change Password/ChangePassword'));
 
 // Loading component with consistent styling
 const ComponentLoading = ({ message = "Loading..." }) => (
-  <div style={{ 
-    padding: '40px', 
+  <div style={{
+    padding: '40px',
     textAlign: 'center',
     minHeight: '200px',
     display: 'flex',
@@ -52,7 +53,7 @@ const AdminPage = () => {
         </Suspense>
       );
     }
-    
+
     else if (selectedSection === 'Manage Exams') {
       return (
         <Suspense fallback={<ComponentLoading message="Loading Exam Management..." />}>
@@ -60,13 +61,21 @@ const AdminPage = () => {
         </Suspense>
       );
     }
-    
+
     else if (selectedSection === 'Account Info') {
       return (
         <Suspense fallback={<ComponentLoading message="Loading Account Settings..." />}>
           <AccountSettings user={user} role={role} />
         </Suspense>
       );
+    }
+
+    else if (selectedSection === 'Change Password') {
+        return (
+            <Suspense fallback={<ComponentLoading message="Loading Password Settings..." />}>
+                <ChangePassword />
+            </Suspense>
+        );
     }
 
     // Default dashboard content - no lazy loading needed

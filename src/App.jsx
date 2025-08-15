@@ -13,6 +13,12 @@ import PrivateRoute from './components/Private Route/PrivateRoute.jsx';
 import { ThemeProvider } from './components/Theme Context/ThemeContext';
 import StudentDashboard from './pages/student/Student Dashboard/StudentDashboard.jsx';
 import AdminDashboard from './pages/admin/Admin Dashboard/AdminDashboard.jsx';
+import ExamCreation from './components/Exam Creation/ExamCreation.jsx';
+import ManageExam from './components/Manage Exams/ManageExam.jsx';
+import ExamsPage from './components/ExamsPage/ExamsPage.jsx';
+import Result from './components/Result/Result.jsx';
+import AccountSettings from './components/Account Settings/AccountSettings.jsx';
+import View_exam from './components/ViewExam/ViewExam.jsx';
 
 //Lazy imports
 import { lazy, Suspense } from 'react';
@@ -34,6 +40,12 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/forgetPassword" element={<ForgetPassword />} />
+        <Route path="/exam-creation" element={<ExamCreation />} />
+        <Route path="/manage-exams" element={<ManageExam />} />
+        <Route path="/exams" element={<ExamsPage />} />
+        <Route path="/result" element={<Result />} />
+        <Route path="/account-info" element={<AccountSettings />} />
+        <Route path="/viewExam" element={<View_exam />} />
 
         {/* Redirect old routes */}
         <Route path="/signup/:role" element={<Navigate to="/signup" replace />} />

@@ -13,7 +13,7 @@ const StudentDashboard = () => {
   return (
     <div>
       <NavBar toggle={toggle} setToggle={setToggle} name="student" />
-      <SideBar />
+      {/* <SideBar /> */}
       <Suspense fallback={<div>Loading...</div>}>
         <StudentPage />
       </Suspense>

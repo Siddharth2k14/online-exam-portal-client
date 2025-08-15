@@ -33,6 +33,30 @@ const ExamsPage = () => {
   const navigate = useNavigate();
   const { themeMode } = useTheme() || { themeMode: 'light' };
 
+  // Get completed exams from localStorage
+  const getCompletedExams = () => {
+    try {
+      const completed = localStorage.getItem('completedExams');
+      return completed ? JSON.parse(completed) : [];
+    } catch (error) {
+      console.error('Error reading completed exams:', error);
+      return [];
+    }
+  };
+
+  // Save completed exam to localStorage
+  const saveCompletedExam = (examTitle) => {
+    try {
+      const completedExams = getCompletedExams();
+      if (!completedExams.includes(examTitle)) {
+        completedExams.push(examTitle);
+        localStorage.setItem('completedExams', JSON.stringify(completedExams));
+      }
+    } catch (error) {
+      console.error('Error saving completed exam:', error);
+    }
+  };
+
   // Fetch Exams
   useEffect(() => {
     const fetchExams = async () => {
@@ -47,12 +71,20 @@ const ExamsPage = () => {
           throw new Error("Invalid response: exams not found or not an array");
         }
 
-        const uniqueSubjects = [...new Set(data.exams.map(exam => exam.exam_title))];
-        setExams(data.exams);
+        // Filter out completed exams
+        const completedExams = getCompletedExams();
+        const availableExams = data.exams.filter(exam =>
+          !completedExams.includes(exam.exam_title)
+        );
+
+        const uniqueSubjects = [...new Set(availableExams.map(exam => exam.exam_title))];
+        setExams(availableExams);
         setSubjects(uniqueSubjects);
         setLoading(false);
 
         console.log("The subjects are:", uniqueSubjects);
+        console.log("Completed exams filtered:", completedExams);
+        console.log("Available exams:", availableExams.length);
       } catch (error) {
         console.error("Error fetching exams:", error);
         setError("Failed to load exams. Please try again later.");
@@ -69,6 +101,10 @@ const ExamsPage = () => {
       console.error('Invalid exam data:', exam);
       return;
     }
+
+    // Mark exam as completed when starting (you can move this to exam completion)
+    saveCompletedExam(exam.exam_title);
+
     navigate(`/start-exam/${encodeURIComponent(exam.exam_title)}`, {
       state: { exam }
     });
@@ -156,7 +192,12 @@ const ExamsPage = () => {
         <div className="exams-grid">
           {filteredExams.length === 0 ? (
             <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '40px', color: 'white' }}>
-              <Typography variant="h6">No exams available matching your criteria.</Typography>
+              <Typography variant="h6">
+                {getCompletedExams().length > 0
+                  ? "No more exams available. You have completed all matching exams."
+                  : "No exams available matching your criteria."
+                }
+              </Typography>
             </div>
           ) : (
             filteredExams.map((exam, index) => (

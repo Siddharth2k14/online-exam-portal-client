@@ -13,7 +13,8 @@ import Switch from '@mui/material/Switch';
 //Theme Context
 import { useTheme } from '../Theme Context/ThemeContext'
 
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 //CSS
 import './SideBar.css';
@@ -24,6 +25,7 @@ const SideBar = ({ onSectionSelect }) => {
     const [settingsOpen, setSettingsOpen] = useState(false);
     const [showThemeToggle, setShowThemeToggle] = useState(false);
     const { themeMode, toggleTheme } = useTheme();
+    const navigate = useNavigate();
 
     const handleExamToggle = () => {
         setExamOpen((prev) => !prev);
@@ -36,6 +38,10 @@ const SideBar = ({ onSectionSelect }) => {
     const handleThemeModeClick = () => {
         setShowThemeToggle(true);
     };
+
+    const handleClickItem = (path) => {
+      navigate(`${location.pathname}#${path}`);
+    }
 
     // Determine which dashboard based on current route
     const location = useLocation();
@@ -80,10 +86,16 @@ const SideBar = ({ onSectionSelect }) => {
                                 className="exam-list"
                             >
                                 <List>
-                                    <ListItem onClick={() => onSectionSelect('Exam Creation')}>
+                                    <ListItem onClick={() => {
+                                      onSectionSelect('Exam Creation');
+                                      handleClickItem('/exam-creation');
+                                    }}>
                                         <ListItemText primary="Exam Creation" />
                                     </ListItem>
-                                    <ListItem onClick={() => onSectionSelect('Manage Exams')}>
+                                    <ListItem onClick={() => {
+                                      onSectionSelect('Manage Exams');
+                                      handleClickItem('/manage-exams');
+                                    }}>
                                         <ListItemText primary="Manage Exams" />
                                     </ListItem>
                                 </List>
@@ -96,13 +108,22 @@ const SideBar = ({ onSectionSelect }) => {
                                 className="exam-list"
                             >
                                 <List className="exam-list-items">
-                                    <ListItem onClick={() => onSectionSelect('Exams')}>
+                                    <ListItem onClick={() => {
+                                      onSectionSelect('Exams');
+                                      handleClickItem('/exams');
+                                    }}>
                                         <ListItemText primary="Exams" />
                                     </ListItem>
-                                    <ListItem onClick={() => onSectionSelect('View Exam')}>
+                                    <ListItem onClick={() => {
+                                      onSectionSelect('View Exam');
+                                      handleClickItem('/viewExam');
+                                    }}>
                                         <ListItemText primary="View Exam" />
                                     </ListItem>
-                                    <ListItem onClick={() => onSectionSelect('Result')}>
+                                    <ListItem onClick={() => {
+                                      onSectionSelect('Result');
+                                      handleClickItem('/result');
+                                    }}>
                                         <ListItemText primary="Result" />
                                     </ListItem>
                                 </List>
@@ -132,29 +153,30 @@ const SideBar = ({ onSectionSelect }) => {
                             unmountOnExit
                             className="setting-list"
                         >
-                            <List className="setting-list-items">
-                                    <ListItem button onClick={() => onSectionSelect('Account Info')}>
-                                        <ListItemText primary="Account Info" />
-                                    </ListItem>
-                                    {isStudentDashboard && (
-                                        <ListItem button onClick={() => onSectionSelect('Change Password')}>
-                                            <ListItemText primary="Change Password" />
-                                        </ListItem>
-                                    )}
-                                    <ListItem button onClick={handleThemeModeClick}>
-                                        <ListItemText primary="Theme Mode" />
-                                    </ListItem>
-                                    {showThemeToggle && (
-                                        <ListItem>
-                                            <ListItemText primary={themeMode === 'light' ? 'Light Mode' : 'Dark Mode'} />
-                                            <Switch
-                                                checked={themeMode === 'dark'}
-                                                onChange={toggleTheme}
-                                                color="primary"
-                                            />
-                                        </ListItem>
-                                    )}
-                            </List>
+                          <List className="setting-list-items">
+                              <ListItem button onClick={() => {
+                                  onSectionSelect('Account Info');
+                                  handleClickItem('/account-info');
+                              }}>
+                                  <ListItemText primary="Account Info" />
+                              </ListItem>
+                              <ListItem button onClick={() => onSectionSelect('Change Password')}>
+                                  <ListItemText primary="Change Password" />
+                              </ListItem>
+                              <ListItem button onClick={handleThemeModeClick}>
+                                  <ListItemText primary="Theme Mode" />
+                              </ListItem>
+                              {showThemeToggle && (
+                                  <ListItem>
+                                      <ListItemText primary={themeMode === 'light' ? 'Light Mode' : 'Dark Mode'} />
+                                      <Switch
+                                          checked={themeMode === 'dark'}
+                                          onChange={toggleTheme}
+                                          color="primary"
+                                      />
+                                  </ListItem>
+                              )}
+                          </List>
                         </Collapse>
                     </Card>
                 </div>
