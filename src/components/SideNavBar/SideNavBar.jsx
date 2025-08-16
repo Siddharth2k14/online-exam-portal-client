@@ -84,19 +84,9 @@ const SideNavBar = (props) => {
 
                 <List className="sidebar-menu">
                     <ListItem>
-                      {props.isStudentDash ? (
-                        <Link to="/student/dashboard" onClick={handleCloseSidebar}>
-                          <ListItemText primary="Home" />
-                        </Link>
-                      ) : props.isAdminDash ? (
-                        <Link to="/admin/dashboard" onClick={handleCloseSidebar}>
-                          <ListItemText primary="Home" />
-                        </Link>
-                      ) : (
                         <Link to="/home" onClick={handleCloseSidebar}>
                           <ListItemText primary="Home" />
                         </Link>
-                      )}
                     </ListItem>
                     <ListItem>
                         <Link to="/about" onClick={handleCloseSidebar}>

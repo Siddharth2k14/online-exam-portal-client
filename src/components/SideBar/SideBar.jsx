@@ -8,6 +8,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import Switch from '@mui/material/Switch';
 
 //Theme Context
@@ -179,6 +180,26 @@ const SideBar = ({ onSectionSelect }) => {
                           </List>
                         </Collapse>
                     </Card>
+                    <List sx={{
+                      position: 'absolute',
+                      top: '35rem',
+                      left: '2rem',
+                    }}>
+                      <ListItem button onClick={() => onSectionSelect('Back To Dashboard')}>
+                        {/* <ListItemText primary="Back To Dashboard" /> */}
+                        <Button
+                          variant="outlined"
+                          color="primary"
+                          size="small"
+                          sx={{
+                              backgroundColor: '#1976d2', // Primary blue background
+                              color: 'white',
+                            }}
+                        >
+                          Back To Dashboard
+                        </Button>
+                      </ListItem>
+                    </List>
                 </div>
             </div>
         </div>

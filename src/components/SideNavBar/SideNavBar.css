@@ -134,11 +134,11 @@
 }
 
 .close-bar:first-child {
-  transform: rotate(-135deg) translate(6px, -6px);
+  transform: rotate(-45deg) translate(6px, -1px);
 }
 
 .close-bar:last-child {
-  transform: rotate(135deg) translate(6px, 6px);
+  transform: rotate(45deg) translate(6px, 1px);
 }
 
 /* Brand in Sidebar */
