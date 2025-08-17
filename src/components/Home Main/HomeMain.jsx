@@ -22,7 +22,7 @@ const HomeMain = () => {
           <Typography variant="h6">
             Why <strong>ExamMaster</strong>?
           </Typography>
-          <Typography variant="body1">
+          <Typography className="home-main-text">
             Say goodbye to exam stress and confusing platforms. Whether you're a student preparing for your next test or an admin managing assessments, ExamMaster brings simplicity, flexibility, and speed to your fingertips.
           </Typography>
         </Box>

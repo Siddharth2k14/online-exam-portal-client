@@ -23,11 +23,16 @@
 }
 
 .home-main-desc {
+  border: 2px solid black;
   margin: 24px 0 40px 0;
 }
 
 .home-main-desc strong {
   font-weight: bold;
+}
+
+.home-main-desc .home-main-text {
+  font-size: 1.12rem;
 }
 
 .home-main-features {
