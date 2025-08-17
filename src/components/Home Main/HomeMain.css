@@ -100,9 +100,10 @@
     min-width: 95vw;
   }
   .home-main-features {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 32px;
     gap: 15px;
-    flex-direction: column;
   }
   .home-main-title {
     font-size: 1.3rem;
