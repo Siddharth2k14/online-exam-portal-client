@@ -6,7 +6,7 @@
 }
 
 .home-main-card {
-  max-width: 1200px;
+  min-width: 90vw;
   margin: 0 auto;
   padding: 40px 48px 48px 48px;
   border-radius: 18px;
@@ -31,9 +31,12 @@
 }
 
 .home-main-features {
+  border: 2px solid black;
   margin-bottom: 32px;
-  column-gap: 64px;
+  gap: 45vw; /* Much more reasonable spacing */
 }
+
+
 
 .home-main-features .MuiGrid-item {
   /* To align the two columns vertically */

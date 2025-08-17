@@ -26,6 +26,6 @@ export default defineConfig({
     setupFiles: "./src/setupTests.js"
   },
   server: {
-    allowedHosts: ["4c1c734412a4.ngrok-free.app"]
+    allowedHosts: ["c3826141edfd.ngrok-free.app"]
   }
 });

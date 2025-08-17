@@ -26,7 +26,7 @@ const HomeMain = () => {
             Say goodbye to exam stress and confusing platforms. Whether you're a student preparing for your next test or an admin managing assessments, ExamMaster brings simplicity, flexibility, and speed to your fingertips.
           </Typography>
         </Box>
-        <Grid container spacing={51.7} justifyContent="center" className="home-main-features">
+        <Box display="flex" flexDirection="row" alignItems="center" justifyContent="center" className="home-main-features">
           <Grid item xs={12} md={5}>
             <Typography variant="h6" gutterBottom>For Students</Typography>
             <List>
@@ -45,7 +45,7 @@ const HomeMain = () => {
               <ListItem><ListItemText primary="🧠 Analyze performance via built-in dashboards" /></ListItem>
             </List>
           </Grid>
-        </Grid>
+        </Box>
         <Box className="home-main-coming-soon" mt={6} textAlign="center">
           <Typography variant="h6" gutterBottom>Coming Soon</Typography>
           <List>
