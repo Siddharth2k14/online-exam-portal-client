@@ -23,7 +23,6 @@
 }
 
 .home-main-desc {
-  border: 2px solid black;
   margin: 24px 0 40px 0;
 }
 
@@ -37,18 +36,10 @@
 
 .home-main-features {
   margin-bottom: 32px;
-  gap: 30vw; /* Much more reasonable spacing */
-}
-
-@media (max-width: 900px){
-  .home-main-features {
-    margin-bottom: 32px;
-    gap: 20px;
-  }
+  gap: 30vw;
 }
 
 .home-main-features .MuiGrid-item {
-  /* To align the two columns vertically */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -81,11 +72,19 @@
   font-size: 1.05rem;
 }
 
+.home-header-text{
+    display: flex;
+    justify-content: center;
+}
+
+/* Tablet and below */
 @media (max-width: 900px) {
   .home-main-card {
     padding: 16px 8px;
   }
   .home-main-features {
+    margin-bottom: 32px;
+    gap: 20px;
     flex-direction: column;
   }
   .home-main-title {
@@ -93,33 +92,16 @@
   }
 }
 
+/* Phone */
 @media (max-width: 600px) {
   .home-main-card {
     padding: 8px 2px;
+    min-width: 95vw;
   }
-  .home-main-title {
-    font-size: 1.3rem;
-  }
-  .home-main-desc {
-    font-size: 0.95rem;
-  }
-}
-
-.home-header-text{
-    display: flex;
-    justify-content: center;
-}
-
-/* Phone responsiveness */
-@media (max-width: 600px) {
   .home-main-features {
     margin-bottom: 32px;
     gap: 15px;
-    flex-direction: column; /* Stack vertically on phones */
-  }
-  .home-main-card {
-    padding: 8px 2px;
-    min-width: 95vw; /* Take more screen space on phones */
+    flex-direction: column;
   }
   .home-main-title {
     font-size: 1.3rem;
