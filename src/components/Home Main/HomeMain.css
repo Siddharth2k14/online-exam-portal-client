@@ -32,7 +32,7 @@
 
 .home-main-features {
   margin-bottom: 32px;
-  gap: 45vw; /* Much more reasonable spacing */
+  gap: 30vw; /* Much more reasonable spacing */
 }
 
 @media (max-width: 900px){
