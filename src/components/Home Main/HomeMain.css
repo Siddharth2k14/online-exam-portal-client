@@ -31,12 +31,16 @@
 }
 
 .home-main-features {
-  border: 2px solid black;
   margin-bottom: 32px;
   gap: 45vw; /* Much more reasonable spacing */
 }
 
-
+@media (max-width: 900px){
+  .home-main-features {
+    margin-bottom: 32px;
+    gap: 20px;
+  }
+}
 
 .home-main-features .MuiGrid-item {
   /* To align the two columns vertically */
