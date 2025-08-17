@@ -13,6 +13,7 @@
   box-shadow: 0 4px 24px rgba(0,0,0,0.10);
   background: #fff;
   border: 2px solid #bdbdbd;
+  min-height: 100vh;
 }
 
 .home-main-title {
