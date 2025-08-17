@@ -110,3 +110,21 @@
     justify-content: center;
 }
 
+/* Phone responsiveness */
+@media (max-width: 600px) {
+  .home-main-features {
+    margin-bottom: 32px;
+    gap: 15px;
+    flex-direction: column; /* Stack vertically on phones */
+  }
+  .home-main-card {
+    padding: 8px 2px;
+    min-width: 95vw; /* Take more screen space on phones */
+  }
+  .home-main-title {
+    font-size: 1.3rem;
+  }
+  .home-main-desc {
+    font-size: 0.95rem;
+  }
+}
