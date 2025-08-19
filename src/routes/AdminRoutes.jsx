@@ -24,26 +24,26 @@ const AdminLoadingSpinner = () => (
 
 const AdminRoutes = () => {
   return (
-    <Suspense fallback={<AdminLoadingSpinner />}>
-      <Routes>
-        {/* Admin Dashboard */}
-        <Route path="/dashboard" element={<AdminDashboard />} />
-        
-        {/* Exam Management Routes */}
+    <Routes>
+      {/* Admin Dashboard */}
+      <Route path="/dashboard" element={<AdminDashboard />} />
+
+      {/* Exam Management Routes */}
+      <Suspense fallback={<AdminLoadingSpinner />}>
         <Route path="/exam-creation" element={<ExamCreation />} />
         <Route path="/exam-creation/objective" element={<ObjectiveExamCreation />} />
         <Route path="/exam-creation/subjective" element={<SubjectiveExamCreation />} />
-        
+
         {/* Manage Exams */}
         <Route path="/manage-exams" element={<ManageExam />} />
         <Route path="/manage-exams/:examTitle" element={<ViewExam />} />
-        
-        {/* You might want to add more admin-specific routes here */}
-        {/* <Route path="/users" element={<ManageUsers />} /> */}
-        {/* <Route path="/reports" element={<Reports />} /> */}
-        {/* <Route path="/settings" element={<AdminSettings />} /> */}
-      </Routes>
-    </Suspense>
+      </Suspense>
+
+      {/* You might want to add more admin-specific routes here */}
+      {/* <Route path="/users" element={<ManageUsers />} /> */}
+      {/* <Route path="/reports" element={<Reports />} /> */}
+      {/* <Route path="/settings" element={<AdminSettings />} /> */}
+    </Routes>
   );
 };
 

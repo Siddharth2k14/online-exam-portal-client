@@ -23,25 +23,25 @@ const StudentLoadingSpinner = () => (
 
 const StudentRoutes = () => {
   return (
-    <Suspense fallback={<StudentLoadingSpinner />}>
-      <Routes>
-        {/* Student Dashboard */}
-        <Route path="/dashboard" element={<StudentDashboard />} />
-        
+    <Routes>
+      {/* Student Dashboard */}
+      <Route path="/dashboard" element={<StudentDashboard />} />
+
+      <Suspense fallback={<StudentLoadingSpinner />}>
         {/* Exam Related Routes */}
         <Route path="/exams" element={<ExamsPage />} />
         <Route path="/start-exam/:examTitle" element={<StartExam />} />
         <Route path="/exam/:examTitle/review" element={<ViewExamReview />} />
-        
+
         {/* Results */}
         <Route path="/results" element={<Result />} />
-        
-        {/* You might want to add more student-specific routes here */}
-        {/* <Route path="/progress" element={<StudentProgress />} /> */}
-        {/* <Route path="/certificates" element={<Certificates />} /> */}
-        {/* <Route path="/study-materials" element={<StudyMaterials />} /> */}
-      </Routes>
-    </Suspense>
+      </Suspense>
+
+      {/* You might want to add more student-specific routes here */}
+      {/* <Route path="/progress" element={<StudentProgress />} /> */}
+      {/* <Route path="/certificates" element={<Certificates />} /> */}
+      {/* <Route path="/study-materials" element={<StudyMaterials />} /> */}
+    </Routes>
   );
 };
 

@@ -11,7 +11,6 @@ const SharedRoutes = () => {
       {/* Account Management Routes */}
       <Route path="/change-password" element={<ChangePassword />} />
       <Route path="/account-settings" element={<AccountSettings />} />
-      <Route path="/profile" element={<AccountSettings />} />
       
       {/* You can add more shared routes here */}
       {/* <Route path="/help" element={<Help />} /> */}
