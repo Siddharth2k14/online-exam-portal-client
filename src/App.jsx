@@ -1,21 +1,23 @@
-//Regular Imports
+// App.jsx - Main App Component (Refactored)
 import { Routes, Route, Navigate } from 'react-router-dom';
-import PrivateRoute from './components/Private Route/PrivateRoute.jsx';
+
+// Context Providers
 import { ThemeProvider } from './components/Theme Context/ThemeContext';
 
-//Lazy imports
-import { Suspense } from 'react';
-import PublicRoutes from './routes/PublicRoutes.jsx';
-import AdminRoutes from './routes/AdminRoutes.jsx';
-import StudentRoutes from './routes/StudentRoutes.jsx';
-import SharedRoutes from './routes/SharedRoutes.jsx';
+// Route Components
+import PublicRoutes from './routes/PublicRoutes';
+import AdminRoutes from './routes/AdminRoutes';
+import StudentRoutes from './routes/StudentRoutes';
+import SharedRoutes from './routes/SharedRoutes';
 
-//Main App Routing Component
+// Private Route Component
+import PrivateRoute from './components/Private Route/PrivateRoute.jsx';
+
 const App = () => {
   return (
     <ThemeProvider>
       <Routes>
-        {/* Public Routes */}
+        {/* Public Routes - No authentication required */}
         <Route path="/*" element={<PublicRoutes />} />
 
         {/* Protected Admin Routes */}
@@ -38,7 +40,7 @@ const App = () => {
           }
         />
 
-        {/* Shared Protected Routes */}
+        {/* Shared Protected Routes (Both Admin and Student) */}
         <Route
           path="/shared/*"
           element={
@@ -55,7 +57,7 @@ const App = () => {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </ThemeProvider>
-  )
-}
+  );
+};
 
 export default App;

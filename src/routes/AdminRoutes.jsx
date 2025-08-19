@@ -29,15 +29,25 @@ const AdminRoutes = () => {
       <Route path="/dashboard" element={<AdminDashboard />} />
 
       {/* Exam Management Routes */}
-        <Route path="/exam-creation" element={<ExamCreation />} />
-      <Suspense fallback={<AdminLoadingSpinner />}>
-        <Route path="/exam-creation/objective" element={<ObjectiveExamCreation />} />
-        <Route path="/exam-creation/subjective" element={<SubjectiveExamCreation />} />
+      <Route path="/exam-creation" element={<ExamCreation />} />
+      <Route path="/exam-creation/objective" element={
+        <Suspense fallback={<AdminLoadingSpinner />}>
+          <ObjectiveExamCreation />
+        </Suspense>
+      } />
+      <Route path="/exam-creation/subjective" element={
+        <Suspense fallback={<AdminLoadingSpinner />}>
+          <SubjectiveExamCreation />
+        </Suspense>
+      } />
 
-        {/* Manage Exams */}
-        <Route path="/manage-exams/:examTitle" element={<ViewExam />} />
-      </Suspense>
-        <Route path="/manage-exams" element={<ManageExam />} />
+      {/* Manage Exams */}
+      <Route path="/manage-exams" element={<ManageExam />} />
+      <Route path="/manage-exams/:examTitle" element={
+        <Suspense fallback={<AdminLoadingSpinner />}>
+          <ViewExam />
+        </Suspense>
+      } />
 
       {/* You might want to add more admin-specific routes here */}
       {/* <Route path="/users" element={<ManageUsers />} /> */}

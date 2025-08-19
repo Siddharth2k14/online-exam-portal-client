@@ -27,14 +27,20 @@ const StudentRoutes = () => {
       {/* Student Dashboard */}
       <Route path="/dashboard" element={<StudentDashboard />} />
 
+      {/* Exam Related Routes */}
       <Route path="/exams" element={<ExamsPage />} />
-      <Suspense fallback={<StudentLoadingSpinner />}>
-        {/* Exam Related Routes */}
-        <Route path="/start-exam/:examTitle" element={<StartExam />} />
-        <Route path="/exam/:examTitle/review" element={<ViewExamReview />} />
+      <Route path="/start-exam/:examTitle" element={
+        <Suspense fallback={<StudentLoadingSpinner />}>
+          <StartExam />
+        </Suspense>
+      } />
+      <Route path="/exam/:examTitle/review" element={
+        <Suspense fallback={<StudentLoadingSpinner />}>
+          <ViewExamReview />
+        </Suspense>
+      } />
 
-        {/* Results */}
-      </Suspense>
+      {/* Results */}
       <Route path="/results" element={<Result />} />
 
       {/* You might want to add more student-specific routes here */}
