@@ -6,7 +6,6 @@ import { lazy, Suspense } from 'react';
 import AdminDashboard from '../pages/admin/Admin Dashboard/AdminDashboard.jsx';
 import ExamCreation from '../components/Exam Creation/ExamCreation.jsx';
 import ManageExam from '../components/Manage Exams/ManageExam.jsx';
-import { ThemeProvider } from '../components/Theme Context/ThemeContext.jsx';
 
 // Lazy loaded components for better performance
 const ObjectiveExamCreation = lazy(() => import('../components/Objective Exam Creation/ObjectiveExamCreation'));
@@ -25,28 +24,26 @@ const AdminLoadingSpinner = () => (
 
 const AdminRoutes = () => {
   return (
-    <ThemeProvider>
-      <Routes>
-        {/* Admin Dashboard */}
-        <Route path="/dashboard" element={<AdminDashboard />} />
+    <Routes>
+      {/* Admin Dashboard */}
+      <Route path="/dashboard" element={<AdminDashboard />} />
 
-        {/* Exam Management Routes */}
+      {/* Exam Management Routes */}
         <Route path="/exam-creation" element={<ExamCreation />} />
-        <Suspense fallback={<AdminLoadingSpinner />}>
-          <Route path="/exam-creation/objective" element={<ObjectiveExamCreation />} />
-          <Route path="/exam-creation/subjective" element={<SubjectiveExamCreation />} />
+      <Suspense fallback={<AdminLoadingSpinner />}>
+        <Route path="/exam-creation/objective" element={<ObjectiveExamCreation />} />
+        <Route path="/exam-creation/subjective" element={<SubjectiveExamCreation />} />
 
-          {/* Manage Exams */}
-          <Route path="/manage-exams/:examTitle" element={<ViewExam />} />
-        </Suspense>
+        {/* Manage Exams */}
+        <Route path="/manage-exams/:examTitle" element={<ViewExam />} />
+      </Suspense>
         <Route path="/manage-exams" element={<ManageExam />} />
 
-        {/* You might want to add more admin-specific routes here */}
-        {/* <Route path="/users" element={<ManageUsers />} /> */}
-        {/* <Route path="/reports" element={<Reports />} /> */}
-        {/* <Route path="/settings" element={<AdminSettings />} /> */}
-      </Routes>
-    </ThemeProvider>
+      {/* You might want to add more admin-specific routes here */}
+      {/* <Route path="/users" element={<ManageUsers />} /> */}
+      {/* <Route path="/reports" element={<Reports />} /> */}
+      {/* <Route path="/settings" element={<AdminSettings />} /> */}
+    </Routes>
   );
 };
 

@@ -1,5 +1,5 @@
 //Regular Imports
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import PrivateRoute from './components/Private Route/PrivateRoute.jsx';
 import { ThemeProvider } from './components/Theme Context/ThemeContext';
 
