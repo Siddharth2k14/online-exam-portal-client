@@ -6,6 +6,7 @@ import { lazy, Suspense } from 'react';
 import StudentDashboard from '../pages/student/Student Dashboard/StudentDashboard.jsx';
 import ExamsPage from '../components/ExamsPage/ExamsPage.jsx';
 import Result from '../components/Result/Result.jsx';
+import { ThemeProvider } from '../components/Theme Context/ThemeContext.jsx';
 
 // Lazy loaded components for better performance
 const StartExam = lazy(() => import('../components/StartExam/StartExam'));
@@ -23,25 +24,27 @@ const StudentLoadingSpinner = () => (
 
 const StudentRoutes = () => {
   return (
-    <Routes>
-      {/* Student Dashboard */}
-      <Route path="/dashboard" element={<StudentDashboard />} />
+    <ThemeProvider>
+      <Routes>
+        {/* Student Dashboard */}
+        <Route path="/dashboard" element={<StudentDashboard />} />
 
-      <Route path="/exams" element={<ExamsPage />} />
-      <Suspense fallback={<StudentLoadingSpinner />}>
-        {/* Exam Related Routes */}
-        <Route path="/start-exam/:examTitle" element={<StartExam />} />
-        <Route path="/exam/:examTitle/review" element={<ViewExamReview />} />
+        <Route path="/exams" element={<ExamsPage />} />
+        <Suspense fallback={<StudentLoadingSpinner />}>
+          {/* Exam Related Routes */}
+          <Route path="/start-exam/:examTitle" element={<StartExam />} />
+          <Route path="/exam/:examTitle/review" element={<ViewExamReview />} />
 
-        {/* Results */}
-      </Suspense>
-      <Route path="/results" element={<Result />} />
+          {/* Results */}
+        </Suspense>
+        <Route path="/results" element={<Result />} />
 
-      {/* You might want to add more student-specific routes here */}
-      {/* <Route path="/progress" element={<StudentProgress />} /> */}
-      {/* <Route path="/certificates" element={<Certificates />} /> */}
-      {/* <Route path="/study-materials" element={<StudyMaterials />} /> */}
-    </Routes>
+        {/* You might want to add more student-specific routes here */}
+        {/* <Route path="/progress" element={<StudentProgress />} /> */}
+        {/* <Route path="/certificates" element={<Certificates />} /> */}
+        {/* <Route path="/study-materials" element={<StudyMaterials />} /> */}
+      </Routes>
+    </ThemeProvider>
   );
 };
 
