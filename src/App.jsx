@@ -30,6 +30,8 @@ import Result from './components/Result/Result.jsx';
 import StartExam from './components/StartExam/StartExam.jsx';
 import ChangePassword from './components/Change Password/ChangePassword.jsx';
 import AccountSettings from './components/Account Settings/AccountSettings.jsx';
+import ViewExam  from './components/Manage Exams/ViewExam.jsx';
+import ViewExamReview from './components/ViewExam/ViewExam.jsx';
 
 const App = () => {
   return (
@@ -89,6 +91,15 @@ const App = () => {
           element={
             <PrivateRoute roles={['admin']}>
               <SubjectiveExamCreation />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/admin/manage-exams/view-exam/:examId"
+          element={
+            <PrivateRoute roles={['admin']}>
+              <ViewExam />
             </PrivateRoute>
           }
         />
