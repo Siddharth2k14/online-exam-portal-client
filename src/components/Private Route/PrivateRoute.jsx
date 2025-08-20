@@ -13,11 +13,28 @@ const PrivateRoute = ({ allowedRoles }) => {
   const userToken = token || localToken;
   const userRole = role || localRole;
 
+  // Check if user is authenticated
   if (!userToken) {
     return <Navigate to="/login/student" replace />;
   }
 
-  if (!allowedRoles.includes(userRole)) {
+  // Check if user role is authorized
+  if (!userRole) {
+    return <Navigate to="/" replace />;
+  }
+
+  // Ensure allowedRoles is an array and normalize roles for comparison
+  if (!allowedRoles) {
+    return <Navigate to="/" replace />;
+  }
+  
+  const rolesArray = Array.isArray(allowedRoles) ? allowedRoles : [allowedRoles];
+  const normalizedAllowedRoles = rolesArray.map(role => 
+    typeof role === 'string' ? role.toLowerCase().trim() : role
+  );
+  const normalizedUserRole = typeof userRole === 'string' ? userRole.toLowerCase().trim() : userRole;
+
+  if (!normalizedAllowedRoles.includes(normalizedUserRole)) {
     return <Navigate to="/" replace />;
   }
 

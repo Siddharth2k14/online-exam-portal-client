@@ -57,7 +57,7 @@ const App = () => {
         <Route
           path="/admin/dashboard"
           element={
-            <PrivateRoute allowedRoles={['admin']}>
+            <PrivateRoute roles={['admin']}>
               <AdminDashboard />
             </PrivateRoute>
           }
@@ -65,7 +65,7 @@ const App = () => {
         <Route
           path="/admin/exam-creation"
           element={
-            <PrivateRoute allowedRoles={['admin']}>
+            <PrivateRoute roles={['admin']}>
               <ExamCreation />
             </PrivateRoute>
           }
@@ -73,7 +73,7 @@ const App = () => {
         <Route
           path="/admin/manage-exams"
           element={
-            <PrivateRoute allowedRoles={['admin']}>
+            <PrivateRoute roles={['admin']}>
               <ManageExam />
             </PrivateRoute>
           }
@@ -81,7 +81,7 @@ const App = () => {
         <Route
           path="/admin/exam-creation/objective"
           element={
-            <PrivateRoute allowedRoles={['admin']}>
+            <PrivateRoute roles={['admin']}>
               <ObjectiveExamCreation />
             </PrivateRoute>
           }
@@ -89,7 +89,7 @@ const App = () => {
         <Route
           path="/admin/exam-creation/subjective"
           element={
-            <PrivateRoute allowedRoles={['admin']}>
+            <PrivateRoute roles={['admin']}>
               <SubjectiveExamCreation />
             </PrivateRoute>
           }
@@ -98,7 +98,7 @@ const App = () => {
         <Route
           path="/admin/manage-exams/view-exam/:examId"
           element={
-            <PrivateRoute allowedRoles={['admin']}>
+            <PrivateRoute roles={['admin']}>
               <ViewExam />
             </PrivateRoute>
           }
@@ -108,7 +108,7 @@ const App = () => {
         <Route
           path="/student/dashboard"
           element={
-            <PrivateRoute allowedRoles={['student']}>
+            <PrivateRoute roles={['student']}>
               <StudentDashboard />
             </PrivateRoute>
           }
@@ -116,7 +116,7 @@ const App = () => {
         <Route
           path="/student/exams"
           element={
-            <PrivateRoute allowedRoles={['student']}>
+            <PrivateRoute roles={['student']}>
               <ExamsPage />
             </PrivateRoute>
           }
@@ -124,7 +124,7 @@ const App = () => {
         <Route
           path="/student/results"
           element={
-            <PrivateRoute allowedRoles={['student']}>
+            <PrivateRoute roles={['student']}>
               <Result />
             </PrivateRoute>
           }
@@ -134,7 +134,7 @@ const App = () => {
         <Route
           path="/student/start-exam/:examTitle"
           element={
-            <PrivateRoute allowedRoles={['student']}>
+            <PrivateRoute roles={['student']}>
               <StartExam />
             </PrivateRoute>
           }
@@ -142,7 +142,7 @@ const App = () => {
         <Route
           path="/student/exam/:examTitle/review"
           element={
-            <PrivateRoute allowedRoles={['student']}>
+            <PrivateRoute roles={['student']}>
               <ViewExamReview />
             </PrivateRoute>
           }
