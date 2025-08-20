@@ -1,9 +1,9 @@
 //Regular Imports
 import { useSelector } from 'react-redux';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 //Component
-const PrivateRoute = ({ allowedRoles }) => {
+const PrivateRoute = ({ roles, children }) => {
   const { token, role } = useSelector((state) => state.auth);
 
   // Backup from localStorage in case Redux state is cleared on refresh
@@ -15,7 +15,7 @@ const PrivateRoute = ({ allowedRoles }) => {
 
   // Check if user is authenticated
   if (!userToken) {
-    return <Navigate to="/login/student" replace />;
+    return <Navigate to="/login" replace />;
   }
 
   // Check if user role is authorized
@@ -23,12 +23,12 @@ const PrivateRoute = ({ allowedRoles }) => {
     return <Navigate to="/" replace />;
   }
 
-  // Ensure allowedRoles is an array and normalize roles for comparison
-  if (!allowedRoles) {
+  // Ensure roles is an array and normalize roles for comparison
+  if (!roles) {
     return <Navigate to="/" replace />;
   }
   
-  const rolesArray = Array.isArray(allowedRoles) ? allowedRoles : [allowedRoles];
+  const rolesArray = Array.isArray(roles) ? roles : [roles];
   const normalizedAllowedRoles = rolesArray.map(role => 
     typeof role === 'string' ? role.toLowerCase().trim() : role
   );
@@ -38,7 +38,7 @@ const PrivateRoute = ({ allowedRoles }) => {
     return <Navigate to="/" replace />;
   }
 
-  return <Outlet />;
+  return children;
 };
 
 export default PrivateRoute;
