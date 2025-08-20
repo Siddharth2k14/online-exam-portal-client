@@ -1,7 +1,9 @@
 //Regular Imports
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import NavBar from "../../../components/NavBar/NavBar.jsx";
-import AdminPage from "../../../components/AdminPage/AdminPage.jsx"
+
+//Lazy Loading
+const AdminPage = lazy(() => import("../../../components/AdminPage/AdminPage.jsx"));
 
 const AdminDashboard = () => {
     const [toggle, setToggle] = useState(false);
@@ -9,7 +11,9 @@ const AdminDashboard = () => {
     return (
         <div>
             <NavBar toggle={toggle} setToggle={setToggle} name="admin" />
-            <AdminPage />
+            <Suspense fallback={<h1>Loading...</h1>}>
+                <AdminPage />
+            </Suspense>
         </div>
     )
 }
