@@ -34,3 +34,8 @@ ManageExam.md
 project-src.ini
 src.ini
 file_sizes.csv
+src/routes
+StudentRoutes.jsx
+AdminRoutes.jsx
+PublicRoutes.jsx
+SharedRoutes.jsx

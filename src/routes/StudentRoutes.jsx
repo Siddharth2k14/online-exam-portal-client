@@ -8,8 +8,8 @@ import ExamsPage from '../components/ExamsPage/ExamsPage.jsx';
 import Result from '../components/Result/Result.jsx';
 
 // Lazy loaded components (loaded only when needed)
-const StartExam = lazy(() => import('../components/StartExam/StartExam'));
-const ViewExamReview = lazy(() => import('../components/ViewExam/ViewExam'));
+const StartExam = lazy(() => import('../components/StartExam/StartExam.jsx'));
+const ViewExamReview = lazy(() => import('../components/ViewExam/ViewExam.jsx'));
 
 // Loading component for lazy routes only
 const LazyLoadingSpinner = () => (

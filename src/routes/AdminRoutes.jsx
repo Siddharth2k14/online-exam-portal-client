@@ -8,9 +8,9 @@ import ExamCreation from '../components/Exam Creation/ExamCreation.jsx';
 import ManageExam from '../components/Manage Exams/ManageExam.jsx';
 
 // Lazy loaded components (loaded only when needed)
-const ObjectiveExamCreation = lazy(() => import('../components/Objective Exam Creation/ObjectiveExamCreation'));
-const SubjectiveExamCreation = lazy(() => import('../components/Subjective Exam Creation/SubjectiveExamCreation'));
-const ViewExam = lazy(() => import('../components/Manage Exams/ViewExam'));
+const ObjectiveExamCreation = lazy(() => import('../components/Objective Exam Creation/ObjectiveExamCreation.jsx'));
+const SubjectiveExamCreation = lazy(() => import('../components/Subjective Exam Creation/SubjectiveExamCreation.jsx'));
+const ViewExam = lazy(() => import('../components/Manage Exams/ViewExam.jsx'));
 
 // Loading component for lazy routes only
 const LazyLoadingSpinner = () => (
