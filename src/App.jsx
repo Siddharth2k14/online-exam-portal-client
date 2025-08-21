@@ -63,7 +63,7 @@ const App = () => {
           }
         />
         <Route
-          path="/admin/exam-creation"
+          path="/exam-creation"
           element={
             <PrivateRoute roles={['admin']}>
               <ExamCreation />
@@ -71,7 +71,7 @@ const App = () => {
           }
         />
         <Route
-          path="/admin/manage-exams"
+          path="/manage-exams"
           element={
             <PrivateRoute roles={['admin']}>
               <ManageExam />
@@ -79,7 +79,7 @@ const App = () => {
           }
         />
         <Route
-          path="/admin/exam-creation/objective"
+          path="/exam-creation/objective"
           element={
             <PrivateRoute roles={['admin']}>
               <ObjectiveExamCreation />
@@ -87,7 +87,7 @@ const App = () => {
           }
         />
         <Route
-          path="/admin/exam-creation/subjective"
+          path="/exam-creation/subjective"
           element={
             <PrivateRoute roles={['admin']}>
               <SubjectiveExamCreation />
@@ -96,7 +96,7 @@ const App = () => {
         />
 
         <Route
-          path="/admin/manage-exams/view-exam/:examId"
+          path="/manage-exams/view-exam/:examId"
           element={
             <PrivateRoute roles={['admin']}>
               <ViewExam />
@@ -114,7 +114,7 @@ const App = () => {
           }
         />
         <Route
-          path="/student/exams"
+          path="/exams"
           element={
             <PrivateRoute roles={['student']}>
               <ExamsPage />
@@ -122,7 +122,7 @@ const App = () => {
           }
         />
         <Route
-          path="/student/results"
+          path="/results"
           element={
             <PrivateRoute roles={['student']}>
               <Result />
@@ -132,7 +132,7 @@ const App = () => {
 
         {/* Lazy-loaded protected routes */}
         <Route
-          path="/student/start-exam/:examTitle"
+          path="/start-exam/:examTitle"
           element={
             <PrivateRoute roles={['student']}>
               <StartExam />
@@ -140,7 +140,7 @@ const App = () => {
           }
         />
         <Route
-          path="/student/exam/:examTitle/review"
+          path="/exam/:examTitle/review"
           element={
             <PrivateRoute roles={['student']}>
               <ViewExamReview />
