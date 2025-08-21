@@ -24,6 +24,7 @@ const SubjectiveExamCreation = () => {
   const [examTitle, setExamTitle] = useState('');
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
+  const [marks, setMarks] = useState('');
 
   const location = useLocation();
   const subjectiveTitleExam = location.state?.titleExam || '';
@@ -45,6 +46,7 @@ const SubjectiveExamCreation = () => {
         exam_title: subjectiveTitleExam, // <-- sends exam_name, not exam_title
         question,
         answer,
+        marks: parseInt(marks)
       })
     });
 
@@ -57,6 +59,7 @@ const SubjectiveExamCreation = () => {
     setExamTitle('');
     setQuestion('');
     setAnswer('');
+    setMarks('');
     alert('Question added!');
 
   };
@@ -98,6 +101,8 @@ const SubjectiveExamCreation = () => {
                 type="number"
                 placeholder="Enter marks"
                 className='marks-input'
+                value={marks}
+                onChange={e => setMarks(e.target.value)}
               />
             </Card>
           </Box>
