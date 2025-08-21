@@ -80,7 +80,17 @@ const Signup = () => {
         const result = await dispatch(signup({ name, email, password, confirmPassword })).unwrap();
         console.log('Signup successful, role assigned:', result.role);
         // Navigate to login without role parameter
-        navigate('/login');
+
+        if (result.role === 'admin') {
+          navigate('/admin/dashboard');
+        }
+
+        else if (result.role === 'student') {
+          navigate('/student/dashboard');
+        }
+        else {
+          navigate('/login');
+        }
       } catch (err) {
         setErrors({ api: err || 'Signup failed' });
         setOpenSnackbar(true);
