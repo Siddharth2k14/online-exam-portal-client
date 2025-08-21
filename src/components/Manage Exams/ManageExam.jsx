@@ -44,7 +44,7 @@ const ManageExam = () => {
   }, []);
 
   const handleView = (exam_title) => {
-    navigate(`/manage-exams/${encodeURIComponent(exam_title)}`);
+    navigate(`/view-exam/${encodeURIComponent(exam_title)}`);
   };
 
   const handleDelete = async (exam_title) => {

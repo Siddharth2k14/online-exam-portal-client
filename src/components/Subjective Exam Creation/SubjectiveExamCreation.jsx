@@ -17,7 +17,8 @@ import './SubjectiveExamCreation.css';
 import { addSubjectiveQuestion } from '../../redux/subjectiveExamSlice';
 
 //Router
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Box } from '@mui/material';
 
 const SubjectiveExamCreation = () => {
   const [examTitle, setExamTitle] = useState('');
@@ -27,6 +28,7 @@ const SubjectiveExamCreation = () => {
   const location = useLocation();
   const subjectiveTitleExam = location.state?.titleExam || '';
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const subjectiveQuestions = useSelector(state => state.subjectiveExam.questions);
 
   const handleAddQuestion = async () => {
@@ -66,15 +68,39 @@ const SubjectiveExamCreation = () => {
           Create Subjective Exam for: {subjectiveTitleExam || 'New Exam'}
         </Typography>
         <Card className='exam-details'>
-          <Card className='exam-title-card'>
-            <Input
-              type="text"
-              placeholder="Enter the question here"
-              className='exam-title-input'
-              value={question}
-              onChange={e => setQuestion(e.target.value)}
-            />
-          </Card>
+          <Box style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            paddingBottom: '10px',
+            paddingTop: '20px',
+            width: '95%',
+            marginBottom: '30px',
+          }}>
+            <Card className='exam-title-card'>
+              <Typography className='exam-title-text' variant='h6'>
+                Question title
+              </Typography>
+              <Input
+                type="text"
+                placeholder="Enter the question here"
+                className='exam-title-input'
+                value={question}
+                onChange={e => setQuestion(e.target.value)}
+              />
+            </Card>
+
+            <Card className='exam-title-marks'>
+              <Typography className='exam-marks-text' variant='h6'>
+                Marks
+              </Typography>
+              <Input
+                type="number"
+                placeholder="Enter marks"
+                className='marks-input'
+              />
+            </Card>
+          </Box>
           <Card className='exam-question-card'>
             <Typography className='exam-answer-text' variant='h6'>
               Answer
@@ -92,6 +118,13 @@ const SubjectiveExamCreation = () => {
           <div className="button-row">
             <Button className="nav-btn" onClick={handleAddQuestion}>
               Add Question
+            </Button>
+            <Button
+              variant="outlined"
+              onClick={() => navigate(-1)}
+              className="view-exam-back-btn"
+            >
+              Back
             </Button>
           </div>
         </Card>

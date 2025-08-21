@@ -96,7 +96,7 @@ const App = () => {
         />
 
         <Route
-          path="/manage-exams/view-exam/:examId"
+          path="/view-exam/:examTitle"
           element={
             <PrivateRoute roles={['admin']}>
               <ViewExam />
