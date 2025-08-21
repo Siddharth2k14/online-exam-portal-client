@@ -33,35 +33,56 @@ const SubjectiveExamCreation = () => {
   const subjectiveQuestions = useSelector(state => state.subjectiveExam.questions);
 
   const handleAddQuestion = async () => {
-    if (!subjectiveTitleExam.trim() || !question.trim() || !answer.trim()) {
+    // Fixed validation - includes marks check
+    if (!subjectiveTitleExam.trim() || !question.trim() || !answer.trim() || !marks.trim()) {
       alert('Please fill all fields.');
       return;
     }
 
-    // Save to backend
-    await fetch('https://online-exam-portal-server.onrender.com/api/questions/subjective', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        exam_title: subjectiveTitleExam, // <-- sends exam_name, not exam_title
+    // Validate marks is a positive number
+    const marksNumber = parseInt(marks);
+    if (isNaN(marksNumber) || marksNumber <= 0) {
+      alert('Please enter a valid positive number for marks.');
+      return;
+    }
+
+    try {
+      // Save to backend
+      const response = await fetch('https://online-exam-portal-server.onrender.com/api/questions/subjective', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          exam_title: subjectiveTitleExam,
+          question,
+          answer,
+          marks: marksNumber // Use the validated number
+        })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to add question');
+      }
+
+      // Update Redux store
+      dispatch(addSubjectiveQuestion({
+        exam_title: subjectiveTitleExam,
         question,
         answer,
-        marks: parseInt(marks)
-      })
-    });
+        marks: marksNumber // Include marks in Redux too
+      }));
 
-    dispatch(addSubjectiveQuestion({
-      exam_title: subjectiveTitleExam,
-      question,
-      answer,
-    }));
+      // Clear all fields
+      setExamTitle('');
+      setQuestion('');
+      setAnswer('');
+      setMarks('');
+      alert('Question added successfully!');
 
-    setExamTitle('');
-    setQuestion('');
-    setAnswer('');
-    setMarks('');
-    alert('Question added!');
-
+    } catch (error) {
+      console.error('Error adding question:', error);
+      alert('Error adding question: ' + error.message);
+    }
   };
 
   return (
@@ -103,6 +124,7 @@ const SubjectiveExamCreation = () => {
                 className='marks-input'
                 value={marks}
                 onChange={e => setMarks(e.target.value)}
+                inputProps={{ min: 1 }} // Ensure only positive numbers
               />
             </Card>
           </Box>
@@ -138,4 +160,4 @@ const SubjectiveExamCreation = () => {
   )
 }
 
-export default SubjectiveExamCreation
+export default SubjectiveExamCreation;
