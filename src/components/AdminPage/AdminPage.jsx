@@ -22,6 +22,7 @@ const ExamCreation = lazy(() => import('../Exam Creation/ExamCreation'));
 const ManageExam = lazy(() => import('../Manage Exams/ManageExam'));
 const AccountSettings = lazy(() => import('../Account Settings/AccountSettings'));
 const ChangePassword = lazy(() => import('../Change Password/ChangePassword'));
+const StudentList = lazy(() => import('../Student List/StudentList'));
 
 // Loading component with consistent styling
 const ComponentLoading = ({ message = "Loading..." }) => (
@@ -76,6 +77,14 @@ const AdminPage = () => {
                 <ChangePassword />
             </Suspense>
         );
+    }
+
+    else if (selectedSection === 'Student List'){
+      return(
+        <Suspense fallback={<ComponentLoading message="Loading Student List..." />}>
+            <StudentList />
+        </Suspense>
+      )
     }
 
     // Default dashboard content - no lazy loading needed

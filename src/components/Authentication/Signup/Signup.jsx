@@ -15,6 +15,7 @@ import {
   Snackbar,
   Alert,
   CircularProgress,
+  FormHelperText,
 } from '@mui/material';
 
 //CSS
@@ -29,6 +30,7 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [errors, setErrors] = useState({});
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -60,51 +62,78 @@ const Signup = () => {
 
   const validateForm = () => {
     const newErrors = {};
+    
     if (!name.trim()) newErrors.name = 'Name is required';
+    else if (name.trim().length < 2) newErrors.name = 'Name must be at least 2 characters';
+    
     if (!email) newErrors.email = 'Email is required';
     else if (!/\S+@\S+\.\S+/.test(email)) newErrors.email = 'Enter a valid email';
+    
     if (!password) newErrors.password = 'Password is required';
     else if (password.length < 6) newErrors.password = 'Password must be at least 6 characters';
-    if (confirmPassword !== password) newErrors.confirmPassword = 'Passwords do not match';
+    
+    if (!confirmPassword) newErrors.confirmPassword = 'Please confirm your password';
+    else if (confirmPassword !== password) newErrors.confirmPassword = 'Passwords do not match';
+    
+    if (!phoneNumber) newErrors.phoneNumber = 'Phone number is required';
+    else if (!/^\d{10}$/.test(phoneNumber)) newErrors.phoneNumber = 'Phone number must be exactly 10 digits';
+    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    
     if (validateForm()) {
       try {
         setLoading(true);
+        setErrors({}); // Clear previous errors
 
-        // Backend will determine role from email domain
-        const result = await dispatch(signup({ name, email, password, confirmPassword })).unwrap();
+        // Include phone number in the signup data
+        const signupData = {
+          name: name.trim(),
+          email: email.toLowerCase(),
+          password,
+          confirmPassword,
+          phoneNumber
+        };
+
+        const result = await dispatch(signup(signupData)).unwrap();
+        
         console.log('Signup successful, role assigned:', result.role);
-        // Navigate to login without role parameter
 
+        // Navigate based on role
         if (result.role === 'admin') {
           navigate('/admin/dashboard');
-        }
-
-        else if (result.role === 'student') {
+        } else if (result.role === 'student') {
           navigate('/student/dashboard');
-        }
-        else {
+        } else {
           navigate('/login');
         }
+        
       } catch (err) {
-        setErrors({ api: err || 'Signup failed' });
+        console.error('Signup error:', err);
+        const errorMessage = err.message || err || 'Signup failed. Please try again.';
+        setErrors({ api: errorMessage });
         setOpenSnackbar(true);
       } finally {
         setLoading(false);
       }
     } else {
       setOpenSnackbar(true);
-      setLoading(false);
     }
   };
 
   const handleBack = () => {
     navigate('/');
+  };
+
+  const handlePhoneNumberChange = (e) => {
+    const value = e.target.value.replace(/\D/g, ''); // Only allow digits
+    if (value.length <= 10) {
+      setPhoneNumber(value);
+    }
   };
 
   if (loading === true) {
@@ -138,7 +167,7 @@ const Signup = () => {
           </div>
           <CardContent className='signup-card-body'>
             <form onSubmit={handleSubmit} className='signup-form'>
-              <FormControl>
+              <FormControl error={!!errors.name}>
                 <InputLabel className='name-header'>Enter the Name</InputLabel>
                 <Input
                   type='text'
@@ -148,8 +177,10 @@ const Signup = () => {
                   onChange={e => setName(e.target.value)}
                   sx={{ background: 'rgba(255, 255, 255, 0.1)' }}
                 />
+                {errors.name && <FormHelperText>{errors.name}</FormHelperText>}
               </FormControl>
-              <FormControl>
+
+              <FormControl error={!!errors.email}>
                 <InputLabel className='email-header'>Enter the Email</InputLabel>
                 <Input
                   type='email'
@@ -159,8 +190,10 @@ const Signup = () => {
                   onChange={e => setEmail(e.target.value)}
                   sx={{ background: 'rgba(255, 255, 255, 0.1)' }}
                 />
+                {errors.email && <FormHelperText>{errors.email}</FormHelperText>}
               </FormControl>
-              <FormControl>
+
+              <FormControl error={!!errors.password}>
                 <InputLabel className='password-header'>Enter the Password</InputLabel>
                 <Input
                   type='password'
@@ -170,8 +203,10 @@ const Signup = () => {
                   onChange={e => setPassword(e.target.value)}
                   sx={{ background: 'rgba(255, 255, 255, 0.1)' }}
                 />
+                {errors.password && <FormHelperText>{errors.password}</FormHelperText>}
               </FormControl>
-              <FormControl>
+
+              <FormControl error={!!errors.confirmPassword}>
                 <InputLabel className='confirm-password-header'>Confirm the Password</InputLabel>
                 <Input
                   type='password'
@@ -181,7 +216,22 @@ const Signup = () => {
                   onChange={e => setConfirmPassword(e.target.value)}
                   sx={{ background: 'rgba(255, 255, 255, 0.1)' }}
                 />
+                {errors.confirmPassword && <FormHelperText>{errors.confirmPassword}</FormHelperText>}
               </FormControl>
+
+              <FormControl error={!!errors.phoneNumber}>
+                <InputLabel className='phone-number-header'>Enter your Phone Number</InputLabel>
+                <Input
+                  type='tel'
+                  placeholder='Phone Number (10 digits)'
+                  className='phone-number-input'
+                  sx={{ background: 'rgba(255, 255, 255, 0.1)' }}
+                  value={phoneNumber}
+                  onChange={handlePhoneNumberChange}
+                />
+                {errors.phoneNumber && <FormHelperText>{errors.phoneNumber}</FormHelperText>}
+              </FormControl>
+
               <FormControl
                 sx={{
                   display: 'flex',
@@ -196,7 +246,7 @@ const Signup = () => {
                   variant='contained'
                   color='primary'
                   type='submit'
-                  disabled={loading || !name || !email || !password || !confirmPassword}
+                  disabled={loading || !name.trim() || !email || !password || !confirmPassword || !phoneNumber}
                 >
                   {loading ? 'Signing up...' : 'Signup'}
                 </Button>
@@ -206,6 +256,7 @@ const Signup = () => {
                   variant='contained'
                   color='primary'
                   style={{ marginRight: '16px' }}
+                  disabled={loading}
                 >
                   Back
                 </Button>
@@ -222,6 +273,7 @@ const Signup = () => {
                 to='/'
                 variant='text'
                 color='primary'
+                disabled={loading}
               >
                 Log In
               </Button>
@@ -230,7 +282,7 @@ const Signup = () => {
         </Card>
       </div>
 
-      <Snackbar open={openSnackbar} autoHideDuration={3000} onClose={handleCloseSnackbar}>
+      <Snackbar open={openSnackbar} autoHideDuration={5000} onClose={handleCloseSnackbar}>
         <Alert onClose={handleCloseSnackbar} severity="error">
           {errors.api || error || "Please fill all required fields correctly!"}
         </Alert>

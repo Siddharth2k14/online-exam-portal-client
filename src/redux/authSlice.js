@@ -25,13 +25,14 @@ export const login = createAsyncThunk(
 
 export const signup = createAsyncThunk(
   'auth/signup',
-  async ({ name, email, password, confirmPassword }, thunkAPI) => {
+  async ({ name, email, password, confirmPassword, phoneNumber }, thunkAPI) => {
     try {
       const response = await axios.post(`${BASE_URL}/signup`, {
         name,
         email,
         password,
         confirmPassword,
+        phoneNumber, // Added phoneNumber parameter
       });
       return {
         user: response.data.user,
@@ -39,16 +40,19 @@ export const signup = createAsyncThunk(
         role: response.data.role,
       };
     } catch (error) {
-      P
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || 'Signup failed'
+      );
     }
   }
 );
 
 const token = localStorage.getItem("token");
 const role = localStorage.getItem("role");
+const user = localStorage.getItem("user");
 
 const initialState = {
-  user: null,
+  user: user ? JSON.parse(user) : null,
   token: token || null,
   role: role || null,
   loading: false,
@@ -66,6 +70,9 @@ const authSlice = createSlice({
       state.error = null;
       localStorage.clear();
     },
+    clearError(state) {
+      state.error = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -80,6 +87,7 @@ const authSlice = createSlice({
         state.role = action.payload.role;
         localStorage.setItem("token", action.payload.token);
         localStorage.setItem("role", action.payload.role);
+        localStorage.setItem("user", JSON.stringify(action.payload.user));
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
@@ -96,6 +104,7 @@ const authSlice = createSlice({
         state.role = action.payload.role;
         localStorage.setItem("token", action.payload.token);
         localStorage.setItem("role", action.payload.role);
+        localStorage.setItem("user", JSON.stringify(action.payload.user));
       })
       .addCase(signup.rejected, (state, action) => {
         state.loading = false;
@@ -104,5 +113,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout } = authSlice.actions;
+export const { logout, clearError } = authSlice.actions;
 export default authSlice.reducer;
