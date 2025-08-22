@@ -65,7 +65,7 @@
     text-decoration: underline; /* Underlines the title */
 }
 
-.signup-form .name-header, .email-header, .password-header, .confirm-password-header {
+.signup-form .name-header, .email-header, .password-header, .confirm-password-header, .phone-number-header {
     color: black !important; /* Ensures visibility */
     margin-bottom: 20px; /* Adds space below the label */
 }
@@ -91,18 +91,12 @@
 }
 
 
-.name-input, .email-input, .password-input, .confirm-password-input {
+.name-input, .email-input, .password-input, .confirm-password-input, .phone-number-input {
     border: 1px solid black;
     border-radius: 5px;
     background-color: rgb(217, 234, 217);
 }
 
-.name-input, .email-input, .password-input, .confirm-password-input {
-    border: 1px solid black;
-    border-radius: 5px;
-
-
-}
 
 .signup-card-footer {
     display: flex;
