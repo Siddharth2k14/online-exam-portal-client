@@ -39,9 +39,5 @@ StudentRoutes.jsx
 AdminRoutes.jsx
 PublicRoutes.jsx
 SharedRoutes.jsx
-StudentList.css
-StudentList.jsx
-Sidebar.jsx
-Sidebar.css
 Dockerfile
 .env
