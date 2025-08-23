@@ -92,14 +92,14 @@
   box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
 }
 
-/* Students wrapper */
-.students-wrapper {
+/* Admins wrapper */
+.admins-wrapper {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Student count */
-.student-count {
+/* Admin count */
+.admin-count {
   color: rgba(255, 255, 255, 0.8) !important;
   text-align: center;
   margin-bottom: 24px !important;
@@ -107,16 +107,16 @@
   font-weight: 500 !important;
 }
 
-/* No students message */
-.no-students-text {
+/* No admins message */
+.no-admins-text {
   color: rgba(255, 255, 255, 0.7) !important;
   text-align: center;
   margin-top: 48px !important;
   font-style: italic;
 }
 
-/* Student cards */
-.student-card {
+/* Admin cards */
+.admin-card {
   margin-bottom: 16px !important;
   background: rgba(255, 255, 255, 0.1) !important;
   backdrop-filter: blur(10px) !important;
@@ -126,18 +126,18 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
 }
 
-.student-card:hover {
+.admin-card:hover {
   transform: translateY(-4px);
   background: rgba(255, 255, 255, 0.15) !important;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2) !important;
 }
 
-.student-card-content {
+.admin-card-content {
   padding: 20px !important;
 }
 
-/* Student name */
-.student-name {
+/* Admin name */
+.admin-name {
   color: white !important;
   font-weight: 600 !important;
   margin-bottom: 12px !important;
@@ -145,21 +145,21 @@
   padding-bottom: 8px;
 }
 
-/* Student details */
-.student-detail {
+/* Admin details */
+.admin-detail {
   color: rgba(255, 255, 255, 0.8) !important;
   margin-bottom: 8px !important;
   font-size: 0.95rem !important;
   line-height: 1.5;
 }
 
-.student-detail:last-child {
+.admin-detail:last-child {
   margin-bottom: 0 !important;
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
-  .student-list-container {
+  .admin-list-container {
     padding: 16px;
   }
   
@@ -168,25 +168,25 @@
     margin-bottom: 24px !important;
   }
   
-  .student-card {
+  .admin-card {
     margin-bottom: 12px !important;
   }
   
-  .student-card-content {
+  .admin-card-content {
     padding: 16px !important;
   }
   
-  .student-name {
+  .admin-name {
     font-size: 1.1rem !important;
   }
   
-  .student-detail {
+  .admin-detail {
     font-size: 0.9rem !important;
   }
 }
 
 @media (max-width: 480px) {
-  .student-list-container {
+  .admin-list-container {
     padding: 12px;
   }
   
@@ -194,11 +194,11 @@
     font-size: 1.5rem !important;
   }
   
-  .student-card-content {
+  .admin-card-content {
     padding: 12px !important;
   }
   
-  .student-detail {
+  .admin-detail {
     font-size: 0.85rem !important;
   }
 }
@@ -215,32 +215,37 @@
   }
 }
 
-.student-card {
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.admin-card {
   animation: fadeInUp 0.5s ease-out forwards;
 }
 
 /* Staggered animation for multiple cards */
-.student-card:nth-child(1) { animation-delay: 0.1s; }
-.student-card:nth-child(2) { animation-delay: 0.2s; }
-.student-card:nth-child(3) { animation-delay: 0.3s; }
-.student-card:nth-child(4) { animation-delay: 0.4s; }
-.student-card:nth-child(5) { animation-delay: 0.5s; }
+.admin-card:nth-child(1) { animation-delay: 0.1s; }
+.admin-card:nth-child(2) { animation-delay: 0.2s; }
+.admin-card:nth-child(3) { animation-delay: 0.3s; }
+.admin-card:nth-child(4) { animation-delay: 0.4s; }
+.admin-card:nth-child(5) { animation-delay: 0.5s; }
 
 /* Scrollbar styling */
-.students-wrapper::-webkit-scrollbar {
+.admins-wrapper::-webkit-scrollbar {
   width: 8px;
 }
 
-.students-wrapper::-webkit-scrollbar-track {
+.admins-wrapper::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 4px;
 }
 
-.students-wrapper::-webkit-scrollbar-thumb {
+.admins-wrapper::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.3);
   border-radius: 4px;
 }
 
-.students-wrapper::-webkit-scrollbar-thumb:hover {
+.admins-wrapper::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.5);
 }

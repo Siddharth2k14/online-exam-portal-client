@@ -133,6 +133,12 @@ const SideBar = ({ onSectionSelect }) => {
                                     }}>
                                         <ListItemText primary="Result" />
                                     </ListItem>
+                                    <ListItem onClick={() => {
+                                        onSectionSelect('Admin List');
+                                        handleClickItem('/admin-list');
+                                    }}>
+                                        <ListItemText primary="Admin List" />
+                                    </ListItem>
                                 </List>
                             </Collapse>
                         ) : (

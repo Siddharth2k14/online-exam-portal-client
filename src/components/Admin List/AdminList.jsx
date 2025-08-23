@@ -6,45 +6,48 @@ import CircularProgress from '@mui/material/CircularProgress'
 import Alert from '@mui/material/Alert'
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
-import './StudentList.css'; // Import CSS file
+import './AdminList.css'; // Import CSS file
 
-const StudentList = () => {
-  const [studentData, setStudentData] = useState([]);
+const AdminList = () => {
+  const [adminData, setAdminData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchStudent = async () => {
+  const fetchAdmin = async () => {
     try {
       setLoading(true);
       setError(null);
       
-      const response = await axios.get('https://online-exam-portal-server.onrender.com/api/auth/student/all');
+      const response = await axios.get('https://online-exam-portal-server.onrender.com/api/auth/admin/all');
       console.log('API Response:', response.data);
       
       // Handle different possible response structures
-      if (response.data.students) {
-        // If backend returns { students: [...] }
-        setStudentData(response.data.students);
+      if (response.data.admins) {
+        // If backend returns { admins: [...] }
+        setAdminData(response.data.admins);
+      } else if (response.data.students) {
+        // If backend has the bug and returns { students: [...] } for admins
+        setAdminData(response.data.students);
       } else if (response.data.data) {
         // If backend returns { data: [...] }
-        setStudentData(response.data.data);
+        setAdminData(response.data.data);
       } else if (Array.isArray(response.data)) {
         // If backend returns [...] directly
-        setStudentData(response.data);
+        setAdminData(response.data);
       } else {
         throw new Error('Unexpected response format');
       }
     } catch (err) {
-      console.error('Error fetching students:', err);
-      setError(err.response?.data?.message || err.message || 'Failed to fetch students');
-      setStudentData([]);
+      console.error('Error fetching admins:', err);
+      setError(err.response?.data?.message || err.message || 'Failed to fetch admins');
+      setAdminData([]);
     } finally {
       setLoading(false);
     }
   }
 
   useEffect(() => {
-    fetchStudent();
+    fetchAdmin();
   }, []);
 
   if (loading) {
@@ -52,7 +55,7 @@ const StudentList = () => {
       <Box className="loading-container">
         <CircularProgress size={60} className="loading-spinner" />
         <Typography variant="h6" className="loading-text">
-          Loading students...
+          Loading admins...
         </Typography>
       </Box>
     );
@@ -62,13 +65,13 @@ const StudentList = () => {
     return (
       <Box className="error-container">
         <Typography variant='h4' className="page-title" gutterBottom>
-          Student List
+          Admin List
         </Typography>
         <Alert severity="error" className="error-alert">
           {error}
         </Alert>
         <button 
-          onClick={fetchStudent}
+          onClick={fetchAdmin}
           className="retry-button"
         >
           Try Again
@@ -78,42 +81,42 @@ const StudentList = () => {
   }
 
   return (
-    <Box className="student-list-container">
+    <Box className="admin-list-container">
       <Typography variant='h4' className="page-title" gutterBottom>
-        Student Information List
+        Admin Information List
       </Typography>
       
-      {studentData.length === 0 ? (
-        <Typography variant="h6" className="no-students-text">
-          No students found.
+      {adminData.length === 0 ? (
+        <Typography variant="h6" className="no-admins-text">
+          No admins found.
         </Typography>
       ) : (
-        <Box className="students-wrapper">
-          <Typography variant="body1" className="student-count" gutterBottom>
-            Total Students: {studentData.length}
+        <Box className="admins-wrapper">
+          <Typography variant="body1" className="admin-count" gutterBottom>
+            Total Admins: {adminData.length}
           </Typography>
           
-          {studentData.map((student) => (
+          {adminData.map((admin) => (
             <Card 
-              key={student._id} 
-              className="student-card"
+              key={admin._id} 
+              className="admin-card"
             >
-              <CardContent className="student-card-content">
-                <Typography variant="h6" className="student-name" gutterBottom>
-                  {student.name}
+              <CardContent className="admin-card-content">
+                <Typography variant="h6" className="admin-name" gutterBottom>
+                  {admin.name}
                 </Typography>
-                <Typography variant="body2" className="student-detail">
-                  Email: {student.email}
+                <Typography variant="body2" className="admin-detail">
+                  Email: {admin.email}
                 </Typography>
-                <Typography variant="body2" className="student-detail">
-                  Phone Number: {student.phoneNumber || student.phoneNo || 'Not provided'}
+                <Typography variant="body2" className="admin-detail">
+                  Phone Number: {admin.phoneNumber || admin.phoneNo || 'Not provided'}
                 </Typography>
-                <Typography variant="body2" className="student-detail">
-                  Role: {student.role}
+                <Typography variant="body2" className="admin-detail">
+                  Role: {admin.role}
                 </Typography>
-                {student.createdAt && (
-                  <Typography variant="body2" className="student-detail">
-                    Created At: {new Date(student.createdAt).toLocaleString()}
+                {admin.createdAt && (
+                  <Typography variant="body2" className="admin-detail">
+                    Created At: {new Date(admin.createdAt).toLocaleString()}
                   </Typography>
                 )}
               </CardContent>
@@ -125,4 +128,4 @@ const StudentList = () => {
   )
 }
 
-export default StudentList
+export default AdminList;

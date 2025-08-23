@@ -20,11 +20,12 @@ import './StudentPage.css';
 //Lazy Imports
 import { lazy, Suspense } from "react";
 // const SideBar = lazy(() => import("../SideBar/SideBar"));
-const ExamsPage = lazy(() => import('../ExamsPage/ExamsPage'));
-const ViewExam = lazy(() => import('../ViewExam/ViewExam'));
-const Result = lazy(() => import('../Result/Result'));
-const AccountSettings = lazy(() => import('../Account Settings/AccountSettings'));
-const ChangePassword = lazy(() => import('../Change Password/ChangePassword'));
+const ExamsPage = lazy(() => import('../ExamsPage/ExamsPage.jsx'));
+const ViewExam = lazy(() => import('../ViewExam/ViewExam.jsx'));
+const Result = lazy(() => import('../Result/Result.jsx'));
+const AccountSettings = lazy(() => import('../Account Settings/AccountSettings.jsx'));
+const ChangePassword = lazy(() => import('../Change Password/ChangePassword.jsx'));
+const AdminList = lazy(() => import('../Admin List/AdminList.jsx'));
 
 // Loading components with consistent styling
 const ComponentLoading = ({ message = "Loading..." }) => (
@@ -87,6 +88,14 @@ const StudentPage = () => {
                     <ChangePassword />
                 </Suspense>
             );
+        }
+
+        else if (selectedSection === 'Admin List') {
+            return (
+                <Suspense fallback={<ComponentLoading message="Loading Admins List..." />}>
+                    <AdminList />
+                </Suspense>
+            )
         }
 
         // Default dashboard content - no lazy loading needed
