@@ -41,3 +41,5 @@ PublicRoutes.jsx
 SharedRoutes.jsx
 Dockerfile
 .env
+StudentDetail.jsx
+StudentDetail.css

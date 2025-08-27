@@ -7,20 +7,23 @@ import Alert from '@mui/material/Alert'
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
 import './StudentList.css'; // Import CSS file
+import StudentDetail from '../Student Detail/StudentDetail.jsx'
+import { Button } from '@mui/material'
 
 const StudentList = () => {
   const [studentData, setStudentData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedStudent, setSelectedStudent] = useState(null);
 
   const fetchStudent = async () => {
     try {
       setLoading(true);
       setError(null);
-      
+
       const response = await axios.get('https://online-exam-portal-server.onrender.com/api/auth/student/all');
       console.log('API Response:', response.data);
-      
+
       // Handle different possible response structures
       if (response.data.students) {
         // If backend returns { students: [...] }
@@ -67,7 +70,7 @@ const StudentList = () => {
         <Alert severity="error" className="error-alert">
           {error}
         </Alert>
-        <button 
+        <button
           onClick={fetchStudent}
           className="retry-button"
         >
@@ -82,7 +85,7 @@ const StudentList = () => {
       <Typography variant='h4' className="page-title" gutterBottom>
         Student Information List
       </Typography>
-      
+
       {studentData.length === 0 ? (
         <Typography variant="h6" className="no-students-text">
           No students found.
@@ -92,15 +95,20 @@ const StudentList = () => {
           <Typography variant="body1" className="student-count" gutterBottom>
             Total Students: {studentData.length}
           </Typography>
-          
+
           {studentData.map((student) => (
-            <Card 
-              key={student._id} 
+            <Card
+              key={student._id}
               className="student-card"
             >
               <CardContent className="student-card-content">
                 <Typography variant="h6" className="student-name" gutterBottom>
-                  {student.name}
+                  <Button onClick={() => {
+                    setSelectedStudent(student);
+                    console.log("clicked");
+                  }}>
+                    {student.name}
+                  </Button>
                 </Typography>
                 <Typography variant="body2" className="student-detail">
                   Email: {student.email}
@@ -120,6 +128,15 @@ const StudentList = () => {
             </Card>
           ))}
         </Box>
+      )}
+      {selectedStudent && (
+        <StudentDetail
+          name={selectedStudent.name}
+          email={selectedStudent.email}
+          phoneNo={selectedStudent.phoneNo}
+          role={selectedStudent.role}
+          createdAt={selectedStudent.createdAt}
+        />
       )}
     </Box>
   )
