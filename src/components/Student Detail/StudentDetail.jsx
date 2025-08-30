@@ -17,9 +17,6 @@ const StudentDetail = (props) => {
                 <Typography variant='h5' gutterBottom>
                     Role: {props.role}
                 </Typography>
-                <Typography variant='h5' gutterBottom>
-                    CreatedAt: {props.createdAt}
-                </Typography>
             </Card>
         </>
     )

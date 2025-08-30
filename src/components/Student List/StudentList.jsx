@@ -80,6 +80,17 @@ const StudentList = () => {
     );
   }
 
+  if (selectedStudent) {
+    return (
+      <StudentDetail
+        name={selectedStudent.name}
+        email={selectedStudent.email}
+        phoneNo={selectedStudent.phoneNo}
+        role={selectedStudent.role}
+      />
+    )
+  }
+
   return (
     <Box className="student-list-container">
       <Typography variant='h4' className="page-title" gutterBottom>
@@ -128,15 +139,6 @@ const StudentList = () => {
             </Card>
           ))}
         </Box>
-      )}
-      {selectedStudent && (
-        <StudentDetail
-          name={selectedStudent.name}
-          email={selectedStudent.email}
-          phoneNo={selectedStudent.phoneNo}
-          role={selectedStudent.role}
-          createdAt={selectedStudent.createdAt}
-        />
       )}
     </Box>
   )
