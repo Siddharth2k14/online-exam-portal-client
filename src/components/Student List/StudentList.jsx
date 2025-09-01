@@ -15,6 +15,7 @@ const StudentList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedStudent, setSelectedStudent] = useState(null);
+  const [questions, setQuestions] = useState([]);
 
   const fetchStudent = async () => {
     try {
@@ -87,6 +88,7 @@ const StudentList = () => {
         email={selectedStudent.email}
         phoneNo={selectedStudent.phoneNo}
         role={selectedStudent.role}
+        studentId={selectedStudent._id}
       />
     )
   }

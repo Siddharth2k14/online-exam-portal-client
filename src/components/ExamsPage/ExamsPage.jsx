@@ -77,6 +77,8 @@ const ExamsPage = () => {
           !completedExams.includes(exam.exam_title)
         );
 
+        console.log("Filtered exams:", availableExams);
+
         const uniqueSubjects = [...new Set(availableExams.map(exam => exam.exam_title))];
         setExams(availableExams);
         setSubjects(uniqueSubjects);
