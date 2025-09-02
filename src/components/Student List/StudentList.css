@@ -138,7 +138,7 @@
 
 /* Student name */
 .student-name {
-  color: white !important;
+  color: black;
   font-weight: 600 !important;
   margin-bottom: 12px !important;
   border-bottom: 2px solid rgba(255, 255, 255, 0.2);
@@ -147,7 +147,7 @@
 
 /* Student details */
 .student-detail {
-  color: rgba(255, 255, 255, 0.8) !important;
+  color: rgba(255, 255, 255, 0.8);
   margin-bottom: 8px !important;
   font-size: 0.95rem !important;
   line-height: 1.5;

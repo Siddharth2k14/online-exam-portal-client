@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import CardContent from "@mui/material/CardContent";
+import Card from "@mui/material/Card";
+import Grid from "@mui/material/Grid";
+import './StudentDetail.css';
 
 const StudentDetail = ({ name, email, phoneNo, role, studentId }) => {
   const [examHistory, setExamHistory] = useState([]);
@@ -13,21 +19,21 @@ const StudentDetail = ({ name, email, phoneNo, role, studentId }) => {
       try {
         setLoading(true);
         setError(null);
-        
+
         // Use the new detailed history endpoint
         const response = await axios.get(
           `https://online-exam-portal-server.onrender.com/api/submissions/student/${studentId}/history`
         );
-        
+
         console.log("Fetched exam history:", response.data);
-        
+
         setExamHistory(response.data.examHistory || []);
         setStudentInfo(response.data.student);
         setTotalExamsAttempted(response.data.totalExamsAttempted || 0);
       } catch (err) {
         console.error("Error fetching exam history:", err);
         setError("Failed to load exam history. Please try again.");
-        
+
         // Fallback to original endpoint if new one fails
         try {
           const fallbackResponse = await axios.get(
@@ -50,146 +56,175 @@ const StudentDetail = ({ name, email, phoneNo, role, studentId }) => {
 
   const getStatusBadgeColor = (status) => {
     switch (status) {
-      case 'Completed':
-        return 'bg-green-100 text-green-800';
-      case 'Pending Review':
-        return 'bg-yellow-100 text-yellow-800';
+      case "Completed":
+        return "";
+      case "Pending Review":
+        return "";
       default:
-        return 'bg-gray-100 text-gray-800';
+        return "";
     }
   };
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     });
   };
 
   return (
-    <div className="p-6 border rounded-lg shadow-md bg-white">
+    <Card className="student-detail">
       {/* Student Info Header */}
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-800 mb-2">
-          {name} ({role})
-        </h2>
-        <div className="text-gray-600 space-y-1">
-          <p><span className="font-medium">Email:</span> {email}</p>
-          <p><span className="font-medium">Phone:</span> {phoneNo}</p>
-        </div>
-      </div>
+      <Card className="student-info">
+        <CardContent>
+          <Typography variant="h5" className="student-name">
+            {name} ({role})
+          </Typography>
+          <Box mt={1} className="student-contact">
+            <Typography variant="body1" className="student-email">
+              Email: {email}
+            </Typography>
+            <Typography variant="body1" className="student-phone">
+              Phone: {phoneNo}
+            </Typography>
+          </Box>
+        </CardContent>
+      </Card>
 
       {/* Exam Statistics */}
-      <div className="mb-6">
-        <div className="bg-blue-50 rounded-lg p-4">
-          <h3 className="text-lg font-semibold text-blue-800 mb-2">Exam Statistics</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-blue-600">{totalExamsAttempted}</div>
-              <div className="text-sm text-gray-600">Total Exams Attempted</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-green-600">
-                {examHistory.filter(exam => exam.status === 'Completed').length}
-              </div>
-              <div className="text-sm text-gray-600">Completed</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-yellow-600">
-                {examHistory.filter(exam => exam.status === 'Pending Review').length}
-              </div>
-              <div className="text-sm text-gray-600">Pending Review</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Box mt={2} className="exam-statistics-section">
+        <Typography variant="h4" gutterBottom className="section-title">
+          Exam Statistics
+        </Typography>
+        <Card className="exam-statistics-card">
+          <CardContent>
+            <Grid container spacing={3} className="exam-statistics-grid">
+              <Grid item xs={12} md={4} className="stat-item">
+                <Typography variant="h6" className="stat-value">
+                  {totalExamsAttempted}
+                </Typography>
+                <Typography variant="body2" className="stat-label">
+                  Total Exams Attempted
+                </Typography>
+              </Grid>
+              <Grid item xs={12} md={4} className="stat-item">
+                <Typography variant="h6" className="stat-value">
+                  {examHistory.filter((exam) => exam.status === "Completed").length}
+                </Typography>
+                <Typography variant="body2" className="stat-label">
+                  Completed
+                </Typography>
+              </Grid>
+              <Grid item xs={12} md={4} className="stat-item">
+                <Typography variant="h6" className="stat-value">
+                  {
+                    examHistory.filter(
+                      (exam) => exam.status === "Pending Review"
+                    ).length
+                  }
+                </Typography>
+                <Typography variant="body2" className="stat-label">
+                  Pending Review
+                </Typography>
+              </Grid>
+            </Grid>
+          </CardContent>
+        </Card>
+      </Box>
 
       {/* Exam History */}
-      <div>
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">Exam History</h3>
-        
+      <Box mt={3} className="exam-history-section">
+        <Typography variant="h4" gutterBottom className="section-title">
+          Exam History
+        </Typography>
+
         {loading ? (
-          <div className="text-center py-8">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-            <p className="mt-2 text-gray-600">Loading exam history...</p>
-          </div>
+          <Box textAlign="center" p={2} className="loading-state">
+            <Typography variant="body2">Loading exam history...</Typography>
+          </Box>
         ) : error ? (
-          <div className="text-center py-8">
-            <div className="text-red-500 mb-2">⚠️ {error}</div>
-          </div>
+          <Box textAlign="center" p={2} className="error-state">
+            <Typography color="error">⚠️ {error}</Typography>
+          </Box>
         ) : examHistory.length === 0 ? (
-          <div className="text-center py-8 bg-gray-50 rounded-lg">
-            <div className="text-gray-400 text-4xl mb-2">📝</div>
-            <p className="text-gray-600">No exams attempted yet.</p>
-          </div>
+          <Box textAlign="center" p={2} className="empty-state">
+            <Typography variant="body2">📝 No exams attempted yet.</Typography>
+          </Box>
         ) : (
-          <div className="space-y-4">
+          <Box mt={2} className="exam-list">
             {examHistory.map((exam, index) => (
-              <div key={exam._id || index} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-                  <div className="flex-1">
-                    <h4 className="text-lg font-semibold text-gray-800 mb-1">
-                      {exam.examName || exam.exam || "Unknown Exam"}
-                    </h4>
-                    <p className="text-sm text-gray-500">
-                      Attempted on: {formatDate(exam.attemptedAt)}
-                    </p>
-                  </div>
-                  <div className="mt-2 md:mt-0">
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusBadgeColor(exam.status)}`}>
-                      {exam.status || 'Completed'}
-                    </span>
-                  </div>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-                  <div className="bg-blue-50 rounded p-3">
-                    <div className="font-medium text-blue-800">Total Score</div>
-                    <div className="text-xl font-bold text-blue-600">{exam.totalScore || exam.score || 0}</div>
-                  </div>
-                  
-                  {exam.hasObjective && (
-                    <div className="bg-green-50 rounded p-3">
-                      <div className="font-medium text-green-800">Objective</div>
-                      <div className="text-lg font-semibold text-green-600">
-                        {exam.objectiveScore || 0}/{exam.totalObjectiveMarks || 0}
-                      </div>
-                    </div>
+              <Card key={exam._id || index} className="exam-card">
+                <CardContent>
+                  <Typography variant="h6" className="exam-title">
+                    {exam.examName || exam.exam || "Unknown Exam"}
+                  </Typography>
+                  <Typography variant="body2" gutterBottom className="exam-date">
+                    Attempted on: {formatDate(exam.attemptedAt)}
+                  </Typography>
+                  <Typography variant="subtitle2" className="exam-status">
+                    Status: {exam.status || "Completed"}
+                  </Typography>
+
+                  <Grid container spacing={2} mt={1} className="exam-details-grid">
+                    <Grid item xs={12} sm={6} md={3} className="exam-detail">
+                      <Typography variant="body2" className="detail-label">
+                        Total Score
+                      </Typography>
+                      <Typography variant="h6" className="detail-value">
+                        {exam.totalScore || exam.score || 0}
+                      </Typography>
+                    </Grid>
+
+                    {exam.hasObjective && (
+                      <Grid item xs={12} sm={6} md={3} className="exam-detail">
+                        <Typography variant="body2" className="detail-label">
+                          Objective
+                        </Typography>
+                        <Typography variant="h6" className="detail-value">
+                          {exam.objectiveScore || 0}/{exam.totalObjectiveMarks || 0}
+                        </Typography>
+                      </Grid>
+                    )}
+
+                    {exam.hasSubjective && (
+                      <Grid item xs={12} sm={6} md={3} className="exam-detail">
+                        <Typography variant="body2" className="detail-label">
+                          Subjective
+                        </Typography>
+                        <Typography variant="h6" className="detail-value">
+                          {exam.subjectiveScore || 0}/{exam.totalSubjectiveMarks || 0}
+                        </Typography>
+                      </Grid>
+                    )}
+
+                    <Grid item xs={12} sm={6} md={3} className="exam-detail">
+                      <Typography variant="body2" className="detail-label">
+                        Total Questions
+                      </Typography>
+                      <Typography variant="h6" className="detail-value">
+                        {exam.totalQuestions || 0}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+
+                  {exam.status === "Pending Review" && (
+                    <Box mt={2} className="pending-review">
+                      <Typography variant="body2" color="warning.main">
+                        ℹ️ This exam contains subjective questions that are awaiting
+                        teacher review.
+                      </Typography>
+                    </Box>
                   )}
-                  
-                  {exam.hasSubjective && (
-                    <div className="bg-purple-50 rounded p-3">
-                      <div className="font-medium text-purple-800">Subjective</div>
-                      <div className="text-lg font-semibold text-purple-600">
-                        {exam.subjectiveScore || 0}/{exam.totalSubjectiveMarks || 0}
-                      </div>
-                    </div>
-                  )}
-                  
-                  <div className="bg-gray-50 rounded p-3">
-                    <div className="font-medium text-gray-800">Total Questions</div>
-                    <div className="text-lg font-semibold text-gray-600">
-                      {exam.totalQuestions || 0}
-                    </div>
-                  </div>
-                </div>
-                
-                {exam.status === 'Pending Review' && (
-                  <div className="mt-3 p-2 bg-yellow-50 border border-yellow-200 rounded">
-                    <p className="text-sm text-yellow-800">
-                      ℹ️ This exam contains subjective questions that are awaiting teacher review.
-                    </p>
-                  </div>
-                )}
-              </div>
+                </CardContent>
+              </Card>
             ))}
-          </div>
+          </Box>
         )}
-      </div>
-    </div>
+      </Box>
+    </Card>
   );
 };
 
