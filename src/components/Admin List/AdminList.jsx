@@ -18,7 +18,7 @@ const AdminList = () => {
       setLoading(true);
       setError(null);
       
-      const response = await axios.get('http://localhost:4000/api/auth/admin/all');
+      const response = await axios.get('https://online-exam-portal-server.onrender.com/api/auth/admin/all');
       console.log('API Response:', response.data);
       
       // Handle different possible response structures

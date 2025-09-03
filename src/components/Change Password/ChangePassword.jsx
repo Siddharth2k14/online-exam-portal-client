@@ -43,7 +43,7 @@ const ChangePassword = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:4000/api/auth/change-password', {
+      const response = await fetch('https://online-exam-portal-server.onrender.com/api/auth/change-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
