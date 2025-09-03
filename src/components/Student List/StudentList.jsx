@@ -22,7 +22,7 @@ const StudentList = () => {
       setLoading(true);
       setError(null);
 
-      const response = await axios.get('https://online-exam-portal-server.onrender.com/api/auth/student/all');
+      const response = await axios.get('http://localhost:4000/api/auth/student/all');
       console.log('API Response:', response.data);
 
       // Handle different possible response structures

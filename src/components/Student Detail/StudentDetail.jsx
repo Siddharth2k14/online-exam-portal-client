@@ -22,7 +22,7 @@ const StudentDetail = ({ name, email, phoneNo, role, studentId }) => {
 
         // Use the new detailed history endpoint
         const response = await axios.get(
-          `https://online-exam-portal-server.onrender.com/api/submissions/student/${studentId}/history`
+          `http://localhost:4000/api/submissions/student/${studentId}/history`
         );
 
         console.log("Fetched exam history:", response.data);
@@ -37,7 +37,7 @@ const StudentDetail = ({ name, email, phoneNo, role, studentId }) => {
         // Fallback to original endpoint if new one fails
         try {
           const fallbackResponse = await axios.get(
-            `https://online-exam-portal-server.onrender.com/api/submissions/student/${studentId}`
+            `http://localhost:4000/api/submissions/student/${studentId}`
           );
           setExamHistory(fallbackResponse.data || []);
           setTotalExamsAttempted(fallbackResponse.data?.length || 0);
