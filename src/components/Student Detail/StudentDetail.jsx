@@ -5,14 +5,18 @@ import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
-import './StudentDetail.css';
+import { useLocation } from "react-router-dom";
+import './StudentDetail.css'
 
-const StudentDetail = ({ name, email, phoneNo, role, studentId }) => {
+const StudentDetail = () => {
   const [examHistory, setExamHistory] = useState([]);
   const [studentInfo, setStudentInfo] = useState(null);
   const [totalExamsAttempted, setTotalExamsAttempted] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const location = useLocation();
+
+  const {name, email, phoneNo, role, student_id} = location.state || {};
 
   useEffect(() => {
     const fetchExamHistory = async () => {
@@ -22,7 +26,7 @@ const StudentDetail = ({ name, email, phoneNo, role, studentId }) => {
 
         // Use the new detailed history endpoint
         const response = await axios.get(
-          `https://online-exam-portal-server.onrender.com/api/submissions/student/${studentId}/history`
+          `https://online-exam-portal-server.onrender.com/api/submissions/student/${student_id}/history`
         );
 
         console.log("Fetched exam history:", response.data);
@@ -37,7 +41,7 @@ const StudentDetail = ({ name, email, phoneNo, role, studentId }) => {
         // Fallback to original endpoint if new one fails
         try {
           const fallbackResponse = await axios.get(
-            `https://online-exam-portal-server.onrender.com/api/submissions/student/${studentId}`
+            `https://online-exam-portal-server.onrender.com/api/submissions/student/${student_id}`
           );
           setExamHistory(fallbackResponse.data || []);
           setTotalExamsAttempted(fallbackResponse.data?.length || 0);
@@ -49,10 +53,10 @@ const StudentDetail = ({ name, email, phoneNo, role, studentId }) => {
       }
     };
 
-    if (studentId) {
+    if (student_id) {
       fetchExamHistory();
     }
-  }, [studentId]);
+  }, [student_id]);
 
   const getStatusBadgeColor = (status) => {
     switch (status) {

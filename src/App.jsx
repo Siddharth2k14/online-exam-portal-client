@@ -32,6 +32,8 @@ import ChangePassword from './components/Change Password/ChangePassword.jsx';
 import AccountSettings from './components/Account Settings/AccountSettings.jsx';
 import ViewExam  from './components/Manage Exams/ViewExam.jsx';
 import ViewExamReview from './components/ViewExam/ViewExam.jsx';
+import StudentDetail from './components/Student Detail/StudentDetail.jsx';
+import StudentList from './components/Student List/StudentList.jsx';
 
 const App = () => {
   return (
@@ -100,6 +102,24 @@ const App = () => {
           element={
             <PrivateRoute roles={['admin']}>
               <ViewExam />
+            </PrivateRoute>
+          }
+        />
+
+        <Route 
+          path="/student-list"
+          element={
+            <PrivateRoute roles={['admin']}>
+              <StudentList />
+            </PrivateRoute>
+          }
+        />
+
+        <Route 
+          path="/student-list/student-detail"
+          element={
+            <PrivateRoute roles={['admin']}>
+              <StudentDetail />
             </PrivateRoute>
           }
         />

@@ -6,9 +6,10 @@ import CircularProgress from '@mui/material/CircularProgress'
 import Alert from '@mui/material/Alert'
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
-import './StudentList.css'; // Import CSS file
 import StudentDetail from '../Student Detail/StudentDetail.jsx'
-import { Button } from '@mui/material'
+import { Button } from '@mui/material';
+import {useNavigate} from 'react-router-dom';
+import './StudentList.css'; // Import CSS file
 
 const StudentList = () => {
   const [studentData, setStudentData] = useState([]);
@@ -16,6 +17,7 @@ const StudentList = () => {
   const [error, setError] = useState(null);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [questions, setQuestions] = useState([]);
+  const navigate = useNavigate();
 
   const fetchStudent = async () => {
     try {
@@ -81,17 +83,17 @@ const StudentList = () => {
     );
   }
 
-  if (selectedStudent) {
-    return (
-      <StudentDetail
-        name={selectedStudent.name}
-        email={selectedStudent.email}
-        phoneNo={selectedStudent.phoneNo}
-        role={selectedStudent.role}
-        studentId={selectedStudent._id}
-      />
-    )
-  }
+  const StudentDetail = () => {
+    navigate("/student-list/student-detail", {
+      state: {
+        name: selectedStudent.name,
+        email: selectedStudent.email,
+        phoneNo: selectedStudent.phoneNo,
+        role: selectedStudent.role,
+        student_id: selectedStudent._id,
+      },
+    });
+  };
 
   return (
     <Box className="student-list-container">
@@ -118,7 +120,7 @@ const StudentList = () => {
                 <Typography variant="h6" className="student-name" gutterBottom>
                   <Button onClick={() => {
                     setSelectedStudent(student);
-                    console.log("clicked");
+                    StudentDetail()
                   }}>
                     {student.name}
                   </Button>
