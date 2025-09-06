@@ -270,7 +270,7 @@ const Signup = () => {
             action={
               <Button
                 component={Link}
-                to='/'
+                to='/login'
                 variant='text'
                 color='primary'
                 disabled={loading}

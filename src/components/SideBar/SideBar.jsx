@@ -194,7 +194,7 @@ const SideBar = ({ onSectionSelect }) => {
                     </Card>
                     <List sx={{
                       position: 'absolute',
-                      top: '35rem',
+                      top: '33rem',
                       left: '2rem',
                     }}>
                       <ListItem button onClick={() => onSectionSelect('Back To Dashboard')}>

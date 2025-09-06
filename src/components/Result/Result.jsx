@@ -182,7 +182,7 @@ const Result = () => {
                         }}>
                             Answer Distribution
                         </Typography>
-                        <PieChart width={250} height={250}>
+                        <PieChart width={330} height={250}>
                             <Pie
                                 data={pieData}
                                 cx="50%"

@@ -62,7 +62,7 @@
 
 
 
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50;
 
 
 
@@ -85,7 +85,7 @@
 .email-input, .password-input{
     border: 1px solid black;
     border-radius: 5px;
-    background-color: rgb(217, 234, 217);
+    /* background-color: rgb(217, 234, 217); */
 
 }
 .login-card-footer {

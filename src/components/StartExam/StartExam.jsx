@@ -51,7 +51,8 @@ const StartExam = () => {
   const [error, setError] = useState("");
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState([]);
-  const [submitted, setSubmitted] = useState(false); // remains true only briefly
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   /* ------------------------------------------------------------------ */
   /* 1. Fetch questions (objective → fallback to subjective)            */
@@ -136,44 +137,82 @@ const StartExam = () => {
     setCurrent((p) => Math.min(p + 1, exam.questions.length - 1));
 
   /* ------------------------------------------------------------------ */
-  /* 3. Submit → score → navigate to review                             */
+  /* 3. Submit → save to database → navigate to review                  */
   /* ------------------------------------------------------------------ */
-  const handleSubmit = () => {
-    setSubmitted(true);
+  const handleSubmit = async () => {
+    setSubmitting(true);
 
-    let correct = 0;
-
-    if (exam.type === "Objective") {
-      exam.questions.forEach((q, idx) => {
-        if (
-          (typeof q.correct_option === "number" &&
-            answers[idx] === q.correct_option) ||
-          (typeof q.correct_option === "string" &&
-            q.options[answers[idx]] === q.correct_option)
-        ) {
-          correct++;
-        }
-      });
-    } else {
-      exam.questions.forEach((q, idx) => {
-        const userAns = answers[idx]?.trim().toLowerCase();
-        const correctAns = q.answer?.trim().toLowerCase();
-        if (areAnswersSimilar(userAns, correctAns)) correct++;
-      });
-    }
-
-    /* 👉  jump to review page  */
-    navigate(
-      `/exam/${encodeURIComponent(examTitle)}/review`,
-      {
-        state: {
-          exam,
-          answers,
-          score: correct,
-          totalQuestions: exam.questions.length,
-        },
+    try {
+      // Get token from localStorage
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('No authentication token found. Please login again.');
       }
-    );
+
+      // Calculate local score for immediate feedback
+      let correct = 0;
+      if (exam.type === "Objective") {
+        exam.questions.forEach((q, idx) => {
+          if (
+            (typeof q.correct_option === "number" &&
+              answers[idx] === q.correct_option) ||
+            (typeof q.correct_option === "string" &&
+              q.options[answers[idx]] === q.correct_option)
+          ) {
+            correct++;
+          }
+        });
+      } else {
+        exam.questions.forEach((q, idx) => {
+          const userAns = answers[idx]?.trim().toLowerCase();
+          const correctAns = q.answer?.trim().toLowerCase();
+          if (areAnswersSimilar(userAns, correctAns)) correct++;
+        });
+      }
+
+      // Submit to backend
+      const response = await fetch('https://online-exam-portal-server.onrender.com/api/submissions/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          examTitle: exam.exam_title,
+          examType: exam.type,
+          answers: answers,
+          questions: exam.questions
+        })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to submit exam');
+      }
+
+      const submissionData = await response.json();
+      console.log('Exam submitted successfully:', submissionData);
+
+      // Navigate to review page with submission data
+      navigate(
+        `/exam/${encodeURIComponent(examTitle)}/review`,
+        {
+          state: {
+            exam,
+            answers,
+            score: correct,
+            totalQuestions: exam.questions.length,
+            submissionId: submissionData.submission.id,
+            submissionStatus: submissionData.submission.status
+          },
+        }
+      );
+
+    } catch (error) {
+      console.error('Error submitting exam:', error);
+      setError(`Failed to submit exam: ${error.message}`);
+      setSubmitting(false);
+    }
   };
 
   /* ------------------------------------------------------------------ */
@@ -183,6 +222,9 @@ const StartExam = () => {
     return (
       <div style={{ textAlign: "center", marginTop: "2rem" }}>
         <CircularProgress />
+        <Typography variant="body1" sx={{ mt: 2 }}>
+          Loading exam questions...
+        </Typography>
       </div>
     );
   }
@@ -194,6 +236,15 @@ const StartExam = () => {
           <Typography color="error" variant="h6">
             {error}
           </Typography>
+          {!submitting && (
+            <Button 
+              variant="contained" 
+              onClick={() => window.location.reload()} 
+              sx={{ mt: 2 }}
+            >
+              Retry
+            </Button>
+          )}
         </CardContent>
       </Card>
     );
@@ -213,7 +264,6 @@ const StartExam = () => {
     >
       <CardContent>
         <Typography variant="h5" gutterBottom sx={{
-          // border: '2px solid black',
           background: 'white',
           '&:hover': {
             transform: 'scale(1.05)',
@@ -250,15 +300,20 @@ const StartExam = () => {
           Q{current + 1}.&nbsp;{question.question_text}
         </Typography>
 
+        {/* Progress indicator */}
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+          Question {current + 1} of {exam.questions.length}
+        </Typography>
+
         {exam.type === "Subjective" ? (
           <TextField
             multiline
             minRows={3}
             fullWidth
             placeholder="Write your answer here..."
-            value={answers[current]}
+            value={answers[current] || ""}
             onChange={handleTextChange}
-            disabled={submitted}
+            disabled={submitted || submitting}
             sx={{
               '& :hover': {
                 transform: 'scale(1.05)',
@@ -270,7 +325,7 @@ const StartExam = () => {
           />
         ) : (
           <RadioGroup
-            value={answers[current]}
+            value={answers[current] ?? ""}
             onChange={handleOptionChange}
             sx={{
               ml: 1,
@@ -288,7 +343,7 @@ const StartExam = () => {
                 value={i}
                 control={<Radio />}
                 label={`${String.fromCharCode(65 + i)}. ${opt}`}
-                disabled={submitted}
+                disabled={submitted || submitting}
               />
             ))}
           </RadioGroup>
@@ -300,7 +355,7 @@ const StartExam = () => {
           <Button
             variant="contained"
             onClick={handlePrev}
-            disabled={current === 0 || submitted}
+            disabled={current === 0 || submitted || submitting}
           >
             Prev
           </Button>
@@ -309,7 +364,13 @@ const StartExam = () => {
             <Button
               variant="contained"
               onClick={handleNext}
-              disabled={submitted || answers[current] === "" || answers[current] === undefined}
+              disabled={
+                submitted || 
+                submitting || 
+                answers[current] === "" || 
+                answers[current] === undefined ||
+                answers[current] === null
+              }
             >
               Next
             </Button>
@@ -318,12 +379,32 @@ const StartExam = () => {
               variant="contained"
               color="success"
               onClick={handleSubmit}
-              disabled={submitted || answers[current] === "" || answers[current] === undefined}
+              disabled={
+                submitted || 
+                submitting || 
+                answers[current] === "" || 
+                answers[current] === undefined ||
+                answers[current] === null
+              }
             >
-              Submit
+              {submitting ? (
+                <>
+                  <CircularProgress size={20} sx={{ mr: 1 }} />
+                  Submitting...
+                </>
+              ) : (
+                "Submit"
+              )}
             </Button>
           )}
         </div>
+
+        {/* Show submission status */}
+        {submitting && (
+          <Typography variant="body2" color="primary" sx={{ mt: 2, textAlign: 'center' }}>
+            Submitting your exam... Please wait.
+          </Typography>
+        )}
       </CardContent>
     </Card>
   );

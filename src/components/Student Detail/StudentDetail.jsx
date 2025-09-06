@@ -24,29 +24,80 @@ const StudentDetail = () => {
         setLoading(true);
         setError(null);
 
-        // Use the new detailed history endpoint
+        // Get admin token for authentication
+        const token = localStorage.getItem('token');
+        
+        if (!token) {
+          throw new Error('Authentication token not found. Please login again.');
+        }
+
+        // Use the new detailed history endpoint with authentication
         const response = await axios.get(
-          `https://online-exam-portal-server.onrender.com/api/submissions/student/${student_id}/history`
+          `https://online-exam-portal-server.onrender.com/api/submissions/student/${student_id}/history`,
+          {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          }
         );
 
         console.log("Fetched exam history:", response.data);
 
+        // Set the data from the new API response format
         setExamHistory(response.data.examHistory || []);
         setStudentInfo(response.data.student);
         setTotalExamsAttempted(response.data.totalExamsAttempted || 0);
+        
       } catch (err) {
         console.error("Error fetching exam history:", err);
-        setError("Failed to load exam history. Please try again.");
+        
+        // More specific error handling
+        if (err.response?.status === 401) {
+          setError("Authentication failed. Please login again.");
+        } else if (err.response?.status === 403) {
+          setError("Access denied. Admin privileges required.");
+        } else if (err.response?.status === 404) {
+          setError("Student not found.");
+        } else {
+          setError(err.response?.data?.message || "Failed to load exam history. Please try again.");
+        }
 
-        // Fallback to original endpoint if new one fails
+        // Fallback: Try the basic submissions endpoint without authentication
         try {
           const fallbackResponse = await axios.get(
-            `https://online-exam-portal-server.onrender.com/api/submissions/student/${student_id}`
+            `https://online-exam-portal-server.onrender.com/api/submissions/student/${student_id}`,
+            {
+              headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+              }
+            }
           );
-          setExamHistory(fallbackResponse.data || []);
-          setTotalExamsAttempted(fallbackResponse.data?.length || 0);
+          
+          // Transform the basic submission data to match expected format
+          const transformedHistory = fallbackResponse.data.map(submission => ({
+            _id: submission._id,
+            examName: submission.exam_title,
+            exam: submission.exam_title,
+            attemptedAt: submission.submitted_at,
+            status: submission.status,
+            totalScore: submission.score.total_score,
+            score: submission.score.total_score,
+            objectiveScore: submission.score.objective_score,
+            subjectiveScore: submission.score.subjective_score,
+            totalObjectiveMarks: submission.answers.filter(a => a.is_correct !== null).length,
+            totalSubjectiveMarks: submission.answers.filter(a => a.is_correct === null).length,
+            hasObjective: submission.score.objective_score > 0 || submission.exam_type === 'Objective',
+            hasSubjective: submission.score.subjective_score > 0 || submission.exam_type === 'Subjective',
+            totalQuestions: submission.total_questions
+          }));
+          
+          setExamHistory(transformedHistory);
+          setTotalExamsAttempted(transformedHistory.length);
+          setError(null); // Clear the error since fallback worked
+          
         } catch (fallbackErr) {
           console.error("Fallback request also failed:", fallbackErr);
+          // Keep the original error message
         }
       } finally {
         setLoading(false);
@@ -55,28 +106,44 @@ const StudentDetail = () => {
 
     if (student_id) {
       fetchExamHistory();
+    } else {
+      setError("Student ID not provided.");
+      setLoading(false);
     }
   }, [student_id]);
 
   const getStatusBadgeColor = (status) => {
     switch (status) {
       case "Completed":
-        return "";
+        return "success";
       case "Pending Review":
-        return "";
+        return "warning";
       default:
-        return "";
+        return "default";
     }
   };
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
+    if (!dateString) return "Date not available";
+    
+    try {
+      return new Date(dateString).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short", 
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+    } catch (error) {
+      return "Invalid date";
+    }
+  };
+
+  // Calculate average score
+  const calculateAverageScore = () => {
+    if (examHistory.length === 0) return 0;
+    const totalScore = examHistory.reduce((sum, exam) => sum + (exam.totalScore || exam.score || 0), 0);
+    return (totalScore / examHistory.length).toFixed(1);
   };
 
   return (
@@ -94,6 +161,11 @@ const StudentDetail = () => {
             <Typography variant="body1" className="student-phone">
               Phone: {phoneNo}
             </Typography>
+            {studentInfo && studentInfo._id && (
+              <Typography variant="body2" className="student-id">
+                Student ID: {studentInfo._id}
+              </Typography>
+            )}
           </Box>
         </CardContent>
       </Card>
@@ -106,7 +178,7 @@ const StudentDetail = () => {
         <Card className="exam-statistics-card">
           <CardContent>
             <Grid container spacing={3} className="exam-statistics-grid">
-              <Grid item xs={12} md={4} className="stat-item">
+              <Grid item xs={12} md={3} className="stat-item">
                 <Typography variant="h6" className="stat-value">
                   {totalExamsAttempted}
                 </Typography>
@@ -114,7 +186,7 @@ const StudentDetail = () => {
                   Total Exams Attempted
                 </Typography>
               </Grid>
-              <Grid item xs={12} md={4} className="stat-item">
+              <Grid item xs={12} md={3} className="stat-item">
                 <Typography variant="h6" className="stat-value">
                   {examHistory.filter((exam) => exam.status === "Completed").length}
                 </Typography>
@@ -122,16 +194,20 @@ const StudentDetail = () => {
                   Completed
                 </Typography>
               </Grid>
-              <Grid item xs={12} md={4} className="stat-item">
+              <Grid item xs={12} md={3} className="stat-item">
                 <Typography variant="h6" className="stat-value">
-                  {
-                    examHistory.filter(
-                      (exam) => exam.status === "Pending Review"
-                    ).length
-                  }
+                  {examHistory.filter((exam) => exam.status === "Pending Review").length}
                 </Typography>
                 <Typography variant="body2" className="stat-label">
                   Pending Review
+                </Typography>
+              </Grid>
+              <Grid item xs={12} md={3} className="stat-item">
+                <Typography variant="h6" className="stat-value">
+                  {calculateAverageScore()}
+                </Typography>
+                <Typography variant="body2" className="stat-label">
+                  Average Score
                 </Typography>
               </Grid>
             </Grid>
@@ -163,12 +239,19 @@ const StudentDetail = () => {
               <Card key={exam._id || index} className="exam-card">
                 <CardContent>
                   <Typography variant="h6" className="exam-title">
-                    {exam.examName || exam.exam || "Unknown Exam"}
+                    {exam.examName || exam.exam || exam.exam_title || "Unknown Exam"}
                   </Typography>
                   <Typography variant="body2" gutterBottom className="exam-date">
-                    Attempted on: {formatDate(exam.attemptedAt)}
+                    Attempted on: {formatDate(exam.attemptedAt || exam.submitted_at)}
                   </Typography>
-                  <Typography variant="subtitle2" className="exam-status">
+                  <Typography 
+                    variant="subtitle2" 
+                    className="exam-status"
+                    sx={{ 
+                      color: exam.status === "Completed" ? "green" : 
+                             exam.status === "Pending Review" ? "orange" : "inherit"
+                    }}
+                  >
                     Status: {exam.status || "Completed"}
                   </Typography>
 
@@ -182,7 +265,7 @@ const StudentDetail = () => {
                       </Typography>
                     </Grid>
 
-                    {exam.hasObjective && (
+                    {(exam.hasObjective || exam.objectiveScore > 0) && (
                       <Grid item xs={12} sm={6} md={3} className="exam-detail">
                         <Typography variant="body2" className="detail-label">
                           Objective
@@ -193,7 +276,7 @@ const StudentDetail = () => {
                       </Grid>
                     )}
 
-                    {exam.hasSubjective && (
+                    {(exam.hasSubjective || exam.subjectiveScore > 0) && (
                       <Grid item xs={12} sm={6} md={3} className="exam-detail">
                         <Typography variant="body2" className="detail-label">
                           Subjective
@@ -216,7 +299,7 @@ const StudentDetail = () => {
 
                   {exam.status === "Pending Review" && (
                     <Box mt={2} className="pending-review">
-                      <Typography variant="body2" color="warning.main">
+                      <Typography variant="body2" sx={{ color: 'orange' }}>
                         ℹ️ This exam contains subjective questions that are awaiting
                         teacher review.
                       </Typography>
