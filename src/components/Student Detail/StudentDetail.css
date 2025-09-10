@@ -1,10 +1,10 @@
-.student-detail {
+.student-details {
   color: white;
   background: linear-gradient(245deg, #0f2027, #2c5364);
   margin: 2rem;
 }
 
-.student-detail:hover {
+.student-details:hover {
   transform: scale(1.03);
   transition: transform 0.5s ease-in-out;
   box-shadow: 0 0 80px 10px rgba(86, 157, 228, 0.854);
@@ -17,7 +17,7 @@
   /* border: 2px solid black; */
 }
 
-.student-name {
+.students-name {
   color: white;
   display: flex;
   justify-content: center;
@@ -49,13 +49,13 @@
 
 .exam-card {
   margin-bottom: 16px;
-  color: black;
+  color: white;
   /* border: 1px solid #ddd; */
   /* border: 2px solid black; */
 }
 
 .exam-title {
-  color: black;
+  color: white;
   font-weight: bold;
   /* border: 2px solid black; */
 }
@@ -72,4 +72,10 @@
   padding: 8px;
   color: white;
   border-radius: 4px;
+}
+
+.student-email, .student-phone {
+  color: white;
+  display: flex;
+  justify-content: center;
 }

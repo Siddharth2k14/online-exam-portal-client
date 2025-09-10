@@ -83,12 +83,12 @@ const StudentList = () => {
     );
   }
 
-  const StudentDetail = () => {
+  function navigateToStudentDetail(selectedStudent) {
     navigate("/student-list/student-detail", {
       state: {
         name: selectedStudent.name,
         email: selectedStudent.email,
-        phoneNo: selectedStudent.phoneNo,
+        phoneNumber: selectedStudent.phoneNumber,
         role: selectedStudent.role,
         student_id: selectedStudent._id,
       },
@@ -120,7 +120,7 @@ const StudentList = () => {
                 <Typography variant="h6" className="student-name" gutterBottom>
                   <Button onClick={() => {
                     setSelectedStudent(student);
-                    StudentDetail()
+                    navigateToStudentDetail(selectedStudent);
                   }}>
                     {student.name}
                   </Button>

@@ -1,5 +1,6 @@
 //Regular Imports
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 //Material UI Imports
 import Card from '@mui/material/Card';
@@ -64,14 +65,14 @@ const StartExam = () => {
 
       try {
         // ① Try objective first
-        let res = await fetch(
+        let res = await axios(
           `https://online-exam-portal-server.onrender.com/api/questions/objective/${encodeURIComponent(
             examTitle
           )}`
         );
 
-        if (res.ok) {
-          const data = await res.json();
+        if (res.data) {
+          const data = await res.data;
           setExam({
             exam_title: examTitle,
             type: "Objective",
@@ -84,13 +85,13 @@ const StartExam = () => {
           setAnswers(Array(data.questions.length).fill(""));
         } else {
           // ② Fallback to subjective
-          res = await fetch(
+          res = await axios(
             `https://online-exam-portal-server.onrender.com/api/questions/subjective/${encodeURIComponent(
               examTitle
             )}`
           );
-          if (res.ok) {
-            const data = await res.json();
+          if (res.data) {
+            const data = await res.data;
             setExam({
               exam_title: examTitle,
               type: "Subjective",
@@ -170,32 +171,33 @@ const StartExam = () => {
         });
       }
 
+      // Build Payload
+      const payload = {
+        examTitle: exam.exam_title,
+        examType: exam.type,
+        answers,
+        questions: exam.questions
+      };
+
       // Submit to backend
-      const response = await fetch('https://online-exam-portal-server.onrender.com/api/submissions/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          examTitle: exam.exam_title,
-          examType: exam.type,
-          answers: answers,
-          questions: exam.questions
-        })
-      });
+      const response = await axios.post(
+        'https://online-exam-portal-server.onrender.com/api/submissions/submit',
+        payload,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        }
+      );
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to submit exam');
-      }
-
-      const submissionData = await response.json();
+      // Axios already parsed JSON; use response.data
+      const submissionData = response.data;
       console.log('Exam submitted successfully:', submissionData);
 
       // Navigate to review page with submission data
       navigate(
-        `/exam/${encodeURIComponent(examTitle)}/review`,
+        `/exam/${encodeURIComponent(exam.exam_title)}/review`,
         {
           state: {
             exam,
@@ -237,9 +239,9 @@ const StartExam = () => {
             {error}
           </Typography>
           {!submitting && (
-            <Button 
-              variant="contained" 
-              onClick={() => window.location.reload()} 
+            <Button
+              variant="contained"
+              onClick={() => window.location.reload()}
               sx={{ mt: 2 }}
             >
               Retry
@@ -365,9 +367,9 @@ const StartExam = () => {
               variant="contained"
               onClick={handleNext}
               disabled={
-                submitted || 
-                submitting || 
-                answers[current] === "" || 
+                submitted ||
+                submitting ||
+                answers[current] === "" ||
                 answers[current] === undefined ||
                 answers[current] === null
               }
@@ -380,9 +382,9 @@ const StartExam = () => {
               color="success"
               onClick={handleSubmit}
               disabled={
-                submitted || 
-                submitting || 
-                answers[current] === "" || 
+                submitted ||
+                submitting ||
+                answers[current] === "" ||
                 answers[current] === undefined ||
                 answers[current] === null
               }

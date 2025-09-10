@@ -6,7 +6,7 @@ import CardContent from "@mui/material/CardContent";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import { useLocation } from "react-router-dom";
-import './StudentDetail.css'
+import "./StudentDetail.css";
 
 const StudentDetail = () => {
   const [examHistory, setExamHistory] = useState([]);
@@ -16,7 +16,7 @@ const StudentDetail = () => {
   const [error, setError] = useState(null);
   const location = useLocation();
 
-  const {name, email, phoneNo, role, student_id} = location.state || {};
+  const {name, email, phoneNumber, role, student_id} = location.state || {};
 
   useEffect(() => {
     const fetchExamHistory = async () => {
@@ -147,11 +147,11 @@ const StudentDetail = () => {
   };
 
   return (
-    <Card className="student-detail">
+    <Card className="student-details">
       {/* Student Info Header */}
       <Card className="student-info">
         <CardContent>
-          <Typography variant="h5" className="student-name">
+          <Typography variant="h5" className="students-name">
             {name} ({role})
           </Typography>
           <Box mt={1} className="student-contact">
@@ -159,7 +159,7 @@ const StudentDetail = () => {
               Email: {email}
             </Typography>
             <Typography variant="body1" className="student-phone">
-              Phone: {phoneNo}
+              Phone: {phoneNumber}
             </Typography>
             {studentInfo && studentInfo._id && (
               <Typography variant="body2" className="student-id">

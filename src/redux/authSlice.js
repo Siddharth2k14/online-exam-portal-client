@@ -38,6 +38,7 @@ export const signup = createAsyncThunk(
         user: response.data.user,
         token: response.data.token,
         role: response.data.role,
+        phoneNumber: response.data.phoneNumber,
       };
     } catch (error) {
       return thunkAPI.rejectWithValue(
