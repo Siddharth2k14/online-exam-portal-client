@@ -1,0 +1,68 @@
+.dashboard-sidebar {
+  position: fixed;
+  top: 65px;
+  left: 0;
+  z-index: 1000;
+  background: linear-gradient(245deg, #0f2027, #2c5364);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-container {
+  width: 260px;
+  padding: 16px 16px;
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  height: 100vh;
+  background: linear-gradient(245deg, #0f2027, #2c5364);
+}
+
+.exam-creation {
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(60, 60, 60, 0.06);
+}
+
+.settings {
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(60, 60, 60, 0.06);
+}
+
+.exam-creation .MuiTypography-root,
+.settings .MuiTypography-root {
+  font-weight: 600;
+  color: #2d3a4b;
+}
+
+.exam-management {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.setting {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.exam-creation .MuiListItem-root {
+  border-radius: 6px;
+  margin-bottom: 4px;
+  transition: background 0.2s;
+}
+
+.exam-creation .MuiListItem-root:hover {
+  /* background: #e3e9f7; */
+  background: rgb(172, 212, 245);
+}
+
+.settings .MuiListItem-root {
+  border-radius: 6px;
+  margin-bottom: 4px;
+  transition: background 0.2s;
+}
+
+.settings .MuiListItem-root:hover {
+  /* background: #e3e9f7; */
+  background: rgb(172, 212, 245);
+}

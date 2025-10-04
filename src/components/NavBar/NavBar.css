@@ -1,0 +1,190 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  background: linear-gradient(195deg, #0f2027, #2c5364);
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  height: 64px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-brand a {
+  color: white;
+  font-size: 1.7rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 2px;
+}
+
+.navbar-menu {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+  margin: 0;
+  padding: 0 25px;
+  flex: 1;
+  align-items: center;
+}
+
+.navbar-menu li a {
+  color: white;
+  text-decoration: none;
+  text-decoration-color: rgba(20, 4, 100, 0.432);
+  font-size: 1.1rem;
+  transition: color 0.2s;
+}
+
+.navbar-menu li a:hover {
+  color: #21b2f1;
+  background-color: linear-gradient(195deg, #0f2027, #2c5364);
+  text-decoration: underline;
+}
+
+.navbar-auth {
+  display: flex;
+  gap: 12px;
+}
+
+.btn {
+  background: #fff;
+  color: #1976d2;
+  padding: 6px 18px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: background 0.2s, color 0.2s;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #1565c0;
+  color: #fff;
+}
+
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  margin-left: 16px;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  margin: 4px 0;
+  border-radius: 2px;
+}
+
+/* Mobile menu styles - ADD THIS SECTION */
+.navbar-menu-mobile {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.navbar-menu-mobile li {
+  margin-bottom: 12px; /* Controls gap between menu items */
+}
+
+.navbar-menu-mobile li:last-child {
+  margin-bottom: 0; /* Remove margin from last item */
+}
+
+.navbar-menu-mobile li a,
+.navbar-menu-mobile li button {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 14px 16px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  text-align: center;
+  cursor: pointer;
+}
+
+.navbar-menu-mobile li a:hover,
+.navbar-menu-mobile li button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-10px);
+  color: #1976d2;
+  background: white;
+}
+
+/* Special styling for auth buttons in mobile menu */
+.navbar-menu-mobile li .btn {
+  /* background: rgba(255, 255, 255, 0.15); */
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin-bottom: 8px; /* Tighter spacing between auth buttons */
+  text-align: center;
+}
+
+.navbar-menu-mobile li .btn:hover {
+  background: white;
+  /* background-color: rgba(255, 255, 255, 0.1); */
+  color: #1976d2;
+  transform: translateY(-10px);
+}
+
+.navbar-menu-mobile li .logout-btn {
+  background: #ff4757;
+  color: white;
+  border: none;
+}
+
+.navbar-menu-mobile li .logout-btn:hover {
+  background: #ff3742;
+  transform: translateY(-2px);
+}
+
+/* Always show sidebar and overlay only on mobile */
+@media (min-width: 901px) {
+  .navbar-collapse,
+  .navbar-overlay,
+  .navbar-close {
+    display: none !important;
+  }
+}
+
+/* Logout button styles */
+.logout-btn {
+  background: #fff;
+  color: #1976d2;
+  padding: 6px 18px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: background 0.2s, color 0.2s;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: linear-gradient(195deg, #0f2027, #2c5364);
+  color: #fff;
+}

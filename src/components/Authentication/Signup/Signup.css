@@ -1,0 +1,145 @@
+.container {
+
+    /* background-color: rgb(255, 255, 255); */
+
+
+    background-color: rgb(255, 255, 255);
+
+    /* background-color: rgb(255, 255, 255); */
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.container .signup-card {
+
+    /* background-color: #ffffff; */
+
+
+    /* background-color: rgb(219, 240, 204); */
+
+    background-color: #ffffff;
+
+
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    min-height: min-content;
+}
+
+
+
+
+
+
+.signup-card:hover{
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+    /* background: linear-gradient(45deg, #0f2027, #2c5364); */
+    background-color: #f0f0f0; /* Slightly darker on hover */
+}
+
+.signup-card-body {
+    height: 60vh;
+}
+
+
+
+
+.signup-card-body .signup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.signup-title {
+    color: black !important; /* Ensures visibility */
+    font-size: 2rem; /* Adjust as needed */
+    font-weight: bold; /* Makes the title bold */
+    text-align: center; /* Centers the title */
+    margin-bottom: 20px; /* Adds space below the title */
+    text-decoration: underline; /* Underlines the title */
+}
+
+.signup-form .name-header, .email-header, .password-header, .confirm-password-header, .phone-number-header {
+    color: black !important; /* Ensures visibility */
+    margin-bottom: 20px; /* Adds space below the label */
+}
+
+.signup-form .signup-button {
+
+
+
+    background-color: #4CAF50; /* Green */
+
+
+
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+.name-input, .email-input, .password-input, .confirm-password-input, .phone-number-input {
+    border: 1px solid black;
+    border-radius: 5px;
+    /* background-color: rgb(217, 234, 217); */
+}
+
+
+.signup-card-footer {
+    display: flex;
+
+
+
+    background-color: #f0f0f0;
+
+
+
+    height: fit-content;
+    font-size: small;
+    padding: 10px;
+}
+
+
+
+
+
+
+.signup-card-footer:hover {
+    background-color: #f0f0f0; /* Slightly darker on hover */
+}
+
+
+
+
+
+.signup-card-footer .MuiButton-root {
+    text-transform: uppercase; /* Gives a styled look */
+}
+
+.error {
+    color: red; /* Makes errors noticeable */
+    font-size: 14px; /* Adjusts readability */
+    margin-top: 5px; /* Adds spacing */
+    font-weight: bold; /* Highlights errors */
+    margin: 5px 10px;
+}
+
+.signup-card-footer .MuiCardHeader-title {
+    font-size: 1rem; /* or any smaller size you prefer */
+    font-weight: 400;
+}

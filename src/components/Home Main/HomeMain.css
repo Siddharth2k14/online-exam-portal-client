@@ -1,0 +1,117 @@
+.home-main-outer {
+  margin-top: 65px;
+  padding: 32px;
+  background: #fafafa;
+  min-height: 100vh;
+}
+
+.home-main-card {
+  min-width: 90vw;
+  margin: 0 auto;
+  padding: 40px 48px 48px 48px;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  background: #fff;
+  border: 2px solid #bdbdbd;
+  min-height: 100vh;
+}
+
+.home-main-title {
+  font-family: 'Merriweather', serif;
+  font-weight: bold;
+  font-size: 2.8rem;
+  margin-bottom: 16px;
+}
+
+.home-main-desc {
+  margin: 24px 0 40px 0;
+}
+
+.home-main-desc strong {
+  font-weight: bold;
+}
+
+.home-main-desc .home-main-text {
+  font-size: 1.12rem;
+}
+
+.home-main-features {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 32px;
+  gap: 30vw;
+}
+
+.home-main-features .MuiGrid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.home-main-features .MuiTypography-h6 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.home-main-features .MuiListItemText-root {
+  font-size: 1.1rem;
+}
+
+.home-main-coming-soon {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-main-coming-soon .MuiTypography-h6 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.home-main-coming-soon .MuiListItemText-root {
+  font-size: 1.05rem;
+}
+
+.home-header-text{
+    display: flex;
+    justify-content: center;
+}
+
+/* Tablet and below */
+@media (max-width: 900px) {
+  .home-main-card {
+    padding: 16px 8px;
+  }
+  .home-main-features {
+    display: flex;
+    margin-bottom: 32px;
+    gap: 20px;
+    flex-direction: column;
+  }
+  .home-main-title {
+    font-size: 2rem;
+  }
+}
+
+/* Phone */
+@media (max-width: 600px) {
+  .home-main-card {
+    padding: 8px 2px;
+    min-width: 95vw;
+  }
+  .home-main-features {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 32px;
+    gap: 15px;
+  }
+  .home-main-title {
+    font-size: 1.3rem;
+  }
+  .home-main-desc {
+    font-size: 0.95rem;
+  }
+}

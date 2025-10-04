@@ -1,0 +1,43 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+NavBar.test.jsx
+Sidebar.test.jsx
+testing
+setupTests.js
+adminPage.test.jsx
+ManageExam.md
+# Sentry Config File
+.env.sentry-build-plugin
+
+project-src.ini
+src.ini
+file_sizes.csv
+src/routes
+StudentRoutes.jsx
+AdminRoutes.jsx
+PublicRoutes.jsx
+SharedRoutes.jsx
+Dockerfile
+.env

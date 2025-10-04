@@ -1,0 +1,251 @@
+/* Page title */
+.page-title {
+  color: white !important;
+  text-align: center;
+  margin-bottom: 32px !important;
+  font-weight: bold !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Loading states */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  min-height: 50vh;
+}
+
+.loading-spinner {
+  margin-bottom: 20px !important;
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(195deg, #0f2027, #2c5364);
+  padding: 4px;
+  animation: spin 1s linear infinite;
+}
+
+.loading-spinner .MuiCircularProgress-svg {
+  display: none;
+}
+
+.loading-spinner::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border-radius: 50%;
+  background: white;
+}
+
+.loading-spinner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: linear-gradient(195deg, #0f2027, #2c5364);
+  mask: conic-gradient(from 0deg, transparent 75%, black 100%);
+  -webkit-mask: conic-gradient(from 0deg, transparent 75%, black 100%);
+}
+
+.loading-text {
+  color: black !important;
+  text-align: center;
+}
+
+/* Error states */
+.error-container {
+  padding: 24px;
+  min-height: 100vh;
+  background: linear-gradient(195deg, #0f2027, #2c5364);
+}
+
+.error-alert {
+  margin-bottom: 16px !important;
+  background-color: rgba(244, 67, 54, 0.1) !important;
+  border: 1px solid rgba(244, 67, 54, 0.3) !important;
+}
+
+.retry-button {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.retry-button:hover {
+  background-color: #1565c0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+}
+
+/* Admins wrapper */
+.admins-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Admin count */
+.admin-count {
+  color: rgba(255, 255, 255, 0.8) !important;
+  text-align: center;
+  margin-bottom: 24px !important;
+  font-size: 1.1rem !important;
+  font-weight: 500 !important;
+}
+
+/* No admins message */
+.no-admins-text {
+  color: rgba(255, 255, 255, 0.7) !important;
+  text-align: center;
+  margin-top: 48px !important;
+  font-style: italic;
+}
+
+/* Admin cards */
+.admin-card {
+  margin-bottom: 16px !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 12px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.admin-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+.admin-card-content {
+  padding: 20px !important;
+}
+
+/* Admin name */
+.admin-name {
+  color: white !important;
+  font-weight: 600 !important;
+  margin-bottom: 12px !important;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 8px;
+}
+
+/* Admin details */
+.admin-detail {
+  color: rgba(255, 255, 255, 0.8) !important;
+  margin-bottom: 8px !important;
+  font-size: 0.95rem !important;
+  line-height: 1.5;
+}
+
+.admin-detail:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .admin-list-container {
+    padding: 16px;
+  }
+  
+  .page-title {
+    font-size: 1.8rem !important;
+    margin-bottom: 24px !important;
+  }
+  
+  .admin-card {
+    margin-bottom: 12px !important;
+  }
+  
+  .admin-card-content {
+    padding: 16px !important;
+  }
+  
+  .admin-name {
+    font-size: 1.1rem !important;
+  }
+  
+  .admin-detail {
+    font-size: 0.9rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-list-container {
+    padding: 12px;
+  }
+  
+  .page-title {
+    font-size: 1.5rem !important;
+  }
+  
+  .admin-card-content {
+    padding: 12px !important;
+  }
+  
+  .admin-detail {
+    font-size: 0.85rem !important;
+  }
+}
+
+/* Animation for card entrance */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.admin-card {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* Staggered animation for multiple cards */
+.admin-card:nth-child(1) { animation-delay: 0.1s; }
+.admin-card:nth-child(2) { animation-delay: 0.2s; }
+.admin-card:nth-child(3) { animation-delay: 0.3s; }
+.admin-card:nth-child(4) { animation-delay: 0.4s; }
+.admin-card:nth-child(5) { animation-delay: 0.5s; }
+
+/* Scrollbar styling */
+.admins-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.admins-wrapper::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.admins-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.admins-wrapper::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}

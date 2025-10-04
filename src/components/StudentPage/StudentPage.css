@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scrollbar-width: none;
+}
+
+.student-page {
+
+    width: calc(100% - 262px); /* if left sidebar is fixed */
+    height: calc(100vh - 64px); /* responsive height */
+    position: absolute;
+    top: 65px;
+    left: 261px;
+    border: 2px solid black;
+    color: black;
+    overflow-y: auto;
+}
+
+.student-heading {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    /* color: #222; */
+    letter-spacing: 1px;
+}
+
+.horizontal-line {
+    border: none;
+    border-top: 2px solid black;
+    margin: 0 30px 30px 30px;
+    height: 0;
+}
+
+.student-welcome {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: white;
+}
+.student-card {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(60, 60, 60, 0.06);
+}
+.student-settings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.student-page .student-card {
+    background: linear-gradient(245deg, #0f2027, #2c5364);
+}

@@ -1,0 +1,61 @@
+.start-exam-root {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  /* background: #f9f9f9; */
+  border-radius: 12px;
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); */
+  /* border: 2px solid black; */
+}
+
+.start-exam-root:hover {
+  transform: scale(1.05);
+  transition: transform 0.5s ease-in-out;
+  box-shadow: 0 0 15px 10px rgba(25, 118, 210, 0.749);
+  border: 2px solid #1976d2;
+}
+
+.start-exam-title {
+  margin-bottom: 1rem;
+  color: #1976d2;
+  font-weight: 600;
+}
+
+.start-exam-type,
+.start-exam-count {
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.start-exam-questions-card {
+  margin-top: 2rem;
+  background: linear-gradient(245deg, #0f2027, #2c5364);
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.start-exam-questions-title {
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: #1976d2;
+}
+
+.start-exam-questions-list {
+  padding: 0;
+}
+
+.start-exam-question-item {
+  background: #f5faff;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .start-exam-root {
+    max-width: 98vw;
+    padding: 1rem;
+  }
+  .start-exam-questions-card {
+    margin-top: 1rem;
+  }
+}

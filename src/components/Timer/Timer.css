@@ -1,0 +1,26 @@
+.timer-container {
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.timer-input {
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    width: 200px;
+}
+
+.timer-btn {
+    padding: 8px 16px;
+    margin: 5px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.timer-display {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+}

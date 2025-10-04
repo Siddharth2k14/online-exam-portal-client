@@ -1,0 +1,39 @@
+.exams-page {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-title {
+  text-align: center;
+  color: #1976d2;
+  margin-bottom: 32px;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.exams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  padding: 16px;
+}
+
+.exam-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  transition: box-shadow 0.2s;
+}
+
+.exam-card:hover {
+  box-shadow: 0 4px 16px rgba(25, 118, 210, 0.18);
+}

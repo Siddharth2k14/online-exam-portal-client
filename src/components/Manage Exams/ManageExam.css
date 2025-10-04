@@ -1,0 +1,148 @@
+.page-header {
+  margin: 32px auto 24px auto;
+  padding: 24px 0;
+  max-width: 600px;
+  background: #1976d2;
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+  text-align: center;
+}
+
+.page-header .page-header-text {
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.manage-exam-title {
+  margin-top: 16px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.manage-exam-description {
+  margin: 8px auto 24px auto;
+  max-width: 600px;
+  text-align: center;
+  color: #555;
+}
+
+.exam-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.action-button {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 6px;
+  background: #1976d2;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  font-size: 1rem;
+  box-shadow: 0 1px 4px rgba(25, 118, 210, 0.08);
+}
+
+.action-button:hover {
+  background: #115293;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.18);
+}
+
+.exam-list-title {
+  margin-top: 32px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.exam-list-description {
+  margin: 0 auto 24px auto;
+  max-width: 600px;
+  text-align: center;
+  color: #888;
+}
+
+.exam-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  padding: 16px;
+}
+
+.exam-card {
+  width: 320px;
+  min-height: 160px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  transition: box-shadow 0.2s;
+}
+
+.exam-card:hover {
+  box-shadow: 0 4px 16px rgba(25, 118, 210, 0.18);
+}
+
+.exam-card .MuiTypography-h6 {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1976d2;
+}
+
+.exam-card .MuiTypography-body2 {
+  color: #555;
+}
+
+.exam-card ul {
+  margin: 12px 0 0 0;
+  padding-left: 18px;
+}
+
+.exam-card .exam-actions {
+  margin-top: 16px;
+  width: 100%;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.no-exams-text {
+  margin-top: 48px;
+  color: #888;
+  font-size: 1.2rem;
+  text-align: center;
+  width: 100%;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40vh;
+  width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .exam-card {
+    width: 95vw;
+    min-width: unset;
+    padding: 16px 8px;
+  }
+  .page-header,
+  .manage-exam-description,
+  .exam-list-description {
+    max-width: 98vw;
+    padding-left: 4vw;
+    padding-right: 4vw;
+  }
+}
