@@ -1,7 +1,11 @@
+/* eslint-disable prettier/prettier */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import process from 'process';
 
-const BASE_URL = 'https://online-exam-portal-server.onrender.com/api/auth';
+const server_url = process.env.REACT_APP_SERVER_URL;
+const BASE_URL = `${server_url}/api/auth`;
+const localStorage = window.localStorage;
 
 export const login = createAsyncThunk(
   'auth/login',

@@ -1,5 +1,6 @@
 //Regular Imports
 import { useState } from 'react';
+import process from 'process';
 
 //Material UI Imports
 import Box from '@mui/material/Box';
@@ -28,6 +29,8 @@ const ChangePassword = () => {
   const [success, setSuccess] = useState(false);
   const { themeMode } = useTheme();
 
+  const server_url = process.env.REACT_APP_SERVER_URL;
+
   const handleChange = (field) => (e) => {
     setForm({ ...form, [field]: e.target.value });
   };
@@ -43,7 +46,7 @@ const ChangePassword = () => {
     }
 
     try {
-      const response = await fetch('https://online-exam-portal-server.onrender.com/api/auth/change-password', {
+      const response = await fetch(`${server_url}/api/auth/change-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

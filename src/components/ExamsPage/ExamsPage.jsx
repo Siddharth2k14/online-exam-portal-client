@@ -1,5 +1,6 @@
 // Regular Imports
 import { useState, useEffect } from 'react';
+import process from 'process';
 
 // Material UI Imports
 import Typography from '@mui/material/Typography';
@@ -32,6 +33,8 @@ const ExamsPage = () => {
 
   const navigate = useNavigate();
   const { themeMode } = useTheme() || { themeMode: 'light' };
+  
+  const server_url = process.env.REACT_APP_SERVER_URL;
 
   // Get completed exams from localStorage
   const getCompletedExams = () => {
@@ -61,7 +64,7 @@ const ExamsPage = () => {
   useEffect(() => {
     const fetchExams = async () => {
       try {
-        const response = await fetch("https://online-exam-portal-server.onrender.com/api/questions/all");
+        const response = await fetch(`${server_url}/api/questions/all`);
         const data = await response.json();
 
         console.log("Fetched data:", data);

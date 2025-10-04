@@ -1,5 +1,6 @@
 //Regular Imports
 import { useEffect, useState } from 'react';
+import process from "process";
 
 //Material UI Imports
 import Button from '@mui/material/Button';
@@ -23,10 +24,12 @@ const ManageExam = () => {
   const [viewExamTitle, setViewExamTitle] = useState(null);
   const navigate = useNavigate();
   const { themeMode } = useTheme();
+  
+  const server_url = process.env.REACT_APP_SERVER_URL;
 
   const fetchData = async () => {
     try {
-      const response = await fetch('https://online-exam-portal-server.onrender.com/api/questions/all');
+      const response = await fetch(`${server_url}/api/questions/all`);
       const data = await response.json();
       if (data.exams) {
         setExams(data.exams);
@@ -49,8 +52,8 @@ const ManageExam = () => {
 
   const handleDelete = async (exam_title) => {
     try {
-      await fetch(`https://online-exam-portal-server.onrender.com/api/questions/objective/${exam_title}`, { method: 'DELETE' });
-      await fetch(`https://online-exam-portal-server.onrender.com/api/questions/subjective/${exam_title}`, { method: 'DELETE' });
+      await fetch(`${server_url}/api/questions/objective/${exam_title}`, { method: 'DELETE' });
+      await fetch(`${server_url}/api/questions/subjective/${exam_title}`, { method: 'DELETE' });
       setExams((prev) => prev.filter((exam) => exam.exam_title !== exam_title));
     } catch (error) {
       alert('Error deleting exam');

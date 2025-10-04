@@ -1,6 +1,7 @@
 //Regular Imports
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import process from 'process';
 
 //Material UI Imports
 import Card from '@mui/material/Card';
@@ -22,6 +23,8 @@ const ViewExam = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const server_url = process.env.REACT_APP_SERVER_URL;
+
   useEffect(() => {
     const fetchExam = async () => {
       try {
@@ -31,7 +34,7 @@ const ViewExam = () => {
         console.log('3. examTitle length:', examTitle?.length);
         console.log(examTitle);
         
-        const res = await axios.get('https://online-exam-portal-server.onrender.com/api/questions/all');
+        const res = await axios.get(`${server_url}/api/questions/all`);
         
         console.log('4. Raw API response:', res.data);
         console.log('5. res.data.exams exists?', !!res.data.exams);

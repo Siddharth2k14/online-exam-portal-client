@@ -1,5 +1,6 @@
 //Regular Imports
 import { useState } from 'react';
+import process from 'process';
 
 //Material UI Imports
 import Card from '@mui/material/Card';
@@ -26,6 +27,8 @@ const ObjectiveExamCreation = () => {
   const [options, setOptions] = useState(['', '', '', '']);
   const [correct, setCorrect] = useState(null); // index of correct answer
   const dispatch = useDispatch();
+
+  const server_url = process.env.REACT_APP_SERVER_URL;
 
   const handleOptionChange = (idx, value) => {
     const newOptions = [...options];
@@ -54,7 +57,7 @@ const ObjectiveExamCreation = () => {
     }));
 
     // Save to backend
-    await fetch('https://online-exam-portal-server.onrender.com/api/questions/objective', {
+    await fetch(`${server_url}/api/questions/objective`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

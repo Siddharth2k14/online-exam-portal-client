@@ -1,6 +1,7 @@
 //Regular Imports
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import process from 'process';
 
 //Material UI Imports
 import Card from '@mui/material/Card';
@@ -30,6 +31,8 @@ const StartExam = () => {
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [submitting, setSubmitting] = useState(false);
+  
+  const server_url = process.env.REACT_APP_SERVER_URL;
 
   /* ------------------------------------------------------------------ */
   /* 1. OPTIMIZED: Use dedicated exam endpoint for better performance    */
@@ -42,7 +45,7 @@ const StartExam = () => {
       try {
         // OPTIMIZATION: Use the specific exam endpoint instead of /all
         const response = await axios.get(
-          `https://online-exam-portal-server.onrender.com/api/questions/exam/${encodeURIComponent(examTitle)}`
+          `${server_url}/api/questions/exam/${encodeURIComponent(examTitle)}`
         );
         
         if (!response.data) {
@@ -62,7 +65,7 @@ const StartExam = () => {
         if (err.response?.status === 404) {
           try {
             const fallbackResponse = await axios.get(
-              'https://online-exam-portal-server.onrender.com/api/questions/all'
+              `${server_url}/api/questions/all`
             );
             
             const foundExam = fallbackResponse.data?.exams?.find(
@@ -146,7 +149,7 @@ const StartExam = () => {
 
       // Submit to backend
       const response = await axios.post(
-        'https://online-exam-portal-server.onrender.com/api/submissions/submit',
+        `${server_url}/api/submissions/submit`,
         {
           examTitle: exam.exam_title,
           examType: exam.type,

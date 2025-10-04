@@ -1,5 +1,6 @@
 //Regular Imports
 import { useState } from 'react';
+import process from 'process';
 
 //Material UI Imports
 import Button from '@mui/material/Button';
@@ -32,6 +33,7 @@ const SubjectiveExamCreation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const subjectiveQuestions = useSelector(state => state.subjectiveExam.questions);
+  const server_url = process.env.REACT_APP_SERVER_URL;
 
   const handleAddQuestion = async () => {
     // Fixed validation - includes marks check
@@ -49,7 +51,7 @@ const SubjectiveExamCreation = () => {
 
     try {
       // Save to backend
-      const response = await fetch('https://online-exam-portal-server.onrender.com/api/questions/subjective', {
+      const response = await fetch(`${server_url}/api/questions/subjective`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

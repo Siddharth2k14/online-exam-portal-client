@@ -6,6 +6,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 import Alert from '@mui/material/Alert'
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
+import process from 'process';
 import './AdminList.css'; // Import CSS file
 
 const AdminList = () => {
@@ -13,12 +14,14 @@ const AdminList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const server_url = process.env.REACT_APP_SERVER_URL;
+
   const fetchAdmin = async () => {
     try {
       setLoading(true);
       setError(null);
       
-      const response = await axios.get('https://online-exam-portal-server.onrender.com/api/auth/admin/all');
+      const response = await axios.get(`${server_url}/api/auth/admin/all`);
       console.log('API Response:', response.data);
       
       // Handle different possible response structures

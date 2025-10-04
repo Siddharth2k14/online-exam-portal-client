@@ -4,14 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "lint": "eslint .",
     "test": "vitest",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "analyze": "source-map-explorer 'build/static/js/*.js'",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write ."
+    "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.42.2",
@@ -30,6 +26,7 @@
     "@vercel/speed-insights": "^1.2.0",
     "axios": "^1.10.0",
     "bcrypt": "^6.0.0",
+    "process": "^0.11.10",
     "react": "^19.1.0",
     "react-circular-progressbar": "^2.2.0",
     "react-dom": "^19.1.0",

@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios";
 import { Button } from '@mui/material';
 import {useNavigate} from 'react-router-dom';
+import process from 'process';
 import './StudentList.css'; // Import CSS file
 
 const StudentList = () => {
@@ -17,12 +18,14 @@ const StudentList = () => {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const navigate = useNavigate();
 
+  const server_url = process.env.REACT_APP_SERVER_URL;
+
   const fetchStudent = async () => {
     try {
       setLoading(true);
       setError(null);
 
-      const response = await axios.get('https://online-exam-portal-server.onrender.com/api/auth/student/all');
+      const response = await axios.get(`${server_url}/api/auth/student/all`);
       console.log('API Response:', response.data);
 
       // Handle different possible response structures
