@@ -6,7 +6,6 @@ import process from 'process';
 const server_url = process.env.REACT_APP_SERVER_URL;
 console.log(server_url);
 
-const BASE_URL = `${server_url}/api/auth`;
 const localStorage = window.localStorage;
 
 export const login = createAsyncThunk(
@@ -14,7 +13,7 @@ export const login = createAsyncThunk(
   async ({ email, password }, thunkAPI) => {
     try {
       // Use a single login endpoint - let backend determine role from email
-      const endpoint = `${BASE_URL}/login`;
+      const endpoint = `${server_url}/api/auth/login`;
       const response = await axios.post(endpoint, { email, password });
       return { 
         user: response.data.user, 
@@ -33,7 +32,7 @@ export const signup = createAsyncThunk(
   'auth/signup',
   async ({ name, email, password, confirmPassword, phoneNumber }, thunkAPI) => {
     try {
-      const response = await axios.post(`${BASE_URL}/signup`, {
+      const response = await axios.post(`${server_url}/api/auth/signup`, {
         name,
         email,
         password,
