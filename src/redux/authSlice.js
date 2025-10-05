@@ -4,6 +4,8 @@ import axios from 'axios';
 import process from 'process';
 
 const server_url = process.env.REACT_APP_SERVER_URL;
+console.log(server_url);
+
 const BASE_URL = `${server_url}/api/auth`;
 const localStorage = window.localStorage;
 
