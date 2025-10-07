@@ -99,6 +99,13 @@ const Signup = () => {
           phoneNumber
         };
 
+        console.log("Data filled");
+        console.log("Name: ", name)
+        console.log("Email: ", email);
+        console.log("Password: ", password);
+        console.log("Phone No: ", phoneNumber);
+        console.log("Confirm Password: ", confirmPassword);
+
         const result = await dispatch(signup(signupData)).unwrap();
         
         console.log('Signup successful, role assigned:', result.role);
