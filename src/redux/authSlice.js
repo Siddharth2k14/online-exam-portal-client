@@ -1,9 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import process from 'process';
 
-const server_url = process.env.REACT_APP_SERVER_URL;
+const server_url = import.meta.env.VITE_SERVER_URL;
 console.log(server_url);
 
 const localStorage = window.localStorage;
@@ -15,10 +14,10 @@ export const login = createAsyncThunk(
       // Use a single login endpoint - let backend determine role from email
       const endpoint = `${server_url}/api/auth/login`;
       const response = await axios.post(endpoint, { email, password });
-      return { 
-        user: response.data.user, 
-        token: response.data.token, 
-        role: response.data.role 
+      return {
+        user: response.data.user,
+        token: response.data.token,
+        role: response.data.role
       };
     } catch (error) {
       return thunkAPI.rejectWithValue(

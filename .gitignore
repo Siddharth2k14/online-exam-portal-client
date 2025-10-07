@@ -41,3 +41,4 @@ PublicRoutes.jsx
 SharedRoutes.jsx
 Dockerfile
 .env
+.env.local
