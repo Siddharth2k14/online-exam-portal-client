@@ -5,6 +5,8 @@ import axios from 'axios';
 const server_url = import.meta.env.VITE_SERVER_URL;
 console.log(server_url);
 
+const Base_url = `${server_url}/api/auth/`;
+
 const localStorage = window.localStorage;
 
 export const login = createAsyncThunk(
@@ -12,7 +14,7 @@ export const login = createAsyncThunk(
   async ({ email, password }, thunkAPI) => {
     try {
       // Use a single login endpoint - let backend determine role from email
-      const endpoint = `${server_url}/api/auth/login`;
+      const endpoint = `${Base_url}login`;
       const response = await axios.post(endpoint, { email, password });
       return {
         user: response.data.user,
@@ -31,7 +33,7 @@ export const signup = createAsyncThunk(
   'auth/signup',
   async ({ name, email, password, confirmPassword, phoneNumber }, thunkAPI) => {
     try {
-      const response = await axios.post(`${server_url}/api/auth/signup`, {
+      const response = await axios.post(`${Base_url}signup`, {
         name,
         email,
         password,
