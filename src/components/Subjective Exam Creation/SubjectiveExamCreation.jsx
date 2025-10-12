@@ -51,7 +51,7 @@ const SubjectiveExamCreation = () => {
 
     try {
       // Save to backend
-      const response = await fetch(`https://online-exam-portal-client.vercel.app/api/questions/subjective`, {
+      const response = await fetch(`https://online-exam-portal-server.onrender.com/api/questions/subjective`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

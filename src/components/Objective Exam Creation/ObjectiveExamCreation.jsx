@@ -54,7 +54,7 @@ const ObjectiveExamCreation = () => {
     }));
 
     // Save to backend
-    await fetch("https://online-exam-portal-client.vercel.app/api/questions/objective", {
+    await fetch("https://online-exam-portal-server.onrender.com/api/questions/objective", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

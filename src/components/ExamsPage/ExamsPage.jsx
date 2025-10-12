@@ -62,7 +62,7 @@ const ExamsPage = () => {
   useEffect(() => {
     const fetchExams = async () => {
       try {
-        const response = await fetch("https://online-exam-portal-client.vercel.app/api/questions/all");
+        const response = await fetch("https://online-exam-portal-server.onrender.com/api/questions/all");
         const data = await response.json();
 
         console.log("Fetched data:", data);

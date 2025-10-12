@@ -31,7 +31,7 @@ const ViewExam = () => {
         console.log('3. examTitle length:', examTitle?.length);
         console.log(examTitle);
         
-        const res = await axios.get("https://online-exam-portal-client.vercel.app/api/questions/all");
+        const res = await axios.get("https://online-exam-portal-server.onrender.com/api/questions/all");
         
         console.log('4. Raw API response:', res.data);
         console.log('5. res.data.exams exists?', !!res.data.exams);

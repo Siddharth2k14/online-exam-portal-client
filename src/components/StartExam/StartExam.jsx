@@ -43,7 +43,7 @@ const StartExam = () => {
       try {
         // OPTIMIZATION: Use the specific exam endpoint instead of /all
         const response = await axios.get(
-          "https://online-exam-portal-client.vercel.app/api/questions/exam/${encodeURIComponent(examTitle)}"
+          "https://online-exam-portal-server.onrender.com/api/questions/exam/${encodeURIComponent(examTitle)}"
         );
         
         if (!response.data) {
@@ -63,7 +63,7 @@ const StartExam = () => {
         if (err.response?.status === 404) {
           try {
             const fallbackResponse = await axios.get(
-              "https://online-exam-portal-client.vercel.app/api/questions/all"
+              "https://online-exam-portal-server.onrender.com/api/questions/all"
             );
             
             const foundExam = fallbackResponse.data?.exams?.find(
@@ -147,7 +147,7 @@ const StartExam = () => {
 
       // Submit to backend
       const response = await axios.post(
-        "https://online-exam-portal-client.vercel.app/api/submissions/submit",
+        "https://online-exam-portal-server.onrender.com/api/submissions/submit",
         {
           examTitle: exam.exam_title,
           examType: exam.type,

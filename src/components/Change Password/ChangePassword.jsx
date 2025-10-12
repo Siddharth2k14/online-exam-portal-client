@@ -44,7 +44,7 @@ const ChangePassword = () => {
     }
 
     try {
-      const response = await fetch("https://online-exam-portal-client.vercel.app/api/auth/change-password", {
+      const response = await fetch("https://online-exam-portal-server.onrender.com/api/auth/change-password", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
