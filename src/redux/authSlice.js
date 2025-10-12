@@ -1,12 +1,9 @@
 /* eslint-disable prettier/prettier */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import process from 'process';
 
-const server_url = process.env.REACT_APP_SERVER_URL;
-console.log(server_url);
 
-const BASE_URL = `${server_url}/api/auth`;
+const BASE_URL = "https://online-exam-portal-client.vercel.app/api/auth";
 const localStorage = window.localStorage;
 
 export const login = createAsyncThunk(

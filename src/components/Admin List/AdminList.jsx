@@ -21,7 +21,7 @@ const AdminList = () => {
       setLoading(true);
       setError(null);
       
-      const response = await axios.get(`${server_url}/api/auth/admin/all`);
+      const response = await axios.get("https://online-exam-portal-client.vercel.app/api/auth/admin/all");
       console.log('API Response:', response.data);
       
       // Handle different possible response structures
