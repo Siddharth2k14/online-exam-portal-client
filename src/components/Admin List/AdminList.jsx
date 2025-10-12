@@ -6,7 +6,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 import Alert from '@mui/material/Alert'
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
-import process from 'process';
+
 import './AdminList.css'; // Import CSS file
 
 const AdminList = () => {
@@ -14,7 +14,6 @@ const AdminList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const server_url = process.env.REACT_APP_SERVER_URL;
 
   const fetchAdmin = async () => {
     try {

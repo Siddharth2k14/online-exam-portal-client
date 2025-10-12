@@ -1,6 +1,5 @@
 //Regular Imports
 import { useState } from 'react';
-import process from 'process';
 
 //Material UI Imports
 import Box from '@mui/material/Box';
@@ -29,7 +28,6 @@ const ChangePassword = () => {
   const [success, setSuccess] = useState(false);
   const { themeMode } = useTheme();
 
-  const server_url = process.env.REACT_APP_SERVER_URL;
 
   const handleChange = (field) => (e) => {
     setForm({ ...form, [field]: e.target.value });

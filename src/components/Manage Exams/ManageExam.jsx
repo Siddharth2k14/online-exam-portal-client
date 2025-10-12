@@ -1,6 +1,5 @@
 //Regular Imports
 import { useEffect, useState } from 'react';
-import process from "process";
 
 //Material UI Imports
 import Button from '@mui/material/Button';
@@ -24,8 +23,7 @@ const ManageExam = () => {
   const [viewExamTitle, setViewExamTitle] = useState(null);
   const navigate = useNavigate();
   const { themeMode } = useTheme();
-  
-  const server_url = process.env.REACT_APP_SERVER_URL;
+
 
   const fetchData = async () => {
     try {

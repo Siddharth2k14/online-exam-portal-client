@@ -1,7 +1,6 @@
 //Regular Imports
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import process from 'process';
 
 //Material UI Imports
 import Card from '@mui/material/Card';
@@ -22,8 +21,6 @@ const ViewExam = () => {
   const [exam, setExam] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const server_url = process.env.REACT_APP_SERVER_URL;
 
   useEffect(() => {
     const fetchExam = async () => {

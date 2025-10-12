@@ -1,7 +1,6 @@
 //Regular Imports
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import process from 'process';
 
 //Material UI Imports
 import Card from '@mui/material/Card';
@@ -32,7 +31,6 @@ const StartExam = () => {
   const [answers, setAnswers] = useState([]);
   const [submitting, setSubmitting] = useState(false);
   
-  const server_url = process.env.REACT_APP_SERVER_URL;
 
   /* ------------------------------------------------------------------ */
   /* 1. OPTIMIZED: Use dedicated exam endpoint for better performance    */

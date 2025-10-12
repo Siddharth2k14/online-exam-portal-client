@@ -8,7 +8,7 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios";
 import { Button } from '@mui/material';
 import {useNavigate} from 'react-router-dom';
-import process from 'process';
+
 import './StudentList.css'; // Import CSS file
 
 const StudentList = () => {
@@ -18,7 +18,6 @@ const StudentList = () => {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const navigate = useNavigate();
 
-  const server_url = process.env.REACT_APP_SERVER_URL;
 
   const fetchStudent = async () => {
     try {

@@ -1,6 +1,5 @@
 // Regular Imports
 import { useState, useEffect } from 'react';
-import process from 'process';
 
 // Material UI Imports
 import Typography from '@mui/material/Typography';
@@ -33,8 +32,7 @@ const ExamsPage = () => {
 
   const navigate = useNavigate();
   const { themeMode } = useTheme() || { themeMode: 'light' };
-  
-  const server_url = process.env.REACT_APP_SERVER_URL;
+
 
   // Get completed exams from localStorage
   const getCompletedExams = () => {
