@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 
-const BASE_URL = "https://online-exam-portal-client.vercel.app/api/auth";
+const BASE_URL = "https://online-exam-portal-server.onrender.com/api/auth";
 const localStorage = window.localStorage;
 
 export const login = createAsyncThunk(
