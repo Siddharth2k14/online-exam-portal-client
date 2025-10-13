@@ -34,7 +34,7 @@ const ExamsPage = () => {
   const navigate = useNavigate();
   const { themeMode } = useTheme() || { themeMode: 'light' };
   
-  const server_url = process.env.REACT_APP_SERVER_URL;
+ const server_url = import.meta.env.VITE_SERVER_URL;
 
   // Get completed exams from localStorage
   const getCompletedExams = () => {

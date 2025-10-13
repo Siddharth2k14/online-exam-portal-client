@@ -32,7 +32,7 @@ const StartExam = () => {
   const [answers, setAnswers] = useState([]);
   const [submitting, setSubmitting] = useState(false);
   
-  const server_url = process.env.REACT_APP_SERVER_URL;
+ const server_url = import.meta.env.VITE_SERVER_URL;
 
   /* ------------------------------------------------------------------ */
   /* 1. OPTIMIZED: Use dedicated exam endpoint for better performance    */

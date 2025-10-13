@@ -23,7 +23,7 @@ const ViewExam = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const server_url = process.env.REACT_APP_SERVER_URL;
+ const server_url = import.meta.env.VITE_SERVER_URL;
 
   useEffect(() => {
     const fetchExam = async () => {

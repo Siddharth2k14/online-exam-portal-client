@@ -18,7 +18,7 @@ const StudentList = () => {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const navigate = useNavigate();
 
-  const server_url = process.env.REACT_APP_SERVER_URL;
+ const server_url = import.meta.env.VITE_SERVER_URL;
 
   const fetchStudent = async () => {
     try {

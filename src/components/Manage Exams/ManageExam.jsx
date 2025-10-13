@@ -25,7 +25,7 @@ const ManageExam = () => {
   const navigate = useNavigate();
   const { themeMode } = useTheme();
   
-  const server_url = process.env.REACT_APP_SERVER_URL;
+ const server_url = import.meta.env.VITE_SERVER_URL;
 
   const fetchData = async () => {
     try {

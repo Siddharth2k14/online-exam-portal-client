@@ -33,7 +33,7 @@ const SubjectiveExamCreation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const subjectiveQuestions = useSelector(state => state.subjectiveExam.questions);
-  const server_url = process.env.REACT_APP_SERVER_URL;
+ const server_url = import.meta.env.VITE_SERVER_URL;
 
   const handleAddQuestion = async () => {
     // Fixed validation - includes marks check
