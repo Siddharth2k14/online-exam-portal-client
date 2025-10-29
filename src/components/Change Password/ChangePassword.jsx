@@ -28,6 +28,10 @@ const ChangePassword = () => {
   const [success, setSuccess] = useState(false);
   const { themeMode } = useTheme();
 
+<<<<<<< HEAD
+=======
+ const server_url = import.meta.env.VITE_SERVER_URL;
+>>>>>>> testing
 
   const handleChange = (field) => (e) => {
     setForm({ ...form, [field]: e.target.value });

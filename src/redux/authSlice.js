@@ -2,8 +2,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+<<<<<<< HEAD
 
 const BASE_URL = "https://online-exam-portal-server.onrender.com/api/auth";
+=======
+const server_url = import.meta.env.VITE_SERVER_URL;
+console.log(server_url);
+
+const Base_url = `${server_url}/api/auth`;
+
+>>>>>>> testing
 const localStorage = window.localStorage;
 
 export const login = createAsyncThunk(
@@ -11,12 +19,12 @@ export const login = createAsyncThunk(
   async ({ email, password }, thunkAPI) => {
     try {
       // Use a single login endpoint - let backend determine role from email
-      const endpoint = `${BASE_URL}/login`;
+      const endpoint = `${Base_url}/login`;
       const response = await axios.post(endpoint, { email, password });
-      return { 
-        user: response.data.user, 
-        token: response.data.token, 
-        role: response.data.role 
+      return {
+        user: response.data.user,
+        token: response.data.token,
+        role: response.data.role
       };
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -30,7 +38,7 @@ export const signup = createAsyncThunk(
   'auth/signup',
   async ({ name, email, password, confirmPassword, phoneNumber }, thunkAPI) => {
     try {
-      const response = await axios.post(`${BASE_URL}/signup`, {
+      const response = await axios.post(`${Base_url}/signup`, {
         name,
         email,
         password,

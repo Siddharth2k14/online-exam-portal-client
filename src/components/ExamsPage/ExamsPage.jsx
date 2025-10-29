@@ -32,7 +32,12 @@ const ExamsPage = () => {
 
   const navigate = useNavigate();
   const { themeMode } = useTheme() || { themeMode: 'light' };
+<<<<<<< HEAD
 
+=======
+  
+ const server_url = import.meta.env.VITE_SERVER_URL;
+>>>>>>> testing
 
   // Get completed exams from localStorage
   const getCompletedExams = () => {

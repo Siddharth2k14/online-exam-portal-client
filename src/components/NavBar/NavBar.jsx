@@ -1,5 +1,6 @@
 //Regular Imports
 import { useState, useEffect } from 'react';
+import * as Sentry from "@sentry/react";
 
 //Material UI Imports
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -80,7 +81,7 @@ const NavBar = () => {
   return (
     <>
       {isMobile ? (
-        <SideNavBar isAdminDash = {isAdminDash} isStudentDash = {isStudentDash} location = {location} />
+        <SideNavBar isAdminDash={isAdminDash} isStudentDash={isStudentDash} location={location} />
       ) : (
 
         <nav className="navbar">
@@ -98,7 +99,7 @@ const NavBar = () => {
 
           <ul className="navbar-menu">
             <li>
-                <Link to="/home" onClick={handleCloseMenu}>Home</Link>
+              <Link to="/home" onClick={handleCloseMenu}>Home</Link>
             </li>
             <li><Link to="/about" onClick={handleCloseMenu}>About</Link></li>
             <li><Link to="/contact" onClick={handleCloseMenu}>Contact</Link></li>

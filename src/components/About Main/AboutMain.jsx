@@ -21,7 +21,7 @@ const AboutMain = () => {
                 <Box className="about-main-desc" mb={4}>
                     <Typography variant="body1">
                         ExamMaster is a full-stack Online Exam Portal designed to simplify and modernize the exam process for both students and administrators.
-                        Whether it's objective MCQs or subjective answers, the platform supports it all — allowing students to take exams securely, view results instantly, and track their progress over time. For admins, it offers a clean and intuitive dashboard to create, manage, and schedule exams efficiently.
+                        Whether it is objective MCQs or subjective answers, the platform supports it all — allowing students to take exams securely, view results instantly, and track their progress over time. For admins, it offers a clean and intuitive dashboard to create, manage, and schedule exams efficiently.
                     </Typography>
                 </Box>
                 <Grid container spacing={4} justifyContent="center" className="about-main-features">

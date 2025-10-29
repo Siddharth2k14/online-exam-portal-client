@@ -62,29 +62,35 @@ const Signup = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!name.trim()) newErrors.name = 'Name is required';
     else if (name.trim().length < 2) newErrors.name = 'Name must be at least 2 characters';
-    
+
     if (!email) newErrors.email = 'Email is required';
     else if (!/\S+@\S+\.\S+/.test(email)) newErrors.email = 'Enter a valid email';
-    
+
     if (!password) newErrors.password = 'Password is required';
     else if (password.length < 6) newErrors.password = 'Password must be at least 6 characters';
-    
+
     if (!confirmPassword) newErrors.confirmPassword = 'Please confirm your password';
     else if (confirmPassword !== password) newErrors.confirmPassword = 'Passwords do not match';
-    
+
     if (!phoneNumber) newErrors.phoneNumber = 'Phone number is required';
     else if (!/^\d{10}$/.test(phoneNumber)) newErrors.phoneNumber = 'Phone number must be exactly 10 digits';
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+    console.log("Data filled");
+    console.log("Name: ", name)
+    console.log("Email: ", email);
+    console.log("Password: ", password);
+    console.log("Phone No: ", phoneNumber);
+    console.log("Confirm Password: ", confirmPassword);
+
     if (validateForm()) {
       try {
         setLoading(true);
@@ -100,7 +106,7 @@ const Signup = () => {
         };
 
         const result = await dispatch(signup(signupData)).unwrap();
-        
+
         console.log('Signup successful, role assigned:', result.role);
 
         // Navigate based on role
@@ -111,7 +117,7 @@ const Signup = () => {
         } else {
           navigate('/login');
         }
-        
+
       } catch (err) {
         console.error('Signup error:', err);
         const errorMessage = err.message || err || 'Signup failed. Please try again.';

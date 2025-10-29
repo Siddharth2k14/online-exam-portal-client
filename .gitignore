@@ -41,3 +41,7 @@ PublicRoutes.jsx
 SharedRoutes.jsx
 Dockerfile
 .env
+.env.local
+eslint.config.js
+.husky/
+.circleci/
