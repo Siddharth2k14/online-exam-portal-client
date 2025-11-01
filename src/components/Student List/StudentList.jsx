@@ -18,10 +18,6 @@ const StudentList = () => {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const navigate = useNavigate();
 
-<<<<<<< HEAD
-=======
- const server_url = import.meta.env.VITE_SERVER_URL;
->>>>>>> testing
 
   const fetchStudent = async () => {
     try {

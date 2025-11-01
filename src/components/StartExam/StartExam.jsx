@@ -31,10 +31,6 @@ const StartExam = () => {
   const [answers, setAnswers] = useState([]);
   const [submitting, setSubmitting] = useState(false);
   
-<<<<<<< HEAD
-=======
- const server_url = import.meta.env.VITE_SERVER_URL;
->>>>>>> testing
 
   /* ------------------------------------------------------------------ */
   /* 1. OPTIMIZED: Use dedicated exam endpoint for better performance    */

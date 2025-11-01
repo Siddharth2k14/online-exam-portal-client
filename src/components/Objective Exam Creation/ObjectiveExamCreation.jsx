@@ -27,11 +27,6 @@ const ObjectiveExamCreation = () => {
   const [correct, setCorrect] = useState(null); // index of correct answer
   const dispatch = useDispatch();
 
-<<<<<<< HEAD
-=======
- const server_url = import.meta.env.VITE_SERVER_URL;
-
->>>>>>> testing
   const handleOptionChange = (idx, value) => {
     const newOptions = [...options];
     newOptions[idx] = value;

@@ -23,12 +23,6 @@ const ManageExam = () => {
   const [viewExamTitle, setViewExamTitle] = useState(null);
   const navigate = useNavigate();
   const { themeMode } = useTheme();
-<<<<<<< HEAD
-
-=======
-  
- const server_url = import.meta.env.VITE_SERVER_URL;
->>>>>>> testing
 
   const fetchData = async () => {
     try {

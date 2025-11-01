@@ -14,10 +14,6 @@ const AdminList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-<<<<<<< HEAD
-=======
- const server_url = import.meta.env.VITE_SERVER_URL;
->>>>>>> testing
 
   const fetchAdmin = async () => {
     try {
