@@ -6,7 +6,7 @@ import { visualizer } from "rollup-plugin-visualizer";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), visualizer({
-    filename: 'bundle-report.html',
+    filename: 'bundle-report.json',
     open: true,
     gzipSize: true,
     brotliSize: true,
