@@ -2,7 +2,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-
 const Base_url = "https://online-exam-portal-server.onrender.com/api/auth";
 const localStorage = window.localStorage;
 
