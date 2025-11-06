@@ -328,6 +328,9 @@ const StartExam = () => {
         <Typography variant='subtitle1' gutterBottom>
           Marks: {exam.questions}
         </Typography>
+        <Typography variant='subtitle1' gutterBottom>
+          Timer: {exam.timer}
+        </Typography>
 
         <Divider sx={{ my: 2 }} />
 
