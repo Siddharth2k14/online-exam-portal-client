@@ -45,3 +45,4 @@ Dockerfile
 eslint.config.js
 .husky/
 .circleci/
+.vercel/
