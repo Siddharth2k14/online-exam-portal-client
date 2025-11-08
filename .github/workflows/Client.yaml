@@ -138,6 +138,13 @@ jobs:
       url: https://online-exam-portal-client-testing.vercel.app/
 
     steps:
+      - name: Debug Event Info
+        run: |
+          echo "Branch: ${{ github.ref }}"
+          echo "Event: ${{ github.event_name }}"
+          echo "Actor: ${{ github.actor }}"
+
+
       - name: Checkout Code
         uses: actions/checkout@v5
 
