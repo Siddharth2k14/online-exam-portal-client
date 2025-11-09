@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios"
 import { Button, Card, Input, Typography } from "@mui/material";
 
-const App = () => {
+const AI = () => {
     const [question, setQuetion] = useState("");
     const [answer, setAnswer] = useState("");
 
@@ -26,4 +26,4 @@ const App = () => {
     )
 }
 
-export default App;
+export default AI;

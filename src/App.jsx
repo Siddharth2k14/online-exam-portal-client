@@ -11,6 +11,7 @@ import { CssBaseline } from '@mui/material';
 // Authentication Components
 import Login from './components/Authentication/Login/Login.jsx';
 import Signup from './components/Authentication/Signup/Signup.jsx';
+import AI from './AI Integration/AI.jsx';
 
 // Lazy Loading Components
 import { lazy, Suspense } from 'react';
@@ -48,140 +49,7 @@ const Loading = ({ message = "Loading..." }) => {
 const App = () => {
   return (
     <ThemeProvider>
-      <CssBaseline />
-      <Suspense fallback={<Loading message="Loading page..." />}>
-        <Routes>
-          {/* Public Routes - No authentication required */}
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-
-          {/* Authentication Routes */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/forgetPassword" element={<ForgetPassword />} />
-
-          {/* Legacy Route Redirects */}
-          <Route path="/signup/:role" element={<Navigate to="/signup" replace />} />
-          <Route path="/login/:role" element={<Navigate to="/login" replace />} />
-          <Route path="/home" element={<Navigate to="/" replace />} />
-
-          {/* Protected Admin Routes */}
-          <Route
-            path="/admin/dashboard"
-            element={
-              <PrivateRoute roles={['admin']}>
-                <AdminDashboard />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/exam-creation"
-            element={
-              <PrivateRoute roles={['admin']}>
-                <ExamCreation />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/manage-exams"
-            element={
-              <PrivateRoute roles={['admin']}>
-                <ManageExam />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/exam-creation/objective"
-            element={
-              <PrivateRoute roles={['admin']}>
-                <ObjectiveExamCreation />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/exam-creation/subjective"
-            element={
-              <PrivateRoute roles={['admin']}>
-                <SubjectiveExamCreation />
-              </PrivateRoute>
-            }
-          />
-
-          <Route
-            path="/view-exam/:examTitle"
-            element={
-              <PrivateRoute roles={['admin']}>
-                <ViewExam />
-              </PrivateRoute>
-            }
-          />
-
-          <Route
-            path="/student-list"
-            element={
-              <PrivateRoute roles={['admin']}>
-                <StudentList />
-              </PrivateRoute>
-            }
-          />
-
-          {/* Protected Student Routes */}
-          <Route
-            path="/student/dashboard"
-            element={
-              <PrivateRoute roles={['student']}>
-                <StudentDashboard />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/exams"
-            element={
-              <PrivateRoute roles={['student']}>
-                <ExamsPage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/results"
-            element={
-              <PrivateRoute roles={['student']}>
-                <Result />
-              </PrivateRoute>
-            }
-          />
-
-          {/* Lazy-loaded protected routes */}
-          <Route
-            path="/start-exam/:examTitle"
-            element={
-              <PrivateRoute roles={['student']}>
-                <StartExam />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/exam/:examTitle/review"
-            element={
-              <PrivateRoute roles={['student']}>
-                <ViewExamReview />
-              </PrivateRoute>
-            }
-          />
-
-
-          {/* Shared Protected Routes (Both Admin and Student) */}
-          <Route path="/change-password" element={<ChangePassword />} />
-          <Route path="/account-settings" element={<AccountSettings />} />
-
-          {/* Legacy route redirects for backward compatibility */}
-          <Route path="/account-info" element={<Navigate to="/shared/account-settings" replace />} />
-
-          {/* Catch-all route - redirect to home */}
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </Suspense>
+      <AI />
     </ThemeProvider>
   );
 };
