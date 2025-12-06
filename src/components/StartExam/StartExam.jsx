@@ -19,6 +19,7 @@ import './StartExam.css';
 
 //Router
 import { useParams, useNavigate } from 'react-router-dom';
+import Timer from '../Timer/Timer';
 
 const StartExam = () => {
   const { examTitle } = useParams();
@@ -30,7 +31,13 @@ const StartExam = () => {
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [submitting, setSubmitting] = useState(false);
+  const [timeUp, setTimeUp] = useState(false);
   
+  const handleTimeUp = () => {
+    setTimeUp(true);
+    alert("Time is up! Submitting your exam automatically");
+    handleSubmit();
+  };
 
   /* ------------------------------------------------------------------ */
   /* 1. OPTIMIZED: Use dedicated exam endpoint for better performance    */
@@ -331,6 +338,11 @@ const StartExam = () => {
         <Typography variant='subtitle1' gutterBottom>
           Timer: {exam.timer}
         </Typography>
+
+        <Timer 
+          totalTime={exam.timer || 600}
+          onTimeUp={handleTimeUp}
+        />
 
         <Divider sx={{ my: 2 }} />
 
