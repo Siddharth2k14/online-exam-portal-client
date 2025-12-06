@@ -46,5 +46,3 @@ eslint.config.js
 .husky/
 .circleci/
 .vercel/
-src/components/Timer
-src/components/StartExam
