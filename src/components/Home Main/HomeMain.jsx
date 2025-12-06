@@ -60,10 +60,36 @@ const HomeMain = () => {
             </Grid>
           </Box>
         ) : (
-          <Box>
-            <Typography>
-              Hello this is for Mobile view
-            </Typography>
+          <Box
+            alignItems="center"
+            justifyContent="center"
+            className="home-main-features-mobile"
+          >
+            <Grid item xs={12} md={5}>
+              <Typography variant="h6" gutterBottom>
+                For Students
+              </Typography>
+
+              <List>
+                <ListItem><ListItemText primary="📝 Take objective & subjective exams" /></ListItem>
+                <ListItem><ListItemText primary="📊 View your scores instantly" /></ListItem>
+                <ListItem><ListItemText primary="🗂 Track your exam history anytime" /></ListItem>
+                <ListItem><ListItemText primary="🎓 Practice & prepare with ease" /></ListItem>
+              </List>
+            </Grid>
+
+            <Grid item xs={12} md={5} ml={8}>
+              <Typography variant="h6" gutterBottom>
+                For Admins
+              </Typography>
+
+              <List>
+                <ListItem><ListItemText primary="🛠️ Create exams in minutes (MCQs or written)" /></ListItem>
+                <ListItem><ListItemText primary="📁 Organize exams by subject & type" /></ListItem>
+                <ListItem><ListItemText primary="🕒 Schedule exams for later" /></ListItem>
+                <ListItem><ListItemText primary="🧠 Analyze performance via built-in dashboards" /></ListItem>
+              </List>
+            </Grid>
           </Box>
         )}
         <Box className="home-main-coming-soon" mt={6} textAlign="center">

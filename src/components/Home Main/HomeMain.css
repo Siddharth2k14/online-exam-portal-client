@@ -58,6 +58,29 @@
   font-size: 1.1rem;
 }
 
+.home-main-features-mobile {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+  gap: 40px;   /* Big gap → you can reduce this later */
+}
+
+.home-main-features-mobile .MuiGrid-item {
+  display: flex;
+  flex-direction: column; /* FIX - change row → column */
+  align-items: flex-start;
+}
+
+.home-main-features-mobile .MuiTypography-h6 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.home-main-features-mobile .MuiListItemText-root {
+  font-size: 1.1rem;
+}
+
 .home-main-coming-soon {
   margin-top: 32px;
   display: flex;
