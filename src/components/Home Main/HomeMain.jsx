@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 
 //Component
 const HomeMain = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 900);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
     const handleResize = () => {
