@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 
 //CSS
 import './HomeMain.css';
+import { useState } from 'react';
 
 //Component
 const HomeMain = () => {
