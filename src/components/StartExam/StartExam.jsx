@@ -19,7 +19,7 @@ import './StartExam.css';
 
 //Router
 import { useParams, useNavigate } from 'react-router-dom';
-import Timer from '../Timer/Timer';
+import {Timer} from '../Timer/Timer.jsx';
 
 const StartExam = () => {
   const { examTitle } = useParams();
