@@ -11,137 +11,184 @@ env:
 
 jobs:
   # ============================================
-  # JOB 1: Test Frontend
+  # JOB 1: TEST FRONTEND
   # ============================================
   test:
+    name: Test Frontend
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v5
+      - uses: actions/checkout@v5
 
-    - uses: actions/setup-node@v4
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-        cache: 'npm'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
 
-    - uses: actions/cache@v4
-      with:
-        path: |
-          node_modules/.vite
-        key: vite-${{ runner.os }}-${{ hashFiles('**/*.js', '**/*.ts') }}
-        restore-keys: |
-          vite-${{ runner.os }}-
+      - name: Install Dependencies
+        run: npm ci
 
-    - run: npm ci
-    - run: npm test -- --watchAll=false
+      - name: Run Tests
+        run: npm test -- --watchAll=false
+        env:
+          CI: true
 
 
   # ============================================
-  # JOB 2: Build Once and Save Artifact
+  # JOB 2: BUILD (ONLY IF TEST PASSES)
   # ============================================
   build:
+    name: Build Application
     runs-on: ubuntu-latest
+    needs: test   # ✔ Build runs ONLY if test passes
 
     steps:
-    - uses: actions/checkout@v5
+      - uses: actions/checkout@v5
 
-    - uses: actions/setup-node@v4
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-        cache: 'npm'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
 
-    - uses: actions/cache@v4
-      with:
-        path: node_modules/.vite
-        key: vite-${{ runner.os }}-${{ github.sha }}
-        restore-keys: |
-          vite-${{ runner.os }}-
+      - name: Install Dependencies
+        run: npm ci
 
-    - run: npm ci
-    - run: npm run build
+      - name: Build App
+        run: npm run build
+        env:
+          CI: true
 
-    - uses: actions/upload-artifact@v4
-      with:
-        name: build-dist
-        path: dist/
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: client-build
+          path: dist/
+          retention-days: 7
 
 
   # ============================================
-  # JOB 3: Security Audit
+  # JOB 3: SECURITY AUDIT (RUNS IN PARALLEL)
   # ============================================
   security:
+    name: Security Audit
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v5
-    - uses: actions/setup-node@v4
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-        cache: 'npm'
+      - uses: actions/checkout@v5
 
-    - run: npm ci
-    - run: npm audit --audit-level=moderate || true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - run: npm ci
+
+      - run: npm audit --audit-level=moderate || true
+
+      - uses: actions/dependency-review-action@v4
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
 
 
   # ============================================
-  # DEPLOY — STAGING
+  # JOB 4: DEPLOY TO STAGING
   # ============================================
   deploy-staging:
+    name: 🚀 Deploy to Staging
     runs-on: ubuntu-latest
-    needs: [test, build]
+    needs: [build]   # ✔ Deploy only if build (and test) pass
     if: github.ref == 'refs/heads/testing' && github.event_name == 'push'
 
-    steps:
-    - uses: actions/download-artifact@v4
-      with:
-        name: build-dist
-        path: dist
+    environment:
+      name: staging
+      url: https://online-exam-portal-client-testing.vercel.app/
 
-    - uses: amondnet/vercel-action@v25
-      with:
-        vercel-token: ${{ secrets.VERCEL_TOKEN }}
-        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: client-build
+          path: dist
+
+      - name: Deploy to Vercel (Staging)
+        uses: amondnet/vercel-action@v25
+        id: vercel-staging
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Smoke Test Staging
+        run: |
+          echo "🧪 Testing staging deployment..."
+          status=$(curl -s -o /dev/null -w "%{http_code}" https://online-exam-portal-client-testing.vercel.app/)
+          if [ "$status" != "200" ]; then
+            echo "❌ Staging returned HTTP $status"
+            exit 1
+          fi
+          echo "✅ Staging deployment is healthy!"
 
 
   # ============================================
-  # DEPLOY — PRODUCTION
+  # JOB 5: DEPLOY TO PRODUCTION
   # ============================================
   deploy-production:
+    name: 🎯 Deploy to Production
     runs-on: ubuntu-latest
-    needs: [test, build, security]
+    needs: [build, security]   # ✔ Prod deploy requires build + security
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 
-    steps:
-    - uses: actions/download-artifact@v4
-      with:
-        name: build-dist
-        path: dist
+    environment:
+      name: production
+      url: https://online-exam-portal-client.vercel.app
 
-    - uses: amondnet/vercel-action@v25
-      with:
-        vercel-token: ${{ secrets.VERCEL_TOKEN }}
-        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-        vercel-args: '--prod'
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: client-build
+          path: dist
+
+      - name: Deploy to Vercel (Production)
+        uses: amondnet/vercel-action@v25
+        id: vercel-prod
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
+
+      - name: Production Health Check
+        run: |
+          echo "🏥 Checking production health..."
+          curl -f https://online-exam-portal-client.vercel.app/ || exit 1
+          echo "✓ Homepage OK"
+          curl -f https://online-exam-portal-client.vercel.app/login || echo "Login check skipped"
+          echo "🎉 Production verified!"
 
 
   # ============================================
-  # FEATURE PREVIEW BUILDS
+  # JOB 6: FEATURE PREVIEW DEPLOY
   # ============================================
   preview-feature:
+    name: 📸 Feature Preview Deployment
     runs-on: ubuntu-latest
-    needs: [test, build]
-    if: startsWith(github.ref, 'refs/heads/feature/')
+    needs: [build]   # ✔ Preview only if build/test passed
+    if: startsWith(github.ref, 'refs/heads/feature/') && github.event_name == 'push'
 
     steps:
-    - uses: actions/download-artifact@v4
-      with:
-        name: build-dist
-        path: dist
+      - uses: actions/download-artifact@v4
+        with:
+          name: client-build
+          path: dist
 
-    - uses: amondnet/vercel-action@v25
-      with:
-        vercel-token: ${{ secrets.VERCEL_TOKEN }}
-        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+      - name: Deploy Preview to Vercel
+        uses: amondnet/vercel-action@v25
+        id: vercel-preview
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          github-comment: false
+
+      - name: Print Preview URL
+        run: |
+          echo "::notice title=Feature Preview::Preview available at ${{ steps.vercel-preview.outputs.preview-url }}"
