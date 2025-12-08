@@ -7,7 +7,7 @@ on:
     branches: [main, testing]
 
 env:
-  NODE_VERSION: '20'
+  NODE_VERSION: '22'
 
 jobs:
   # ============================================
@@ -148,14 +148,14 @@ jobs:
           echo "Actor: ${{ github.actor }}"
 
 
-      # - name: Checkout Code
-      #   uses: actions/checkout@v5
+      - name: Checkout Code
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
 
       - name: Build for Staging
         run: npm run build
@@ -209,13 +209,14 @@ jobs:
       url: https://online-exam-portal-client.vercel.app
     
     steps:
-      # - name: Checkout Code
-      #   uses: actions/checkout@v5
+      - name: Checkout Code
+        uses: actions/checkout@v5
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
       
       - name: Build for Production
         run: npm run build
@@ -279,13 +280,14 @@ jobs:
     if: startsWith(github.ref, 'refs/heads/feature/') && github.event_name == 'push'
 
     steps:
-      # - name: Checkout Code
-      #   uses: actions/checkout@v5
+      - name: Checkout Code
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
 
 
       - name: Build Feature Preview
