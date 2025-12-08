@@ -156,6 +156,8 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
+          cache-dependency-path: './client/vite-project/package-lock.json'
+
 
       - name: Build for Staging
         run: npm run build
