@@ -24,8 +24,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          node-version: '20'
 
       - name: Install Dependencies
         run: npm ci
@@ -60,8 +59,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ env.NODE_VERSION }}
-        cache: 'npm'
+        node-version: '20'
 
     # - name: Debug - Confirm package.json and scripts
     #   working-directory: client/vite-project
@@ -112,8 +110,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          node-version: '20'
 
       - name: Install Dependencies
         run: npm ci
@@ -154,8 +151,10 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm ci
 
       - name: Build for Staging
         run: npm run build
@@ -172,6 +171,8 @@ jobs:
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
 
+      - name: Wait for Deployment
+        run: sleep 10
 
       - name: Smoke Test Staging
         run: |
@@ -215,8 +216,10 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          node-version: '20'
+      
+      - name: Install Dependencies
+        run: npm ci
       
       - name: Build for Production
         run: npm run build
@@ -233,6 +236,9 @@ jobs:
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           vercel-args: '--prod'
+      
+      - name: Wait for Production Deployment
+        run: sleep 15
       
       - name: Production Health Checks
         run: |
@@ -286,9 +292,10 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          node-version: '20'
 
+      - name: Install Dependencies
+        run: npm ci
 
       - name: Build Feature Preview
         run: npm run build
