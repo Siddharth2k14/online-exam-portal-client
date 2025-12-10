@@ -19,7 +19,7 @@ import { useNavigate } from 'react-router-dom';
 
 //CSS
 import './SideBar.css';
-import { Box } from '@mui/material';
+import HideSideBat from '../Hide Side Bar/HideSideBat';
 
 //Component
 const SideBar = ({ onSectionSelect }) => {
@@ -63,19 +63,7 @@ const SideBar = ({ onSectionSelect }) => {
     return (
         <>
             {isMobile ? (
-                <Box
-                    className="dashboard-sidebar"
-                    style={{
-                        width: '260px',
-                        height: '25vh',
-                        maxHeight: '100vh',
-                        color: 'white',
-                    }}
-                >
-                    <Typography>
-                        This is for mobile
-                    </Typography>
-                </Box>
+                <HideSideBat isAdminDash={isAdminDashboard} isStudentDash={isStudentDashboard} location={location} onSectionSelect={onSectionSelect}/>
             ) : (
                 <div
                     className="dashboard-sidebar"
