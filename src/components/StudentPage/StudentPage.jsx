@@ -133,7 +133,7 @@ const StudentPage = () => {
                 style={{
                     border: themeMode === 'dark' ? '2px solid #fff' : '2px solid #333',
                     left: isMobile ? '51px' : '261px',
-                    width: isMobile ? '832px' : '1017px',
+                    width: isMobile ? '832px' : '638px',
                 }}
             >
                 {console.log(themeMode)}
