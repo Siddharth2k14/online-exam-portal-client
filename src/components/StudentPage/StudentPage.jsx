@@ -1,5 +1,5 @@
 //Regular Imports
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import SideBar from "../SideBar/SideBar.jsx";
 
@@ -42,9 +42,19 @@ const ComponentLoading = ({ message = "Loading..." }) => (
 
 const StudentPage = () => {
     const [selectedSection, setSelectedSection] = useState('');
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 900);
     const user = useSelector(state => state.auth.user);
     const role = useSelector(state => state.auth.role);
     const { themeMode } = useTheme();
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 900);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const renderContent = () => {
         if (selectedSection === 'Exams') {
@@ -122,6 +132,8 @@ const StudentPage = () => {
                 className='student-page'
                 style={{
                     border: themeMode === 'dark' ? '2px solid #fff' : '2px solid #333',
+                    left: isMobile ? '51px' : '261px',
+                    width: isMobile ? '832px' : '1017px',
                 }}
             >
                 {console.log(themeMode)}

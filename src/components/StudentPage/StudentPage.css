@@ -6,12 +6,9 @@
 }
 
 .student-page {
-
-    width: calc(100% - 262px); /* if left sidebar is fixed */
     height: calc(100vh - 64px); /* responsive height */
     position: absolute;
     top: 65px;
-    left: 261px;
     border: 2px solid black;
     color: black;
     overflow-y: auto;
