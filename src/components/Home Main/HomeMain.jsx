@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 
 //Component
 const HomeMain = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 900);
 
   useEffect(() => {
     const handleResize = () => {
@@ -27,7 +27,11 @@ const HomeMain = () => {
   return (
     <Box className="home-main-outer">
       <Card className="home-main-card">
-        <Typography variant="h2" align="center" className="home-main-title" gutterBottom>
+        <Typography 
+          variant= {isMobile ? 'h4' : 'h2'} 
+          align="center" 
+          className="home-main-title" 
+          gutterBottom>
           Welcome to ExamMaster – Your Smart Online Exam Portal
         </Typography>
         <Box className="home-main-desc" mb={4}>
