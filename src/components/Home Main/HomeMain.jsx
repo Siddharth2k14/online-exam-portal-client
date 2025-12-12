@@ -25,7 +25,13 @@ const HomeMain = () => {
   }, []);
 
   return (
-    <Box className="home-main-outer">
+    <Box 
+      className="home-main-outer"
+      sx={{
+        paddingRight: '7px',
+        paddingLeft: '7px'
+      }}
+    >
       <Card className="home-main-card">
         <Typography 
           variant= {isMobile ? 'h4' : 'h2'} 
