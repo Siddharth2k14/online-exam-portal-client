@@ -49,8 +49,8 @@ const ManageExam = () => {
 
   const handleDelete = async (exam_title) => {
     try {
-      await fetch("https://online-exam-portal-server.onrender.com/api/questions/objective/${exam_title}", { method: 'DELETE' });
-      await fetch("https://online-exam-portal-server.onrender.com/api/questions/subjective/${exam_title}", { method: 'DELETE' });
+      await fetch(`https://online-exam-portal-server.onrender.com/api/questions/objective/${exam_title}`, { method: 'DELETE' });
+      await fetch(`https://online-exam-portal-server.onrender.com/api/questions/subjective/${exam_title}`, { method: 'DELETE' });
       setExams((prev) => prev.filter((exam) => exam.exam_title !== exam_title));
     } catch (error) {
       alert('Error deleting exam');

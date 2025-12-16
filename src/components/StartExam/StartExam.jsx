@@ -50,7 +50,7 @@ const StartExam = () => {
       try {
         // OPTIMIZATION: Use the specific exam endpoint instead of /all
         const response = await axios.get(
-          "https://online-exam-portal-server.onrender.com/api/questions/exam/${encodeURIComponent(examTitle)}"
+          `https://online-exam-portal-server.onrender.com/api/questions/exam/${encodeURIComponent(examTitle)}`
         );
         
         if (!response.data) {
@@ -333,7 +333,7 @@ const StartExam = () => {
           Type: {exam.type}
         </Typography>
         <Typography variant='subtitle1' gutterBottom>
-          Marks: {exam.questions}
+          Marks: {exam.marks}
         </Typography>
         <Typography variant='subtitle1' gutterBottom>
           Timer: {exam.timer}
