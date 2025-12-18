@@ -1,64 +1,6 @@
 import { useEffect, useState } from "react";
 import { Typography, LinearProgress } from "@mui/material";
 
-export const StartTimer = () => {
-  const [number, setNumber] = useState();
-  const [inputValue, setInputValue] = useState();
-  const [start, setStart] = useState(false);
-
-  useEffect(() => {
-    if (!start || number <= 0) return;
-
-    const interval = setInterval(() => {
-      setNumber((prev) => {
-        if (prev <= 1) {
-          setStart(false);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(interval); // Clean up previous interval
-  }, [start, number]);
-
-  // ✅ Reset handler
-  const handleReset = () => {
-    setStart(false);
-    setNumber(inputValue);
-  };
-
-  return (
-    <div>
-      <input
-        type="number"
-        value={inputValue}
-        onChange={(e) => {
-          const val = Number(e.target.value);
-          setInputValue(val);
-          setNumber(val); // Update countdown too when input changes
-        }}
-        placeholder="Enter a number"
-        disabled={start} // Optional: prevent editing while timer is running
-      />
-      <br />
-      <button onClick={() => setStart(true)} disabled={start || number === 0}>
-        Start
-      </button>
-      <br />
-      <button onClick={() => setStart(false)} disabled={!start}>
-        Stop
-      </button>
-      <br />
-      <button onClick={handleReset}>
-        Reset
-      </button>
-      <br />
-      <h3>{number === 0 ? "Time is Up!" : `Time left: ${number} s`}</h3>
-    </div>
-  );
-}
-
 export const Timer = ({ totalTime, onTimeUp }) => {
   const [timeLeft, setTimeLeft] = useState(() => {
     // Persist timer if page reloads

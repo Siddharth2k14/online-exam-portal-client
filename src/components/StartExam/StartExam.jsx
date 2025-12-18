@@ -340,7 +340,7 @@ const StartExam = () => {
         </Typography>
 
         <Timer 
-          totalTime={exam.timer || 600}
+          totalTime={exam.timer}
           onTimeUp={handleTimeUp}
         />
 

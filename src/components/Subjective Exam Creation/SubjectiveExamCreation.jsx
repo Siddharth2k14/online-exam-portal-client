@@ -55,11 +55,11 @@ const SubjectiveExamCreation = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          exam_title: subjectiveTitleExam,
-          question,
-          answer,
-          marks: marksNumber, // Use the validated number
-          timer: timer
+          exam_title: String(subjectiveTitleExam),
+          question: String(question),
+          answer: String(answer),
+          marks: Number(marksNumber), // Use the validated number
+          timer: Number(timer)
         })
       });
 
