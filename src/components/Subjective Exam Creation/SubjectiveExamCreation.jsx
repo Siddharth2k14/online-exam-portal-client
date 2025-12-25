@@ -74,7 +74,7 @@ const SubjectiveExamCreation = () => {
         question,
         answer,
         marks: marksNumber, // Include marks in Redux too
-        timer: timer,
+        timer: timer
       }));
 
       // Clear all fields
