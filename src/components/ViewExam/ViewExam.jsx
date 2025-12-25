@@ -129,14 +129,14 @@ const ViewExam = () => {
           <Box sx={{
             minWidth: 250, maxWidth: 300
           }}>
-            <Typography variant="h6" gutterBottom sx={{ color: 'white' }}>Exam History</Typography>
+            <Typography variant="h6" gutterBottom sx={{ color: 'black' }}>Exam History</Typography>
             <List dense>
               {history.length === 0 && (
                 <ListItem><ListItemText primary="No exams taken yet." /></ListItem>
               )}
               {history.map((item, idx) => (
                 <ListItem key={idx} disablePadding sx={{
-                  color: 'white',
+                  color: 'black',
                 }}>
                   <ListItemButton
                     selected={
@@ -158,17 +158,17 @@ const ViewExam = () => {
           {/* Exam Review Section */}
           <Box sx={{ flex: 1 }}>
             <Typography variant="h5" gutterBottom sx={{
-              color: 'white',
+              color: 'black',
             }}>
               {selExam.exam_title}
             </Typography>
             <Typography variant="subtitle1" gutterBottom sx={{
-              color: 'white',
+              color: 'black',
             }}>
               Type: {selExam.type}
             </Typography>
             <Typography variant="h6" gutterBottom sx={{
-              color: 'white',
+              color: 'black',
             }}>
               Score: {selScore} / {selTotal}
             </Typography>
@@ -177,7 +177,7 @@ const ViewExam = () => {
             {selExam.questions.map((q, idx) => (
               <div key={idx} style={{ marginBottom: 24 }}>
                 <Typography variant="subtitle1" sx={{
-                  color: 'white',
+                  color: 'black',
                 }}>
                   Q{idx + 1}. {q.question_text}
                 </Typography>
