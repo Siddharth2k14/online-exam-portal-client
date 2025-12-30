@@ -59,7 +59,7 @@ const SubjectiveExamCreation = () => {
           question: String(question),
           answer: String(answer),
           marks: Number(marksNumber), // Use the validated number
-          timer: String(timer)
+          timer: Number(timer)
         })
       });
 
