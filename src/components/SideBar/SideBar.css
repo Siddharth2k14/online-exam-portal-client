@@ -38,11 +38,19 @@
 .exam-management {
   text-align: center;
   text-decoration: underline;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .setting {
   text-align: center;
   text-decoration: underline;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .exam-creation .MuiListItem-root {

@@ -19,7 +19,7 @@ const AccountSettings = ({ user, role }) => {
             </Typography>
             <Card className='profile-info-card'
                 sx={{
-                    background: themeMode === 'dark'? 'transparent' : '#fff',
+                    background: themeMode === 'dark' ? 'transparent' : '#fff',
                     '&:hover': {
                         transform: 'scale(1.05)',
                         transition: 'transform 0.5s ease-in-out',
@@ -30,19 +30,19 @@ const AccountSettings = ({ user, role }) => {
                 }}
             >
                 <Typography className='profile-info-text'
-                    sx={{ color: themeMode === 'dark'? '#fff' : '#333' }}
+                    sx={{ color: themeMode === 'dark' ? '#fff' : '#333' }}
                 >
                     Name: {user?.name || 'John Doe'}
                 </Typography>
 
                 <Typography className='profile-info-text'
-                    sx={{ color: themeMode === 'dark'? '#fff' : '#333' }}
+                    sx={{ color: themeMode === 'dark' ? '#fff' : '#333' }}
                 >
                     Email: {user?.email || 'john.doe@example.com'}
                 </Typography>
 
                 <Typography className='profile-info-text'
-                    sx={{ color: themeMode === 'dark'? '#fff' : '#333' }}
+                    sx={{ color: themeMode === 'dark' ? '#fff' : '#333' }}
                 >
                     Role: {role || 'Admin'}
                 </Typography>

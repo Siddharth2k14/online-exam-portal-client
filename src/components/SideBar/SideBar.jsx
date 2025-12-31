@@ -63,7 +63,7 @@ const SideBar = ({ onSectionSelect }) => {
     return (
         <>
             {isMobile ? (
-                <HideSideBat isAdminDash={isAdminDashboard} isStudentDash={isStudentDashboard} location={location} onSectionSelect={onSectionSelect}/>
+                <HideSideBat isAdminDash={isAdminDashboard} isStudentDash={isStudentDashboard} location={location} onSectionSelect={onSectionSelect} />
             ) : (
                 <div
                     className="dashboard-sidebar"
