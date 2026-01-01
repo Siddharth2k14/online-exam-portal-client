@@ -109,7 +109,7 @@ const App = () => {
           />
 
           <Route
-            path="/view-exam/:examTitle"
+            path="/exam/:examTitle/review"
             element={
               <PrivateRoute roles={['admin']}>
                 <ViewExam />
@@ -162,7 +162,7 @@ const App = () => {
             }
           />
           <Route
-            path="/exam/:examTitle/review"
+            path="/viewExam"
             element={
               <PrivateRoute roles={['student']}>
                 <ViewExamReview />

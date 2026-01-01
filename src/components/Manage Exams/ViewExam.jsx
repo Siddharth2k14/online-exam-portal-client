@@ -30,46 +30,46 @@ const ViewExam = () => {
         console.log('2. examTitle type:', typeof examTitle);
         console.log('3. examTitle length:', examTitle?.length);
         console.log(examTitle);
-        
+
         const res = await axios.get("https://online-exam-portal-server.onrender.com/api/questions/all");
-        
+
         console.log('4. Raw API response:', res.data);
         console.log('5. res.data.exams exists?', !!res.data.exams);
         console.log('6. res.data.exams is array?', Array.isArray(res.data.exams));
-        
+
         if (!res.data.exams || !Array.isArray(res.data.exams)) {
           throw new Error('API response does not contain exams array');
         }
-        
+
         const exams = res.data.exams;
         console.log('7. Number of exams:', exams.length);
-        
+
         if (exams.length === 0) {
           console.log('8. No exams found in response');
           setError('No exams available');
           return;
         }
-        
+
         console.log('9. All exam titles in database:');
         exams.forEach((exam, index) => {
           console.log(`   [${index}] "${exam.exam_title}" (length: ${exam.exam_title?.length})`);
         });
-        
+
         console.log('10. Attempting to find match...');
         const foundExam = exams.find(e => {
           console.log(`    Comparing "${e.exam_title}" === "${examTitle}"`);
           return e.exam_title === examTitle;
         });
-        
+
         console.log('11. Found exam:', foundExam ? 'YES' : 'NO');
         console.log('=== DEBUG END ===');
-        
+
         setExam(foundExam || null);
-        
+
         if (!foundExam) {
           setError(`Exam "${examTitle}" not found. Available exams: ${exams.map(e => `"${e.exam_title}"`).join(', ')}`);
         }
-        
+
       } catch (err) {
         console.error('Error fetching exam:', err);
         setError(err.message);
@@ -78,14 +78,14 @@ const ViewExam = () => {
         setLoading(false);
       }
     };
-    
+
     fetchExam();
   }, [examTitle]);
 
   if (loading) {
     return <Typography>Loading...</Typography>;
   }
-  
+
   if (error) {
     return (
       <Box className="view-exam-container">
@@ -100,7 +100,7 @@ const ViewExam = () => {
       </Box>
     );
   }
-  
+
   if (!exam) {
     return (
       <Box className="view-exam-container">
@@ -152,7 +152,7 @@ const ViewExam = () => {
                     key={oidx}
                     className={`view-exam-option${q.correct_option === oidx ? ' correct-option' : ''}`}
                     style={q.correct_option === oidx ? {
-                      fontWeight: 'bold', 
+                      fontWeight: 'bold',
                       color: '#388e3c'
                     } : {}}
                   >
