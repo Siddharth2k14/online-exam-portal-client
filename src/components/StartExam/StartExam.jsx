@@ -336,7 +336,20 @@ const StartExam = () => {
           Marks: {exam.marks}
         </Typography>
 
-        {(exam.examType === "Subjective" || exam.examType === "subjective") && (
+        {/* {(exam.examType === "Subjective" || exam.examType === "subjective") && (
+          <>
+            <Typography variant='subtitle1' gutterBottom>
+              Timer: {exam.timer}
+            </Typography>
+
+            <Timer
+              totalTime={exam.timer}
+              onTimeUp={handleTimeUp}
+            />
+          </>
+        )} */}
+
+        {exam.timer && (
           <>
             <Typography variant='subtitle1' gutterBottom>
               Timer: {exam.timer}
