@@ -19,7 +19,7 @@ import './StartExam.css';
 
 //Router
 import { useParams, useNavigate } from 'react-router-dom';
-import {Timer} from '../Timer/Timer.jsx';
+import { Timer } from '../Timer/Timer.jsx';
 
 const StartExam = () => {
   const { examTitle } = useParams();
@@ -32,7 +32,7 @@ const StartExam = () => {
   const [answers, setAnswers] = useState([]);
   const [submitting, setSubmitting] = useState(false);
   const [timeUp, setTimeUp] = useState(false);
-  
+
   const handleTimeUp = () => {
     setTimeUp(true);
     alert("Time is up! Submitting your exam automatically");
@@ -52,7 +52,7 @@ const StartExam = () => {
         const response = await axios.get(
           `https://online-exam-portal-server.onrender.com/api/questions/exam/${encodeURIComponent(examTitle)}`
         );
-        
+
         if (!response.data) {
           throw new Error('No exam data received');
         }
@@ -65,14 +65,14 @@ const StartExam = () => {
 
       } catch (err) {
         console.error('Error fetching exam:', err);
-        
+
         // If the new endpoint doesn't exist yet, fallback to the old method
         if (err.response?.status === 404) {
           try {
             const fallbackResponse = await axios.get(
               "https://online-exam-portal-server.onrender.com/api/questions/all"
             );
-            
+
             const foundExam = fallbackResponse.data?.exams?.find(
               exam => exam.exam_title === examTitle
             );
@@ -87,8 +87,8 @@ const StartExam = () => {
               type: foundExam.type,
               questions: foundExam.questions.map((q, index) => ({
                 id: index,
-                question_text: foundExam.type === 'Objective' 
-                  ? q.question_title || q.question 
+                question_text: foundExam.type === 'Objective'
+                  ? q.question_title || q.question
                   : q.question,
                 ...(foundExam.type === 'Objective' && {
                   options: q.options,
@@ -133,7 +133,7 @@ const StartExam = () => {
   };
 
   const handlePrev = () => setCurrent((p) => Math.max(p - 1, 0));
-  
+
   const handleNext = () => {
     setCurrent((p) => Math.min(p + 1, exam.questions.length - 1));
   };
@@ -195,9 +195,9 @@ const StartExam = () => {
 
     } catch (error) {
       console.error('Submission error:', error);
-      
+
       let errorMessage = 'Failed to submit exam. ';
-      
+
       if (error.code === 'ECONNABORTED') {
         errorMessage += 'Request timed out. Please check your connection and try again.';
       } else if (error.response?.status === 400) {
@@ -211,7 +211,7 @@ const StartExam = () => {
       } else {
         errorMessage += error.message || 'Unknown error occurred.';
       }
-      
+
       setError(errorMessage);
       setSubmitting(false);
     }
@@ -222,8 +222,8 @@ const StartExam = () => {
   /* ------------------------------------------------------------------ */
   if (loading) {
     return (
-      <div style={{ 
-        display: 'flex', 
+      <div style={{
+        display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
@@ -281,9 +281,9 @@ const StartExam = () => {
 
   const question = exam.questions[current];
   const isLastQuestion = current === exam.questions.length - 1;
-  const hasAnswer = answers[current] !== "" && 
-                   answers[current] !== undefined && 
-                   answers[current] !== null;
+  const hasAnswer = answers[current] !== "" &&
+    answers[current] !== undefined &&
+    answers[current] !== null;
 
   /* ------------------------------------------------------------------ */
   /* 5. Main exam UI                                                    */
@@ -291,10 +291,10 @@ const StartExam = () => {
   return (
     <Card
       className="start-exam-root"
-      sx={{ 
-        maxWidth: 700, 
-        m: "2rem auto", 
-        p: 3, 
+      sx={{
+        maxWidth: 700,
+        m: "2rem auto",
+        p: 3,
         backgroundColor: 'white',
         position: 'relative'
       }}
@@ -335,21 +335,26 @@ const StartExam = () => {
         <Typography variant='subtitle1' gutterBottom>
           Marks: {exam.marks}
         </Typography>
-        <Typography variant='subtitle1' gutterBottom>
-          Timer: {exam.timer}
-        </Typography>
 
-        <Timer 
-          totalTime={exam.timer}
-          onTimeUp={handleTimeUp}
-        />
+        {(exam.examType === "Subjective" || exam.examType === "subjective") && (
+          <>
+            <Typography variant='subtitle1' gutterBottom>
+              Timer: {exam.timer}
+            </Typography>
+
+            <Timer
+              totalTime={exam.timer}
+              onTimeUp={handleTimeUp}
+            />
+          </>
+        )}
 
         <Divider sx={{ my: 2 }} />
 
         {/* Progress indicator */}
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
           alignItems: 'center',
           marginBottom: '1rem'
         }}>
@@ -407,11 +412,11 @@ const StartExam = () => {
         )}
 
         {/* Navigation buttons */}
-        <div style={{ 
-          display: "flex", 
-          justifyContent: "space-between", 
+        <div style={{
+          display: "flex",
+          justifyContent: "space-between",
           alignItems: 'center',
-          marginTop: 24 
+          marginTop: 24
         }}>
           <Button
             variant="outlined"
@@ -448,9 +453,9 @@ const StartExam = () => {
 
         {/* Error display */}
         {error && !submitting && (
-          <Typography 
-            color="error" 
-            variant="body2" 
+          <Typography
+            color="error"
+            variant="body2"
             sx={{ mt: 2, textAlign: 'center' }}
           >
             {error}
