@@ -336,7 +336,7 @@ const StartExam = () => {
           Marks: {exam.marks}
         </Typography>
 
-        {exam.examType === "Subjective" ? (
+        {exam.type === "Subjective" ? (
           <>
             <Typography variant='subtitle1' gutterBottom>
               Timer: {exam.timer}
