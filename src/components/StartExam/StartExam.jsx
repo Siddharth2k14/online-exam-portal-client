@@ -332,11 +332,11 @@ const StartExam = () => {
         <Typography variant="subtitle1" gutterBottom>
           Type: {exam.type}
         </Typography>
-        {/* <Typography variant='subtitle1' gutterBottom>
+        <Typography variant='subtitle1' gutterBottom>
           Marks: {exam.marks}
-        </Typography> */}
+        </Typography>
 
-        {(exam.examType === "Subjective") && (
+        {exam.examType === "Subjective" ? (
           <>
             <Typography variant='subtitle1' gutterBottom>
               Timer: {exam.timer}
@@ -347,7 +347,7 @@ const StartExam = () => {
               onTimeUp={handleTimeUp}
             />
           </>
-        )}
+        ) : null}
 
         <Divider sx={{ my: 2 }} />
 
