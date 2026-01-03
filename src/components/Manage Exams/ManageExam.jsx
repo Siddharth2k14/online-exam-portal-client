@@ -44,7 +44,12 @@ const ManageExam = () => {
   }, []);
 
   const handleView = (exam_title) => {
-    navigate(`/view-exam/${encodeURIComponent(exam_title)}`);
+    try {
+      navigate(`/view-exam/${encodeURIComponent(exam_title)}`);
+    } catch (error) {
+      console.error('Error navigating to view exam:', error);
+      console.log('Error Message:', error.message);
+    }
   };
 
   const handleDelete = async (exam_title) => {
