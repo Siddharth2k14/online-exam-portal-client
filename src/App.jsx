@@ -109,7 +109,7 @@ const App = () => {
           />
 
           <Route
-            path="/exam/:examTitle/review"
+            path="/view-exam/:examTitle"
             element={
               <PrivateRoute roles={['admin']}>
                 <ViewExam />
