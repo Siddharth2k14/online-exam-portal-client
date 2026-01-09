@@ -11,6 +11,7 @@ import { CssBaseline } from '@mui/material';
 // Authentication Components
 import Login from './components/Authentication/Login/Login.jsx';
 import Signup from './components/Authentication/Signup/Signup.jsx';
+import Loading from './helper components/Loading.jsx';
 
 // Lazy Loading Components
 import { lazy, Suspense } from 'react';
@@ -18,8 +19,6 @@ import { lazy, Suspense } from 'react';
 const Home = lazy(() => import('./pages/Home/Home.jsx'));
 const About = lazy(() => import('./pages/About/About.jsx'));
 const Contact = lazy(() => import('./pages/Contact/Contact.jsx'));
-// const Login = lazy(() => import('./components/Authentication/Login/Login.jsx'));
-// const Signup = lazy(() => import('./components/Authentication/Signup/Signup.jsx'));
 const ForgetPassword = lazy(() => import('./components/Authentication/Forget Password/ForgetPassword.jsx'));
 const AdminDashboard = lazy(() => import('./pages/admin/Admin Dashboard/AdminDashboard.jsx'));
 const StudentDashboard = lazy(() => import('./pages/student/Student Dashboard/StudentDashboard.jsx'));
@@ -37,13 +36,13 @@ const StartExam = lazy(() => import('./components/StartExam/StartExam.jsx'));
 const ViewExamReview = lazy(() => import('./components/ViewExam/ViewExam.jsx'));
 
 //Loading Component
-const Loading = ({ message = "Loading..." }) => {
-  return (
-    <div style={{ padding: "20px", textAlign: "center" }}>
-      <h2>{message}</h2>
-    </div>
-  )
-}
+// const Loading = ({ message = "Loading..." }) => {
+//   return (
+//     <div style={{ padding: "20px", textAlign: "center" }}>
+//       <h2>{message}</h2>
+//     </div>
+//   )
+// }
 
 const App = () => {
   return (
