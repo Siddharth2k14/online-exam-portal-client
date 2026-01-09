@@ -21,20 +21,20 @@ import { useNavigate } from 'react-router-dom';
 import './SideBar.css';
 import HideSideBat from '../Hide Side Bar/HideSideBat';
 
+const MOBILE_WIDTH = 900;
+
 //Component
 const SideBar = ({ onSectionSelect }) => {
     const [examOpen, setExamOpen] = useState(false);
     const [settingsOpen, setSettingsOpen] = useState(false);
     const [showThemeToggle, setShowThemeToggle] = useState(false);
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 900);
+    const [isMobile, setIsMobile] = useState(false);
     const { themeMode, toggleTheme } = useTheme();
     const navigate = useNavigate();
 
     useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 900);
-        };
-
+        const handleResize = () => setIsMobile(window.innerWidth <= MOBILE_WIDTH);
+        handleResize();
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);

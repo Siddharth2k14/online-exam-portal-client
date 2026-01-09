@@ -35,15 +35,6 @@ const Result = lazy(() => import('./components/Result/Result.jsx'));
 const StartExam = lazy(() => import('./components/StartExam/StartExam.jsx'));
 const ViewExamReview = lazy(() => import('./components/ViewExam/ViewExam.jsx'));
 
-//Loading Component
-// const Loading = ({ message = "Loading..." }) => {
-//   return (
-//     <div style={{ padding: "20px", textAlign: "center" }}>
-//       <h2>{message}</h2>
-//     </div>
-//   )
-// }
-
 const App = () => {
   return (
     <ThemeProvider>
@@ -66,113 +57,33 @@ const App = () => {
           <Route path="/home" element={<Navigate to="/" replace />} />
 
           {/* Protected Admin Routes */}
-          <Route
-            path="/admin/dashboard"
-            element={
-              <PrivateRoute roles={['admin']}>
-                <AdminDashboard />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/exam-creation"
-            element={
-              <PrivateRoute roles={['admin']}>
-                <ExamCreation />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/manage-exams"
-            element={
-              <PrivateRoute roles={['admin']}>
-                <ManageExam />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/exam-creation/objective"
-            element={
-              <PrivateRoute roles={['admin']}>
-                <ObjectiveExamCreation />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/exam-creation/subjective"
-            element={
-              <PrivateRoute roles={['admin']}>
-                <SubjectiveExamCreation />
-              </PrivateRoute>
-            }
-          />
 
-          <Route
-            path="/view-exam/:examTitle"
-            element={
-              <PrivateRoute roles={['admin']}>
-                <ViewExam />
-              </PrivateRoute>
-            }
-          />
+          <Route element={<PrivateRoute roles={['admin']} />}>
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/exam-creation" element={<ExamCreation />} />
+            <Route path="/manage-exams" element={<ManageExam />} />
+            <Route path="/exam-creation/objective" element={<ObjectiveExamCreation />} />
+            <Route path="/exam-creation/subjective" element={<SubjectiveExamCreation />} />
+            <Route path="/view-exam/:examTitle" element={<ViewExam />} />
+            <Route path="/student-list" element={<StudentList />} />
+          </Route>
 
-          <Route
-            path="/student-list"
-            element={
-              <PrivateRoute roles={['admin']}>
-                <StudentList />
-              </PrivateRoute>
-            }
-          />
 
           {/* Protected Student Routes */}
-          <Route
-            path="/student/dashboard"
-            element={
-              <PrivateRoute roles={['student']}>
-                <StudentDashboard />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/exams"
-            element={
-              <PrivateRoute roles={['student']}>
-                <ExamsPage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/results"
-            element={
-              <PrivateRoute roles={['student']}>
-                <Result />
-              </PrivateRoute>
-            }
-          />
 
-          {/* Lazy-loaded protected routes */}
-          <Route
-            path="/start-exam/:examTitle"
-            element={
-              <PrivateRoute roles={['student']}>
-                <StartExam />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/viewExam"
-            element={
-              <PrivateRoute roles={['student']}>
-                <ViewExamReview />
-              </PrivateRoute>
-            }
-          />
-
+          <Route element={<PrivateRoute roles={['student']} />}>
+            <Route path="/student/dashboard" element={<StudentDashboard />} />
+            <Route path="/exams" element={<ExamsPage />} />
+            <Route path="/results" element={<Result />} />
+            <Route path="/start-exam/:examTitle" element={<StartExam />} />
+            <Route path="/viewExam" element={<ViewExamReview />} />
+          </Route>
 
           {/* Shared Protected Routes (Both Admin and Student) */}
-          <Route path="/change-password" element={<ChangePassword />} />
-          <Route path="/account-settings" element={<AccountSettings />} />
+          <Route element={<PrivateRoute roles={['admin', 'student']} />}>
+            <Route path="/change-password" element={<ChangePassword />} />
+            <Route path="/account-settings" element={<AccountSettings />} />
+          </Route>
 
           {/* Legacy route redirects for backward compatibility */}
           <Route path="/account-info" element={<Navigate to="/shared/account-settings" replace />} />

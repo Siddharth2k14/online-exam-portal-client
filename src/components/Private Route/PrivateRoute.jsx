@@ -1,9 +1,8 @@
-//Regular Imports
+// Regular Imports
 import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
-//Component
-const PrivateRoute = ({ roles, children }) => {
+const PrivateRoute = ({ roles }) => {
   const { token, role } = useSelector((state) => state.auth);
 
   // Backup from localStorage in case Redux state is cleared on refresh
@@ -13,32 +12,36 @@ const PrivateRoute = ({ roles, children }) => {
   const userToken = token || localToken;
   const userRole = role || localRole;
 
-  // Check if user is authenticated
+  // 1️⃣ Authentication check
   if (!userToken) {
     return <Navigate to="/login" replace />;
   }
 
-  // Check if user role is authorized
+  // 2️⃣ Role existence check
   if (!userRole) {
     return <Navigate to="/" replace />;
   }
 
-  // Ensure roles is an array and normalize roles for comparison
+  // 3️⃣ Role authorization check
   if (!roles) {
     return <Navigate to="/" replace />;
   }
-  
-  const rolesArray = Array.isArray(roles) ? roles : [roles];
-  const normalizedAllowedRoles = rolesArray.map(role => 
-    typeof role === 'string' ? role.toLowerCase().trim() : role
+
+  const allowedRoles = Array.isArray(roles) ? roles : [roles];
+
+  const normalizedAllowedRoles = allowedRoles.map(r =>
+    typeof r === 'string' ? r.toLowerCase().trim() : r
   );
-  const normalizedUserRole = typeof userRole === 'string' ? userRole.toLowerCase().trim() : userRole;
+
+  const normalizedUserRole =
+    typeof userRole === 'string' ? userRole.toLowerCase().trim() : userRole;
 
   if (!normalizedAllowedRoles.includes(normalizedUserRole)) {
     return <Navigate to="/" replace />;
   }
 
-  return children;
+  // ✅ Render nested routes
+  return <Outlet />;
 };
 
 export default PrivateRoute;
