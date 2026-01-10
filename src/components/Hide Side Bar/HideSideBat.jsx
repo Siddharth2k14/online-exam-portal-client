@@ -10,7 +10,7 @@ const HideSideBat = (props) => {
     const [examOpen, setExamOpen] = useState(false);
     const [settingsOpen, setSettingsOpen] = useState(false);
     const [showThemeToggle, setShowThemeToggle] = useState(false);
-    const {themeMode, toggleTheme} = useTheme();
+    const { themeMode, toggleTheme } = useTheme();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -102,6 +102,12 @@ const HideSideBat = (props) => {
                                         handleClickItem('/student-list');
                                     }}>
                                         <ListItemText primary="Student List" />
+                                    </ListItem>
+                                    <ListItem onClick={() => {
+                                        onSectionSelect('Assign Exam');
+                                        handleClickItem('/assign-exam');
+                                    }}>
+                                        <ListItemText primary="Assign Exam" />
                                     </ListItem>
                                 </List>
                             </Collapse>

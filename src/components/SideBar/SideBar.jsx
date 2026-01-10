@@ -120,6 +120,12 @@ const SideBar = ({ onSectionSelect }) => {
                                             }}>
                                                 <ListItemText primary="Student List" />
                                             </ListItem>
+                                            <ListItem onClick={() => {
+                                                onSectionSelect('Assign Exam');
+                                                handleClickItem('/assign-exam');
+                                            }}>
+                                                <ListItemText primary="Assign Exam" />
+                                            </ListItem>
                                         </List>
                                     </Collapse>
                                 ) : isStudentDashboard ? (

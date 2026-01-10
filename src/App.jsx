@@ -34,6 +34,7 @@ const ExamsPage = lazy(() => import('./components/ExamsPage/ExamsPage.jsx'));
 const Result = lazy(() => import('./components/Result/Result.jsx'));
 const StartExam = lazy(() => import('./components/StartExam/StartExam.jsx'));
 const ViewExamReview = lazy(() => import('./components/ViewExam/ViewExam.jsx'));
+const AssignExam = lazy(() => import('./components/Assignment Exam/AssignExam.jsx'));
 
 const App = () => {
   return (
@@ -66,6 +67,7 @@ const App = () => {
             <Route path="/exam-creation/subjective" element={<SubjectiveExamCreation />} />
             <Route path="/view-exam/:examTitle" element={<ViewExam />} />
             <Route path="/student-list" element={<StudentList />} />
+            <Route path="/assign-exam" element={<AssignExam />} />
           </Route>
 
 

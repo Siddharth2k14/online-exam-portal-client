@@ -11,6 +11,7 @@ import { useTheme } from '../Theme Context/ThemeContext';
 
 // CSS
 import './AdminPage.css';
+import AssignExam from '../Assignment Exam/AssignExam.jsx';
 
 // Lazy Components
 const ExamCreation = lazy(() => import('../Exam Creation/ExamCreation'));
@@ -81,6 +82,7 @@ const AdminPage = () => {
         {selectedSection === 'Account Info' && <AccountSettings />}
         {selectedSection === 'Change Password' && <ChangePassword />}
         {selectedSection === 'Student List' && <StudentList />}
+        {selectedSection === 'Assign Exam' && <AssignExam />}
       </Suspense>
     );
   };
