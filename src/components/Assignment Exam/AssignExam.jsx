@@ -14,10 +14,8 @@ import {
     TableRow,
     TableCell,
     TableBody,
-    Alert,
-    Stack
+    Alert
 } from "@mui/material";
-import axios from "axios";
 import "./AssignExam.css";
 
 const AssignExam = () => {
@@ -28,25 +26,62 @@ const AssignExam = () => {
     const [selectedExam, setSelectedExam] = useState("");
     const [selectedStudent, setSelectedStudent] = useState("");
 
-    const [message, setMessage] = useState(null);
-    const [error, setError] = useState(null);
+    const [message, setMessage] = useState("");
+    const [error, setError] = useState("");
 
     useEffect(() => {
-        fetchInitialData();
+        fetchExams();
+        fetchStudents();
+        fetchAssignments();
     }, []);
 
-    const fetchInitialData = async () => {
-        const [examRes, studentRes, assignmentRes] = await Promise.all([
-            axios.get("https://online-exam-portal-server.onrender.com/api/exams"),
-            axios.get("https://online-exam-portal-server.onrender.com/api/auth/students"),
-            axios.get("https://online-exam-portal-server.onrender.com/api/exams/assignments"),
-        ]);
+    /* ---------------- FETCH EXAMS ---------------- */
+    const fetchExams = async () => {
+        try {
+            const res = await fetch(
+                "https://online-exam-portal-server.onrender.com/api/questions/all"
+            );
 
-        setExams(examRes.data);
-        setStudents(studentRes.data);
-        setAssignments(assignmentRes.data);
+            if (!res.ok) throw new Error("Failed to fetch exams");
+
+            const data = await res.json();
+
+            const uniqueExamMap = new Map();
+
+            data.forEach((q) => {
+                if (!uniqueExamMap.has(q.exam_name)) {
+                    uniqueExamMap.set(q.exam_name, {
+                        exam_name: q.exam_name,
+                        examType: q.examType || "objective",
+                    });
+                }
+            });
+
+            setExams([...uniqueExamMap.values()]);
+        } catch (err) {
+            setError(err.message || "Failed to fetch exams");
+        }
     };
 
+    /* ---------------- FETCH STUDENTS ---------------- */
+    const fetchStudents = async () => {
+        try {
+            const res = await fetch(
+                "https://online-exam-portal-server.onrender.com/api/auth/student/all"
+            );
+
+            if (!res.ok) throw new Error("Failed to fetch students");
+
+            const data = await res.json();
+
+            // ✅ IMPORTANT FIX
+            setStudents(Array.isArray(data) ? data : data.students || []);
+        } catch (err) {
+            setError(err.message || "Failed to fetch students");
+        }
+    };
+
+    /* ---------------- ASSIGN EXAM ---------------- */
     const handleAssign = async () => {
         if (!selectedExam || !selectedStudent) {
             setError("Please select both exam and student");
@@ -54,22 +89,41 @@ const AssignExam = () => {
         }
 
         try {
-            await axios.post("https://online-exam-portal-server.onrender.com/api/exams/assign", {
-                examId: selectedExam,
-                studentId: selectedStudent,
-            });
+            const res = await fetch(
+                "https://online-exam-portal-server.onrender.com/api/exams/assign",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        exam_name: selectedExam,
+                        studentId: selectedStudent,
+                    }),
+                }
+            );
+
+            if (!res.ok) throw new Error("Assignment failed");
+
+            const student = students.find(s => s._id === selectedStudent);
+            const exam = exams.find(e => e.exam_name === selectedExam);
+
+            setAssignments(prev => [
+                ...prev,
+                {
+                    exam_name: exam.exam_name,
+                    examType: exam.examType,
+                    studentName: student.name,
+                }
+            ]);
 
             setMessage("Exam assigned successfully");
-            setError(null);
+            setError("");
             setSelectedExam("");
             setSelectedStudent("");
-
-            fetchInitialData();
         } catch (err) {
-            setError(err.response?.data?.message || "Assignment failed");
-            setMessage(null);
+            setError(err.message || "Assignment failed");
         }
     };
+
 
     return (
         <Box className="assign-exam-container">
@@ -79,7 +133,7 @@ const AssignExam = () => {
 
             <Card>
                 <CardContent>
-                    <Box sx={{ display: "flex", flexDirection: "row", gap: 2 }}>
+                    <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
                         {/* EXAM DROPDOWN */}
                         <FormControl fullWidth>
                             <InputLabel>Select Exam</InputLabel>
@@ -89,8 +143,8 @@ const AssignExam = () => {
                                 onChange={(e) => setSelectedExam(e.target.value)}
                             >
                                 {exams.map((exam) => (
-                                    <MenuItem key={exam._id} value={exam._id}>
-                                        {exam.title} ({exam.examType})
+                                    <MenuItem key={exam.exam_name} value={exam.exam_name}>
+                                        {exam.exam_name} ({exam.examType})
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -104,21 +158,27 @@ const AssignExam = () => {
                                 label="Select Student"
                                 onChange={(e) => setSelectedStudent(e.target.value)}
                             >
-                                {students.map((student) => (
-                                    <MenuItem key={student._id} value={student._id}>
-                                        {student.name}
-                                    </MenuItem>
-                                ))}
+                                {Array.isArray(students) &&
+                                    students.map((student) => (
+                                        <MenuItem key={student._id} value={student._id}>
+                                            {student.name}
+                                        </MenuItem>
+                                    ))}
                             </Select>
                         </FormControl>
 
-                        <Button variant="contained" size="medium" onClick={handleAssign}>
+                        <Button
+                            variant="contained"
+                            size="medium"
+                            onClick={handleAssign}
+                            sx={{ minWidth: 160 }}
+                        >
                             Assign Exam
                         </Button>
-
-                        {message && <Alert severity="success">{message}</Alert>}
-                        {error && <Alert severity="error">{error}</Alert>}
                     </Box>
+
+                    {message && <Alert severity="success" sx={{ mt: 2 }}>{message}</Alert>}
+                    {error && <Alert severity="error" sx={{ mt: 2 }}>{error}</Alert>}
                 </CardContent>
             </Card>
 
@@ -139,13 +199,21 @@ const AssignExam = () => {
                         </TableHead>
 
                         <TableBody>
-                            {assignments.map((row) => (
-                                <TableRow key={row._id}>
-                                    <TableCell>{row.exam.title}</TableCell>
-                                    <TableCell>{row.exam.examType}</TableCell>
-                                    <TableCell>{row.student.name}</TableCell>
+                            {assignments.length === 0 ? (
+                                <TableRow>
+                                    <TableCell colSpan={3} align="center">
+                                        No exams assigned yet
+                                    </TableCell>
                                 </TableRow>
-                            ))}
+                            ) : (
+                                assignments.map((row) => (
+                                    <TableRow key={row._id}>
+                                        <TableCell>{row.exam?.title || row.exam_name}</TableCell>
+                                        <TableCell>{row.exam?.examType || "N/A"}</TableCell>
+                                        <TableCell>{row.student?.name || "N/A"}</TableCell>
+                                    </TableRow>
+                                ))
+                            )}
                         </TableBody>
                     </Table>
                 </CardContent>
