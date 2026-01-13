@@ -32,7 +32,6 @@ const AssignExam = () => {
     useEffect(() => {
         fetchExams();
         fetchStudents();
-        fetchAssignments();
     }, []);
 
     /* ---------------- FETCH EXAMS ---------------- */
