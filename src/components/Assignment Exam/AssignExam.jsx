@@ -38,7 +38,13 @@ const AssignExam = () => {
     const fetchExams = async () => {
         try {
             const res = await fetch(
-                "https://online-exam-portal-server.onrender.com/api/questions/all"
+                "https://online-exam-portal-server.onrender.com/api/questions/all",
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                }
             );
 
             if (!res.ok) throw new Error("Failed to fetch exams");
@@ -66,7 +72,13 @@ const AssignExam = () => {
     const fetchStudents = async () => {
         try {
             const res = await fetch(
-                "https://online-exam-portal-server.onrender.com/api/auth/student/all"
+                "https://online-exam-portal-server.onrender.com/api/auth/student/all",
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                }
             );
 
             if (!res.ok) throw new Error("Failed to fetch students");
