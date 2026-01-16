@@ -35,6 +35,24 @@ const AssignExam = () => {
         fetchStudents();
     }, []);
 
+    // ✅ NEW: Load assignments from localStorage on mount
+    useEffect(() => {
+        try {
+            const savedAssignments = localStorage.getItem('assignExamAssignments');
+            if (savedAssignments) {
+                setAssignments(JSON.parse(savedAssignments));
+            }
+        } catch (err) {
+            console.error('Failed to load assignments:', err);
+            localStorage.removeItem('assignExamAssignments');
+        }
+    }, []);
+
+    // ✅ NEW: Save assignments to localStorage whenever they change
+    useEffect(() => {
+        localStorage.setItem('assignExamAssignments', JSON.stringify(assignments));
+    }, [assignments]);
+
     /* ---------------- FETCH EXAMS ---------------- */
     const fetchExams = async () => {
         try {
@@ -144,6 +162,12 @@ const AssignExam = () => {
         }
     };
 
+    // ✅ NEW: Optional - Clear localStorage button
+    const clearAssignments = () => {
+        setAssignments([]);
+        localStorage.removeItem('assignExamAssignments');
+        setMessage("Assignments cleared");
+    };
 
     return (
         <Box className="assign-exam-container">
@@ -205,9 +229,21 @@ const AssignExam = () => {
             {/* ASSIGNMENT TABLE */}
             <Card className="assignment-table-card">
                 <CardContent>
-                    <Typography variant="h6" gutterBottom>
-                        Assigned Exams
-                    </Typography>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+                        <Typography variant="h6" gutterBottom>
+                            Assigned Exams
+                        </Typography>
+                        {assignments.length > 0 && (
+                            <Button
+                                variant="outlined"
+                                size="small"
+                                color="error"
+                                onClick={clearAssignments}
+                            >
+                                Clear All
+                            </Button>
+                        )}
+                    </Box>
 
                     <Table>
                         <TableHead>
@@ -222,13 +258,13 @@ const AssignExam = () => {
                         <TableBody>
                             {assignments.length === 0 ? (
                                 <TableRow>
-                                    <TableCell colSpan={3} align="center">
+                                    <TableCell colSpan={4} align="center">
                                         No exams assigned yet
                                     </TableCell>
                                 </TableRow>
                             ) : (
-                                assignments.map((row) => (
-                                    <TableRow key={row._id}>
+                                assignments.map((row, index) => (
+                                    <TableRow key={index}>
                                         <TableCell>{row.exam_name}</TableCell>
                                         <TableCell>{row.examType}</TableCell>
                                         <TableCell>{row.studentName}</TableCell>
