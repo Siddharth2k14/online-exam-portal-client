@@ -61,7 +61,13 @@ const ExamsPage = () => {
   useEffect(() => {
     const fetchExams = async () => {
       try {
-        const response = await fetch("https://online-exam-portal-server.onrender.com/api/questions/all");
+        const response = await fetch("https://online-exam-portal-server.onrender.com/api/exams/assigned", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+          }
+        });
         const data = await response.json();
 
         console.log("Fetched data:", data);

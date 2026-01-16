@@ -25,6 +25,7 @@ const AssignExam = () => {
 
     const [selectedExam, setSelectedExam] = useState("");
     const [selectedStudent, setSelectedStudent] = useState("");
+    const [studentEmail, setStudentEmail] = useState("");
 
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
@@ -53,11 +54,11 @@ const AssignExam = () => {
 
             const uniqueExamMap = new Map();
 
-            data.forEach((q) => {
-                if (!uniqueExamMap.has(q.exam_name)) {
-                    uniqueExamMap.set(q.exam_name, {
-                        exam_name: q.exam_name,
-                        examType: q.examType || "objective",
+            data.exams.forEach((exam) => {
+                if (!uniqueExamMap.has(exam.exam_title)) {
+                    uniqueExamMap.set(exam.exam_title, {
+                        exam_name: exam.exam_title,
+                        examType: exam.examType || "objective",
                     });
                 }
             });
@@ -65,6 +66,7 @@ const AssignExam = () => {
             setExams([...uniqueExamMap.values()]);
         } catch (err) {
             setError(err.message || "Failed to fetch exams");
+            console.log(err);
         }
     };
 
@@ -123,13 +125,20 @@ const AssignExam = () => {
                     exam_name: exam.exam_name,
                     examType: exam.examType,
                     studentName: student.name,
+                    studentEmail: student.email,
                 }
             ]);
 
             setMessage("Exam assigned successfully");
+            setStudentEmail(student.email);
             setError("");
             setSelectedExam("");
             setSelectedStudent("");
+
+            console.log("Exam Title: ", selectedExam);
+            console.log("Student Name: ", student.name);
+            console.log("Exam Type: ", exam.examType);
+            console.log("Student Email: ", student.email);
         } catch (err) {
             setError(err.message || "Assignment failed");
         }
@@ -206,6 +215,7 @@ const AssignExam = () => {
                                 <TableCell><b>Exam Title</b></TableCell>
                                 <TableCell><b>Exam Type</b></TableCell>
                                 <TableCell><b>Student Name</b></TableCell>
+                                <TableCell><b>Student Email</b></TableCell>
                             </TableRow>
                         </TableHead>
 
@@ -219,9 +229,10 @@ const AssignExam = () => {
                             ) : (
                                 assignments.map((row) => (
                                     <TableRow key={row._id}>
-                                        <TableCell>{row.exam?.title || row.exam_name}</TableCell>
-                                        <TableCell>{row.exam?.examType || "N/A"}</TableCell>
-                                        <TableCell>{row.student?.name || "N/A"}</TableCell>
+                                        <TableCell>{row.exam_name}</TableCell>
+                                        <TableCell>{row.examType}</TableCell>
+                                        <TableCell>{row.studentName}</TableCell>
+                                        <TableCell>{row.studentEmail}</TableCell>
                                     </TableRow>
                                 ))
                             )}
