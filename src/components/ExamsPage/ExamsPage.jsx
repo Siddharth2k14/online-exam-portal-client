@@ -80,12 +80,12 @@ const ExamsPage = () => {
         // Filter out completed exams
         const completedExams = getCompletedExams();
         const availableExams = data.exams.filter(exam =>
-          !completedExams.includes(exam.exam_title)
+          !completedExams.includes(exam.exam_name)
         );
 
         console.log("Filtered exams:", availableExams);
 
-        const uniqueSubjects = [...new Set(availableExams.map(exam => exam.exam_title))];
+        const uniqueSubjects = [...new Set(availableExams.map(exam => exam.exam_name))];
         setExams(availableExams);
         setSubjects(uniqueSubjects);
         setLoading(false);
@@ -105,22 +105,22 @@ const ExamsPage = () => {
 
   // Handle Start Exam
   const handleStartExam = exam => {
-    if (!exam || !exam.exam_title) {
+    if (!exam || !exam.exam_name) {
       console.error('Invalid exam data:', exam);
       return;
     }
 
     // Mark exam as completed when starting (you can move this to exam completion)
-    saveCompletedExam(exam.exam_title);
+    saveCompletedExam(exam.exam_name);
 
-    navigate(`/start-exam/${encodeURIComponent(exam.exam_title)}`, {
+    navigate(`/start-exam/${encodeURIComponent(exam.exam_name)}`, {
       state: { exam }
     });
   };
 
   const filteredExams = exams.filter((exam) => {
-    const matchesSubject = !selectedSubject || exam.subject === selectedSubject;
-    const matchesType = !selectedType || exam.type === selectedType;
+    const matchesSubject = !selectedSubject || exam.exam_name === selectedSubject;
+    const matchesType = !selectedType || exam.exam_type === selectedType;
     return matchesSubject && matchesType;
   });
 
@@ -209,7 +209,7 @@ const ExamsPage = () => {
             </div>
           ) : (
             filteredExams.map((exam, index) => (
-              <div key={`${exam.exam_title}-${exam.type}-${index}`} style={{ position: 'relative' }}>
+              <div key={`${exam.exam_name}-${exam.exam_type}-${index}`} style={{ position: 'relative' }}>
                 <Card
                   className="exam-card"
                   sx={{
@@ -236,17 +236,17 @@ const ExamsPage = () => {
                         }
                       }}
                     >
-                      {exam.exam_title}
+                      {exam.exam_name}
                     </Typography>
                     <Typography variant="body2" style={{
                       color: 'white',
                     }}>
-                      Subject: {exam.subject}
+                      Subject: {exam.exam_name}
                     </Typography>
                     <Typography variant="body2" style={{
                       color: 'white',
                     }}>
-                      Type: {exam.type}
+                      Type: {exam.exam_type}
                     </Typography>
                     <Typography variant="body2" style={{
                       color: 'white',

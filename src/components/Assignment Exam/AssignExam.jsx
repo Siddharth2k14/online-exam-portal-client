@@ -76,7 +76,7 @@ const AssignExam = () => {
                 if (!uniqueExamMap.has(exam.exam_title)) {
                     uniqueExamMap.set(exam.exam_title, {
                         exam_name: exam.exam_title,
-                        examType: exam.examType || "objective",
+                        examType: exam.exam_type || "objective",
                     });
                 }
             });
@@ -119,6 +119,9 @@ const AssignExam = () => {
             return;
         }
 
+        const student = students.find(s => s._id === selectedStudent);
+        const exam = exams.find(e => e.exam_name === selectedExam);
+
         try {
             const res = await fetch(
                 "https://online-exam-portal-server.onrender.com/api/exams/assign",
@@ -128,14 +131,12 @@ const AssignExam = () => {
                     body: JSON.stringify({
                         exam_name: selectedExam,
                         studentId: selectedStudent,
+                        exam_type: exam.examType,
                     }),
                 }
             );
 
             if (!res.ok) throw new Error("Assignment failed");
-
-            const student = students.find(s => s._id === selectedStudent);
-            const exam = exams.find(e => e.exam_name === selectedExam);
 
             setAssignments(prev => [
                 ...prev,
