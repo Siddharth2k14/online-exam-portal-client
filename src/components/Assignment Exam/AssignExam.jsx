@@ -136,6 +136,8 @@ const AssignExam = () => {
                 }
             );
 
+            console.log(res);
+
             if (!res.ok) throw new Error("Assignment failed");
 
             setAssignments(prev => [
