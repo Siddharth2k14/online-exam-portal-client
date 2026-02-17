@@ -19,6 +19,7 @@ import { useNavigate } from 'react-router-dom';
 import ViewExam from './ViewExam';
 
 const ManageExam = () => {
+  const API_URL = import.meta.env.VITE_SERVER_URL || "https://online-exam-portal-server.onrender.com";
   const [exams, setExams] = useState([]);
   const [viewExamTitle, setViewExamTitle] = useState(null);
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const ManageExam = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("https://online-exam-portal-server.onrender.com/api/questions/all");
+      const response = await fetch(`${API_URL}/api/questions/all`);
       const data = await response.json();
       if (data.exams) {
         setExams(data.exams);
@@ -54,8 +55,8 @@ const ManageExam = () => {
 
   const handleDelete = async (exam_title) => {
     try {
-      await fetch(`https://online-exam-portal-server.onrender.com/api/questions/objective/${exam_title}`, { method: 'DELETE' });
-      await fetch(`https://online-exam-portal-server.onrender.com/api/questions/subjective/${exam_title}`, { method: 'DELETE' });
+      await fetch(`${API_URL}/api/questions/objective/${exam_title}`, { method: 'DELETE' });
+      await fetch(`${API_URL}/api/questions/subjective/${exam_title}`, { method: 'DELETE' });
       setExams((prev) => prev.filter((exam) => exam.exam_title !== exam_title));
     } catch (error) {
       alert('Error deleting exam');

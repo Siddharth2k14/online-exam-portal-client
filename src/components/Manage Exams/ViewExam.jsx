@@ -31,7 +31,8 @@ const ViewExam = () => {
         console.log('3. examTitle length:', examTitle?.length);
         console.log(examTitle);
 
-        const res = await axios.get("https://online-exam-portal-server.onrender.com/api/questions/all");
+        const API_URL = import.meta.env.VITE_SERVER_URL || "https://online-exam-portal-server.onrender.com";
+        const res = await axios.get(`${API_URL}/api/questions/all`);
 
         console.log('4. Raw API response:', res.data);
         console.log('5. res.data.exams exists?', !!res.data.exams);

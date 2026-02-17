@@ -78,7 +78,7 @@ const App = () => {
             <Route path="/exams" element={<ExamsPage />} />
             <Route path="/results" element={<Result />} />
             <Route path="/start-exam/:examTitle" element={<StartExam />} />
-            <Route path="/viewExam" element={<ViewExamReview />} />
+            <Route path="/exam/:examTitle/review" element={<ViewExamReview />} />
           </Route>
 
           {/* Shared Protected Routes (Both Admin and Student) */}

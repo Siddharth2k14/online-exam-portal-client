@@ -19,6 +19,7 @@ import {
 import "./AssignExam.css";
 
 const AssignExam = () => {
+    const API_URL = import.meta.env.VITE_SERVER_URL || "https://online-exam-portal-server.onrender.com";
     const [exams, setExams] = useState([]);
     const [students, setStudents] = useState([]);
     const [assignments, setAssignments] = useState([]);
@@ -57,7 +58,7 @@ const AssignExam = () => {
     const fetchExams = async () => {
         try {
             const res = await fetch(
-                "https://online-exam-portal-server.onrender.com/api/questions/all",
+                `${API_URL}/api/questions/all`,
                 {
                     method: "GET",
                     headers: {
@@ -92,7 +93,7 @@ const AssignExam = () => {
     const fetchStudents = async () => {
         try {
             const res = await fetch(
-                "https://online-exam-portal-server.onrender.com/api/auth/student/all",
+                `${API_URL}/api/auth/student/all`,
                 {
                     method: "GET",
                     headers: {
@@ -124,7 +125,7 @@ const AssignExam = () => {
 
         try {
             const res = await fetch(
-                "https://online-exam-portal-server.onrender.com/api/exams/assign",
+                `${API_URL}/api/exams/assign`,
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },

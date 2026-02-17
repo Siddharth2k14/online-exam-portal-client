@@ -54,7 +54,8 @@ const ObjectiveExamCreation = () => {
     }));
 
     // Save to backend
-    await fetch("https://online-exam-portal-server.onrender.com/api/questions/objective", {
+    const API_URL = import.meta.env.VITE_SERVER_URL || "https://online-exam-portal-server.onrender.com";
+    await fetch(`${API_URL}/api/questions/objective`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

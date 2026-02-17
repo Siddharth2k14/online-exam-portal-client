@@ -33,7 +33,7 @@ const SubjectiveExamCreation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const subjectiveQuestions = useSelector(state => state.subjectiveExam.questions);
- const server_url = import.meta.env.VITE_SERVER_URL;
+  const server_url = import.meta.env.VITE_SERVER_URL;
 
   const handleAddQuestion = async () => {
     // Fixed validation - includes marks check
@@ -51,7 +51,8 @@ const SubjectiveExamCreation = () => {
 
     try {
       // Save to backend
-      const response = await fetch(`https://online-exam-portal-server.onrender.com/api/questions/subjective`, {
+      const API_URL = server_url || "https://online-exam-portal-server.onrender.com";
+      const response = await fetch(`${API_URL}/api/questions/subjective`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

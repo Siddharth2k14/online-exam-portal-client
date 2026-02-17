@@ -22,6 +22,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Timer } from '../Timer/Timer.jsx';
 
 const StartExam = () => {
+  const API_URL = import.meta.env.VITE_SERVER_URL || "https://online-exam-portal-server.onrender.com";
   const { examTitle } = useParams();
   const navigate = useNavigate();
 
@@ -50,7 +51,7 @@ const StartExam = () => {
       try {
         // OPTIMIZATION: Use the specific exam endpoint instead of /all
         const response = await axios.get(
-          `https://online-exam-portal-server.onrender.com/api/questions/exam/${encodeURIComponent(examTitle)}`
+          `${API_URL}/api/questions/exam/${encodeURIComponent(examTitle)}`
         );
 
         if (!response.data) {
@@ -70,7 +71,7 @@ const StartExam = () => {
         if (err.response?.status === 404) {
           try {
             const fallbackResponse = await axios.get(
-              "https://online-exam-portal-server.onrender.com/api/questions/all"
+              `${API_URL}/api/questions/all`
             );
 
             const foundExam = fallbackResponse.data?.exams?.find(
@@ -154,7 +155,7 @@ const StartExam = () => {
 
       // Submit to backend
       const response = await axios.post(
-        "https://online-exam-portal-server.onrender.com/api/submissions/submit",
+        `${API_URL}/api/submissions/submit`,
         {
           examTitle: exam.exam_title,
           examType: exam.type,

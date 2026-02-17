@@ -23,6 +23,7 @@ import './ExamsPage.css';
 import { useNavigate } from 'react-router-dom';
 
 const ExamsPage = () => {
+  const API_URL = import.meta.env.VITE_SERVER_URL || "https://online-exam-portal-server.onrender.com";
   const [exams, setExams] = useState([]);
   const [selectedSubject, setSelectedSubject] = useState('');
   const [selectedType, setSelectedType] = useState('');
@@ -61,7 +62,7 @@ const ExamsPage = () => {
   useEffect(() => {
     const fetchExams = async () => {
       try {
-        const response = await fetch("https://online-exam-portal-server.onrender.com/api/exams/assigned", {
+        const response = await fetch(`${API_URL}/api/exams/assigned`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
