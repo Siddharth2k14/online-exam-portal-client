@@ -74,8 +74,8 @@ const ExamsPage = () => {
         console.log("Fetched data:", data);
         console.log("First exam entry:", data.exams?.[0]);
 
-        if (!data.exams || !Array.isArray(data.exams)) {
-          throw new Error("Invalid response: exams not found or not an array");
+        if (!Array.isArray(data)) {
+          throw new Error("Invalid response: exams not an array");
         }
 
         // Filter out completed exams
