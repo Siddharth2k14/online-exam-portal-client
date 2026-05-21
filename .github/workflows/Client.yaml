@@ -44,57 +44,6 @@ jobs:
       #     flags: frontend
       #   continue-on-error: true
 
-  # ============================================
-  # JOB 2: Build Verification
-  # ============================================
-  build:
-   name: Build Verification
-   runs-on: ubuntu-latest
-   needs: test
-
-   steps:
-    - name: Checkout Code
-      uses: actions/checkout@v5
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-
-    # - name: Debug - Confirm package.json and scripts
-    #   working-directory: client/vite-project
-    #   run: |
-    #     echo "PWD: $(pwd)"
-    #     echo "FILES HERE:"
-    #     ls -la
-    #     echo "PACKAGE.JSON CONTENT:"
-    #     cat package.json || echo "package.json NOT FOUND!"
-    #     echo "NPM SCRIPTS:"
-    #     npm run || echo "npm run failed"
-
-    - name: Install Dependencies
-      run: npm ci
-
-    - name: Build Application
-      run: npm run build
-      env:
-        CI: true
-
-    - name: Check Build Size
-      run: |
-        echo "📦 Build Size:"
-        du -sh dist || echo "dist folder not found"
-        size=$(du -sm dist | cut -f1 || echo 0)
-        echo "Total: ${size}MB"
-
-    - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: vite-build-${{ github.sha }}
-        path: dist/
-        retention-days: 7
-
-
 
   # ============================================
   # JOB 3: Security Audit
@@ -130,7 +79,7 @@ jobs:
   deploy-staging:
     name: 🚀 Deploy to Staging
     runs-on: ubuntu-latest
-    needs: [test, build]
+    needs: [test]
     if: github.ref == 'refs/heads/testing' && github.event_name == 'push'
 
     environment:
@@ -202,7 +151,7 @@ jobs:
   deploy-production:
     name: 🎯 Deploy to Production
     runs-on: ubuntu-latest
-    needs: [test, build, security]
+    needs: [test, security]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     
     environment:
@@ -282,7 +231,7 @@ jobs:
   preview-feature:
     name: 📸 Preview Deployment
     runs-on: ubuntu-latest
-    needs: [test, build]
+    needs: [test]
     if: startsWith(github.ref, 'refs/heads/feature/') && github.event_name == 'push'
 
     steps:

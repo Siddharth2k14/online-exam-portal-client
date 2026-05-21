@@ -1,21 +1,37 @@
 {
-  "name": "vite-project",
+  "name": "ExamMaster",
   "private": true,
   "version": "0.0.0",
+  "description": "Online Exam Portal Desktop Application",
+  "author": "Siddharth Singh",
   "type": "module",
+  "main": "main.cjs",
   "scripts": {
     "test": "vitest",
     "dev": "vite",
-    "build": "vite build",
-    "analyze": "source-map-explorer 'build/static/js/*.js'",
+    "electron": "electron .",
+    "dist": "electron-builder",
     "lint": "eslint . --ext .js,.jsx",
     "format": "prettier --write .",
     "prepare": "husky",
     "lint:fix": "eslint . --ext .js,.jsx --fix",
     "prettier:check": "prettier --check ."
   },
+  "build": {
+    "appId": "com.exam.portal",
+    "productName": "Online Exam Portal - ExamMaster",
+    "win": {
+      "target": "nsis",
+      "icon": "assets/ExamPortalLogo.ico"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  },
   "dependencies": {
-    "@clerk/clerk-react": "^5.42.2",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@fontsource/roboto": "^5.2.5",
@@ -24,22 +40,18 @@
     "@mui/styled-engine-sc": "^7.1.0",
     "@mui/x-charts": "^8.6.0",
     "@reduxjs/toolkit": "^2.8.2",
-    "@sentry/react": "^10.18.0",
-    "@sentry/vite-plugin": "^4.0.2",
     "@supabase/supabase-js": "^2.50.0",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "axios": "^1.10.0",
-    "bcrypt": "^6.0.0",
-    "process": "^0.11.10",
+    "bcryptjs": "^3.0.3",
     "react": "^19.1.0",
     "react-circular-progressbar": "^2.2.0",
     "react-dom": "^19.1.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.6.0",
     "recharts": "^3.0.2",
-    "styled-components": "^6.1.18",
-    "typescript-eslint": "^8.46.0"
+    "styled-components": "^6.1.18"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
@@ -48,6 +60,8 @@
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@vitejs/plugin-react": "^4.0.0",
+    "electron": "^42.2.0",
+    "electron-builder": "^26.8.1",
     "eslint": "^9.37.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
@@ -56,13 +70,9 @@
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
     "husky": "^9.1.7",
-    "jest": "^29.7.0",
-    "jsdom": "^26.1.0",
     "prettier": "^3.6.2",
     "rollup-plugin-visualizer": "^6.0.3",
-    "source-map-explorer": "^2.5.3",
     "vite": "^6.3.5",
-    "vitest": "^3.1.4",
-    "webpack-bundle-analyzer": "^4.10.2"
+    "vitest": "^3.1.4"
   }
 }
