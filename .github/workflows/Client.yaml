@@ -27,7 +27,7 @@ jobs:
           node-version: '20'
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
 
       # - name: Run Tests with Coverage
       #   run: npm test -- --coverage --watchAll=false
@@ -73,7 +73,7 @@ jobs:
     #     npm run || echo "npm run failed"
 
     - name: Install Dependencies
-      run: npm ci
+      run: npm install 
 
     - name: Build Application
       run: npm run builds
@@ -113,7 +113,7 @@ jobs:
           node-version: '20'
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install 
 
       - name: Run npm Audit
         run: npm audit --audit-level=moderate
@@ -154,7 +154,7 @@ jobs:
           node-version: '20'
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build for Staging
         run: npm run builds
@@ -219,7 +219,7 @@ jobs:
           node-version: '20'
       
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
       
       - name: Build for Production
         run: npm run builds
@@ -295,7 +295,7 @@ jobs:
           node-version: '20'
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build Feature Preview
         run: npm run builds
