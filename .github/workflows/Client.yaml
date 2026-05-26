@@ -76,7 +76,7 @@ jobs:
       run: npm ci
 
     - name: Build Application
-      run: npm run build
+      run: npm run builds
       env:
         CI: true
 
@@ -157,7 +157,7 @@ jobs:
         run: npm ci
 
       - name: Build for Staging
-        run: npm run build
+        run: npm run builds
         env:
           CI: true
           VITE_API_URL: ${{ secrets.STAGING_API_URL }}
@@ -222,7 +222,7 @@ jobs:
         run: npm ci
       
       - name: Build for Production
-        run: npm run build
+        run: npm run builds
         env:
           CI: true
           VITE_API_URL: ${{ secrets.PROD_API_URL }}
@@ -298,7 +298,7 @@ jobs:
         run: npm ci
 
       - name: Build Feature Preview
-        run: npm run build
+        run: npm run builds
         env:
           CI: true
           VITE_API_URL: ${{ secrets.STAGING_API_URL }}
